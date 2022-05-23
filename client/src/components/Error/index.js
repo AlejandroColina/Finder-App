@@ -2,9 +2,7 @@ import React from 'react'
 
 function Error() {
   return (
-    <>
-      <h1>Error in route</h1>
-    </>
+    <h1>Error in route</h1>
   )
 }
 
