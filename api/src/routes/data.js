@@ -1,0 +1,54 @@
+let person = [
+    {
+        nombre: 'federico',
+        apellido: 'montoya',
+        edad: 37,
+        pais: 'Argentina',
+        ocupacion: 'guitarrista',
+        disponibilidad: 'ocupado',
+        imagen: 'https://i.blogs.es/89ae35/apple-music-note/450_1000.jpg'
+    },
+    {
+        nombre: 'carlos',
+        apellido: 'uribe',
+        edad: 23,
+        pais: 'Ecuador',
+        ocupacion: 'pintor',
+        disponibilidad: 'disponible',
+        imagen: 'https://i.blogs.es/89ae35/apple-music-note/450_1000.jpg'
+    }, {
+        nombre: 'santiago',
+        apellido: 'calle',
+        edad: 18,
+        pais: 'Colombia',
+        ocupacion: 'políglota',
+        disponibilidad: 'disponible',
+        imagen: 'https://i.blogs.es/89ae35/apple-music-note/450_1000.jpg'
+    }, {
+        nombre: 'Camila',
+        apellido: 'alvarez',
+        edad: 29,
+        pais: 'Argentina',
+        ocupacion: 'Front-developer',
+        disponibilidad: 'ocupada',
+        imagen: 'https://i.blogs.es/89ae35/apple-music-note/450_1000.jpg'
+    }, {
+        nombre: 'matias',
+        apellido: 'monas',
+        edad: 24,
+        pais: 'Argentina',
+        ocupacion: 'instructor',
+        disponibilidad: 'ocupado',
+        imagen: 'https://i.blogs.es/89ae35/apple-music-note/450_1000.jpg'
+    }, {
+        nombre: 'federico',
+        apellido: 'panela',
+        edad: 28,
+        pais: 'Argentina',
+        ocupacion: 'instructor',
+        disponibilidad: 'ocupado',
+        imagen: 'https://i.blogs.es/89ae35/apple-music-note/450_1000.jpg'
+    },
+];
+
+module.exports = person;
