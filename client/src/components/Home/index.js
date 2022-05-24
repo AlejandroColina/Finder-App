@@ -1,9 +1,12 @@
-import React from 'react'
+import React from "react";
 
 function Home() {
   return (
-    <button>Hello world</button>
+    <div>
+      <button>Hello world</button>
+      <button>Volver</button>
+    </div>
   )
 }
 
-export default Home
+export default Home;
