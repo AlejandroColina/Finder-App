@@ -13,7 +13,7 @@ function Home() {
     dispatch(render());
   },[]);
 
-  return <div>{Usuarios.map(el => <p>{el.nombre} {el.edad}</p>  )}</div>;
+  return <div>  <div>{Usuarios.map(el => <p>{el.nombre} {el.edad}</p>  )}</div> </div>;
 
 }
 
