@@ -1,4 +1,4 @@
-import React from 'react';
+
 const InitialState = {
     Usuarios: []
 }
@@ -7,7 +7,11 @@ const InitialState = {
 export default function rootReducer(state = InitialState, action) {
 switch (action.type){
     
-
+    case 'RENDER':
+        return{
+            ...state,
+            Usuarios: action.payload
+        }
 
     default:
         return state;
