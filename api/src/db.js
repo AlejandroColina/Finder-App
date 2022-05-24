@@ -28,7 +28,6 @@ const { Person, Profesion } = sequelize.models;
 Person.hasMany(Profesion);
 Profesion.belongsTo(Person);
 
-
 module.exports = {
     ...sequelize.models,
     DB_CONN: sequelize
