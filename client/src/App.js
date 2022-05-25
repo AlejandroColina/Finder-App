@@ -1,7 +1,7 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import LandingPage from './components/LandingPage/index';
-import Home from './components/Home/index';
+import Home from './components/Home/Home';
 import Error from './components/Error/index';
 
 function App() {
