@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { renderWorkers } from "../Redux/actions/index";
 import { useEffect } from "react";
+
 import { useDispatch, useSelector} from "react-redux";
 import styles from './styles.module.css';
 
@@ -42,6 +43,7 @@ function Home() {
             <section className={styles.footer}>Footer</section>
             </div>
   </div>);
+
 
 }
 
