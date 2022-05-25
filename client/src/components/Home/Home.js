@@ -1,19 +1,47 @@
-import React from "react";
-import { render } from "../Redux/actions/index";
+import React, { useState } from "react";
+import { renderWorkers } from "../Redux/actions/index";
 import { useEffect } from "react";
 import { useDispatch, useSelector} from "react-redux";
+import styles from './styles.module.css';
+
+import { SearchBar } from "./SearchBar/SearchBar";
+import { Filtros } from "./Filtros/Filtros";
 
 function Home() {
 
-  let usuarios = [{nombre : 'jose', edad : 99}]
-  
-  const Usuarios = useSelector(state => state.Usuarios )
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(render(usuarios));
-  },[]);
+ 
+  const [filters, setFilters] = useState({
+    job: ''
+  })
 
-  return <div>  <div>{Usuarios.map(el => <p>{el.nombre} {el.edad}</p>  )}</div> </div>;
+  const trabajadores = useSelector(state => state.trabajadores)
+  console.log(trabajadores)
+  const dispatch = useDispatch()
+
+  
+  useEffect(() => {
+    dispatch(renderWorkers())
+  }, [dispatch])
+  
+
+
+  return (
+  <div>
+            <SearchBar filters={filters} setFilters={setFilters} />
+
+            <div className={styles.contenidos}>
+            <section className={styles.filtros}>
+              <Filtros />
+            </section>
+            <section className={styles.posteos}>
+              
+            </section>
+            <section className={styles.cards}>Cards</section>
+            <section className={styles.publicar}>Anunciarse/Publicar</section>
+            <section className={styles.destacados}>Profesionales destacados</section>
+            <section className={styles.footer}>Footer</section>
+            </div>
+  </div>);
 
 }
 
