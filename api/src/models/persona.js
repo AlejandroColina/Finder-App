@@ -25,6 +25,9 @@ module.exports = (sequelize) => {
         edad: {
             type: DataTypes.INTEGER
         },
+        descripcion: {
+            type: DataTypes.STRING
+        },
     });
 
 }
