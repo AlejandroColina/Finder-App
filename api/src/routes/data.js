@@ -1,5 +1,6 @@
 let person = [
-    {
+    { 
+        id: 0,
         nombre: 'federico',
         apellido: 'montoya',
         edad: 37,
@@ -9,6 +10,7 @@ let person = [
         imagen: 'https://i.blogs.es/89ae35/apple-music-note/450_1000.jpg'
     },
     {
+        id: 1,
         nombre: 'carlos',
         apellido: 'uribe',
         edad: 23,
@@ -17,6 +19,7 @@ let person = [
         disponibilidad: 'disponible',
         imagen: 'https://i.blogs.es/89ae35/apple-music-note/450_1000.jpg'
     }, {
+        id: 2,
         nombre: 'santiago',
         apellido: 'calle',
         edad: 18,
@@ -25,6 +28,7 @@ let person = [
         disponibilidad: 'disponible',
         imagen: 'https://i.blogs.es/89ae35/apple-music-note/450_1000.jpg'
     }, {
+        id: 3,
         nombre: 'Camila',
         apellido: 'alvarez',
         edad: 29,
@@ -33,6 +37,7 @@ let person = [
         disponibilidad: 'ocupada',
         imagen: 'https://i.blogs.es/89ae35/apple-music-note/450_1000.jpg'
     }, {
+        id: 4,
         nombre: 'matias',
         apellido: 'monas',
         edad: 24,
@@ -41,6 +46,7 @@ let person = [
         disponibilidad: 'ocupado',
         imagen: 'https://i.blogs.es/89ae35/apple-music-note/450_1000.jpg'
     }, {
+        id: 5,
         nombre: 'federico',
         apellido: 'panela',
         edad: 28,
