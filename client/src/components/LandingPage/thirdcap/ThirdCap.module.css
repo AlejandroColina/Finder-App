@@ -1,0 +1,5 @@
+.container{
+    width: 100%;
+    min-height: 100vh;
+    background: linear-gradient(90deg, #1A2980 0%, #26D0CE 100%);
+}

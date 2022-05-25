@@ -1,11 +1,17 @@
-import React from 'react'
+import React from 'react';
+import FirstCap from './firstcap/FirstCap';
+import SecondCap from './secondcap/SecondCap';
+import ThirdCap from './thirdcap/ThirdCap';
+import NavBar from './NavBar/NavBar';
 
 function LandingPage() {
   return (
-    <div> 
-    <h1>LandingPage</h1>
-  <button>click</button>
-  </div>
+    <>
+    <NavBar/>
+    <FirstCap/>
+    <SecondCap/>
+    <ThirdCap/>
+    </>
   )
 }
 
