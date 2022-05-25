@@ -1,6 +1,7 @@
 
+
 const InitialState = {
-    Usuarios: []
+    trabajadores: []
 }
 
 
@@ -10,8 +11,9 @@ switch (action.type){
     case 'RENDER':
         return{
             ...state,
-            Usuarios: action.payload
+            trabajadores: action.payload
         }
+    
 
     default:
         return state;
