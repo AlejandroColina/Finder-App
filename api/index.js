@@ -1,5 +1,6 @@
 const server = require('./src/app');
 const { DB_CONN } = require('./src/db');
+const { Profesion } = require('./src/db');
 
 
 DB_CONN.sync({ force: true })
@@ -12,4 +13,7 @@ DB_CONN.sync({ force: true })
             console.log('Listening Server of Routes');
             console.log('============================');
         });
-    });
+    })
+    .then(async () => {
+        await Profesion.create({ nombre: 'singer' })
+    })
