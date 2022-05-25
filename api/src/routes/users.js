@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const person = require('./data');
 router.use(express.json());
+const app = require("express").Router();
 
 router.get('/', (req, res, next) => {
     try {
@@ -10,5 +11,9 @@ router.get('/', (req, res, next) => {
         next(error);
     }
 });
+
+router.get("/:name", (req,res) =>{
+
+})
 
 module.exports = router;
