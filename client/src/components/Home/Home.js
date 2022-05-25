@@ -15,7 +15,7 @@ function Home() {
   })
 
   const trabajadores = useSelector(state => state.trabajadores)
-  console.log(trabajadores)
+  
   const dispatch = useDispatch()
 
   
@@ -34,7 +34,7 @@ function Home() {
               <Filtros />
             </section>
             <section className={styles.posteos}>
-              
+
             </section>
             <section className={styles.cards}>Cards</section>
             <section className={styles.publicar}>Anunciarse/Publicar</section>
