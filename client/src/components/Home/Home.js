@@ -3,15 +3,15 @@ import { renderWorkers } from "../Redux/actions/index";
 import { useEffect } from "react";
 
 import { useDispatch, useSelector} from "react-redux";
-<<<<<<< HEAD
-import Cards from '../Cards/cards'
-=======
+
+
+
 import styles from './styles.module.css';
 
 import { SearchBar } from "./SearchBar/SearchBar";
 import { Filtros } from "./Filtros/Filtros";
 
->>>>>>> b635508c327091ffb38ca3f1227ee7396bac2f36
+
 function Home() {
 
  
@@ -24,15 +24,8 @@ function Home() {
   const dispatch = useDispatch()
 
   
-<<<<<<< HEAD
-  // const Usuarios = useSelector(state => state.Usuarios )
-  // const dispatch = useDispatch();
-  // useEffect(() => {
-  //   dispatch(render());
-  // },[]);
 
-  return <div><Cards/></div>;
-=======
+
   useEffect(() => {
     dispatch(renderWorkers())
   }, [dispatch])
@@ -57,7 +50,7 @@ function Home() {
             </div>
   </div>);
 
->>>>>>> b635508c327091ffb38ca3f1227ee7396bac2f36
+
 
 }
 
