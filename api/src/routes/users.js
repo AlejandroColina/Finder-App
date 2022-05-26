@@ -4,7 +4,7 @@ router.use(express.json());
 const app = require("express").Router();
 const axios = require("axios");
 const { Persona, Profesion } = require("../db");
-const person = require('./data');
+const person2 = require("./data")
 const tipos = require("./tipos")
 
 router.get('/', async(req, res, next) => {
@@ -13,18 +13,20 @@ router.get('/', async(req, res, next) => {
         res.send(personasDB)
     } else {
         let todos = [];
-    for (let i = 0; i < person.length; i++) {
-        if(todos.indexOf(person[i]) < 0) todos.push(person[i])
+    for (let i = 0; i < person2.length; i++) {
+        if(todos.indexOf(person2[i]) < 0) todos.push(person2[i])
     }
      for (let i = 0; i < todos.length; i++) {
          Persona.create({
-             nombres: todos[i].nombre,
-             apellidos: todos[i].apellido,
+             nombres: todos[i].nombres,
+             apellidos: todos[i].apellidos,
              edad: todos[i].edad,
              pais: todos[i].pais,
              telefono: 1161330975,
              email: "fulanito@gmail.com",
              image: todos[i].imagen,
+             documento: 384759844,
+             descripcion: todos[i].descripcion,
          })
      }
      res.send(todos)
@@ -49,7 +51,7 @@ router.get("/empleos", async (req,res)=>{
     axios.get("http://localhost:3001/users")
     .then((respuesta)=>{
         let personas = respuesta.data;
-        let tuPersona = personas.filter((el) => el.ocupacion.toLowerCase().includes(req.params.ocupacion.toLowerCase()));
+        let tuPersona = personas.filter((el) => el.descripcion.toLowerCase().includes(req.params.ocupacion.toLowerCase()));
         if (!tuPersona.length){
           res.send([]);
         }
