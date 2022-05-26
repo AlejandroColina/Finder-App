@@ -22,7 +22,7 @@ export default function FirstCap(){
     return(
         <div className={s.container}>
             <div>
-                <h2>GENERA, COMPARA Y CONTRATA</h2>
+                <h2>GENERA,COMPARA Y CONTRATA</h2>
                 <div>Genera empleo contratando EMPRENDEDORES</div>
                 <div>Compara precio calidad y cercania</div>
                 <div className={s.importantText}>Contrata el mejor servicio ✔</div>
