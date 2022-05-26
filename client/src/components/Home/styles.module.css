@@ -22,8 +22,9 @@
 }
 
 .cards{
+     height: 100vh;
      display:flex;
-     flex-wrap: wrap;
+     
      gap: 20px;
      padding: 20px;
      background-color: rgb(255, 255, 255);
