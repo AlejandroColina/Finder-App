@@ -30,8 +30,9 @@ function LandingPage() {
           </div>
           </div>:
       <div className={s.boxItems}>
-         <Link to='/home' className={s.navItems}><div>CONTRATA</div></Link>
+         <Link to='/home' className={s.navItems}><div>HOME</div></Link>
          <a href="#2" className={s.navItems}>OFRECE</a>
+         <a  onClick={()=>{loginWithRedirect()}} className={s.navItems}>INGRESA</a>
          <a href="#3" className={s.navItems}>EXPERIENCIA FINDER</a>
       </div>
       }
