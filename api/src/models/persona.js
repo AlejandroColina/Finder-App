@@ -25,9 +25,19 @@ module.exports = (sequelize) => {
         edad: {
             type: DataTypes.INTEGER
         },
+        imagen: {
+            type: DataTypes.STRING
+        },
         descripcion: {
             type: DataTypes.STRING
         },
+        puntuacion: {
+            type: DataTypes.ARRAY(DataTypes.INTEGER),
+            validate: {
+                max: 1,
+                min: 5,
+            }
+        }
     });
 
 }
