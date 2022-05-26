@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import s from './FirstCap.module.css';
-import One from '../svg/One';
 import { useHistory } from "react-router-dom";
+import img_users from './users_logo_landing.png';
 //import {useDispatch} from 'react-redux';
 
 export default function FirstCap(){
@@ -33,7 +33,7 @@ export default function FirstCap(){
                     <input  className={s.btn} type='submit' value='⌕'/>
                 </form>
             </div>
-            <One  className={s.svgOne}/>
+            <img className={s.img} src={img_users} alt='users'/>
         </div>
     )
 }

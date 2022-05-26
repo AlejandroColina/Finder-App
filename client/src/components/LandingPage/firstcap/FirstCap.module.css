@@ -12,8 +12,8 @@
 }
 .importantText{
     margin-top: 5%;
-    font-size: 20px;
-    font-weight: bold;
+    font-size: 15px;
+    font-weight: bolder;
     color:#68E1FD ;
 }
 .form{
@@ -50,4 +50,30 @@
     border: none;
     font-size: 35px;
     color: #68E1FD;
+}
+.img{
+    width: 600px;
+}
+@media only screen and (max-width:400px) {
+    .container{
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        text-align: center;
+        font-size: small;
+    }
+    .form{
+        display: flex;
+        text-align: center;
+        justify-content: center;
+    }
+    .img{
+        width: 80%;
+        margin-top: 20%;
+        margin-bottom: 20%;
+    }
+    .form{
+        
+    margin: 20% 8%;
+    }
 }
