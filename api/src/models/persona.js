@@ -32,6 +32,9 @@ module.exports = (sequelize) => {
         descripcion: {
             type: DataTypes.STRING
         },
+        promedio: {
+            type: DataTypes.INTEGER
+        },
         puntuacion: {
             type: DataTypes.ARRAY(DataTypes.INTEGER),
             validate: {
