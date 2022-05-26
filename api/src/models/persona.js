@@ -13,6 +13,7 @@ module.exports = (sequelize) => {
         },
         documento: {
             type: DataTypes.INTEGER,
+            allowNull: false
         },
         telefono: {
             type: DataTypes.INTEGER,
@@ -24,6 +25,9 @@ module.exports = (sequelize) => {
         },
         edad: {
             type: DataTypes.INTEGER
+        },
+        descripcion: {
+            type: DataTypes.STRING
         },
     });
 

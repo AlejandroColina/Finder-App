@@ -31,12 +31,6 @@ Direccion.belongsTo(Persona);
 Persona.belongsToMany(Profesion, { through: 'rel_person_profesion' });
 Profesion.belongsToMany(Persona, { through: 'rel_person_profesion' });
 
-Persona.belongsToMany(Rol_persona, { through: 'rel_person_rol' });
-Rol_persona.belongsToMany(Persona, { through: 'rel_person_rol' });
-
-Profesion.belongsToMany(Actividades, { through: 'rel_profesion_actividades' });
-Actividades.belongsToMany(Profesion, { through: 'rel_profesion_actividades' });
-
 module.exports = {
     ...sequelize.models,
     DB_CONN: sequelize

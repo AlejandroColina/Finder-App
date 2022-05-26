@@ -1,28 +1,26 @@
 const express = require('express');
 const router = express.Router();
-const { Persona } = require('../db');
+const { Persona, Actividades, Profesion } = require('../db');
 router.use(express.json());
 
 
 //localhost:3001/person
 router.post('/', async (req, res, next) => {
     try {
-        const { nombres, apellidos, documento, telefono, email, edad, domicilio, fotos, profesion } = req.body;
-        console.log(req.body)
+        const { nombres, apellidos, documento, telefono, email, edad, domicilio, fotos, profesion, actividad } = req.body;
 
-        let p = await Persona.findAll();
-        console.log('P1', p);
-
-        let h = await Persona.create({
+        let persona = await Persona.create({
             nombres, apellidos, documento, telefono, email, edad
         });
 
-        console.log('H', h)
+        await persona.setProfesions(profesion)
 
-        let p2 = await Persona.findAll();
-        console.log('P2', p2);
-
-        await h.setProfesions(profesion)
+        let prueba = await Persona.findAll({
+            include: [{
+                model: Profesion,
+                attributes: ['nombre']
+            }]
+        });
 
         res.send('ok')
 
