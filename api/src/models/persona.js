@@ -35,8 +35,8 @@ module.exports = (sequelize) => {
         puntuacion: {
             type: DataTypes.ARRAY(DataTypes.INTEGER),
             validate: {
-                max: 1,
-                min: 5,
+                max: 5,
+                min: 1,
             }
         }
     });

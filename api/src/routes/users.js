@@ -17,6 +17,11 @@ router.get('/', async(req, res, next) => {
         if(todos.indexOf(person2[i]) < 0) todos.push(person2[i])
     }
      for (let i = 0; i < todos.length; i++) {
+      //  const puntos = todos[i].puntuacion;
+      //  const promedio = 0
+      //  for (let j = 0; j < puntos.length; j++) {
+      //    promedio += puntos[j]; 
+      //  }
          Persona.create({
              nombres: todos[i].nombres,
              apellidos: todos[i].apellidos,
@@ -27,6 +32,8 @@ router.get('/', async(req, res, next) => {
              image: todos[i].imagen,
              documento: 384759844,
              descripcion: todos[i].descripcion,
+             puntuacion: [4, 3, 3],
+             promedio: (4 + 3 + 3) / 3
          })
      }
      res.send(todos)
@@ -71,8 +78,8 @@ router.get("/trabajo/:id", async (req,res) => {
     axios.get("http://localhost:3001/users")
     .then((respuesta)=>{
         let personas = respuesta.data;
-          for (let i = 0; i < personas.length -1; i++) {
-            if(personas[i].id.toString() === id) res.send(personas[i])
+          for (let i = 0; i < respuesta.data.length -1; i++) {
+            if(respuesta.data[i].id.toString() === id) res.send(personas[i])
           }
     })
    } catch (error) {
