@@ -16,14 +16,21 @@ function Home() {
 
  
   const [filters, setFilters] = useState({
-    job: ''
+    ciudad: '',
+    tipo: '',
+    rating: undefined
   })
 
   const trabajadores = useSelector(state => state.trabajadores)
   
   const dispatch = useDispatch()
 
-  
+  const handleFilterChanges = (e) => {
+    setFilters({
+      ...filters,
+      [e.target.name]: e.target.value
+    })
+  }
 
 
   useEffect(() => {
@@ -34,11 +41,11 @@ function Home() {
 
   return (
   <div>
-            <SearchBar filters={filters} setFilters={setFilters} />
+            <SearchBar filters={filters}  handleFilterChanges={handleFilterChanges} />
 
             <div className={styles.contenidos}>
             <section className={styles.filtros}>
-              <Filtros />
+              <Filtros filters={filters}  handleFilterChanges={handleFilterChanges}/>
             </section>
             <section className={styles.posteos}>
 

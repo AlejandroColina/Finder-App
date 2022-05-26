@@ -6,7 +6,7 @@
 }
 
 .filtros{
-    background-color: red;
+    background-color: rgb(72, 72, 94);
     grid-column: 2 / -1;
     grid-row: 1 / 2
 }
