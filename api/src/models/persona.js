@@ -13,6 +13,7 @@ module.exports = (sequelize) => {
         },
         documento: {
             type: DataTypes.INTEGER,
+            allowNull: false
         },
         telefono: {
             type: DataTypes.INTEGER,
