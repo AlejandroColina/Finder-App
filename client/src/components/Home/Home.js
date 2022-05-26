@@ -1,12 +1,16 @@
 import React, { useState } from "react";
 import { renderWorkers } from "../Redux/actions/index";
 import { useEffect } from "react";
-
+import Cards from './Cards/cards'
 import { useDispatch, useSelector} from "react-redux";
+import person from '../../data'
+
+
 import styles from './styles.module.css';
 
 import { SearchBar } from "./SearchBar/SearchBar";
 import { Filtros } from "./Filtros/Filtros";
+
 
 function Home() {
 
@@ -20,6 +24,8 @@ function Home() {
   const dispatch = useDispatch()
 
   
+
+
   useEffect(() => {
     dispatch(renderWorkers())
   }, [dispatch])
@@ -37,12 +43,15 @@ function Home() {
             <section className={styles.posteos}>
 
             </section>
-            <section className={styles.cards}>Cards</section>
+            <section className={styles.cards}>
+              {person && person.map(el => <Cards nombre={el.nombre} imagen={el.imagen} />)}
+            </section>
             <section className={styles.publicar}>Anunciarse/Publicar</section>
             <section className={styles.destacados}>Profesionales destacados</section>
             <section className={styles.footer}>Footer</section>
             </div>
   </div>);
+
 
 
 }
