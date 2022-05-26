@@ -22,7 +22,11 @@
 }
 
 .cards{
-     background-color: goldenrod;
+     display:flex;
+     flex-wrap: wrap;
+     gap: 20px;
+     padding: 20px;
+     background-color: rgb(255, 255, 255);
      grid-column: 2 / -1;
      grid-row: 2 / 5
 }

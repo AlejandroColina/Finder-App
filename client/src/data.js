@@ -6,7 +6,7 @@ let person = [
         pais: 'Argentina',
         ocupacion: 'guitarrista',
         disponibilidad: 'ocupado',
-        imagen: 'https://i.blogs.es/89ae35/apple-music-note/450_1000.jpg'
+        imagen: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQgAu7AEIlFfrNfgnRff5AuhGsdpw4Fneagiw&usqp=CAU'
     },
     {
         nombre: 'carlos',
@@ -15,7 +15,7 @@ let person = [
         ciudad: 'Ecuador',
         ocupacion: 'pintor',
         disponibilidad: 'disponible',
-        imagen: 'https://i.blogs.es/89ae35/apple-music-note/450_1000.jpg'
+        imagen: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQgAu7AEIlFfrNfgnRff5AuhGsdpw4Fneagiw&usqp=CAU'
     }, {
         nombre: 'santiago',
         apellido: 'calle',
@@ -23,7 +23,7 @@ let person = [
         ciudad: 'Colombia',
         ocupacion: 'políglota',
         disponibilidad: 'disponible',
-        imagen: 'https://i.blogs.es/89ae35/apple-music-note/450_1000.jpg'
+        imagen: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQgAu7AEIlFfrNfgnRff5AuhGsdpw4Fneagiw&usqp=CAU'
     }, {
         nombre: 'Camila',
         apellido: 'alvarez',
