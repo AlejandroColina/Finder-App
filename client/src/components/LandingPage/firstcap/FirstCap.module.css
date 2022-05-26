@@ -10,9 +10,17 @@
     background: linear-gradient(90deg, #0575E6 0%, #021B79 100%);
     color: white;
 }
+.title{
+    font-size: 40px;
+    margin-bottom: 20px;
+}
+.text{
+    font-size: 20px;
+    margin-bottom: 15px;
+}
 .importantText{
     margin-top: 5%;
-    font-size: 15px;
+    font-size: 25px;
     font-weight: bolder;
     color:#68E1FD ;
 }
@@ -69,11 +77,16 @@
     }
     .img{
         width: 80%;
-        margin-top: 20%;
         margin-bottom: 20%;
     }
     .form{
         
     margin: 20% 8%;
+    }
+    .title{
+        font-size: 20px;
+    }
+    .text{
+        font-size: 15px;
     }
 }
