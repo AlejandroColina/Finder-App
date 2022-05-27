@@ -1,0 +1,105 @@
+.container{
+    min-height: 100vh;
+    color: #0575E6;
+}
+.navBar{
+    position: fixed;
+    width: 100%;
+    background-color: #0575E6;
+    display: flex;
+    justify-content: space-around;
+    padding: 10px;
+}
+.img{
+    width: 150px;
+    height: auto;
+}
+.row{
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+
+}
+.navSeccion{
+    min-width: 100px;
+    height: 100vh;
+    background-color: #0575E6;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.navSeccionWidth{
+    position: fixed;
+    min-width: 100px;
+    height: 100vh;
+    background-color: #0575E6;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.containerDash{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 8%;
+}
+.navItems{
+    color: white;
+    font-size: 20px;
+    padding: 20px;
+    text-decoration: none;
+    background: none;
+    border: none;
+}
+.navItems:focus{
+    color: #0575E6;
+    background-color: white;
+}
+.btn{
+    background-color: #0575E6;
+    color: white;
+    border: 1px solid #0575E6;
+    font-size: 15px;
+    width: 100%;
+    transition: 1s;
+}
+.btn:hover{
+    background-color: white;
+    color: #0575E6;
+    border: 1px solid white;
+}
+.card{
+    margin: 20px;
+    box-shadow: 0px 0px 10px #0575E6;
+    display: flex;
+    flex-direction: column;
+    justify-content:space-between;
+    align-items: center;
+}
+.importantText{
+    background-color: #0575E6;
+    color: white;
+    padding: 10px;
+    font-size: 20px;
+}
+.text{
+    font-size: 15px;
+    padding: 8px;
+}
+.textarea{
+    width: 100%;
+    border: none;
+    resize: none;
+    outline: none;
+    text-align: center;
+}
+.textarea::placeholder{
+    color: #0576e6a9;
+}
+@media only screen and(max-width:400px){
+    .containerDash{
+        padding: 0px;
+        margin-left: 25%;
+    }
+}
