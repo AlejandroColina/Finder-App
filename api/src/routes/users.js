@@ -7,6 +7,16 @@ const { Persona, Profesion } = require("../db");
 const person2 = require("./data")
 const tipos = require("./tipos")
 
+function promedio(params){
+  let resultado = 0;
+  for (let i = 0; i < params.length; i++) {
+     resultado = resultado + params[i]
+  }
+  resultado = parseInt(resultado / params.length)
+  console.log(resultado)
+  return resultado
+}
+
 router.get('/', async (req, res, next) => {
   let personasDB = await Persona.findAll({ include: Profesion });
   if (personasDB.length > 0) {
@@ -29,16 +39,30 @@ router.get('/', async (req, res, next) => {
         pais: todos[i].pais,
         telefono: 1161330975,
         email: "fulanito@gmail.com",
-        image: todos[i].imagen,
+        imagen: todos[i].imagen,
         documento: 384759844,
         descripcion: todos[i].descripcion,
-        puntuacion: [4, 3, 3],
-        promedio: parseInt((4 + 3 + 3) / 3)
+        puntuacion: todos[i].puntuacion,
+        promedio: promedio(todos[i].puntuacion) 
       })
     }
     res.send(todos)
   }
 });
+
+router.get("/puntos/:puntos", (req, res) =>{
+  let puntos = req.params.puntos;
+  axios.get("http://localhost:3001/users")
+  .then((respuesta)=>{
+    let tuPersona = []
+    let todos = respuesta.data;
+    for (let i = 0; i < todos.length; i++) {
+      if(puntos <= todos[i].promedio) tuPersona.push(todos[i])
+      
+    }
+    res.send(tuPersona)
+  })
+})
 
 router.get("/empleos", async (req, res) => {
   let profeDB = await Profesion.findAll();
@@ -86,8 +110,5 @@ router.get("/trabajo/:id", async (req, res) => {
     console.log(error)
   }
 })
-
-
-
 
 module.exports = router;

@@ -134,7 +134,7 @@ let person2 = [
         email: "Eloisa48@gmail.com",
         telefono: 570408,
         direccion: "34600 Barbara Solar",
-        imagen: "https://www.crushpixel.com/big-static15/preview4/man-mountain-1952668.jpg",
+        imagen: "https://i.pinimg.com/originals/ce/a2/00/cea200630f7fca7a9bc424f88a6acb41.png",
         descripcion: "Ut culpa accusantium voluptas.",
         puntuacion: [
             4,
@@ -242,7 +242,7 @@ let person2 = [
         email: "Daniel89@yahoo.com",
         telefono: 772134,
         direccion: "8924 Manuela Rua",
-        imagen: "https://www.crushpixel.com/es/big-static17/preview4/man-talking-woman-2580143.jpg",
+        imagen: "https://i1.sndcdn.com/artworks-000101191500-f9p6sb-t500x500.jpg",
         descripcion: "Perspiciatis velit quam est et qui.",
         puntuacion: [
             4,
@@ -278,7 +278,7 @@ let person2 = [
         email: "JosEmilio23@hotmail.com",
         telefono: 527566,
         direccion: "071 Esteban Explanada",
-        imagen: "hhttps://img.freepik.com/foto-gratis/hombre-sienta-orilla-rio-lanza-piedras-al-agua_156396-320.jpg",
+        imagen: "https://portal.andina.pe/EDPfotografia3/Thumbnail/2022/03/08/000851626W.jpg",
         descripcion: "Eos repellat ut dolor voluptatem natus ut.",
         puntuacion: [
             5,
@@ -422,7 +422,7 @@ let person2 = [
         email: "AnaMara_Porras@gmail.com",
         telefono: 361161,
         direccion: "89455 Soledad Barrio",
-        imagen: "https://mundo.culturizando.com/wp-content/uploads/2016/09/Hombre-corriendo.png",
+        imagen: "https://remoteco.s3.amazonaws.com/wp-content/uploads/2017/01/happy_worker_2.png",
         descripcion: "Omnis necessitatibus laudantium dignissimos animi inventore numquam.",
         puntuacion: [
             3,
