@@ -29,10 +29,10 @@ router.get('/', async (req, res, next) => {
         pais: todos[i].pais,
         telefono: 1161330975,
         email: "fulanito@gmail.com",
-        image: todos[i].imagen,
+        imagen: todos[i].imagen,
         documento: 384759844,
         descripcion: todos[i].descripcion,
-        puntuacion: [4, 3, 3],
+        puntuacion: todos[i].puntuacion,
         promedio: parseInt((4 + 3 + 3) / 3)
       })
     }
