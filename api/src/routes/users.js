@@ -50,6 +50,20 @@ router.get('/', async (req, res, next) => {
   }
 });
 
+router.get("/puntos/:puntos", (req, res) =>{
+  let puntos = req.params.puntos;
+  axios.get("http://localhost:3001/users")
+  .then((respuesta)=>{
+    let tuPersona = []
+    let todos = respuesta.data;
+    for (let i = 0; i < todos.length; i++) {
+      if(puntos <= todos[i].promedio) tuPersona.push(todos[i])
+      
+    }
+    res.send(tuPersona)
+  })
+})
+
 router.get("/empleos", async (req, res) => {
   let profeDB = await Profesion.findAll();
   if (profeDB.length > 0) {
