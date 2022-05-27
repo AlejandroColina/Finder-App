@@ -87,6 +87,23 @@ router.get("/trabajo/:id", async (req, res) => {
   }
 })
 
+app.post("/persona", function (req, res) {
+  let profesionId = req.body.profesionId;
+  Persona.create({
+    nombres: req.body.input.nombres,
+    apellidos: req.body.input.apellidos,
+    telefono: req.body.input.telefono,
+    email: req.body.input.email,
+    edad: req.body.input.edad,
+    descripcion: req.body.input.descripcion,
+  })
+    .then((input) => {
+      input.setProfesion(profesionId);
+      res.status(200).send(input);
+    })
+    .catch((error) => console.log(error));
+})
+
 
 
 
