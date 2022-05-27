@@ -7,6 +7,16 @@ const { Persona, Profesion } = require("../db");
 const person2 = require("./data")
 const tipos = require("./tipos")
 
+function promedio(params){
+  let resultado = 0;
+  for (let i = 0; i < params.length; i++) {
+     resultado = resultado + params[i]
+  }
+  resultado = parseInt(resultado / params.length)
+  console.log(resultado)
+  return resultado
+}
+
 router.get('/', async (req, res, next) => {
   let personasDB = await Persona.findAll({ include: Profesion });
   if (personasDB.length > 0) {
@@ -33,7 +43,7 @@ router.get('/', async (req, res, next) => {
         documento: 384759844,
         descripcion: todos[i].descripcion,
         puntuacion: todos[i].puntuacion,
-        promedio: parseInt((4 + 3 + 3) / 3)
+        promedio: promedio(todos[i].puntuacion) 
       })
     }
     res.send(todos)
@@ -86,8 +96,5 @@ router.get("/trabajo/:id", async (req, res) => {
     console.log(error)
   }
 })
-
-
-
 
 module.exports = router;
