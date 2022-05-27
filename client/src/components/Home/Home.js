@@ -51,20 +51,24 @@ const paginado = (numPage) => {
         <section className={styles.filtros}>
           <Filtros />
         </section>
-        <section className={styles.posteos}></section>
+        {/* <section className={styles.posteos}></section> */}
 
         <section className={styles.cards}>
+        <div className={styles.paginado}>
         {
            <div >
                 <Paginado
+                  
                   personasPerPage= {itemsPorPag}
                   allPersonas= {trabajadores.length}
                   paginado= {paginado}
                   />
                   </div> 
-}
+        }
+        </div>
           {currentUsuarios &&
            currentUsuarios.map((el) => (
+             <div className="box">
               <Cards
                 key={el.id}
                 promedio={el.promedio}
@@ -73,9 +77,10 @@ const paginado = (numPage) => {
                 descripcion={el.descripcion}
                 Profesions={el.Profesions.length ? el.Profesions.map(e => e): 'nada'}
               />
+              </div>
             ))}
         </section>
-        <section className={styles.publicar}>Anunciarse/Publicar</section>
+        {/* <section className={styles.publicar}>Anunciarse/Publicar</section> */}
         <section className={styles.destacados}>
           Profesionales destacados
         </section>
