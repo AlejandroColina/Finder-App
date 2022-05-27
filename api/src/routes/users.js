@@ -22,6 +22,7 @@ router.get('/', async (req, res, next) => {
       //  for (let j = 0; j < puntos.length; j++) {
       //    promedio += puntos[j]; 
       //  }
+      
       Persona.create({
         nombres: todos[i].nombres,
         apellidos: todos[i].apellidos,
