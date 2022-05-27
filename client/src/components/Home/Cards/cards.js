@@ -8,7 +8,7 @@ export default function Cards({nombres,  imagen, descripcion}) {
       <div className={s.bio}>
         <img src="http://www.croop.cl/UI/twitter/images/up.jpg" alt="background" className={s.bg}/>
         <div className={s.desc}>
-          <h3>descripción</h3>
+          <h3>descripcion</h3>
           <p>{descripcion}</p>
         </div>
       </div>
