@@ -9,6 +9,7 @@ const InitialState = {
 export default function rootReducer(state = InitialState, action) {
 switch (action.type){
     
+<<<<<<< HEAD
     case 'RENDER':
         return{
             ...state,
@@ -22,6 +23,14 @@ switch (action.type){
         }     
     
 
+=======
+ 
+     case 'CARDS':
+     return{
+         ...state,
+         trabajadores: action.payload
+     }
+>>>>>>> cef0be2617a0e5564b4d49c31611fe328a8ebce5
     default:
         return state;
 }

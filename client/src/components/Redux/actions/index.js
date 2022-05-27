@@ -1,11 +1,23 @@
 import axios from 'axios'
+<<<<<<< HEAD
+=======
 
-export function renderWorkers(){
-    let workers = [{ name: 'pablo', job: 'gasista'}, { name: 'juan', job: 'plomero' }]
-    return { 
-    type: 'RENDER',
-    payload: workers
+>>>>>>> cef0be2617a0e5564b4d49c31611fe328a8ebce5
+
+
+
+export function rederCard(){
+    return async function(dispatch){
+        try{ 
+        let data = await axios.get('http://localhost:3001/users')
+        console.log(data.data)
+        return dispatch({
+            type: 'CARDS',
+            payload: data.data
+        })
+    }catch(error){console.log(error)}
     }
+<<<<<<< HEAD
 }
 
 export function getDetail(id) {
@@ -17,4 +29,6 @@ export function getDetail(id) {
                 payload: json.data
             })
     }
+=======
+>>>>>>> cef0be2617a0e5564b4d49c31611fe328a8ebce5
 }
