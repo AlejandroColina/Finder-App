@@ -43,7 +43,7 @@ function Home() {
 
             </section>
             <section className={styles.cards}>
-              {trabajadores && trabajadores.map(el => <Cards nombres={el.nombres} imagen={el.imagen}  descripcion={el.descripcion}/>)}
+              {trabajadores && trabajadores.map(el => <Cards key={el.id} nombres={el.nombres} imagen={el.imagen}  descripcion={el.descripcion}/>)}
             </section>
             <section className={styles.publicar}>Anunciarse/Publicar</section>
             <section className={styles.destacados}>Profesionales destacados</section>
