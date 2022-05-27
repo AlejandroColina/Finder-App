@@ -20,7 +20,7 @@ function Home() {
   const dispatch = useDispatch();
 
   const [currentPage, setCurrentPage] = useState(1);
-const [itemsPorPag] = useState(10);
+const [itemsPorPag] = useState(9);
 const indexDelUltimoItem = currentPage * itemsPorPag;
 const indexDelPrimerItem = indexDelUltimoItem - itemsPorPag;
 const currentUsuarios = trabajadores.slice(indexDelPrimerItem, indexDelUltimoItem);
@@ -46,10 +46,9 @@ const paginado = (numPage) => {
         {
            <div >
                 <Paginado
-                  paisPerPage= {itemsPorPag}
-                  allPais= {trabajadores.length}
+                  personasPerPage= {itemsPorPag}
+                  allPersonas= {trabajadores.length}
                   paginado= {paginado}
-                  estado = {currentPage}
                   />
                   </div> 
 }
