@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import Cards from './Cards/cards'
 import { useDispatch, useSelector} from "react-redux";
 import person from '../../data'
+import { Link } from "react-router-dom";
 
 
 import styles from './styles.module.css';
@@ -44,7 +45,13 @@ function Home() {
 
             </section>
             <section className={styles.cards}>
-              {person && person.map(el => <Cards nombre={el.nombre} imagen={el.imagen} />)}
+              {person && person.map(el => 
+                  <Link key={el.id} to={`/detail/${el.id}`}
+                   style={{ textDecoration: "none" }}>
+                  <Cards nombre={el.nombre} imagen={el.imagen} />
+                   </Link>
+                )
+              }
             </section>
             <section className={styles.publicar}>Anunciarse/Publicar</section>
             <section className={styles.destacados}>Profesionales destacados</section>

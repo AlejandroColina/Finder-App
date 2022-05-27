@@ -1,7 +1,8 @@
 
 
 const InitialState = {
-    trabajadores: []
+    trabajadores: [],
+    detail: []
 }
 
 
@@ -13,6 +14,12 @@ switch (action.type){
             ...state,
             trabajadores: action.payload
         }
+
+    case 'DETAIL':
+        return {
+            ...state,
+            detail: action.payload
+        }     
     
 
     default:

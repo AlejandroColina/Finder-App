@@ -79,7 +79,7 @@ router.get("/trabajo/:id", async (req,res) => {
     .then((respuesta)=>{
         let personas = respuesta.data;
           for (let i = 0; i < respuesta.data.length -1; i++) {
-            if(respuesta.data[i].id.toString() === id) res.send(personas[i])
+            if(respuesta.data[i].id === id) res.send(personas[i])
           }
     })
    } catch (error) {
