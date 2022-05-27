@@ -1,28 +1,25 @@
 import React, { useState } from "react";
-import {  rederCard } from "../Redux/actions/index";
+import { rederCard } from "../Redux/actions/index";
 import { useEffect } from "react";
-import Cards from './Cards/cards'
-import { useDispatch, useSelector} from "react-redux";
-
-
-import styles from './styles.module.css';
-
+import Cards from "./Cards/cards";
+import { useDispatch, useSelector } from "react-redux";
+import styles from "./styles.module.css";
 import { SearchBar } from "./SearchBar/SearchBar";
 import { Filtros } from "./Filtros/Filtros";
+import Paginado from '../Paginado/Paginado'
+
 
 
 function Home() {
-
- 
   const [filters, setFilters] = useState({
+
     ciudad: '',
     tipo: '',
     rating: undefined
   })
 
-  const trabajadores = useSelector(state => state.trabajadores)
-  
-  const dispatch = useDispatch()
+
+  const trabajadores = useSelector((state) => state.trabajadores);
 
   const handleFilterChanges = (e) => {
     setFilters({
@@ -30,35 +27,60 @@ function Home() {
       [e.target.name]: e.target.value
     })
   }
+  const dispatch = useDispatch();
 
+  const [currentPage, setCurrentPage] = useState(1);
+const [itemsPorPag] = useState(9);
+const indexDelUltimoItem = currentPage * itemsPorPag;
+const indexDelPrimerItem = indexDelUltimoItem - itemsPorPag;
+const currentUsuarios = trabajadores.slice(indexDelPrimerItem, indexDelUltimoItem);
+const paginado = (numPage) => {
+  setCurrentPage(numPage);
+};
 
   useEffect(() => {
-    dispatch(rederCard())
-  }, [dispatch])
-  
-
+    dispatch(rederCard());
+  }, [dispatch]);
 
   return (
-  <div>
-            <SearchBar filters={filters}  handleFilterChanges={handleFilterChanges} />
 
-            <div className={styles.contenidos}>
-            <section className={styles.filtros}>
-              <Filtros filters={filters}  handleFilterChanges={handleFilterChanges}/>
-            </section>
-            <section className={styles.posteos}>
+    <div>
+      <SearchBar filters={filters} setFilters={setFilters} />
 
-            </section>
-            <section className={styles.cards}>
-              {trabajadores && trabajadores.map(el => <Cards key={el.id} nombres={el.nombres} imagen={el.imagen}  descripcion={el.descripcion}/>)}
-            </section>
-            <section className={styles.publicar}>Anunciarse/Publicar</section>
-            <section className={styles.destacados}>Profesionales destacados</section>
-            <section className={styles.footer}>Footer</section>
-            </div>
-  </div>);
+      <div className={styles.contenidos}>
+        <section className={styles.filtros}>
+          <Filtros />
+        </section>
+        <section className={styles.posteos}></section>
 
-
+        <section className={styles.cards}>
+        {
+           <div >
+                <Paginado
+                  personasPerPage= {itemsPorPag}
+                  allPersonas= {trabajadores.length}
+                  paginado= {paginado}
+                  />
+                  </div> 
+}
+          {currentUsuarios &&
+           currentUsuarios.map((el) => (
+              <Cards
+                key={el.id}
+                nombres={el.nombres}
+                imagen={el.imagen}
+                descripcion={el.descripcion}
+              />
+            ))}
+        </section>
+        <section className={styles.publicar}>Anunciarse/Publicar</section>
+        <section className={styles.destacados}>
+          Profesionales destacados
+        </section>
+        <section className={styles.footer}>Footer</section>
+      </div>
+    </div>
+  );
 
 }
 

@@ -1,7 +1,7 @@
 
 .contenidos{
     display: grid;
-    grid-template-rows: 20vh repeat(3, 22rem) 15rem 10rem;
+    grid-template-rows: 20vh repeat(3, 30rem) 15rem 10rem;
     grid-template-columns: 25vw repeat(5, 1fr);
 }
 
