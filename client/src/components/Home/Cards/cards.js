@@ -1,7 +1,6 @@
 import React from "react";
-import person from '../../../data'
 import s from  './cards.module.css'
-export default function Cards({nombre,  imagen}) {
+export default function Cards({nombres,  imagen, descripcion}) {
     return (
        
     <div className={s.container}>
@@ -10,13 +9,13 @@ export default function Cards({nombre,  imagen}) {
         <img src="http://www.croop.cl/UI/twitter/images/up.jpg" alt="background" className={s.bg}/>
         <div className={s.desc}>
           <h3>descripción</h3>
-          <p>Carl Fredricksen is the protagonist in Up. He also appeared in Dug's Special Mission as a minor character.</p>
+          <p>{descripcion}</p>
         </div>
       </div>
 
       <div className={s.avatarcontainer}>
         <img src={imagen} alt="avatar" className={s.avatar}/> 
-         <p className={s.nombre}>{nombre}</p>
+         <p className={s.nombre}>{nombres}</p>
         <div className={s.hover}>
           <div className={s.icontwitter}></div>
         </div>

@@ -1,9 +1,8 @@
 import React, { useState } from "react";
-import { renderWorkers } from "../Redux/actions/index";
+import {  rederCard } from "../Redux/actions/index";
 import { useEffect } from "react";
 import Cards from './Cards/cards'
 import { useDispatch, useSelector} from "react-redux";
-import person from '../../data'
 
 
 import styles from './styles.module.css';
@@ -27,7 +26,7 @@ function Home() {
 
 
   useEffect(() => {
-    dispatch(renderWorkers())
+    dispatch(rederCard())
   }, [dispatch])
   
 
@@ -44,7 +43,7 @@ function Home() {
 
             </section>
             <section className={styles.cards}>
-              {person && person.map(el => <Cards nombre={el.nombre} imagen={el.imagen} />)}
+              {trabajadores && trabajadores.map(el => <Cards nombres={el.nombres} imagen={el.imagen}  descripcion={el.descripcion}/>)}
             </section>
             <section className={styles.publicar}>Anunciarse/Publicar</section>
             <section className={styles.destacados}>Profesionales destacados</section>
