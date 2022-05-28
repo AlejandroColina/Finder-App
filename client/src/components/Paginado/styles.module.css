@@ -1,0 +1,27 @@
+.ul {      
+    padding: 0;
+    margin: 0px auto;
+    background-color: red;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.li{
+    display: inline;
+    flex-direction: row;
+    height: 10rem;
+    margin: 5px;
+    color: gainsboro;
+}
+
+.botones_paginado{   
+    /* margin: 15px; */
+   padding: 8px 16px;
+   margin-top: 5px;
+   border: 1px solid gray;
+   border-radius: 3px;
+   font-family: 'Bebas Neue', cursive;
+   transition: all .2s;
+
+}

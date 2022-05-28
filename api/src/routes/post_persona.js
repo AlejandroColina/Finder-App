@@ -5,7 +5,8 @@ router.use(express.json());
 
 router.post('/', async (req, res, next) => {
     try {
-        const { nombres, apellidos, documento, telefono, email, direccion, profesion, descripcion, edad, imagen } = req.body;
+        const { nombres, apellidos, documento, telefono, email, edad,
+            imagen, descripcion, direccion, genero, profesion } = req.body;
 
         let consultaBD = await Persona.findAll({ where: { documento: documento } });
 
@@ -33,8 +34,10 @@ router.post('/', async (req, res, next) => {
             }
             else {
                 let persona = await Persona.create({
-                    nombres, apellidos, documento, telefono, email, edad, imagen, descripcion
+                    nombres, apellidos, documento, telefono, email,
+                    edad, imagen, descripcion, direccion, genero, profesion
                 });
+                
                 await persona.setProfesions(profesion);
                 let PersonaId = await Persona.findOne({
                     where: { documento: documento }

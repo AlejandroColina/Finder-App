@@ -1,6 +1,7 @@
 import React from "react";
 import s from  './cards.module.css'
-export default function Cards({nombres,  imagen, descripcion}) {
+export default function Cards({nombres,  imagen, descripcion, promedio, Profesions}) {
+  console.log(Profesions)
     return (
        
     <div className={s.container}>
@@ -29,11 +30,11 @@ export default function Cards({nombres,  imagen, descripcion}) {
         <ul>
           <li>
             trabajos
-            <p>pintor</p>
+            <p>{Profesions}</p>
           </li>
           <li>
            puntaje
-            <p>1,5</p>
+            <p>{promedio}</p>
           </li>
            
         </ul>

@@ -1,0 +1,36 @@
+.container{
+    
+    height: 100%;
+    width: 80%;
+    top: 50%;
+    bottom: 50%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    align-items: center;
+}
+
+.filtro{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    flex:1;
+    margin: 0px auto;
+}
+
+.label{
+    color: wheat;
+    font-size: 2rem;
+    margin-bottom: 4px;
+}
+
+.select{
+    text-align: center;
+    border-radius: 5px;
+    background-color: gainsboro;
+    font-weight: bold;
+}
+
+
+
+

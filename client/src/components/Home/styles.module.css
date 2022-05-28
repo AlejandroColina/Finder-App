@@ -1,43 +1,51 @@
 
 .contenidos{
     display: grid;
-    grid-template-rows: 20vh repeat(3, 22rem) 15rem 10rem;
+    grid-template-rows: 20vh repeat(4 , 40rem) 25rem 15rem ;
     grid-template-columns: 25vw repeat(5, 1fr);
 }
 
 .filtros{
-    background-color: red;
-    grid-column: 2 / -1;
+    background-color: rgb(72, 72, 94);
+    grid-column: 1 / -1;
     grid-row: 1 / 2
 }
 .posteos{
-     background-color: yellowgreen;
+     /* background-color: yellowgreen;
      grid-column: 1 / 2;
-     grid-row: 1 / span 3;
+     grid-row: 1 / span 3; */
 }
 .publicar{
-    background-color: cadetblue;
+    /* background-color: cadetblue;
     grid-column: 1 / 2;
-    grid-row: 4 / 5;
+    grid-row: 4 / 5; */
 }
 
 .cards{
+     grid-column: 1 / -1;
+     grid-row: 2 / 5;
      height: 100vh;
-     display:flex;
-     
+     display:grid;
+     grid-template-rows: 10rem repeat(3, 45rem);
+     grid-template-columns: repeat(3 , 1fr);
      gap: 20px;
      padding: 20px;
      background-color: rgb(255, 255, 255);
-     grid-column: 2 / -1;
-     grid-row: 2 / 5
 }
+
+.paginado{
+     background-color: aqua;
+     grid-row: 1 ;
+     grid-column: 1 / -1;
+}
+
 .destacados{
      background-color: blue;
-     grid-row: 5 / 6;
-     grid-column: 1 / -1;
+    grid-row: 6/7;
+    grid-column: 1/-1;
 }
 .footer{
      background-color: brown;
-     grid-row: 6 / 7;
-     grid-column: 1 / -1;
+     grid-row: 7/8;
+     grid-column: 1/-1;
 }
