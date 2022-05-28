@@ -82,6 +82,7 @@ router.get('/', async (req, res, next) => {
   }
 });
 
+
 router.get("/empleos", async (req, res, next) => {
   try {
 
