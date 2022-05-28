@@ -11,12 +11,22 @@ import Paginado from '../Paginado/Paginado'
 
 
 function Home() {
-  const [filters, setFilters] = useState({
-    job: "",
-  });
+  const [filters, setFilters] = useState({   
+    tipo: '',
+    rating: undefined
+  })
+
+  const [ocupacion, setOcupacion] = useState('')
+
 
   const trabajadores = useSelector((state) => state.trabajadores);
 
+  const handleFilterChanges = (e) => {
+    setFilters({
+      ...filters,
+      [e.target.name]: e.target.value
+    })
+  }
   const dispatch = useDispatch();
 
   const [currentPage, setCurrentPage] = useState(1);
@@ -29,31 +39,37 @@ function Home() {
   };
 
   useEffect(() => {
-    dispatch(rederCard());
-  }, [dispatch]);
+    dispatch(rederCard(ocupacion));
+  }, [dispatch, ocupacion]);
 
   return (
+
     <div>
-      <SearchBar filters={filters} setFilters={setFilters} />
+      <SearchBar ocupacion={ocupacion} setOcupacion={setOcupacion} />
 
       <div className={styles.contenidos}>
         <section className={styles.filtros}>
           <Filtros />
         </section>
-        <section className={styles.posteos}></section>
+        {/* <section className={styles.posteos}></section> */}
 
         <section className={styles.cards}>
-          {
-            <div >
-              <Paginado
-                personasPerPage={itemsPorPag}
-                allPersonas={trabajadores.length}
-                paginado={paginado}
-              />
-            </div>
-          }
-          {
-            currentUsuarios?.map((el) => (
+
+        <div className={styles.paginado}>
+        {
+           <div >
+                <Paginado
+                  
+                  personasPerPage= {itemsPorPag}
+                  allPersonas= {trabajadores.length}
+                  paginado= {paginado}
+                  />
+                  </div> 
+        }
+        </div>
+          {currentUsuarios?.map((el) => (
+             <div className="box">
+
               <Cards
                 key={el.id}
                 promedio={el.promedio}
@@ -62,9 +78,10 @@ function Home() {
                 descripcion={el.descripcion}
                 Profesions={el.Profesions.length ? el.Profesions : 'nada'}
               />
+              </div>
             ))}
         </section>
-        <section className={styles.publicar}>Anunciarse/Publicar</section>
+        {/* <section className={styles.publicar}>Anunciarse/Publicar</section> */}
         <section className={styles.destacados}>
           Profesionales destacados
         </section>
@@ -72,6 +89,7 @@ function Home() {
       </div>
     </div>
   );
+
 }
 
 export default Home;
