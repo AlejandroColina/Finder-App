@@ -1,6 +1,8 @@
 const InitialState = {
     trabajadores: [],
-    detail: []
+    detail: [],
+    empleos: [],
+    ciudades: []
 }
 
 
@@ -20,6 +22,18 @@ switch (action.type){
             ...state,
             detail: action.payload
         }
+     case 'GET_EMPLEOS':
+         return{
+             ...state,
+             empleos: action.payload
+         }
+
+     case 'GET_CIUDADES':
+         return{
+             ...state,
+             ciudades : action.payload
+         }
+
 
     default:
         return state;

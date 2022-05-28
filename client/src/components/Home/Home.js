@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { rederCard } from "../Redux/actions/index";
+import { getCiudades, getEmpleos, rederCard } from "../Redux/actions/index";
 import { useEffect } from "react";
 import Cards from "./Cards/cards";
 import { useDispatch, useSelector } from "react-redux";
@@ -13,14 +13,16 @@ import { Link } from "react-router-dom";
 
 function Home() {
   const [filters, setFilters] = useState({   
-    
+    profesion: '',
      nombres: '',
       promedio: '',
        genero: '',
-        edad: ''
+        edad: '',
+        ciudad: '',
+        empleo: ''
   })
 
-  const [profesion, setProfesion] = useState('')
+   const [descripcion, setDescripcion] = useState('')
 
 
   const trabajadores = useSelector((state) => state.trabajadores);
@@ -42,16 +44,19 @@ function Home() {
     setCurrentPage(numPage);
   };
 
+  dispatch(getEmpleos())
+  dispatch(getCiudades())
 
-  let { genero, promedio } = filters
+  let { genero, promedio, ciudad, profesion } = filters
   useEffect(() => {
-    dispatch(rederCard(profesion, genero, promedio));
-  }, [dispatch, profesion, genero, promedio]);
+    dispatch(rederCard(profesion, genero, promedio, ciudad));
+    setCurrentPage(1)
+  }, [dispatch, profesion, genero, promedio, ciudad]);
 
   return (
 
     <div>
-      <SearchBar profesion={profesion} setProfesion={setProfesion} />
+      <SearchBar descripcion={descripcion} setDescripcion={setDescripcion} />
 
       <div className={styles.contenidos}>
         <section className={styles.filtros}>
