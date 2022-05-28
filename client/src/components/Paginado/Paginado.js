@@ -1,4 +1,5 @@
-
+import React from 'react';
+import styles from "./styles.module.css";
 
 export default function Paginado({personasPerPage, allPersonas, paginado}) {
     const pageNumbers = [];
@@ -8,11 +9,11 @@ export default function Paginado({personasPerPage, allPersonas, paginado}) {
     }
     return(
     <nav >
-        <ul >
+        <ul className={styles.ul}>
             {pageNumbers &&
             pageNumbers.map(number=> (
-           <li  key={number}>
-                 <button onClick={() => paginado(number)}>{number}</button>
+           <li className={styles.li}  key={number}>
+                 <button className={styles.botones_paginado} onClick={() => paginado(number)}>{number}</button>
              </li>
             ))}
         </ul>

@@ -1,58 +1,102 @@
 const express = require('express');
 const router = express.Router();
-router.use(express.json());
-const app = require("express").Router();
 const axios = require("axios");
-const { Persona, Profesion } = require("../db");
-const person2 = require("./data")
-const tipos = require("./tipos")
+const { Persona, Profesion, Direccion } = require("../db");
+router.use(express.json());
 
 router.get('/', async (req, res, next) => {
-  let personasDB = await Persona.findAll({ include: Profesion });
-  if (personasDB.length > 0) {
-    res.send(personasDB)
-  } else {
-    let todos = [];
-    for (let i = 0; i < person2.length; i++) {
-      if (todos.indexOf(person2[i]) < 0) todos.push(person2[i])
+  try {
+
+    const { profesion, nombres, promedio, genero, edad } = req.query;
+
+    let personasDB = await Persona.findAll({ include: [Profesion, Direccion] });
+    if (personasDB.length == 0) return res.send('LA BASE DE DATOS NO TIENE INFORMACION');
+
+    let objPersonas = personasDB.map(person => {
+
+      return {
+        id: person.id,
+        nombres: person.nombres,
+        apellidos: person.apellidos,
+        documento: person.documento,
+        telefono: person.telefono,
+        email: person.email,
+        edad: person.edad,
+        imagen: person.imagen,
+        descripcion: person.descripcion,
+        promedio: person.promedio,
+        genero: person.genero,
+        Profesions: person.Profesions?.map(e => e.nombre).join(),
+        direccion: person.Direccions?.map(e => e.direccion).join()
+      }
+    });
+
+    if (profesion !== undefined && profesion !== NaN) {
+      let filtroPersonas = objPersonas.filter(persona => {
+        return persona.Profesions.toLowerCase().includes(profesion.toLowerCase())
+      });
+      !filtroPersonas.length
+        ? res.send('NO HAY CONCIDENCIAS')
+        : res.json(filtroPersonas);
     }
-    for (let i = 0; i < todos.length; i++) {
-      //  const puntos = todos[i].puntuacion;
-      //  const promedio = 0
-      //  for (let j = 0; j < puntos.length; j++) {
-      //    promedio += puntos[j]; 
-      //  }
-      Persona.create({
-        nombres: todos[i].nombres,
-        apellidos: todos[i].apellidos,
-        edad: todos[i].edad,
-        pais: todos[i].pais,
-        telefono: 1161330975,
-        email: "fulanito@gmail.com",
-        image: todos[i].imagen,
-        documento: 384759844,
-        descripcion: todos[i].descripcion,
-        puntuacion: [4, 3, 3],
-        promedio: parseInt((4 + 3 + 3) / 3)
-      })
+
+    if (nombres !== undefined) {
+      let filtroPersonas = objPersonas.filter(persona => {
+        return persona.nombres.toLowerCase().includes(nombres.toLowerCase())
+      });
+      !filtroPersonas.length
+        ? res.send('NO HAY CONCIDENCIAS')
+        : res.json(filtroPersonas);
     }
-    res.send(todos)
+
+    if (genero !== undefined) {
+      let filtroPersonas = objPersonas.filter(persona => {
+        return persona.genero == genero
+      });
+      !filtroPersonas.length
+        ? res.send('NO HAY CONCIDENCIAS')
+        : res.json(filtroPersonas);
+    }
+
+    if (edad !== undefined) {
+      let filtroPersonas = objPersonas.filter(persona => persona.edad == edad);
+      if (!filtroPersonas.length) {
+        res.send('NO HAY CONCIDENCIAS')
+      } else {
+        res.json(filtroPersonas)
+      }
+    }
+
+    if (promedio !== undefined) {
+      let filtroPersonas = objPersonas.filter(persona => persona.promedio == promedio);
+      !filtroPersonas.length
+        ? res.send('NO HAY CONCIDENCIAS')
+        : res.json(filtroPersonas);
+    }
+
+    if (!Object.keys(req.query).length) return res.json(objPersonas);
+
+
+  } catch (error) {
+    next(error)
   }
 });
 
-router.get("/empleos", async (req, res) => {
-  let profeDB = await Profesion.findAll();
-  if (profeDB.length > 0) {
-    res.send(profeDB)
-  } else {
-    for (let i = 0; i < tipos.length; i++) {
-      Profesion.create({
-        nombre: tipos[i]
-      })
-    }
-    res.send(tipos)
+
+router.get("/empleos", async (req, res, next) => {
+  try {
+
+    let consultaDB = await Profesion.findAll();
+    let profesiones = consultaDB?.map(e => e.dataValues.nombre);
+
+    !profesiones.length
+      ? res.status(404).send('NO HAY PROFESIONES EN LA BASE DE DATOS.')
+      : res.json(profesiones);
+
+  } catch (error) {
+    next(error)
   }
-})
+});
 
 router.get("/:ocupacion", (req, res) => {
   axios.get("http://localhost:3001/users")
@@ -72,7 +116,7 @@ router.get("/:ocupacion", (req, res) => {
     })
 })
 
-router.get("/trabajo/:id", async (req, res) => {
+router.get("/trabajo/:id", async (req, res, next) => {
   const id = req.params.id;
   try {
     axios.get("http://localhost:3001/users")
@@ -83,11 +127,8 @@ router.get("/trabajo/:id", async (req, res) => {
         }
       })
   } catch (error) {
-    console.log(error)
+    next.log(error)
   }
 })
-
-
-
 
 module.exports = router;
