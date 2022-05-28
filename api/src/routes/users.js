@@ -9,7 +9,7 @@ router.get('/', async (req, res, next) => {
 
   try {
 
-    let { profesion, nombres, promedio, genero, edad } = req.query;
+    let { profesion, nombres, promedio, genero, edad, ciudad } = req.query;
 
 
     let personasDB = await Persona.findAll({ include: [Profesion, Direccion] });
@@ -81,6 +81,9 @@ router.get('/', async (req, res, next) => {
       //   ? res.send('NO HAY CONCIDENCIAS')
       //   : res.json(filtroPersonas);
     }
+    if(ciudad){
+      filtroPersonas = filtroPersonas.filter(persona => persona.ciudad.toLowerCase() == ciudad.toLowerCase())
+    }
 
 
 
@@ -94,6 +97,18 @@ router.get('/', async (req, res, next) => {
   }
 });
 
+router.get("/ciudades",  (req, res) =>{
+  axios.get("http://localhost:3001/users")
+  .then((respuesta)=>{
+    let filtrados = [];
+    let todos = respuesta.data;
+    let ciudades = todos.map(e => e.ciudad)
+    ciudades.forEach((el)=>{
+      if(filtrados.indexOf(el)<0) filtrados.push(el)
+    })
+    res.send(filtrados)
+  })
+})
 
 router.get("/empleos", async (req, res, next) => {
   try {
