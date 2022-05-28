@@ -11,8 +11,8 @@ function App() {
       <Switch>
         <Route exact path='/' component={LandingPage} />
         <Route exact path='/home' component={Home} />
-        <Route path='/*' component={Error} />
-        {/* <Route path= '/details/:id' component={Detail}/>  */}
+        <Route exact path= '/trabajo/:id' component={Detail}/> 
+        <Route path='/*' component={Error} /> 
       </Switch>
     </div>
   );

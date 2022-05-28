@@ -1,5 +1,3 @@
-
-
 const InitialState = {
     trabajadores: [],
     detail: []
@@ -7,30 +5,22 @@ const InitialState = {
 
 
 export default function rootReducer(state = InitialState, action) {
-switch (action.type){
-    
-<<<<<<< HEAD
-    case 'RENDER':
-        return{
-            ...state,
-            trabajadores: action.payload
-        }
+switch (action.type){   
 
-    case 'DETAIL':
-        return {
-            ...state,
-            detail: action.payload
-        }     
-    
-
-=======
+         
  
-     case 'CARDS':
+    case 'CARDS':
      return{
          ...state,
          trabajadores: action.payload
      }
->>>>>>> cef0be2617a0e5564b4d49c31611fe328a8ebce5
+
+     case 'DETAIL':
+        return {
+            ...state,
+            detail: action.payload
+        }
+
     default:
         return state;
 }

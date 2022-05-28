@@ -1,14 +1,13 @@
 import React, { useState } from "react";
 import { rederCard } from "../Redux/actions/index";
 import { useEffect } from "react";
-
 import Cards from "./Cards/cards";
 import { useDispatch, useSelector } from "react-redux";
 import styles from "./styles.module.css";
-
 import { SearchBar } from "./SearchBar/SearchBar";
 import { Filtros } from "./Filtros/Filtros";
 import Paginado from '../Paginado/Paginado'
+import { Link } from "react-router-dom";
 
 
 
@@ -67,11 +66,19 @@ function Home() {
                   paginado= {paginado}
                   />
                   </div> 
+<<<<<<< Updated upstream
         }
         </div>
           {currentUsuarios?.map((el) => (
              <div className="box">
 
+=======
+}
+          {currentUsuarios &&
+           currentUsuarios.map((el) => (
+             
+            <Link key={el.id} to={`/trabajo/${el.id}`}style={{ textDecoration: "none" }}>
+>>>>>>> Stashed changes
               <Cards
                 key={el.id}
                 promedio={el.promedio}
@@ -80,7 +87,11 @@ function Home() {
                 descripcion={el.descripcion}
                 Profesions={el.Profesions.length ? el.Profesions : 'nada'}
               />
+<<<<<<< Updated upstream
               </div>
+=======
+              </Link> 
+>>>>>>> Stashed changes
             ))}
         </section>
         {/* <section className={styles.publicar}>Anunciarse/Publicar</section> */}

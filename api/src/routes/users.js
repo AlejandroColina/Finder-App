@@ -98,7 +98,6 @@ router.get("/empleos", async (req, res, next) => {
   }
 });
 
-<<<<<<< HEAD
   router.get("/:ocupacion", (req,res) =>{
     axios.get("http://localhost:3001/users")
     .then((respuesta)=>{
@@ -117,34 +116,7 @@ router.get("/empleos", async (req, res, next) => {
       })
 })
 
-router.get("/trabajo/:id", async (req,res) => {
-   const id = req.params.id;
-   try {
-    axios.get("http://localhost:3001/users")
-    .then((respuesta)=>{
-        let personas = respuesta.data;
-          for (let i = 0; i < respuesta.data.length -1; i++) {
-            if(respuesta.data[i].id === id) res.send(personas[i])
-          }
-=======
-router.get("/:ocupacion", (req, res) => {
-  axios.get("http://localhost:3001/users")
-    .then((respuesta) => {
-      let personas = respuesta.data;
-      let tuPersona = personas.filter((el) => el.descripcion.toLowerCase().includes(req.params.ocupacion.toLowerCase()));
-      if (!tuPersona.length) {
-        res.send([]);
-      }
-      if (tuPersona.length > 0) {
-        res.send(tuPersona)
-      }
-      res.end();
->>>>>>> cef0be2617a0e5564b4d49c31611fe328a8ebce5
-    })
-    .catch((error) => {
-      console.log(error);
-    })
-})
+
 
 router.get("/trabajo/:id", async (req, res, next) => {
   const id = req.params.id;

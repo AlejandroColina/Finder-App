@@ -1,10 +1,4 @@
 import axios from 'axios'
-<<<<<<< HEAD
-=======
-
->>>>>>> cef0be2617a0e5564b4d49c31611fe328a8ebce5
-
-
 
 export function rederCard(ocupacion){
     return async function(dispatch){
@@ -18,18 +12,15 @@ export function rederCard(ocupacion){
         })
     }catch(error){console.log(error)}
     }
-<<<<<<< HEAD
 }
 
 export function getDetail(id) {
-    return async function (dispatch) {
-        
-            var json = await axios.get("http://localhost:3001/videogames/" + id);
+    return async function (dispatch) {        
+            var json = await axios.get("http://localhost:3001/users/trabajo/" + id);
             return dispatch({
-                type: 'GET_DETAIL',
+                type: 'DETAIL',
                 payload: json.data
             })
     }
-=======
->>>>>>> cef0be2617a0e5564b4d49c31611fe328a8ebce5
+
 }
