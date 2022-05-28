@@ -7,7 +7,7 @@ router.use(express.json());
 router.get('/', async (req, res, next) => {
   try {
 
-    const { profesion, nombres, promedio, genero, edad } = req.query;
+    const { profesion, nombres, promedio, genero, edad, ocupacion } = req.query;
 
     let personasDB = await Persona.findAll({ include: [Profesion, Direccion] });
     if (personasDB.length == 0) return res.send('LA BASE DE DATOS NO TIENE INFORMACION');
@@ -27,11 +27,14 @@ router.get('/', async (req, res, next) => {
         promedio: person.promedio,
         genero: person.genero,
         Profesions: person.Profesions?.map(e => e.nombre).join(),
-        direccion: person.Direccions?.map(e => e.direccion).join()
+        logoProfesion: person.Profesions?.map(e => e.logo).join(),
+        direccion: person.Direccions?.map(e => e.direccion).join(),
+        ciudad: person.Direccions?.map(e => e.ciudad).join(),
+        pais: person.Direccions?.map(e => e.pais).join()
       }
     });
 
-    if (profesion !== undefined && profesion !== NaN) {
+    if (profesion !== undefined && profesion.length) {
       let filtroPersonas = objPersonas.filter(persona => {
         return persona.Profesions.toLowerCase().includes(profesion.toLowerCase())
       });
@@ -68,10 +71,28 @@ router.get('/', async (req, res, next) => {
     }
 
     if (promedio !== undefined) {
-      let filtroPersonas = objPersonas.filter(persona => persona.promedio == promedio);
+      let filtroPersonas = objPersonas.filter(persona => persona.promedio >= promedio);
       !filtroPersonas.length
         ? res.send('NO HAY CONCIDENCIAS')
         : res.json(filtroPersonas);
+    }
+
+    if (ocupacion !== undefined) {
+      axios.get("http://localhost:3001/users")
+        .then((respuesta) => {
+          let personas = respuesta.data;
+          let tuPersona = personas.filter((el) => el.descripcion.toLowerCase().includes(req.params.ocupacion.toLowerCase()));
+          if (!tuPersona.length) {
+            res.send([]);
+          }
+          if (tuPersona.length > 0) {
+            res.send(tuPersona)
+          }
+          res.end();
+        })
+        .catch((error) => {
+          console.log(error);
+        })
     }
 
     if (!Object.keys(req.query).length) return res.json(objPersonas);
