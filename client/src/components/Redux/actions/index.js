@@ -1,10 +1,14 @@
 import axios from 'axios'
 
-export function rederCard(ocupacion){
+
+
+
+
+export function rederCard(profesion, genero,promedio){
     return async function(dispatch){
 
         try{ 
-        let data = await axios.get(`http://localhost:3001/users/${ocupacion}`)
+        let data = await axios.get(`http://localhost:3001/users?profesion=${profesion}&genero=${genero}&promedio=${promedio}`)
         console.log(data.data)
         return dispatch({
             type: 'CARDS',
