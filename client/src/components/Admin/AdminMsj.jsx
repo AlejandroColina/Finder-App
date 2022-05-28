@@ -11,8 +11,6 @@ import s from './styles.module.css';
 //    ...state,
 //}
 
-
-
 export default function AdminMsj (){
     //aca en vez de este estado local provisorio iria un useSelector((state)=>state.AdminMsj)
     const [msj,setMsj] = useState([
@@ -28,7 +26,7 @@ export default function AdminMsj (){
         setInput(e);
     }
     const handleSubmit = (e)=>{
-        //dispatch(SendRes(input))
+        //dispatch(SendRes(input));
     }
     return(
         <div className={s.container}>
