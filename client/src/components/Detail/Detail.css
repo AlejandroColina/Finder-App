@@ -113,11 +113,11 @@
 /* fonts  */
 @import url("https://fonts.googleapis.com/css?family=Abel|Aguafina+Script|Artifika|Athiti|Condiment|Dosis|Droid+Serif|Farsan|Gurajada|Josefin+Sans|Lato|Lora|Merriweather|Noto+Serif|Open+Sans+Condensed:300|Playfair+Display|Rasa|Sahitya|Share+Tech|Text+Me+One|Titillium+Web");
 
-body {
+/* body {
   background-image: url("https://c.pxhere.com/images/7d/21/ed588c6f9dd84ff1cf8f96100885-1450843.jpg!d"); 
   background-size: cover;   
   background-size: 100%;  
-}
+} */
 
 /*Product Rating  */
 .hint-star {
