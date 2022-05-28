@@ -20,13 +20,13 @@ function Home() {
   const dispatch = useDispatch();
 
   const [currentPage, setCurrentPage] = useState(1);
-const [itemsPorPag] = useState(9);
-const indexDelUltimoItem = currentPage * itemsPorPag;
-const indexDelPrimerItem = indexDelUltimoItem - itemsPorPag;
-const currentUsuarios = trabajadores.slice(indexDelPrimerItem, indexDelUltimoItem);
-const paginado = (numPage) => {
-  setCurrentPage(numPage);
-};
+  const [itemsPorPag] = useState(9);
+  const indexDelUltimoItem = currentPage * itemsPorPag;
+  const indexDelPrimerItem = indexDelUltimoItem - itemsPorPag;
+  const currentUsuarios = trabajadores.slice(indexDelPrimerItem, indexDelUltimoItem);
+  const paginado = (numPage) => {
+    setCurrentPage(numPage);
+  };
 
   useEffect(() => {
     dispatch(rederCard());
@@ -43,24 +43,24 @@ const paginado = (numPage) => {
         <section className={styles.posteos}></section>
 
         <section className={styles.cards}>
-        {
-           <div >
-                <Paginado
-                  personasPerPage= {itemsPorPag}
-                  allPersonas= {trabajadores.length}
-                  paginado= {paginado}
-                  />
-                  </div> 
-}
-          {currentUsuarios &&
-           currentUsuarios.map((el) => (
+          {
+            <div >
+              <Paginado
+                personasPerPage={itemsPorPag}
+                allPersonas={trabajadores.length}
+                paginado={paginado}
+              />
+            </div>
+          }
+          {
+            currentUsuarios?.map((el) => (
               <Cards
                 key={el.id}
                 promedio={el.promedio}
                 nombres={el.nombres}
                 imagen={el.imagen ? el.imagen : 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQgemhlS2C1Ldo2xTSqZVm5aAXUGT3DaaJZVRLgof7-GCoq7n0YnVnC7zkRHkpdQr4j4Zk&usqp=CAU'}
                 descripcion={el.descripcion}
-                Profesions={el.Profesions.length ? el.Profesions.map(e => e): 'nada'}
+                Profesions={el.Profesions.length ? el.Profesions : 'nada'}
               />
             ))}
         </section>
