@@ -9,11 +9,9 @@ module.exports = (sequelize) => {
         },
         ciudad: {
             type: DataTypes.STRING,
-            allowNull: false
         },
         pais: {
             type: DataTypes.STRING,
-            allowNull: false
         }
     });
 

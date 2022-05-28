@@ -13,7 +13,7 @@ module.exports = (sequelize) => {
         },
         documento: {
             type: DataTypes.INTEGER,
-            allowNull: false
+            // allowNull: false
         },
         telefono: {
             type: DataTypes.INTEGER,
@@ -34,6 +34,9 @@ module.exports = (sequelize) => {
         },
         promedio: {
             type: DataTypes.INTEGER
+        },
+        genero: {
+            type: DataTypes.STRING,
         },
         puntuacion: {
             type: DataTypes.ARRAY(DataTypes.INTEGER),
