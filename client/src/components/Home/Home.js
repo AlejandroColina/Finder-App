@@ -12,11 +12,14 @@ import Paginado from '../Paginado/Paginado'
 
 function Home() {
   const [filters, setFilters] = useState({   
-    tipo: '',
-    rating: undefined
+    
+     nombres: '',
+      promedio: '',
+       genero: '',
+        edad: ''
   })
 
-  const [ocupacion, setOcupacion] = useState('')
+  const [profesion, setProfesion] = useState('')
 
 
   const trabajadores = useSelector((state) => state.trabajadores);
@@ -26,7 +29,7 @@ function Home() {
       ...filters,
       [e.target.name]: e.target.value
     })
-  }
+  };
   const dispatch = useDispatch();
 
   const [currentPage, setCurrentPage] = useState(1);
@@ -38,18 +41,20 @@ function Home() {
     setCurrentPage(numPage);
   };
 
+
+  let { genero, promedio } = filters
   useEffect(() => {
-    dispatch(rederCard(ocupacion));
-  }, [dispatch, ocupacion]);
+    dispatch(rederCard(profesion, genero, promedio));
+  }, [dispatch, profesion, genero, promedio]);
 
   return (
 
     <div>
-      <SearchBar ocupacion={ocupacion} setOcupacion={setOcupacion} />
+      <SearchBar profesion={profesion} setProfesion={setProfesion} />
 
       <div className={styles.contenidos}>
         <section className={styles.filtros}>
-          <Filtros />
+          <Filtros filters={filters} handleFilterChanges={handleFilterChanges} />
         </section>
         {/* <section className={styles.posteos}></section> */}
 
