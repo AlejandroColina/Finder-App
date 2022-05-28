@@ -26,7 +26,7 @@ function Home() {
       ...filters,
       [e.target.name]: e.target.value
     })
-  }
+  };
   const dispatch = useDispatch();
 
   const [currentPage, setCurrentPage] = useState(1);
