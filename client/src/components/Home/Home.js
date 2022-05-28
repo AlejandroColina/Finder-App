@@ -7,6 +7,7 @@ import styles from "./styles.module.css";
 import { SearchBar } from "./SearchBar/SearchBar";
 import { Filtros } from "./Filtros/Filtros";
 import Paginado from '../Paginado/Paginado'
+import { Link } from "react-router-dom";
 
 
 
@@ -74,7 +75,7 @@ function Home() {
         </div>
           {currentUsuarios?.map((el) => (
              <div className="box">
-
+               
               <Cards
                 key={el.id}
                 promedio={el.promedio}
