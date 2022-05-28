@@ -5,9 +5,12 @@ const { Persona, Profesion, Direccion } = require("../db");
 router.use(express.json());
 
 router.get('/', async (req, res, next) => {
+
+
   try {
 
-    const { profesion, nombres, promedio, genero, edad, ocupacion } = req.query;
+    let { profesion, nombres, promedio, genero, edad } = req.query;
+
 
     let personasDB = await Persona.findAll({ include: [Profesion, Direccion] });
     if (personasDB.length == 0) return res.send('LA BASE DE DATOS NO TIENE INFORMACION');
@@ -27,75 +30,63 @@ router.get('/', async (req, res, next) => {
         promedio: person.promedio,
         genero: person.genero,
         Profesions: person.Profesions?.map(e => e.nombre).join(),
-        logoProfesion: person.Profesions?.map(e => e.logo).join(),
+        logoProfesion: person.Profesions?.map(e => e.logo).join(),        
         direccion: person.Direccions?.map(e => e.direccion).join(),
         ciudad: person.Direccions?.map(e => e.ciudad).join(),
         pais: person.Direccions?.map(e => e.pais).join()
       }
     });
 
-    if (profesion !== undefined && profesion.length) {
-      let filtroPersonas = objPersonas.filter(persona => {
+    let filtroPersonas = objPersonas;
+    if (profesion) {
+      filtroPersonas = filtroPersonas.filter(persona => {
         return persona.Profesions.toLowerCase().includes(profesion.toLowerCase())
       });
-      !filtroPersonas.length
-        ? res.send('NO HAY CONCIDENCIAS')
-        : res.json(filtroPersonas);
+      // !filtroPersonas.length
+      //   ? res.send('NO HAY CONCIDENCIAS')
+      //   : res.json(filtroPersonas);
     }
 
-    if (nombres !== undefined) {
-      let filtroPersonas = objPersonas.filter(persona => {
+    if (nombres) {
+      filtroPersonas = filtroPersonas.filter(persona => {
         return persona.nombres.toLowerCase().includes(nombres.toLowerCase())
       });
-      !filtroPersonas.length
-        ? res.send('NO HAY CONCIDENCIAS')
-        : res.json(filtroPersonas);
+      // !filtroPersonas.length
+      //   ? res.send('NO HAY CONCIDENCIAS')
+      //   : res.json(filtroPersonas);
     }
 
-    if (genero !== undefined) {
-      let filtroPersonas = objPersonas.filter(persona => {
+    if (genero) {
+      filtroPersonas = filtroPersonas.filter(persona => {
         return persona.genero == genero
       });
-      !filtroPersonas.length
-        ? res.send('NO HAY CONCIDENCIAS')
-        : res.json(filtroPersonas);
+
+      // !filtroPersonas.length
+      //   ? res.send('NO HAY CONCIDENCIAS')
+      //   : res.json(filtroPersonas);
     }
 
-    if (edad !== undefined) {
-      let filtroPersonas = objPersonas.filter(persona => persona.edad == edad);
-      if (!filtroPersonas.length) {
-        res.send('NO HAY CONCIDENCIAS')
-      } else {
-        res.json(filtroPersonas)
-      }
+    if (edad) {
+      filtroPersonas = filtroPersonas.filter(persona => persona.edad == edad);
+      // if (!filtroPersonas.length) {
+      //   res.send('NO HAY CONCIDENCIAS')
+      // } else {
+      //   res.json(filtroPersonas)
+      // }
     }
 
-    if (promedio !== undefined) {
-      let filtroPersonas = objPersonas.filter(persona => persona.promedio >= promedio);
-      !filtroPersonas.length
-        ? res.send('NO HAY CONCIDENCIAS')
-        : res.json(filtroPersonas);
+    if (promedio) {
+      filtroPersonas = filtroPersonas.filter(persona => persona.promedio >= promedio);
+      // !filtroPersonas.length
+      //   ? res.send('NO HAY CONCIDENCIAS')
+      //   : res.json(filtroPersonas);
     }
 
-    if (ocupacion !== undefined) {
-      axios.get("http://localhost:3001/users")
-        .then((respuesta) => {
-          let personas = respuesta.data;
-          let tuPersona = personas.filter((el) => el.descripcion.toLowerCase().includes(req.params.ocupacion.toLowerCase()));
-          if (!tuPersona.length) {
-            res.send([]);
-          }
-          if (tuPersona.length > 0) {
-            res.send(tuPersona)
-          }
-          res.end();
-        })
-        .catch((error) => {
-          console.log(error);
-        })
-    }
 
-    if (!Object.keys(req.query).length) return res.json(objPersonas);
+
+    // if (!Object.keys(req.query).length) 
+    return res.json(filtroPersonas);
+
 
 
   } catch (error) {
@@ -119,22 +110,22 @@ router.get("/empleos", async (req, res, next) => {
   }
 });
 
-  router.get("/:ocupacion", (req,res) =>{
-    axios.get("http://localhost:3001/users")
-    .then((respuesta)=>{
-        let personas = respuesta.data;
-        let tuPersona = personas.filter((el) => el.descripcion.toLowerCase().includes(req.params.ocupacion.toLowerCase()));
-        if (!tuPersona.length){
-          res.send([]);
-        }
-        if(tuPersona.length > 0){
-          res.send(tuPersona)
-        }
-        res.end();
-      })
-       .catch((error)=>{
-        console.log(error);
-      })
+router.get("/:ocupacion", (req, res) => {
+  axios.get("http://localhost:3001/users")
+    .then((respuesta) => {
+      let personas = respuesta.data;
+      let tuPersona = personas.filter((el) => el.descripcion.toLowerCase().includes(req.params.ocupacion.toLowerCase()));
+      if (!tuPersona.length) {
+        res.send([]);
+      }
+      if (tuPersona.length > 0) {
+        res.send(tuPersona)
+      }
+      res.end();
+    })
+    .catch((error) => {
+      console.log(error);
+    })
 })
 
 
