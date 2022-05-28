@@ -3,13 +3,13 @@ import styles from './styles.module.css';
 import perfil from '../../../images/perfil.png'
 import { useDispatch } from 'react-redux';
 
-export const SearchBar = ( {setProfesion, profesion }) => {
+export const SearchBar = ( {setDescripcion, descripcion }) => {
   
   const searchRef = useRef(null);
 
   const handleSubmit = (e) => {
       e.preventDefault()
-      setProfesion(searchRef.current.value)
+      setDescripcion(searchRef.current.value)
       searchRef.current.value=''
   }
   
