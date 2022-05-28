@@ -9,7 +9,7 @@ router.get('/', async (req, res, next) => {
 
   try {
 
-    let { profesion, nombres, promedio, genero, edad, ciudad } = req.query;
+    let { profesion, nombres, promedio, genero, edad, ciudad, descripcion } = req.query;
 
 
     let personasDB = await Persona.findAll({ include: [Profesion, Direccion] });
@@ -46,6 +46,15 @@ router.get('/', async (req, res, next) => {
       //   ? res.send('NO HAY CONCIDENCIAS')
       //   : res.json(filtroPersonas);
     }
+    if (descripcion) {
+      filtroPersonas = filtroPersonas.filter(persona => {
+        return persona.descripcion.toLowerCase().includes(descripcion.toLowerCase())
+      });
+      // !filtroPersonas.length
+      //   ? res.send('NO HAY CONCIDENCIAS')
+      //   : res.json(filtroPersonas);
+    }
+
 
     if (nombres) {
       filtroPersonas = filtroPersonas.filter(persona => {
