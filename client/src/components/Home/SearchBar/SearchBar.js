@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux';
 
 export const SearchBar = ( {ocupacion,setOcupacion }) => {
   
-  const searchRef = useRef(null)
+  const searchRef = useRef(null);
 
   const handleSubmit = (e) => {
       e.preventDefault()
