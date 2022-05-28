@@ -17,3 +17,15 @@ export function rederCard(profesion, genero,promedio){
     }catch(error){console.log(error)}
     }
 }
+
+export function getUsers(){
+    return async function(dispatch){
+        try{
+            var json = await axios.get('http://localhost:3001/users');
+            return dispatch({
+                type: 'GET_ADMIN_USERS',
+                payload: json.data
+            })
+        }catch(error){ console.log(error)}
+    }
+}

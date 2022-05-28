@@ -1,7 +1,8 @@
 
 
 const InitialState = {
-    trabajadores: []
+    trabajadores: [],
+    users:[], //va a tener todos los usuarios
 }
 
 
@@ -14,6 +15,11 @@ switch (action.type){
          ...state,
          trabajadores: action.payload
      }
+     case 'GET_ADMIN_USERS':
+         return{
+            ...state,
+            users: action.payload
+         }
     default:
         return state;
 }

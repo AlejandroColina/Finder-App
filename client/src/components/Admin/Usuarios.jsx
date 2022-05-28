@@ -1,14 +1,14 @@
 import React, { useEffect } from "react";
 import s from './styles.module.css';
 import {useDispatch, useSelector} from 'react-redux';
-import { rederCard } from "../Redux/actions";
+import { getUsers} from "../Redux/actions";
 
 export default function Usuarios(){
     const dispatch = useDispatch();
     useEffect(()=>{
-        dispatch(rederCard())
+        dispatch(getUsers())
     },[dispatch])
-    const usuarios = useSelector((state)=>state.trabajadores)
+    const usuarios = useSelector((state)=>state.users)
     return(
         <div className={s.container}>
         <div className={s.usuariosInfo}>
