@@ -5,10 +5,12 @@ const { Persona, Profesion, Direccion } = require("../db");
 router.use(express.json());
 
 router.get('/', async (req, res, next) => {
+
  
   try {
 
     let { profesion, nombres, promedio, genero, edad } = req.query;
+
 
     let personasDB = await Persona.findAll({ include: [Profesion, Direccion] });
     if (personasDB.length == 0) return res.send('LA BASE DE DATOS NO TIENE INFORMACION');
@@ -31,6 +33,7 @@ router.get('/', async (req, res, next) => {
         direccion: person.Direccions?.map(e => e.direccion).join()
       }
     });
+
     let filtroPersonas = objPersonas;
     console.log(filtroPersonas)
     if (profesion) {
@@ -81,6 +84,7 @@ router.get('/', async (req, res, next) => {
 
     // if (!Object.keys(req.query).length) 
     return res.json(filtroPersonas);
+
 
 
   } catch (error) {
