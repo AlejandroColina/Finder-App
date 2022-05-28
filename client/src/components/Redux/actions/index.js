@@ -3,8 +3,8 @@ import axios from 'axios'
 
 
 
+
 export function rederCard(profesion, genero,promedio){
-   
     return async function(dispatch){
 
         try{ 
@@ -28,4 +28,14 @@ export function getUsers(){
             })
         }catch(error){ console.log(error)}
     }
+}
+export function getDetail(id) {
+    return async function (dispatch) {        
+            var json = await axios.get("http://localhost:3001/users/trabajo/" + id);
+            return dispatch({
+                type: 'DETAIL',
+                payload: json.data
+            })
+    }
+
 }
