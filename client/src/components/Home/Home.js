@@ -11,12 +11,12 @@ import Paginado from '../Paginado/Paginado'
 
 
 function Home() {
-  const [filters, setFilters] = useState({
-
-    ciudad: '',
+  const [filters, setFilters] = useState({   
     tipo: '',
     rating: undefined
   })
+
+  const [ocupacion, setOcupacion] = useState('')
 
 
   const trabajadores = useSelector((state) => state.trabajadores);
@@ -39,13 +39,13 @@ const paginado = (numPage) => {
 };
 
   useEffect(() => {
-    dispatch(rederCard());
-  }, [dispatch]);
+    dispatch(rederCard(ocupacion));
+  }, [dispatch, ocupacion]);
 
   return (
 
     <div>
-      <SearchBar filters={filters} setFilters={setFilters} />
+      <SearchBar ocupacion={ocupacion} setOcupacion={setOcupacion} />
 
       <div className={styles.contenidos}>
         <section className={styles.filtros}>
@@ -66,8 +66,7 @@ const paginado = (numPage) => {
                   </div> 
         }
         </div>
-          {currentUsuarios &&
-           currentUsuarios.map((el) => (
+          {currentUsuarios?.map((el) => (
              <div className="box">
               <Cards
                 key={el.id}
