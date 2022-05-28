@@ -49,9 +49,9 @@ function Home() {
 
   let { genero, promedio, ciudad, profesion } = filters
   useEffect(() => {
-    dispatch(rederCard(profesion, genero, promedio, ciudad));
+    dispatch(rederCard(profesion, genero, promedio, ciudad, descripcion));
     setCurrentPage(1)
-  }, [dispatch, profesion, genero, promedio, ciudad]);
+  }, [dispatch, profesion, genero, promedio, ciudad, descripcion]);
 
   return (
 

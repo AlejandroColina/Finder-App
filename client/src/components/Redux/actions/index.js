@@ -4,11 +4,11 @@ import axios from 'axios'
 
 
 
-export function rederCard(profesion, genero,promedio, ciudad){
+export function rederCard(profesion, genero,promedio, ciudad, descripcion){
     return async function(dispatch){
 
         try{ 
-        let data = await axios.get(`http://localhost:3001/users?profesion=${profesion}&genero=${genero}&promedio=${promedio}&ciudad=${ciudad}`)
+        let data = await axios.get(`http://localhost:3001/users?profesion=${profesion}&genero=${genero}&promedio=${promedio}&ciudad=${ciudad}&descripcion=${descripcion}`)
         console.log(data.data)
         return dispatch({
             type: 'CARDS',
