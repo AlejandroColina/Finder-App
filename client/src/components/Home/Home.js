@@ -97,24 +97,26 @@ function Home() {
         </section>
         {/* <section className={styles.publicar}>Anunciarse/Publicar</section> */}
         <section className={styles.destacados}>
-          {
-            destacados.map(el => {
-              return (
-                <section key={el.id}>
-                  <Destacados
-                    key={`${el.id}A`}
-                    id={el.id}
-                    Profesions={el.Profesions}
-                    imagen={el.imagen}
-                    logoProfesion={el.logoProfesion}
-                    nombres={el.nombres}
-                    descripcion={el.descripcion}
-                    promedio={el.promedio}
-                  />
-                </section>
-              )
-            })
-          }
+          <div className={styles.div__destacados}>
+            {
+              destacados.map(el => {
+                return (
+                  <section key={el.id}>
+                    <Destacados
+                      key={`${el.id}A`}
+                      id={el.id}
+                      Profesions={el.Profesions}
+                      imagen={el.imagen}
+                      logoProfesion={el.logoProfesion}
+                      nombres={el.nombres}
+                      descripcion={el.descripcion}
+                      promedio={el.promedio}
+                    />
+                  </section>
+                )
+              })
+            }
+          </div>
         </section>
         <section className={styles.footer}>Footer</section>
       </div>

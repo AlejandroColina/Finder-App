@@ -41,17 +41,36 @@
 }
 
 .destacados {
-     background-image: linear-gradient(to right, #1583f1fd, rgb(3, 10, 78));
+     background-image: linear-gradient(to right, #1583f1fd, #030a4e);
      grid-row: 6/7;
      grid-column: 1/-1;
      display: flex;
      flex-direction: row;
      align-items: center;
-     overflow-x: hidden;
+     overflow: hidden;
 }
 
-.destacados:hover{
-	animation-play-state: paused;
+.div__destacados {
+     height: 240px;
+     width: calc(190px*9);
+     display: flex;
+     justify-content: center;
+     text-align: center;
+     animation: scroll 20s alternate infinite;
+}
+
+.div__destacados:hover {
+     animation-play-state: paused;
+}
+
+@keyframes scroll {
+     0% {
+          transform: translateX(-400px);
+     }
+
+     100% {
+          transform: translateX(100px);
+     }
 }
 
 .footer {

@@ -6,18 +6,11 @@
 	margin-right: 50px;
 	border-radius: 6px;
 	border: 1px solid grey;
-	animation: scroll 10s  running infinite;
+	cursor: pointer;
 }
 
-
-@keyframes scroll {
-	0% {
-		transform: translateX(0);
-	}
-
-	100% {
-		transform: translateX(calc(-1800px));
-	}
+.card:hover {
+	box-shadow: 0 0 10px 5px darkblue;
 }
 
 .cardImage {
@@ -47,6 +40,7 @@
 }
 
 .imgD {
+	border: 2px solid grey;
 	margin: auto 0;
 	height: 50px;
 	width: 50px;
@@ -59,10 +53,20 @@
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
-	font-style: oblique;
 	padding: 2px;
+	text-align: center;
 }
 
 .cardP {
 	text-align: center;
+}
+
+.cardPI {
+	color: grey;
+	text-align: center;
+}
+
+.linkCard{
+	text-decoration: none;
+	color: black;
 }
