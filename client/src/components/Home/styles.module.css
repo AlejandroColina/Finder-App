@@ -1,6 +1,6 @@
 .contenidos {
      display: grid;
-     grid-template-rows: 20vh repeat(4, 40rem) 25rem 15rem;
+     grid-template-rows: 20vh repeat(4, 40rem) 33rem 15rem;
      grid-template-columns: 25vw repeat(5, 1fr);
 }
 
