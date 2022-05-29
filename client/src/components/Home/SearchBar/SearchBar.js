@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 import styles from './styles.module.css';
 import perfil from '../../../images/perfil.png'
+import logo from '../../../assets/logo_finder_white.png'
 import { useDispatch } from 'react-redux';
 
 export const SearchBar = ( {setDescripcion, descripcion }) => {
@@ -16,7 +17,7 @@ export const SearchBar = ( {setDescripcion, descripcion }) => {
     return (
      <header className={styles.header}>
                 
-                <h3 className={styles.logo}>Finder</h3>
+                <img className={styles.logo} src={logo} alt='finder' /> 
            
                 <form onSubmit={handleSubmit}  className={styles.search}>
                     <input type="text" className={styles.input} name='job' placeholder="Busca un talento" ref={searchRef} />

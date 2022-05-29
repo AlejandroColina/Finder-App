@@ -7,8 +7,8 @@ import styles from "./styles.module.css";
 import { SearchBar } from "./SearchBar/SearchBar";
 import { Filtros } from "./Filtros/Filtros";
 import Paginado from '../Paginado/Paginado'
-import { Link } from "react-router-dom";
 import Help from "../Help/Help";
+
 
 
 
@@ -89,7 +89,10 @@ function Home() {
                 imagen={el.imagen ? el.imagen : 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQgemhlS2C1Ldo2xTSqZVm5aAXUGT3DaaJZVRLgof7-GCoq7n0YnVnC7zkRHkpdQr4j4Zk&usqp=CAU'}
                 descripcion={el.descripcion}
                 Profesions={el.Profesions.length ? el.Profesions : 'nada'}
+                id={el.id}
               />
+          
+            
               </div>
             ))}
         </section>
