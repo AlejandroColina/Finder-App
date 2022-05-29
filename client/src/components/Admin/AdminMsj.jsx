@@ -3,14 +3,14 @@ import s from './styles.module.css';
 import { useSelector } from "react-redux";
 
 export default function AdminMsj (){
-    const msj = useSelector((state)=>state.adminMjes)
-  /*   const [msj,setMsj] = useState([
+//    const msj = useSelector((state)=>state.adminMjes)
+    const [msj,setMsj] = useState([
         {userId:1,message:"No vino el emprendedor"},
         {userId:2,message:"me robaron"},
         {userId:3,message:"quiero cancelar"},
         {userId:4,message:"No vino el emprendedor"},
         {userId:5,message:"No vino el emprendedor"},
-    ]) */
+    ]) 
     const [input, setInput]= useState('');
 
     const handleChange =(e)=>{
