@@ -1,6 +1,7 @@
 import React from "react";
 import s from  './cards.module.css'
-export default function Cards({nombres,  imagen, descripcion, promedio, Profesions}) {
+import { Link } from "react-router-dom";
+export default function Cards({nombres,  imagen, descripcion, promedio, Profesions, id}) {
   console.log(Profesions)
     return (
        
@@ -41,8 +42,9 @@ export default function Cards({nombres,  imagen, descripcion, promedio, Profesio
       </div>
 
       <div className={s.follow}>
-        <div className={s.icontwitter}></div>mas info
+      <Link to={`/trabajo/${id}`} > <div className={s.icontwitter}></div>mas info</Link> 
       </div>
+      
     </div>
 
   </div>
