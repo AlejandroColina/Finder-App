@@ -107,6 +107,7 @@ function Home() {
                       key={`${el.id}A`}
                       id={el.id}
                       Profesions={el.Profesions}
+                      apellidos={el.apellidos}
                       imagen={el.imagen}
                       logoProfesion={el.logoProfesion}
                       nombres={el.nombres}
