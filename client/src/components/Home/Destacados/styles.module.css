@@ -6,7 +6,7 @@
 	margin-right: 50px;
 	border-radius: 6px;
 	border: 1px solid grey;
-	animation: scroll 300s linear infinite;
+	animation: scroll 10s  running infinite;
 }
 
 
@@ -16,7 +16,7 @@
 	}
 
 	100% {
-		transform: translateX(calc(-230px * 10));
+		transform: translateX(calc(-1800px));
 	}
 }
 
