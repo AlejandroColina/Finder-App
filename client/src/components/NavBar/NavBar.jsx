@@ -1,9 +1,9 @@
 import React from "react";
-import logo from '../../assets/logo_finder_white.png';
 import s from './NavBar.module.css';
 import { Link } from 'react-router-dom';
 import { useAuth0 } from '@auth0/auth0-react';
 import logoutImg from '../../assets/logout_white.png';
+import logo from '../../assets/logo_finder_white.png';
 
 export default function NavBar(){
     const { isAuthenticated, user } = useAuth0();

@@ -68,3 +68,7 @@
         justify-content: space-around;
     }
 }
+.btnIngresa{
+    background: none;
+    border: none;
+}

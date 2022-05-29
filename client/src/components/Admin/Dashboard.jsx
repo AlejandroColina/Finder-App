@@ -10,13 +10,15 @@ export default function Dashboard(){
     },[dispatch]);
     const totalByTypes = useSelector((state)=>state.usersByType);
     return(
-        <div className={s.container}>
         <div className={s.containerDash}>
-            <div className={s.importantText} >total de usuarios por categoria</div>
+            <div className={s.title}>USUARIOS POR CATEGORIA</div>
+            <div className={s.Wrap}>
             {totalByTypes.map((t,i)=>{
-                return <span  className={s.text} key={i}>{t[0]} : {t[1]}</span>
-            })}
-        </div>
+                return (<div className={s.typeContainer} key={i}>
+                    <div className={s.type}>{t[0]}</div>
+                    <div className={s.cant}>{t[1]}</div>
+                    </div>)
+            })}</div>
         </div>
     )
 }

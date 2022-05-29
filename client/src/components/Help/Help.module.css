@@ -1,0 +1,77 @@
+.btn{
+    background-color: #0576e6;
+    color: white;
+    font-size: 60px;
+    font-weight: bolder;
+    height: 70px;
+    width: 70px;
+    border: 3px solid #0576e6;
+    border-radius: 50%;
+}
+.position{
+    position: fixed;
+    bottom: 10vh;
+    right: 3%;
+}
+.contacto{
+    background-color: #ff4b04;
+    font-size: 15px;
+    color: white;
+    font-weight: lighter;
+    text-decoration: none;
+    padding: 5px 10px;
+}
+.chat{
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+    background-color: #0576e6;
+    box-shadow: 0px 0px 20px #0576e6;
+    border: 1px solid white;
+}
+.label{
+    font-size: 15px;
+    padding: 0px 20px 20px 20px;
+    background-color: #0576e6;
+    color: white;
+}
+.textarea{
+    width: 100%;
+    border: none;
+    resize: none;
+    outline: none;
+    text-align: center;
+}
+
+.textarea::placeholder{
+    color: #0576e6a9;
+    padding: 10px;
+}
+.submit{
+    background-color: #0576e6;
+    font-size: 15px;
+    font-weight: lighter;
+    border: none;
+    padding: 5px 0px;
+    color: white;
+    box-shadow: 0px 0px white inset;
+    transition: 1s;
+}
+.submit:hover{
+    box-shadow: 0px 30px white inset;
+    color: #0576e6;
+}
+.cancelCont{
+    display: flex;
+    justify-content: flex-end;
+}
+.cancel{
+    background: #0576e6;
+    color: white;
+    font-size: 15px;
+    font-weight: lighter;
+    border: none;
+    padding: 5px;
+    width: 30px;
+    border: 1px solid white;
+}

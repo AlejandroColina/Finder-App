@@ -10,27 +10,36 @@ export default function Usuarios(){
     },[dispatch])
     const usuarios = useSelector((state)=>state.users)
     return(
-        <div className={s.container}>
-        <div className={s.usuariosInfo}>
-        <div className={s.blueImportant}> Total de Usuarios: {usuarios.length}</div>
-            <form className={s.formSearchUser}>
+        <div className={s.containerDash} >
+        <div  className={s.title}> Total de Usuarios: {usuarios.length}</div>{/* 
+            <form className={s.row} >
                 <input className={s.textarea} type='text' placeholder='Buscar Usuario'/>
-                <input className={s.btn} type='submit' value='buscar'/>
-            </form>
-        </div>
-        <div className={s.usuariosInfo}>
-            <div>
+                <input className={s.btn}  type='submit' value='buscar'/>
+            </form> */}
+        <div className={s.containertable} >
+            <table className={s.table}>
+                <tr>
+                    <td className={s.tablecol}><strong>USER ID</strong></td>
+                    <td className={s.tablecol}><strong>NOMBRE</strong></td>
+                    <td className={s.tablecol}><strong>E-MAIL</strong></td>
+                    <td className={s.tablecol}><strong>TELEFONO</strong></td>
+                    <td className={s.tablecol}><strong>DOCUMENTO</strong></td>
+                    <td className={s.tablecol}><strong>DIRECCION</strong></td>
+                    <td className={s.tablecol}><strong>CIUDAD</strong></td>
+                </tr>
                 {usuarios?.map((user)=>{
                     return(
-                  <div key={user.id} className={s.row}>
-                      <div>{user.id}</div>
-                      <div>{user.nombres}</div>
-                      <div>{user.email}</div>
-                      <div>{user.telefono}</div>
-                      <div>{user.documento}</div>
-                  </div>)
+                  <tr key={user.id}>
+                      <td className={s.celdas}>{user.id}</td>
+                      <td className={s.celdas}>{user.nombres}</td>
+                      <td className={s.celdas}>{user.email}</td>
+                      <td className={s.celdas}>{user.telefono}</td>
+                      <td className={s.celdas}>{user.documento}</td>
+                      <td className={s.celdas}>{user.direccion}</td>
+                      <td className={s.celdas}>{user.ciudad}</td>
+                  </tr>)
                 })}
-            </div>
+            </table>
         </div>
         </div>
     )

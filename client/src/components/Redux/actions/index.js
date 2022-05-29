@@ -97,3 +97,9 @@ export const getCiudades = () => {
     }
 
 }
+export function userMsj(payload){
+    return({
+        type: 'USER_MSJ',
+        payload
+    })
+}

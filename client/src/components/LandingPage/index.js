@@ -7,6 +7,7 @@ import s from './styles.module.css';
 import { Link } from 'react-router-dom';
 import { useAuth0 } from '@auth0/auth0-react';
 import logoutImg from '../../assets/logout_white.png';
+import Help from '../Help/Help';
 
 function LandingPage() {
   const { isAuthenticated, user } = useAuth0();
@@ -32,7 +33,7 @@ function LandingPage() {
           <div className={s.boxItems}>
             <Link to='/home' className={s.navItems}><div>HOME</div></Link>
             <a href="#2" className={s.navItems}>OFRECE</a>
-            <a href={() => { loginWithRedirect() }} className={s.navItems}>INGRESA</a>
+            <button onClick={() => { loginWithRedirect() }} className={`${s.navItems} ${s.btnIngresa}`}>INGRESA</button>
             <a href="#3" className={s.navItems}>EXPERIENCIA FINDER</a>
           </div>
         }
@@ -40,6 +41,7 @@ function LandingPage() {
       <section id="1"><FirstCap /></section>
       <section id="2"><SecondCap /></section>
       <section id="3"><ThirdCap /></section>
+      <Help/>
     </>
   )
 }

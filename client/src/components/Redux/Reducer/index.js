@@ -5,7 +5,8 @@ const InitialState = {
     usersByType:[],
     detail: [],
     empleos: [],
-    ciudades: []
+    ciudades: [],
+    adminMjes:[]
 }
 
 
@@ -47,6 +48,14 @@ switch (action.type){
         return{
             ...state,
             usersByType: action.payload
+        }
+
+    case 'USER_MSJ':
+        let prev = state.adminMjes
+        let objMsj ={[action.payload[0]]:action.payload[1]}
+        prev.push(objMsj)
+        return{
+            ...state,
         }
 
     default:

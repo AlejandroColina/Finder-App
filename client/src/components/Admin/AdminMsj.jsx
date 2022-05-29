@@ -1,25 +1,16 @@
 import React, { useState } from "react";
 import s from './styles.module.css';
-//con un form tomamos el valor del mensaje y en el submit le adjuntamos el id entonces quedaria un onsubmit
-// ()=>{dispatch(SendAndmin([user.id,input]))}
-//primero el usuario despacha un mensaje con una accion que envia el payload => [userId,message]
-//en el reducer seria manejar un estado => AdminMsj=[]
-//case MSJE_AL_ADMIN:
-//var obj={userId:action.payload[0],message:action.payload[1]}
-//AdminMsj.push(obj);
-//return{
-//    ...state,
-//}
+import { useSelector } from "react-redux";
 
 export default function AdminMsj (){
-    //aca en vez de este estado local provisorio iria un useSelector((state)=>state.AdminMsj)
-    const [msj,setMsj] = useState([
+    const msj = useSelector((state)=>state.adminMjes)
+  /*   const [msj,setMsj] = useState([
         {userId:1,message:"No vino el emprendedor"},
         {userId:2,message:"me robaron"},
         {userId:3,message:"quiero cancelar"},
         {userId:4,message:"No vino el emprendedor"},
         {userId:5,message:"No vino el emprendedor"},
-    ])
+    ]) */
     const [input, setInput]= useState('');
 
     const handleChange =(e)=>{
@@ -29,8 +20,7 @@ export default function AdminMsj (){
         //dispatch(SendRes(input));
     }
     return(
-        <div className={s.container}>
-            <div className={s.containerDash}>
+            <div className={s.wrap} >
             {msj?.map((msj,i)=>
             <form className={s.card} key={i}>
                 <div className={s.importantText}>Mensaje del Usuario {msj.userId}</div>
@@ -39,6 +29,5 @@ export default function AdminMsj (){
                 <input  className={s.btn} type='submit' value='Send'/>
             </form>)}
             </div>
-        </div>
     )
 }
