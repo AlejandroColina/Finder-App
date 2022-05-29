@@ -1,10 +1,23 @@
 import React, { useEffect, useRef, useState } from 'react'
 import styles from './styles.module.css';
 import perfil from '../../../images/perfil.png'
+import { useAuth0 } from '@auth0/auth0-react';
+import logoutImg from '../../../assets/logout_white.png';
 import logo from '../../../assets/logo_finder_white.png'
+import notification from '../../../assets/notification_white.png';
 import { useDispatch } from 'react-redux';
 
+
 export const SearchBar = ( {setDescripcion, descripcion }) => {
+
+    //autenticacion
+    
+    const { isAuthenticated, user } = useAuth0();
+    const { loginWithRedirect } = useAuth0();
+    const { logout } = useAuth0();
+    if (isAuthenticated) {
+      var onlyFirst = user.name.split(' ');
+    }
   
   const searchRef = useRef(null);
 
@@ -28,13 +41,34 @@ export const SearchBar = ( {setDescripcion, descripcion }) => {
                     </button> */}
                 </form>
 
-                <nav className={styles.userNav}>
+                {isAuthenticated ?
+          <nav  className={styles.userNav}>
+
                     <div className={styles.iconBox}>
-                        <div className={styles.icon}>
-                         
-                        </div>
-                           <span className={styles.notification}>13</span>
+                        <img src={notification} alt='notifications' height='30px'/>
+                        <div className={styles.notification}>13</div>
                     </div>
+
+              <div className={styles.userNav}>
+
+                 <img  className={styles.userPhoto} src={user.picture} alt='avatar' />
+
+               </div>
+
+              <div className={styles.userNav}>
+
+                <div  className={styles.userName}>{onlyFirst[0].toUpperCase()}</div>
+                <button title='Salir' className={styles.salir} onClick={() => logout({ returnTo: window.location.origin })}>
+                <img src={logoutImg} alt='logout' height='25px' /></button>
+
+              </div>
+
+          </nav> :
+          <nav className={styles.userNav}>
+            <div onClick={() => { loginWithRedirect() }}  className={styles.userName}>INGRESA</div>
+          </nav>
+        }{/* 
+                <nav className={styles.userNav}>
                         
 
                     <div className={styles.iconBox}>
@@ -47,7 +81,7 @@ export const SearchBar = ( {setDescripcion, descripcion }) => {
                         <img src={perfil} alt="User" className={styles.userPhoto}></img>
                         <span className={styles.userName}>Gabriel</span>
                     </div>
-                </nav>
+                </nav> */}
            
             </header>
   )
