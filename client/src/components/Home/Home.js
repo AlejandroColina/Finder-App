@@ -7,6 +7,7 @@ import styles from "./styles.module.css";
 import { SearchBar } from "./SearchBar/SearchBar";
 import { Filtros } from "./Filtros/Filtros";
 import Paginado from '../Paginado/Paginado'
+import Help from "../Help/Help";
 
 
 
@@ -101,6 +102,7 @@ function Home() {
         </section>
         <section className={styles.footer}>Footer</section>
       </div>
+      <Help/>
     </div>
   );
 

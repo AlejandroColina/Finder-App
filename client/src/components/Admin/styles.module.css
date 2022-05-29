@@ -1,0 +1,137 @@
+/*estilos contenedores*/
+
+.row{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.column{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    margin-top: 60px;
+}
+.seccionLinks{
+    background-color: #0575E6;
+    height: 100vh;
+    width: 15%;
+    position: fixed;
+}
+.navItems{
+    padding: 20px 0px;
+    font-size: 20px;
+    margin-top: 20px;
+    text-decoration: none;
+    color: white;
+    font-weight: bolder;
+    width: 100%;
+}
+.navItems:hover{
+    background-color: white;
+    color: #0575E6;
+}
+.containerComp{
+    padding-top: 60px;
+    margin-left: 15%;
+    justify-content: center;
+    right: 0px;
+}
+/*estilos de dashboard*/
+.containerDash{
+    padding-top: 60px;
+    min-height: 100vh;
+}
+.title{
+    width: 100%;
+    color: white;
+    background-color: #0576e68a;
+    font-size: 20px;
+    text-align: center;
+    padding: 5px 0px;
+    font-weight: lighter;
+    margin-bottom: 20px;
+}
+/*estilos de los mensajes*/
+.wrap{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    min-height: 100vh;
+    padding-top: 60px;
+}
+.card{
+    margin: 20px;
+    box-shadow: 0px 0px 10px #0575E6;
+    display: flex;
+    flex-direction: column;
+    justify-content:space-between;
+    align-items: center;
+    width: 300px;
+    height: min-content;
+}
+.importantText{
+    background-color: #0575E6;
+    color: white;
+    padding: 10px;
+    font-size: 15px;
+    width: 280px;
+}
+.text{
+    font-size: 15px;
+    padding: 8px;
+    color: #0575E6;
+}
+.textarea{
+    width: 100%;
+    border: none;
+    resize: none;
+    outline: none;
+    text-align: center;
+}
+.textarea::placeholder{
+    color: #0576e6a9;
+}
+.btn{
+    background-color: #0576e6a9;
+    color: white;
+    border: 1px solid #0576e6a9;
+    font-size: 15px;
+    width: 100%;
+    transition: 1s;
+    padding: 5px 0px;
+    text-shadow: 0px 0px 10px white;
+}
+.btn:hover{
+    background-color: white;
+    color: #0575E6;
+    border: 1px solid white;
+}
+
+/* estilos tabla*/
+.containertable{
+    padding: 20px;
+}
+.table{
+    width: 100%;
+    border: 2px solid  #0576e65b;
+}
+.tablecol{
+    background-color: #0576e6a9;
+    color: white;
+    padding: 10px;
+}
+.celdas{
+    border-top: 1px solid  #0576e65b;
+    padding: 5px;
+}
+/*dashboard*/
+.typeContainer{
+    display: flex;
+    flex-direction: row;
+    margin: 20px;
+}
+.type{
+    font-size: 15px;
+    color: #0576e6a9;
+}
