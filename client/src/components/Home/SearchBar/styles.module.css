@@ -2,8 +2,7 @@
 .header{
     
     height: 7rem;
-    border-bottom: 1px solid gray;
-    background-color: #0d41cd;
+    background-color: #255aed;
 
     display: flex;
     justify-content: space-between;
@@ -23,18 +22,8 @@
 
 
 .logo{
-    
-    display: inline-block;
-    font-size: 3rem;
-    
-    text-align: center;
-    -webkit-background-clip: text;
-    text-align: center;
-    height: 3.25rem;
-    margin: 4rem;
-    background-image: linear-gradient(to right, blue, violet);
-    color: transparent;
-    letter-spacing: 1px;
+      height: 40px;
+    margin: 10px;
 }
 
 
