@@ -8,22 +8,22 @@ import { SearchBar } from "./SearchBar/SearchBar";
 import { Filtros } from "./Filtros/Filtros";
 import Paginado from '../Paginado/Paginado'
 import Help from "../Help/Help";
-
+import Destacados from "./Destacados/Destacados";
 
 
 
 function Home() {
-  const [filters, setFilters] = useState({   
+  const [filters, setFilters] = useState({
     profesion: '',
-     nombres: '',
-      promedio: '',
-       genero: '',
-        edad: '',
-        ciudad: '',
-        empleo: ''
+    nombres: '',
+    promedio: '',
+    genero: '',
+    edad: '',
+    ciudad: '',
+    empleo: ''
   })
 
-   const [descripcion, setDescripcion] = useState('')
+  const [descripcion, setDescripcion] = useState('')
 
 
   const trabajadores = useSelector((state) => state.trabajadores);
@@ -54,6 +54,8 @@ function Home() {
     setCurrentPage(1)
   }, [dispatch, profesion, genero, promedio, ciudad, descripcion]);
 
+  let destacados = trabajadores?.filter(el => el.promedio >= 4);
+
   return (
 
     <div>
@@ -67,21 +69,21 @@ function Home() {
 
         <section className={styles.cards}>
 
-        <div className={styles.paginado}>
-        {
-           <div >
+          <div className={styles.paginado}>
+            {
+              <div >
                 <Paginado
-                  
-                  personasPerPage= {itemsPorPag}
-                  allPersonas= {trabajadores.length}
-                  paginado= {paginado}
-                  />
-                  </div> 
-        }
-        </div>
+
+                  personasPerPage={itemsPorPag}
+                  allPersonas={trabajadores.length}
+                  paginado={paginado}
+                />
+              </div>
+            }
+          </div>
           {currentUsuarios?.map((el) => (
-             <div className="box">
-               
+            <div className="box">
+
               <Cards
                 key={el.id}
                 promedio={el.promedio}
@@ -91,18 +93,35 @@ function Home() {
                 Profesions={el.Profesions.length ? el.Profesions : 'nada'}
                 id={el.id}
               />
-          
-            
-              </div>
-            ))}
+            </div>
+          ))}
         </section>
         {/* <section className={styles.publicar}>Anunciarse/Publicar</section> */}
         <section className={styles.destacados}>
-          Profesionales destacados
+          <div className={styles.div__destacados}>
+            {
+              destacados.map(el => {
+                return (
+                  <section key={el.id}>
+                    <Destacados
+                      key={`${el.id}A`}
+                      id={el.id}
+                      Profesions={el.Profesions}
+                      imagen={el.imagen}
+                      logoProfesion={el.logoProfesion}
+                      nombres={el.nombres}
+                      descripcion={el.descripcion}
+                      promedio={el.promedio}
+                    />
+                  </section>
+                )
+              })
+            }
+          </div>
         </section>
         <section className={styles.footer}>Footer</section>
       </div>
-      <Help/>
+      <Help />
     </div>
   );
 
