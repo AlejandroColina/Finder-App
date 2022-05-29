@@ -3,7 +3,6 @@ const InitialState = {
     users:[], //va a tener todos los usuarios
     detail: [],
     usersByType:[],
-    detail: [],
     empleos: [],
     ciudades: [],
     adminMjes:[]

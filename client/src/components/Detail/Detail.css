@@ -183,7 +183,7 @@
 .btn .price {
   transform: translateX(-10%);
   padding-right: 13px;
-  color: white;
+  color: rgb(192, 179, 179);
   font-style: oblique;
   font-size: 1.2em;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
@@ -193,9 +193,15 @@
 .btn .buy {
 	z-index: 3;
 	font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-	color: white;
+	color: rgb(247, 243, 243);
 	font-style: oblique;
+  
   }
+.btn .buy:hover{
+  transform: translateX(-45%);
+ 
+}
+
 
 /* the Icon */
 .btn .shopping-cart {
