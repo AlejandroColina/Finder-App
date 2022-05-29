@@ -1,0 +1,68 @@
+.card {
+	height: 230px;
+	width: 180px;
+	display: grid;
+	grid-template-rows: 50% 50%;
+	margin-right: 50px;
+	border-radius: 6px;
+	border: 1px solid grey;
+	animation: scroll 300s linear infinite;
+}
+
+
+@keyframes scroll {
+	0% {
+		transform: translateX(0);
+	}
+
+	100% {
+		transform: translateX(calc(-230px * 10));
+	}
+}
+
+.cardImage {
+	display: flex;
+	justify-content: center;
+	text-align: center;
+}
+
+.imgU {
+	height: 115px;
+	width: 181px;
+	border-radius: 6px 6px 0 0;
+}
+
+.cardInfo {
+	background-color: white;
+	height: 100%;
+	display: grid;
+	grid-template-columns: 30% 70%;
+	border-radius: 0 0 6px 6px;
+}
+
+.cardPhoto {
+	display: flex;
+	justify-content: center;
+	text-align: center;
+}
+
+.imgD {
+	margin: auto 0;
+	height: 50px;
+	width: 50px;
+	border-radius: 70px;
+}
+
+.cardInfoPerson {
+	height: 100%;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	font-style: oblique;
+	padding: 2px;
+}
+
+.cardP {
+	text-align: center;
+}

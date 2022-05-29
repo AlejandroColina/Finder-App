@@ -1,50 +1,60 @@
-
-.contenidos{
-    display: grid;
-    grid-template-rows: 20vh repeat(4 , 40rem) 25rem 15rem ;
-    grid-template-columns: 25vw repeat(5, 1fr);
+.contenidos {
+     display: grid;
+     grid-template-rows: 20vh repeat(4, 40rem) 25rem 15rem;
+     grid-template-columns: 25vw repeat(5, 1fr);
 }
 
-.filtros{
-    background-color: rgb(72, 72, 94);
-    grid-column: 1 / -1;
-    grid-row: 1 / 2
+.filtros {
+     background-color: rgb(72, 72, 94);
+     grid-column: 1 / -1;
+     grid-row: 1 / 2
 }
-.posteos{
+
+.posteos {
      /* background-color: yellowgreen;
      grid-column: 1 / 2;
      grid-row: 1 / span 3; */
 }
-.publicar{
-    /* background-color: cadetblue;
+
+.publicar {
+     /* background-color: cadetblue;
     grid-column: 1 / 2;
     grid-row: 4 / 5; */
 }
 
-.cards{
+.cards {
      grid-column: 1 / -1;
      grid-row: 2 / 5;
      height: 100vh;
-     display:grid;
+     display: grid;
      grid-template-rows: 10rem repeat(3, 45rem);
-     grid-template-columns: repeat(3 , 1fr);
+     grid-template-columns: repeat(3, 1fr);
      gap: 20px;
      padding: 20px;
      background-color: rgb(255, 255, 255);
 }
 
-.paginado{
+.paginado {
      background-color: aqua;
-     grid-row: 1 ;
+     grid-row: 1;
      grid-column: 1 / -1;
 }
 
-.destacados{
-     background-color: blue;
-    grid-row: 6/7;
-    grid-column: 1/-1;
+.destacados {
+     background-image: linear-gradient(to right, #1583f1fd, rgb(3, 10, 78));
+     grid-row: 6/7;
+     grid-column: 1/-1;
+     display: flex;
+     flex-direction: row;
+     align-items: center;
+     overflow-x: hidden;
 }
-.footer{
+
+.destacados:hover{
+	animation-play-state: paused;
+}
+
+.footer {
      background-color: brown;
      grid-row: 7/8;
      grid-column: 1/-1;
