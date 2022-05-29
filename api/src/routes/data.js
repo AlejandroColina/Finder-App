@@ -1,7 +1,7 @@
 
 let personas = [
     {
-        nombres: "Benjamin",
+        nombres: "Benjamín",
         apellidos: "Botello",
         edad: 33,
         documento: 797000,
