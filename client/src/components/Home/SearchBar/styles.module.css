@@ -3,7 +3,7 @@
     
     height: 7rem;
     border-bottom: 1px solid gray;
-    background-color: rgba(245, 222, 179, 0.99);
+    background-color: #0d41cd;
 
     display: flex;
     justify-content: space-between;
