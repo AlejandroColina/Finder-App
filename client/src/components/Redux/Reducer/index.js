@@ -2,7 +2,10 @@ const InitialState = {
     trabajadores: [],
     users:[], //va a tener todos los usuarios
     detail: [],
-    usersByType:[]
+    usersByType:[],
+    detail: [],
+    empleos: [],
+    ciudades: []
 }
 
 
@@ -27,6 +30,18 @@ switch (action.type){
             ...state,
             detail: action.payload
         }
+     case 'GET_EMPLEOS':
+         return{
+             ...state,
+             empleos: action.payload
+         }
+
+     case 'GET_CIUDADES':
+         return{
+             ...state,
+             ciudades : action.payload
+         }
+
 
     case 'USER_BY_TYPES':
         return{

@@ -6,10 +6,10 @@ router.use(express.json());
 
 router.get('/', async (req, res, next) => {
 
- 
+
   try {
 
-    let { profesion, nombres, promedio, genero, edad } = req.query;
+    let { profesion, nombres, promedio, genero, edad, ciudad, descripcion } = req.query;
 
 
     let personasDB = await Persona.findAll({ include: [Profesion, Direccion] });
@@ -30,12 +30,14 @@ router.get('/', async (req, res, next) => {
         promedio: person.promedio,
         genero: person.genero,
         Profesions: person.Profesions?.map(e => e.nombre).join(),
-        direccion: person.Direccions?.map(e => e.direccion).join()
+        logoProfesion: person.Profesions?.map(e => e.logo).join(),        
+        direccion: person.Direccions?.map(e => e.direccion).join(),
+        ciudad: person.Direccions?.map(e => e.ciudad).join(),
+        pais: person.Direccions?.map(e => e.pais).join()
       }
     });
 
     let filtroPersonas = objPersonas;
-    console.log(filtroPersonas)
     if (profesion) {
       filtroPersonas = filtroPersonas.filter(persona => {
         return persona.Profesions.toLowerCase().includes(profesion.toLowerCase())
@@ -44,6 +46,15 @@ router.get('/', async (req, res, next) => {
       //   ? res.send('NO HAY CONCIDENCIAS')
       //   : res.json(filtroPersonas);
     }
+    if (descripcion) {
+      filtroPersonas = filtroPersonas.filter(persona => {
+        return persona.descripcion.toLowerCase().includes(descripcion.toLowerCase())
+      });
+      // !filtroPersonas.length
+      //   ? res.send('NO HAY CONCIDENCIAS')
+      //   : res.json(filtroPersonas);
+    }
+
 
     if (nombres) {
       filtroPersonas = filtroPersonas.filter(persona => {
@@ -58,7 +69,7 @@ router.get('/', async (req, res, next) => {
       filtroPersonas = filtroPersonas.filter(persona => {
         return persona.genero == genero
       });
-      
+
       // !filtroPersonas.length
       //   ? res.send('NO HAY CONCIDENCIAS')
       //   : res.json(filtroPersonas);
@@ -79,8 +90,11 @@ router.get('/', async (req, res, next) => {
       //   ? res.send('NO HAY CONCIDENCIAS')
       //   : res.json(filtroPersonas);
     }
+    if(ciudad){
+      filtroPersonas = filtroPersonas.filter(persona => persona.ciudad.toLowerCase() == ciudad.toLowerCase())
+    }
 
-    
+
 
     // if (!Object.keys(req.query).length) 
     return res.json(filtroPersonas);
@@ -92,6 +106,18 @@ router.get('/', async (req, res, next) => {
   }
 });
 
+router.get("/ciudades",  (req, res) =>{
+  axios.get("http://localhost:3001/users")
+  .then((respuesta)=>{
+    let filtrados = [];
+    let todos = respuesta.data;
+    let ciudades = todos.map(e => e.ciudad)
+    ciudades.forEach((el)=>{
+      if(filtrados.indexOf(el)<0) filtrados.push(el)
+    })
+    res.send(filtrados)
+  })
+})
 
 router.get("/empleos", async (req, res, next) => {
   try {
@@ -108,22 +134,22 @@ router.get("/empleos", async (req, res, next) => {
   }
 });
 
-  router.get("/:ocupacion", (req,res) =>{
-    axios.get("http://localhost:3001/users")
-    .then((respuesta)=>{
-        let personas = respuesta.data;
-        let tuPersona = personas.filter((el) => el.descripcion.toLowerCase().includes(req.params.ocupacion.toLowerCase()));
-        if (!tuPersona.length){
-          res.send([]);
-        }
-        if(tuPersona.length > 0){
-          res.send(tuPersona)
-        }
-        res.end();
-      })
-       .catch((error)=>{
-        console.log(error);
-      })
+router.get("/:ocupacion", (req, res) => {
+  axios.get("http://localhost:3001/users")
+    .then((respuesta) => {
+      let personas = respuesta.data;
+      let tuPersona = personas.filter((el) => el.descripcion.toLowerCase().includes(req.params.ocupacion.toLowerCase()));
+      if (!tuPersona.length) {
+        res.send([]);
+      }
+      if (tuPersona.length > 0) {
+        res.send(tuPersona)
+      }
+      res.end();
+    })
+    .catch((error) => {
+      console.log(error);
+    })
 })
 
 

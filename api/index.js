@@ -18,7 +18,8 @@ DB_CONN.sync({ force: true })
 
         for (let i = 0; i < tipos.length; i++) {
             Profesion.create({
-                nombre: tipos[i]
+                nombre: tipos[i].profesion,
+                logo: tipos[i].logo
             })
         };
 
@@ -43,7 +44,12 @@ DB_CONN.sync({ force: true })
         setTimeout(() => {
             personas.map(async (obj, id) => {
                 id += 1
-                await Direccion.create({ direccion: obj.direccion, PersonaId: id });
+                await Direccion.create({
+                    PersonaId: id,
+                    direccion: obj.direccion,
+                    ciudad: obj.ciudad,
+                    pais: obj.pais
+                });
             })
         }, 1000)
 

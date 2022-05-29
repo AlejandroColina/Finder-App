@@ -12,6 +12,8 @@ let personas = [
         descripcion: "Dolorum sed accusamus qui officiis quod nisi.",
         profesion: 7,
         genero: "hombre",
+        pais: "Argentina",
+        ciudad: "Buenos Aires",
         puntuacion: [
             2,
             4,
@@ -32,6 +34,8 @@ let personas = [
         descripcion: "Sed officiis quo dolores ut consequuntur temporibus recusandae facere.",
         profesion: 6,
         genero: "hombre",
+        pais: "Argentina",
+        ciudad: "Buenos Aires",
         puntuacion: [
             2,
             5,
@@ -52,6 +56,8 @@ let personas = [
         descripcion: "Officia quos quia.",
         profesion: 5,
         genero: "hombre",
+        pais: "Argentina",
+        ciudad: "Corrientes",
         puntuacion: [
             2,
             1,
@@ -72,6 +78,8 @@ let personas = [
         descripcion: "Quo quo ut vitae id incidunt.",
         profesion: 4,
         genero: "mujer",
+        pais: "Argentina",
+        ciudad: "Corrientes",
         puntuacion: [
             2,
             2,
@@ -92,6 +100,8 @@ let personas = [
         descripcion: "Consequuntur rem dicta omnis dolorum soluta et ratione facilis.",
         profesion: 3,
         genero: "mujer",
+        pais: "Argentina",
+        ciudad: "Corrientes",
         puntuacion: [
             1,
             1,
@@ -112,6 +122,8 @@ let personas = [
         descripcion: "A in molestias alias nesciunt.",
         profesion: 2,
         genero: "hombre",
+        pais: "Argentina",
+        ciudad: "Corrientes",
         puntuacion: [
             4,
             2,
@@ -132,6 +144,8 @@ let personas = [
         descripcion: "Repellendus ea impedit nesciunt harum ut.",
         profesion: 1,
         genero: "mujer",
+        pais: "Argentina",
+        ciudad: "Rosario",
         puntuacion: [
             4,
             5,
@@ -152,6 +166,8 @@ let personas = [
         descripcion: "Ut culpa accusantium voluptas.",
         profesion: 14,
         genero: "hombre",
+        pais: "Argentina",
+        ciudad: "Rosario",
         puntuacion: [
             4,
             5,
@@ -172,6 +188,8 @@ let personas = [
         descripcion: "Nostrum qui perspiciatis earum ducimus ea.",
         profesion: 13,
         genero: "hombre",
+        pais: "Argentina",
+        ciudad: "Mar del Plata",
         puntuacion: [
             5,
             2,
@@ -192,6 +210,8 @@ let personas = [
         descripcion: "Accusamus sed veniam ut.",
         profesion: 12,
         genero: "hombre",
+        pais: "Argentina",
+        ciudad: "Mar del Plata",
         puntuacion: [
             3,
             5,
@@ -212,6 +232,8 @@ let personas = [
         descripcion: "Molestias aut ab omnis repellat esse numquam.",
         profesion: 11,
         genero: "hombre",
+        pais: "Argentina",
+        ciudad: "Mar del Plata",
         puntuacion: [
             5,
             1,
@@ -232,6 +254,8 @@ let personas = [
         descripcion: "Consequatur aut voluptatibus inventore consequatur ratione enim quia.",
         profesion: 10,
         genero: "mujer",
+        pais: "Argentina",
+        ciudad: "Mar del Plata",
         puntuacion: [
             1,
             4,
@@ -252,6 +276,8 @@ let personas = [
         descripcion: "Et fuga qui et amet aut veritatis.",
         profesion: 9,
         genero: "hombre",
+        pais: "Argentina",
+        ciudad: "Mar del Plata",
         puntuacion: [
             5,
             4,
@@ -272,6 +298,8 @@ let personas = [
         descripcion: "Perspiciatis velit quam est et qui.",
         profesion: 8,
         genero: "hombre",
+        pais: "Argentina",
+        ciudad: "Mar del Plata",
         puntuacion: [
             4,
             3,
@@ -292,6 +320,8 @@ let personas = [
         descripcion: "Perspiciatis commodi eos quia qui voluptatem quam deleniti animi.",
         profesion: 7,
         genero: "mujer",
+        pais: "Argentina",
+        ciudad: "Godoy Cruz",
         puntuacion: [
             5,
             3,
@@ -312,6 +342,8 @@ let personas = [
         descripcion: "Eos repellat ut dolor voluptatem natus ut.",
         profesion: 6,
         genero: "mujer",
+        pais: "Argentina",
+        ciudad: "Godoy Cruz",
         puntuacion: [
             5,
             1,
@@ -332,6 +364,8 @@ let personas = [
         descripcion: "Eum sunt consectetur ipsa illum id eligendi ipsa.",
         profesion: 5,
         genero: "mujer",
+        pais: "Argentina",
+        ciudad: "Godoy Cruz",
         puntuacion: [
             2,
             4,
@@ -352,6 +386,8 @@ let personas = [
         descripcion: "Minus quod eius corporis non culpa at.",
         profesion: 4,
         genero: "mujer",
+        pais: "Argentina",
+        ciudad: "Godoy Cruz",
         puntuacion: [
             2,
             1,
@@ -372,6 +408,8 @@ let personas = [
         descripcion: "Quae deserunt nemo officiis ut alias aut doloremque dolorum.",
         profesion: 3,
         genero: "hombre",
+        pais: "Argentina",
+        ciudad: "Banfield",
         puntuacion: [
             5,
             5,
@@ -392,6 +430,8 @@ let personas = [
         descripcion: "Sunt molestiae eos doloribus necessitatibus sit aliquam ipsum.",
         profesion: 2,
         genero: "mujer",
+        pais: "Argentina",
+        ciudad: "Banfield",
         puntuacion: [
             1,
             4,
@@ -412,6 +452,8 @@ let personas = [
         descripcion: "Eveniet atque soluta qui perferendis quidem quasi voluptates est vitae.",
         profesion: 1,
         genero: "mujer",
+        pais: "Argentina",
+        ciudad: "Banfield",
         puntuacion: [
             3,
             4,
@@ -432,6 +474,8 @@ let personas = [
         descripcion: "Sed et fuga ut ipsam.",
         profesion: 14,
         genero: "hombre",
+        pais: "Argentina",
+        ciudad: "Banfield",
         puntuacion: [
             5,
             5,
@@ -452,6 +496,8 @@ let personas = [
         descripcion: "Fugit numquam eligendi eos qui.",
         profesion: 13,
         genero: "mujer",
+        pais: "Argentina",
+        ciudad: "Banfield",
         puntuacion: [
             5,
             5,
@@ -472,6 +518,8 @@ let personas = [
         descripcion: "Omnis necessitatibus laudantium dignissimos animi inventore numquam.",
         profesion: 12,
         genero: "hombre",
+        pais: "Argentina",
+        ciudad: "La Plata",
         puntuacion: [
             3,
             5,
@@ -492,6 +540,8 @@ let personas = [
         descripcion: "Quisquam reiciendis sed ab voluptate et.",
         profesion: 11,
         genero: "hombre",
+        pais: "Argentina",
+        ciudad: "La Plata",
         puntuacion: [
             2,
             2,
@@ -512,6 +562,8 @@ let personas = [
         descripcion: "Ab dolor deleniti et.",
         profesion: 10,
         genero: "mujer",
+        pais: "Argentina",
+        ciudad: "La Plata",
         puntuacion: [
             3,
             3,
@@ -532,6 +584,8 @@ let personas = [
         descripcion: "Quos odit quia ut.",
         profesion: 9,
         genero: "mujer",
+        pais: "Argentina",
+        ciudad: "La Plata",
         puntuacion: [
             1,
             2,
@@ -552,6 +606,8 @@ let personas = [
         descripcion: "Expedita nam facere ut quod earum nulla iste repellat.",
         profesion: 8,
         genero: "mujer",
+        pais: "Argentina",
+        ciudad: "Resistencia",
         puntuacion: [
             1,
             1,
@@ -572,6 +628,8 @@ let personas = [
         descripcion: "Voluptates omnis porro ipsa sit numquam et.",
         profesion: 7,
         genero: "hombre",
+        pais: "Argentina",
+        ciudad: "Resistencia",
         puntuacion: [
             5,
             1,
@@ -592,6 +650,8 @@ let personas = [
         descripcion: "Quidem laudantium voluptates et doloremque quis sint.",
         profesion: 6,
         genero: "hombre",
+        pais: "Argentina",
+        ciudad: "Resistencia",
         puntuacion: [
             2,
             2,
@@ -612,6 +672,8 @@ let personas = [
         descripcion: "Qui illum et provident ipsam quia.",
         profesion: 5,
         genero: "hombre",
+        pais: "Argentina",
+        ciudad: "Lanus",
         puntuacion: [
             4,
             5,
@@ -632,6 +694,8 @@ let personas = [
         descripcion: "Sit rerum sapiente est ipsum incidunt aut quam.",
         profesion: 4,
         genero: "mujer",
+        pais: "Argentina",
+        ciudad: "Lanus",
         puntuacion: [
             5,
             4,
@@ -652,6 +716,8 @@ let personas = [
         descripcion: "Fugit consequuntur fugiat a praesentium.",
         profesion: 3,
         genero: "hombre",
+        pais: "Argentina",
+        ciudad: "Lanus",
         puntuacion: [
             4,
             3,
@@ -672,6 +738,8 @@ let personas = [
         descripcion: "Et amet dolores ipsa sed optio.",
         profesion: 3,
         genero: "mujer",
+        pais: "Argentina",
+        ciudad: "Salta",
         puntuacion: [
             5,
             5,
@@ -692,6 +760,8 @@ let personas = [
         descripcion: "Distinctio ratione sapiente hic quidem.",
         profesion: 2,
         genero: "hombre",
+        pais: "Argentina",
+        ciudad: "Salta",
         puntuacion: [
             2,
             1,
@@ -712,6 +782,8 @@ let personas = [
         descripcion: "Eaque delectus sint doloribus iure quas.",
         profesion: 1,
         genero: "hombre",
+        pais: "Argentina",
+        ciudad: "Salta",
         puntuacion: [
             5,
             4,
@@ -732,6 +804,8 @@ let personas = [
         descripcion: "Quisquam beatae voluptas adipisci est in.",
         profesion: 14,
         genero: "mujer",
+        pais: "Argentina",
+        ciudad: "Quilmes",
         puntuacion: [
             1,
             1,
@@ -752,6 +826,8 @@ let personas = [
         descripcion: "Quae rerum placeat quaerat.",
         profesion: 13,
         genero: "mujer",
+        pais: "Argentina",
+        ciudad: "Quilmes",
         puntuacion: [
             2,
             3,
@@ -772,6 +848,8 @@ let personas = [
         descripcion: "Nemo nostrum enim quia optio necessitatibus consequatur est.",
         profesion: 12,
         genero: "mujer",
+        pais: "Argentina",
+        ciudad: "Quilmes",
         puntuacion: [
             5,
             5,
@@ -792,6 +870,8 @@ let personas = [
         descripcion: "Voluptatem quod sequi aut.",
         profesion: 11,
         genero: "hombre",
+        pais: "Argentina",
+        ciudad: "Quilmes",
         puntuacion: [
             5,
             5,
@@ -812,6 +892,8 @@ let personas = [
         descripcion: "Dolorem est magnam numquam et tempore id debitis qui.",
         profesion: 10,
         genero: "hombre",
+        pais: "Argentina",
+        ciudad: "Godoy Cruz",
         puntuacion: [
             3,
             3,
@@ -832,6 +914,8 @@ let personas = [
         descripcion: "Provident atque voluptatibus unde cumque accusamus.",
         profesion: 9,
         genero: "hombre",
+        pais: "Argentina",
+        ciudad: "Lanus",
         puntuacion: [
             3,
             1,
@@ -852,6 +936,8 @@ let personas = [
         descripcion: "Repudiandae velit possimus fugit aut.",
         profesion: 8,
         genero: "hombre",
+        pais: "Argentina",
+        ciudad: "Santa Fe",
         puntuacion: [
             2,
             3,
@@ -872,6 +958,8 @@ let personas = [
         descripcion: "Ipsum quod enim nostrum nobis quibusdam est in.",
         profesion: 7,
         genero: "hombre",
+        pais: "Argentina",
+        ciudad: "Salta",
         puntuacion: [
             2,
             3,
@@ -892,6 +980,8 @@ let personas = [
         descripcion: "Et voluptates ut ut quibusdam eos quod libero consequatur.",
         profesion: 6,
         genero: "mujer",
+        pais: "Argentina",
+        ciudad: "Rosario",
         puntuacion: [
             1,
             1,
@@ -912,6 +1002,8 @@ let personas = [
         descripcion: "Earum quo deserunt voluptatibus dolor ut.",
         profesion: 5,
         genero: "mujer",
+        pais: "Argentina",
+        ciudad: "	Rosario",
         puntuacion: [
             2,
             1,
@@ -932,6 +1024,8 @@ let personas = [
         descripcion: "Sint expedita consequuntur non fuga voluptas illo vero sapiente.",
         profesion: 4,
         genero: "mujer",
+        pais: "Argentina",
+        ciudad: "Córdoba",
         puntuacion: [
             5,
             5,
@@ -952,6 +1046,8 @@ let personas = [
         descripcion: "Enim quam quos reiciendis quos.",
         profesion: 3,
         genero: "mujer",
+        pais: "Argentina",
+        ciudad: "Córdoba",
         puntuacion: [
             1,
             1,
@@ -972,6 +1068,8 @@ let personas = [
         descripcion: "Eaque ad assumenda veniam laboriosam non cupiditate qui tenetur quae.",
         profesion: 2,
         genero: "hombre",
+        pais: "Argentina",
+        ciudad: "Buenos Aires",
         puntuacion: [
             2,
             2,
@@ -992,6 +1090,8 @@ let personas = [
         descripcion: "Exercitationem esse est velit voluptas animi esse.",
         profesion: 1,
         genero: "hombre",
+        pais: "Argentina",
+        ciudad: "Buenos Aires",
         puntuacion: [
             4,
             2,
