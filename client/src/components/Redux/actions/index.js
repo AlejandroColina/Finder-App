@@ -39,3 +39,33 @@ export function getDetail(id) {
     }
 
 }
+export function getTotalUsersBytype(){
+    return async function (dispatch){
+        var tipos = [
+            "Abastecimiento y Logistica",
+            "Administracion,Contabilidad y Finanzas",
+            "Atencion al Cliente",
+            "Comercial, Ventas y Negocios",
+            "Diseño",
+            "Educacion y Docencia",
+            "Enfermeria",
+            "Gastronomia y Turismo",
+            "Ingenieria civil y Construccion",
+            "Ingenierias",
+            "Legales",
+            "Marqueting y Publicidad",
+            "Oficios y otros",
+            "Tecnologia, sistemas y Telecomunicaciones"
+        ]
+        let usersByType =[]
+        for(let i = 0; i < tipos.length ; i++){
+            let jsonTipos= await axios.get(`http://localhost:3001/users/db/${tipos[i]}`);
+            let cant = jsonTipos.data.length;
+            usersByType.push([tipos[i],cant])
+        }
+        return dispatch({
+            type: 'USER_BY_TYPES',
+            payload: usersByType
+        })
+    }
+}

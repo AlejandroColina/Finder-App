@@ -6,17 +6,15 @@ import s from './styles.module.css';
 import logo from '../../assets/logo_finder_white.png';
 import Error from '../Error'
 import { useAuth0 } from "@auth0/auth0-react";
+import NavBar from '../../components/NavBar/NavBar';
 
 export default function Admin(){
     const { user, isAuthenticated} = useAuth0();
-    return(
+    return(/* 
         isAuthenticated && user.email==='cami.zupanovich@gmail.com' ?
 
-        (<div>
-
-        <div className={s.navBar}>
-            <img  className={s.img} src={logo} alt='finder' />
-        </div>
+        ( */<div>
+        <NavBar/>
 
         <div className={s.row}>
         <div className={s.navSeccionWidth}>
@@ -34,6 +32,6 @@ export default function Admin(){
         </div>
 
         </div>
-        </div> ) : (<Error/>)
+        </div> /* ) : (<Error/>) */
     )
 }
