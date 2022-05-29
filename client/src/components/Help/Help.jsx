@@ -18,16 +18,16 @@ export default function Help(){
 
     const handleSubmit =(e)=>{
         e.preventDefault();
-        dispatch(userMsj([user.id,input]));
+        dispatch(userMsj({userId:user.id,message:input}));
         alert('Mensaje enviado con exito')
         setOptions(false);
     }
     return(
         <>
-        {isAuthenticated? 
-        <button title='Necesitas ayuda?' className={`${s.btn} ${s.position}`} onClick={()=>{setOptions(true)}}>?</button>
+        {/* {isAuthenticated? */} 
+        <button title='Necesitas ayuda?' className={`${s.btn} ${s.position}`} onClick={()=>{setOptions(true)}}>?</button>{/* 
         : 
-        <Link to='/#2' className={`${s.contacto} ${s.position}`}>⤏ Emprende con <strong>Finder</strong> ⤎</Link>}
+        <Link to='/#2' className={`${s.contacto} ${s.position}`}>⤏ Emprende con <strong>Finder</strong> ⤎</Link>} */}
         {options? 
         <form className={`${s.chat} ${s.position}`} onSubmit={handleSubmit}>
             

@@ -98,6 +98,7 @@ export const getCiudades = () => {
 
 }
 export function userMsj(payload){
+    console.log(payload)
     return({
         type: 'USER_MSJ',
         payload

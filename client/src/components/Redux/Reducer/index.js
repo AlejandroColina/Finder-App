@@ -51,11 +51,11 @@ switch (action.type){
         }
 
     case 'USER_MSJ':
-        let prev = state.adminMjes
-        let objMsj ={[action.payload[0]]:action.payload[1]}
-        prev.push(objMsj)
+        let prev = state.adminMjes;
+        prev.push(action.payload)
         return{
             ...state,
+            adminMjes:prev
         }
 
     default:
