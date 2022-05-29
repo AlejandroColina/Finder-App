@@ -8,6 +8,7 @@ import { SearchBar } from "./SearchBar/SearchBar";
 import { Filtros } from "./Filtros/Filtros";
 import Paginado from '../Paginado/Paginado'
 import { Link } from "react-router-dom";
+import Help from "../Help/Help";
 
 
 
@@ -98,6 +99,7 @@ function Home() {
         </section>
         <section className={styles.footer}>Footer</section>
       </div>
+      <Help/>
     </div>
   );
 
