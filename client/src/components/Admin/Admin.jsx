@@ -9,10 +9,15 @@ import { useAuth0 } from "@auth0/auth0-react";
 
 export default function Admin(){
     const { user, isAuthenticated} = useAuth0();
-    return(/* 
-        isAuthenticated && user.email==='cami.zupanovich@gmail.com' ?
+    return(
+        isAuthenticated && user.email==='cami.zupanovich@gmail.com'
+        || user.email==='giulianob94@hotmail.com'
+        || user.email==='nicosuasnavar@gmail.com'
+        || user.email==='jheinemberstithjn@ufps.edu.co'
+        || user.email==='gabrielcontegrand10@gmail.com '
+        || user.email==='alejandro.colina@ucp.edu.co' ?
 
-        ( */<div>
+        ( <div>
         <NavBar/>
          
         <div className={s.row}>
@@ -30,6 +35,6 @@ export default function Admin(){
         </div>
 
         </div>
-        </div> /* ) : (<Error/>) */
+        </div> ) : (<Error/>)
     )
 }
