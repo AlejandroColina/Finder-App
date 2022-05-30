@@ -4,12 +4,13 @@ import SecondCap from './secondcap/SecondCap';
 import ThirdCap from './thirdcap/ThirdCap';
 import logo from '../../assets/logo_finder_white.png';
 import s from './styles.module.css';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { useAuth0 } from '@auth0/auth0-react';
 import logoutImg from '../../assets/logout_white.png';
 import Help from '../Help/Help';
 
 function LandingPage() {
+  const history=useHistory();
   const { isAuthenticated, user } = useAuth0();
   const { loginWithRedirect } = useAuth0();
   const { logout } = useAuth0();
@@ -19,7 +20,20 @@ function LandingPage() {
   return (
     <>
       <div className={s.nav}>
-        <a href="/home"><img className={s.logo} src={logo} alt='finder' /></a>
+        <img className={s.logo} src={logo} alt='finder'onClick={()=>{
+          setTimeout(
+              history.push('./admin'),1000
+          )}}  />{
+        
+            isAuthenticated && user.email==='giulianob94@hotmail.com'
+            ||isAuthenticated && user.email==='nicosuasnavar@gmail.com'
+            ||isAuthenticated && user.email==='jheinemberstithjn@ufps.edu.co'
+            ||isAuthenticated && user.email==='gabrielcontegrand10@gmail.com'
+            ||isAuthenticated && user.email==='alejandro.colina@ucp.edu.co' 
+             || isAuthenticated && user.email==='cami.zupanovich@gmail.com'? <div className={s.navItems} onClick={()=>{
+              setTimeout(
+                  history.push('./admin'),1000
+              )}}>ADMINISTRAR</div> : null}
         {isAuthenticated ?
           <div className={s.boxItems}>
             <a href="#3" className={s.navItems}>EXPERIENCIA FINDER</a>
