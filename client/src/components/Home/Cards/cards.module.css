@@ -27,7 +27,7 @@ header {
     -webkit-box-shadow: #bdc3c7 0 5px 5px;
     -moz-box-shadow: #bdc3c7 0 5px 5px;
     box-shadow: #bdc3c7 0 5px 5px;
-    animation: moveInRight 1s ease-out;
+    animation: moveInRight .85s ease-out;
   }
 
   @keyframes moveInRight {

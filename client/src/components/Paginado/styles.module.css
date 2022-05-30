@@ -5,6 +5,18 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    
+}
+@keyframes moveInBottom {
+    0% {
+        opacity: 0;
+        transform: translateY(3rem)
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0)
+    }
 }
 
 .li{
@@ -13,6 +25,7 @@
     height: 10rem;
     margin: 5px;
     color: gainsboro;
+    animation: moveInBottom .85s ease-out;
 }
 
 .botones_paginado{   
