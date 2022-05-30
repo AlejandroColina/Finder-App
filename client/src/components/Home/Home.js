@@ -9,6 +9,7 @@ import { Filtros } from "./Filtros/Filtros";
 import Paginado from '../Paginado/Paginado'
 import Help from "../Help/Help";
 import Destacados from "./Destacados/Destacados";
+import Footer from './../Footer/Footer';
 
 
 
@@ -98,6 +99,7 @@ function Home() {
         </section>
         {/* <section className={styles.publicar}>Anunciarse/Publicar</section> */}
         <section className={styles.destacados}>
+          <div className={styles.textDestacados} ><h1>Destacados 🔥</h1></div>
           <div className={styles.div__destacados}>
             {
               destacados.map(el => {
@@ -107,6 +109,7 @@ function Home() {
                       key={`${el.id}A`}
                       id={el.id}
                       Profesions={el.Profesions}
+                      apellidos={el.apellidos}
                       imagen={el.imagen}
                       logoProfesion={el.logoProfesion}
                       nombres={el.nombres}
@@ -119,7 +122,9 @@ function Home() {
             }
           </div>
         </section>
-        <section className={styles.footer}>Footer</section>
+        <section className={styles.footer}>
+          <Footer />
+        </section>
       </div>
       <Help />
     </div>
