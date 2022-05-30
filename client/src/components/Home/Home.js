@@ -14,7 +14,9 @@ import Footer from './../Footer/Footer';
 
 
 function Home() {
-  const [filters, setFilters] = useState({
+
+  const EMPTY_FILTERS={
+    
     profesion: '',
     nombres: '',
     promedio: '',
@@ -22,7 +24,12 @@ function Home() {
     edad: '',
     ciudad: '',
     empleo: ''
-  })
+
+  }
+
+
+
+  const [filters, setFilters] = useState(EMPTY_FILTERS)
 
   const [descripcion, setDescripcion] = useState('')
 
@@ -57,6 +64,11 @@ function Home() {
 
   let destacados = trabajadores?.filter(el => el.promedio >= 4);
 
+  const resetValues = () => {
+    setFilters(EMPTY_FILTERS)
+    setDescripcion('')
+  }
+
   return (
 
     <div>
@@ -64,7 +76,7 @@ function Home() {
 
       <div className={styles.contenidos}>
         <section className={styles.filtros}>
-          <Filtros filters={filters} handleFilterChanges={handleFilterChanges} />
+          <Filtros  resetValues={resetValues} filters={filters} handleFilterChanges={handleFilterChanges} />
         </section>
         {/* <section className={styles.posteos}></section> */}
 
