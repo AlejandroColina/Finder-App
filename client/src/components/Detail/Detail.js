@@ -33,7 +33,7 @@ export default function Detail() {
                 <br />              
                 <h1 className="about2">{MyDetail.nombres}{" "}{MyDetail.apellidos}</h1>        
                 <br />
-                <h1 className="about3">C.C:  {""} {MyDetail.documento}</h1> 
+                <h1 className="about3">C.C:  {" "} {MyDetail.documento}</h1> 
                 <br />
                 <h1 className="about3">Telefono:{""} {MyDetail.telefono}</h1> 
                 <br />
