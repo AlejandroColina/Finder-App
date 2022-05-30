@@ -152,6 +152,24 @@ router.get("/:ocupacion", (req, res) => {
     })
 })
 
+router.get("/db/:tipo", (req, res) => {
+  axios.get("http://localhost:3001/users")
+    .then((respuesta) => {
+      let personas = respuesta.data;
+      let tuPersona = personas.filter((el) => el.Profesions.toLowerCase().includes(req.params.tipo.toLowerCase()));
+      if (!tuPersona.length) {
+        res.send([]);
+      }
+      if (tuPersona.length > 0) {
+        res.send(tuPersona)
+      }
+      res.end();
+    })
+    .catch((error) => {
+      console.log(error);
+    })
+})
+
 
 
 router.get("/trabajo/:id", async (req, res, next) => {
