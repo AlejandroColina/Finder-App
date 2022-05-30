@@ -22,7 +22,7 @@ function LandingPage() {
       <div className={s.nav}>
         <img className={s.logo} src={logo} alt='finder'onClick={()=>{
           setTimeout(
-              history.push('./admin'),1000
+              history.push('./home'),1000
           )}}  />{
         
             isAuthenticated && user.email==='giulianob94@hotmail.com'
