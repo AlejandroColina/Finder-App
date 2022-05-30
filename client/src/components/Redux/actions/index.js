@@ -104,3 +104,9 @@ export function userMsj(payload){
         payload
     })
 }
+
+export function getDeleteDetail(){
+    return {
+        type: "GET_DELETE"
+    }
+}
