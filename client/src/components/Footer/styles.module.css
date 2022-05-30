@@ -1,0 +1,49 @@
+.container {
+    /* border: 2px solid yellow; */
+    /* background-image: linear-gradient(to right, #1583f1fd, #030a4e); */
+    background-color: #030a4e;
+    height: 150px;
+    width: 100%;
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: 25% 50% 25%;
+}
+
+.footerU {
+    height: 100%;
+    width: 100%;
+}
+
+.footerD {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.footerT {
+    height: 100%;
+    width: 100%;
+}
+
+.div__politicas {
+    display: flex;
+    flex-direction: row;
+    margin-bottom:10px ;
+    color: gainsboro;
+}
+
+.div__politicas a {
+    color: gainsboro;
+    font-weight: bold ;
+    font-size: 13px;
+    margin: 0 3px;    
+}
+
+.footerD span{
+    display: inline-block;
+    color: gainsboro;
+    font-size: 13px;
+}
