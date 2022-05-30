@@ -9,6 +9,16 @@
   width: 50%;
 }
 
+.userPic  {
+  border-radius: 50px;
+  border: 2px solid rgb(173, 173, 173);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  margin-bottom: 30px;
+}
+
 .form {
   width: 100%;
   align-items: center;
@@ -56,16 +66,7 @@
   justify-content: center;
 }
 
-.registro img {
-  border-radius: 50px;
-  border: 2px solid rgb(173, 173, 173);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: auto;
-  margin-bottom: 30px;
-  
-}
+
 
 .submit {
   width: 100%;

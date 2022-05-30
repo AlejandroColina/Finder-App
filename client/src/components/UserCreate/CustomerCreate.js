@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useFormik } from "formik";
-
+import "./UserCreate.css";
 
 const validate = (values) => {
   const errors = {};
@@ -40,8 +40,7 @@ const CustomerCreate = () => {
     },
   });
 
-
-  //Cloudinary 
+  //Cloudinary
   const uploadImage = async (e) => {
     const files = e.target.files;
     const data = new FormData();
@@ -66,17 +65,12 @@ const CustomerCreate = () => {
   return (
     <div className="formCont">
       <form onSubmit={formik.handleSubmit}>
+        {loading ? (
+          <h3>Loading...</h3>
+        ) : (
+          <img src={image} style={{ width: "300px" }} alt="File Not Found" />
+        )}
 
-			{
-				loading ? (
-					<h3>Loading...</h3>
-				) : (
-					<img src={image} style={{ width: "300px" }} alt="File Not Found" />
-				)
-			}
-
-
-        
         <input
           className="registro"
           onChange={uploadImage}

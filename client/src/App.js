@@ -15,8 +15,8 @@ function App() {
         <Route exact path="/" component={LandingPage} />
         <Route exact path="/home" component={Home} />
         <Route path="/admin" component={Admin} />
-        <Route path="/SignIn" component={UserCreate} />
-        <Route path="/signInCust" component={CustomerCreate} />
+        <Route path="/userLog" component={UserCreate} />
+        <Route path="/customerLog" component={CustomerCreate} />
         <Route exact path="/trabajo/:id" component={Detail} />
         <Route path="/*" component={Error} />
       </Switch>
