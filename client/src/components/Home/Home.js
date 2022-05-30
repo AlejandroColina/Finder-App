@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import { getCiudades, getEmpleos, rederCard } from "../Redux/actions/index";
 import { useEffect } from "react";
@@ -11,6 +12,7 @@ import Help from "../Help/Help";
 import Destacados from "./Destacados/Destacados";
 import Footer from './../Footer/Footer';
 import { Link } from "react-router-dom";
+import Loanding from "./loading/Loanding";
 
 
 
@@ -36,7 +38,7 @@ function Home() {
 
 
   const trabajadores = useSelector((state) => state.trabajadores);
-
+const loanding = useSelector((state)=> state.loanding);
   const handleFilterChanges = (e) => {
     setFilters({
       ...filters,
@@ -71,7 +73,7 @@ function Home() {
   }
 
   return (
-
+   <div>{ loanding? <Loanding/> :
     <div>
       <SearchBar descripcion={descripcion} setDescripcion={setDescripcion} />
 
@@ -143,6 +145,7 @@ function Home() {
       </div>
       <Help />
     </div>
+    } </div>
   );
 
 }
