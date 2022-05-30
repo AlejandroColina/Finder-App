@@ -19,7 +19,7 @@ export default function FirstCap(){
                 <img  className={s.imgFinder} src={fast} alt='registrate ahora'/>
                 {isAuthenticated? 
                 <><p className={s.p}><span className={s.importantText}>{user.name}</span> te damos la bienvenida a FINDER !</p>
-                  <button className={s.registrateBtn} onClick={()=>history.push('/create')}>COMPLETA TU PERFIL</button>
+                  <button className={s.registrateBtn} onClick={()=>history.push('/userLog')}>COMPLETA TU PERFIL</button>
                 </>
                 : <button  onClick={()=>{loginWithRedirect()}} className={s.registrateBtn}>INGRESA</button>}
             </div>
