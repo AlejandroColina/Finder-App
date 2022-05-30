@@ -1,0 +1,88 @@
+.formCont {
+  background: linear-gradient(90deg, #1a2980 0%, #26d0ce 100%);
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+}
+
+.formCont img {
+  width: 50%;
+}
+
+.form {
+  width: 100%;
+  align-items: center;
+}
+
+.registro {
+  width: 40%;
+  height: 70%;
+  background: white;
+  padding: 30px;
+  margin: auto;
+  margin-top: 20px;
+  border-radius: 4px;
+  box-shadow: 2px 5px 40px #000;
+}
+
+.registro h4 {
+  font-size: 22px;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.controls {
+  width: 100%;
+  padding: 10px;
+  border-radius: 4px;
+  margin-bottom: 16px;
+  border: 1px solid #0576e6a9;
+  font-size: 18px;
+}
+
+.registro p {
+  height: 40px;
+  text-align: center;
+  font-size: 18px;
+  line-height: 40px;
+}
+
+.login {
+  color: #1a2980;
+  text-decoration: none;
+  font-size: 18px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+}
+
+.registro img {
+  border-radius: 50px;
+  border: 2px solid rgb(173, 173, 173);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  margin-bottom: 30px;
+  
+}
+
+.submit {
+  width: 100%;
+  background: #0576e6a9;
+  padding: 12px;
+  color: white;
+  margin: 16px 0;
+  border: none;
+  font-size: 16px;
+}
+
+.notSubmit {
+  width: 100%;
+  background: #838383a9;
+  padding: 12px;
+  color: rgb(0, 0, 0);
+  margin: 16px 0;
+  border: none;
+  font-size: 16px;
+}
