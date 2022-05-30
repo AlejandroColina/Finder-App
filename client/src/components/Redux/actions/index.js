@@ -84,6 +84,20 @@ export const getEmpleos = () => {
     }
 
 }
+
+export const getEmpleosForm = () => {
+
+    let url = 'http://localhost:3001/users/empleosForm'
+
+    return async(dispatch) =>{
+        const resp = await axios.get(url)
+        return dispatch({
+            type: 'GET_EMPLEOS_FORM',
+            payload: resp.data
+        })
+    }
+
+}
 export const getCiudades = () => {
 
     let url = 'http://localhost:3001/users/ciudades'
@@ -104,3 +118,5 @@ export function userMsj(payload){
         payload
     })
 }
+
+

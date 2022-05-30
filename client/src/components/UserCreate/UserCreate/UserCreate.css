@@ -5,6 +5,31 @@
   display: flex;
 }
 
+ .leftCard {
+  width: 50%;
+ 
+}
+
+.leftCard img {
+  width: 70%;
+  margin-top: 200px;
+}
+
+
+.rigthCard  {
+  background-color: white;
+
+}
+
+
+/* 
+.formCont {
+  background: linear-gradient(90deg, #1a2980 0%, #26d0ce 100%);
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+}
+
 .formCont img {
   width: 50%;
 }
@@ -86,4 +111,4 @@
   margin: 16px 0;
   border: none;
   font-size: 16px;
-}
+} */

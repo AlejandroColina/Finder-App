@@ -2,8 +2,10 @@ import React, { useEffect, useState } from "react";
 import { useFormik } from "formik";
 import "./UserCreate.css";
 import pic from "./img_fast.png";
-import "./UserCreate.css";
 import axios from "axios";
+import "./UserCreate.css";
+import { getEmpleosForm } from "../../Redux/actions";
+import { useDispatch, useSelector } from "react-redux";
 
 //Validadores
 
@@ -55,9 +57,10 @@ const validate = (values) => {
 //Componente Principal
 
 export default function UserCreate() {
+  const dispatch = useDispatch();
+
   const [image, setImage] = useState("");
   const [loading, setLoading] = useState(false);
-  const [profesion, setProfesion] = useState({});
   const formik = useFormik({
     initialValues: {
       nombres: "",
@@ -76,6 +79,17 @@ export default function UserCreate() {
     },
   });
 
+  //Profresiones
+  const empleos = useSelector((state) => state.empleosForm);
+  const [empleosSelected, setEmpleosSelected] = useState({});
+  console.log(empleosSelected);
+
+  const selectChange = (e) => {
+    let id = e.target.id;
+    let value = e.target.value;
+    setEmpleosSelected({ ...empleosSelected, [id]: value });
+  };
+
   //Cloudinary
   const uploadImage = async (e) => {
     const files = e.target.files;
@@ -93,7 +107,6 @@ export default function UserCreate() {
     );
 
     const file = await res.json();
-    console.log(file);
     setImage(file.secure_url);
     setLoading(false);
   };
@@ -102,9 +115,9 @@ export default function UserCreate() {
 
   function handleSubmit(e) {
     e.preventDefault();
-    let profesionId = Object.keys(profesion);
+    let profesionId = Object.keys(empleosSelected);
     axios
-      .post("http://localhost:3001/users/persona", { Field, profesionId })
+      .post("http://localhost:3001/persona", { input, profesionId })
       .then((res) => {
         console.log(res);
         alert("Usuario creado");
@@ -115,8 +128,8 @@ export default function UserCreate() {
       });
   }
 
-  // useState de los Fields
-  const [Field, setField] = useState({
+  // useState de los inputs
+  const [input, setInput] = useState({
     nombres: "",
     apellidos: "",
     edad: "",
@@ -125,15 +138,25 @@ export default function UserCreate() {
     descripcion: "",
     telefono: "",
     direccion: "",
+    genero: "",
   });
-  console.log(Field);
+  console.log(input);
+
+  useEffect(() => {
+    dispatch(getEmpleosForm());
+  }, [dispatch]);
 
   return (
     <>
       <div className="formCont">
-        <img className="" src={pic} alt="" />
-        <div>
-          <form className="form" onSubmit={formik.handleSubmit}>
+        <div className="leftCard">
+          <img src={pic} alt="" />
+        </div>
+        {/* 
+           onSubmit={formik.handleSubmit}
+        */}
+        <div className="rightCard">
+          <form onSubmit={handleSubmit}>
             {loading ? (
               <h3>Loading...</h3>
             ) : (
@@ -251,19 +274,30 @@ export default function UserCreate() {
             ) : null}
 
             <label htmlFor="profesion"></label>
-            <input
-              id="profesion"
-              placeholder="profesion"
-              name="profesion"
-              type="text"
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-              value={formik.values.profesion}
-            />
-            {formik.touched.profesion && formik.errors.profesion ? (
-              <div>{formik.errors.profesion}</div>
-            ) : null}
-
+            {/* <select id="profesion" name="profesion">
+              {empleos &&
+                empleos.map((e) => {
+                  <option value={e.nombre} id={e.id}>
+                    {e.nombre}
+                  </option>;
+                })}
+            </select> */}
+            <div>
+              <p>profesion:</p>
+              {empleos &&
+                empleos.map((el) => (
+                  <div>
+                    <input
+                      type="checkbox"
+                      name="empleo"
+                      value={el.nombre}
+                      id={el.id}
+                      onChange={selectChange}
+                    />
+                    <label for="empleo">{el.nombre}</label>
+                  </div>
+                ))}
+            </div>
             <button type="submit">Registrarse!</button>
           </form>
         </div>

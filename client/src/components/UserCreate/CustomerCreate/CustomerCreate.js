@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useFormik } from "formik";
-import "./UserCreate.css";
+
 
 const validate = (values) => {
   const errors = {};

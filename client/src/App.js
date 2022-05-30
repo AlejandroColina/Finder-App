@@ -5,8 +5,8 @@ import Home from "./components/Home/Home";
 import Detail from "./components/Detail/Detail";
 import Error from "./components/Error/index";
 import Admin from "./components/Admin/Admin";
-import UserCreate from "./components/UserCreate/UserCreate";
-import CustomerCreate from "./components/UserCreate/CustomerCreate";
+import UserCreate from "./components/UserCreate/UserCreate/UserCreate";
+import CustomerCreate from "./components/UserCreate/CustomerCreate/CustomerCreate";
 
 function App() {
   return (
