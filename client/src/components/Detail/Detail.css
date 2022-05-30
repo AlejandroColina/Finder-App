@@ -3,22 +3,46 @@
 	color: gray;
 	font-style: italic;
 	font-size: 19px;
-	margin-left: 18px;
-
+	margin-left: 18px;  
+	color: white;
+	font-size: 28px;
+  text-align: center;
 }
+
+.divimg{
+  height: 555px;
+  width: 475px;
+} 
 
 .aboutD{
 	font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-	color: white;
+	color: gray;
 	font-style: italic;
-	font-size: 21px;
-	margin-top: 100px;
+	font-size: 28px;
+	margin-top: 100px;  
+  text-align: center;
 }
 .about{
 	font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+	color: #4c83bb;
+	font-style: italic;
+	font-size: 28px;
+}
+
+.aboutAcerca{
+	font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 	color: #0575e6;
-	font-style: bold;
-	font-size: 21px;
+	font-style: italic;
+	font-size: 24px;
+  text-align: center;
+}
+
+.aboutTitle{
+	font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+	color: #3a3c3f;
+	font-style: italic;
+	font-size: 29px;
+  text-align: center;
 }
 
 .about2{
@@ -35,15 +59,34 @@
 }
 
 .container {
-  box-shadow: 0 18px 10px 2px rgba(66, 63, 63, 0.31);
-  height: 500px;
-  width: 900px;
+  position: fixed;
+  height: 550px;
+  width: 950px;
   border-radius: 12px;
+  box-shadow: 0 18px 10px 2px rgba(66, 63, 63, 0.31);
+  text-align: center;
+  display: block;
+  margin: 0 auto;
+  overflow: hidden;
+  background: rgb(238, 233, 233);
+  margin-top: 140px;  
+  margin-left: 235px; 
+  box-shadow: 3px 3px 5px 1px rgba(79, 117, 219, 0.568)
+}
+
+.container1 {
+  position: fixed;
+  height: 35px;
+  width: 950px;
+  border-radius: 12px;
+  background-color : blue;
+  text-align: center;
+  display: block;
   margin: 0 auto;
   background: rgb(238, 233, 233);
-  margin-top: 50px;
-  overflow: hidden;
-  text-align: center;
+  margin-top: 90px;  
+  margin-left: 235px; 
+  
 }
 
 /* 	Product details  */
@@ -63,7 +106,7 @@
   display: inline-block;
   position: relative;
   font-size: 34px;
-  color: #344055;
+  color: #475534;
   margin: 0;
 }
 #container .product-details h1:before {
@@ -93,11 +136,7 @@
 /* fonts  */
 @import url("https://fonts.googleapis.com/css?family=Abel|Aguafina+Script|Artifika|Athiti|Condiment|Dosis|Droid+Serif|Farsan|Gurajada|Josefin+Sans|Lato|Lora|Merriweather|Noto+Serif|Open+Sans+Condensed:300|Playfair+Display|Rasa|Sahitya|Share+Tech|Text+Me+One|Titillium+Web");
 
-/* body {
-  background-image: url("https://c.pxhere.com/images/7d/21/ed588c6f9dd84ff1cf8f96100885-1450843.jpg!d"); 
-  background-size: cover;   
-  background-size: 100%;  
-} */
+
 
 /*Product Rating  */
 .hint-star {
@@ -132,23 +171,28 @@
 }
 
 .btnVolver {
-	text-decoration: none;
+    padding:15px;	
+    text-decoration: none;
     display:inline-block;
     width:50%;
-    padding:15px;	
-	border: none;
-	margin-left: 520px;
+    border: none;
+    margin-left: 350px;
     background: #0575e6;
     width:20%;
     text-align: center;
     color:white;
-    font-size: 30px;
-    font-weight: bold;
+    font-style: italic;
     transition: all 0.9s ease;
-    box-shadow: #5987b4;
-    border-radius: 10px 30px;
+    font-size: 30px;
+    border-radius: 10px 30px; 
+    font-weight: bold;
+    box-shadow: 3px 3px 5px 1px rgba(79, 117, 219, 0.568);
+	  margin-top: 700px;  
+    margin-left: 570px; 
+    /* 
+    */
 
-  }
+}
 
 
 .btnVolver:hover{
@@ -201,8 +245,6 @@
   transform: translateX(-45%);
  
 }
-
-
 /* the Icon */
 .btn .shopping-cart {
   transform: translateX(-100%);
@@ -213,9 +255,6 @@
   top: 0;
   
 }
-
-
-
 .btn:hover .price {
   transform: translateX(-110%);
 }
