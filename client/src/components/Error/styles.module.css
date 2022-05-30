@@ -1,0 +1,29 @@
+    .notFound {
+        height: 100vh;
+        width: 100vw;
+        background-image: url('../../images/error404.gif');
+        background-attachment: fixed;
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+
+    .container {
+        height: 100px;
+        width: 250px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto;
+        transform: translate(0, 140%);
+    }
+
+    .linkError {
+        font-size: 30px;
+        font-weight: bold;
+        text-decoration: none;
+    }
+
+    .linkError:hover {
+        color: #371946;
+        text-decoration: underline;
+    }

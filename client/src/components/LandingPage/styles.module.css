@@ -1,0 +1,75 @@
+.nav{
+    width: 100%;
+    position: fixed;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #1583f198;
+}
+.logo{
+    height: 40px;
+    margin: 10px;
+}
+.boxItems{
+    display: flex;
+    width: 40%;
+    justify-content: space-around;
+}
+.navItems{
+    text-decoration: none;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+}
+.avatarImg{
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+}
+.salir{
+    background:none;
+    color: white;
+    border: none;
+    font-size: 20px;
+}
+.infoUser{
+    display: flex;
+    justify-content: space-between;
+    align-items: center; 
+    min-width: 200px;
+}
+@media only screen and (max-width:400px){
+    .nav{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding:10px 0px;
+    }
+    .boxItems{
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+    }
+    .navItems{
+        font-size: small;
+    }
+    .avatarImg{
+        height: 20px;
+        width: 20px;
+    }
+    .salir{
+        font-size: small;
+    }
+    .infoUser{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+    }
+}
+.btnIngresa{
+    background: none;
+    border: none;
+}

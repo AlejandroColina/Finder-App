@@ -1,0 +1,118 @@
+.container{
+    width: 100%;
+    min-height: 100vh;
+    padding-top: 10%;
+    display: flex;
+    flex-direction: row;
+}
+.stepsContainer{
+    display: flex;
+    flex-direction:column;
+}
+.stepsCard{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+.stepsImg{
+    height: 150px;
+}
+.stepsDetail{
+    color: #0576e6a9;
+    padding: 3%;
+    font-size: 20px;
+    max-width: 280px;
+    text-align: center;
+}
+.stepsNumber{
+    font-size: 70px;
+    font-weight: bolder;
+    color:#0576e6a9;
+    padding: 20px;
+}
+.column{
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    padding: 0px 10%;
+}
+@media only screen and (max-width:400px) {
+    .container{
+    padding-top: 35%;
+    display: flex;
+    flex-direction: column;
+    }
+    .column{
+        width: 100%;
+        padding: 1%;
+        margin: 0;
+    }
+    .title{
+        padding-top: 5%;
+        text-align: center;
+    }
+    .p{
+        text-align: center;
+        padding-left: 5%;
+        padding-right: 5%;
+    }
+    .stepsImg{
+        width: 80px;
+        height: auto;
+    }
+    .stepsNumber{
+        font-size: 40px;
+    }
+    .stepsDetail{
+        max-width: 200px;
+        font-size: 15px;
+    }
+    .stepsCard{
+        max-width: 300px;
+    }
+    .stepsContainer{
+        width: 100%;
+        display: flex;
+        align-items: center;
+    }
+    .imgFinder{
+        max-width: 100%;
+    }
+}
+.title{
+    color: #0575E6;
+    font-size: 25px;
+    text-align: center;
+    font-weight: bolder;
+    text-shadow: 1px 1px 0px #00000090;
+    margin-bottom: 20px;
+}
+.p{
+    color: #0576e6a9;
+    font-size: 20px;
+}
+.importantText{
+    color: #0575E6;
+    font-weight: bold;
+}
+.user{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: black;
+}
+.registrateBtn{
+    background-color: #0576e6a9;
+    color: white;
+    border: 1px solid white;
+    transition: 1s;
+    margin: 30px 0px;
+    padding: 10px;
+}
+.registrateBtn:hover{
+    background-color: white;
+    color:#0575E6;
+    border: 1px solid #0575E6;
+}
