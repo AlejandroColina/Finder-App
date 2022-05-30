@@ -1,7 +1,7 @@
 .ul {      
     padding: 0;
     margin: 0px auto;
-    background-color: red;
+    background-color: rgb(255, 255, 255);
     display: flex;
     justify-content: center;
     align-items: center;

@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { getDetail } from "../Redux/actions/index"
 import "../Detail/Detail.css"
-import logo from '../../assets/logo_finder_white.png';
+import NavBar from '../NavBar/NavBar'
 import { Link } from "react-router-dom";
 
 export default function Detail() {
@@ -17,13 +17,8 @@ export default function Detail() {
 
     return (   
       <>
+              <NavBar/>
           <div className="ContenedorTotal">
-              {/* // NAVBAR /// */}
-              <div className="navBar">
-                  <img  className="img" src={logo} 
-                  alt='finder' />
-                  <a className="navItems" href='/home'>Home</a>
-              </div>
 
               {/* // SECCION DETALLES */}
               <div className="container">

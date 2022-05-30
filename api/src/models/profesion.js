@@ -7,5 +7,9 @@ module.exports = (sequelize) => {
             type: DataTypes.STRING(50),
             allowNull: false
         },
+        logo: {
+            type: DataTypes.STRING,
+            allowNull: false
+        }
     });
 }

@@ -5,7 +5,8 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    background-color: #1583f198;
+    background-color: #0575E6;
+    height: 60px;
 }
 .logo{
     height: 40px;
@@ -67,8 +68,4 @@
         flex-direction: row;
         justify-content: space-around;
     }
-}
-.btnIngresa{
-    background: none;
-    border: none;
 }

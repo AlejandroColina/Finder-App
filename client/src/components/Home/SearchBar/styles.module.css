@@ -2,8 +2,7 @@
 .header{
     
     height: 7rem;
-    border-bottom: 1px solid gray;
-    background-color: rgba(245, 222, 179, 0.99);
+    background-color: #255aed;
 
     display: flex;
     justify-content: space-between;
@@ -23,18 +22,8 @@
 
 
 .logo{
-    
-    display: inline-block;
-    font-size: 3rem;
-    
-    text-align: center;
-    -webkit-background-clip: text;
-    text-align: center;
-    height: 3.25rem;
-    margin: 4rem;
-    background-image: linear-gradient(to right, blue, violet);
-    color: transparent;
-    letter-spacing: 1px;
+      height: 40px;
+    margin: 10px;
 }
 
 
@@ -83,7 +72,7 @@
     align-self: stretch; 
 }
 .userNav > * {
-        padding: 0 2rem;
+        padding: 0 1rem;
         cursor: pointer;
         height: 100%;
         display: flex;
@@ -91,23 +80,36 @@
     }
 
 .userNav > *:hover{
-        background-color: var(--color-grey-light-2);
+        text-shadow: 10px 10px 30px white, -10px -10px 30px white;
+        font-weight: bold;
 }
 
 
 .userName{
         font-size: 1.6rem;
-        margin-right: 4rem;
+        margin-right: 2rem;
+        color: white;
 }
 
 .iconBox{
     position: relative;
+    height:30px;
+    width: 30px;
    } 
 
-.icon{
-    height: 2.25rem;
-    width: 2.25rem;
-    fill: var(--color-grey-dark-2);  
+.notification{
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    color: white;
+    font-size: 10px;
+    width: 1.8rem;
+    height: 1.8rem;
+    background-color: red;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 
@@ -115,4 +117,10 @@
     height: 3.75rem;
     border-radius: 50%;
     margin-left: 1rem;
+}
+
+.salir{
+    background:none;
+    border: none;
+    font-size: 20px;
 }
