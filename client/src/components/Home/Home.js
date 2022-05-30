@@ -10,6 +10,7 @@ import Paginado from '../Paginado/Paginado'
 import Help from "../Help/Help";
 import Destacados from "./Destacados/Destacados";
 import Footer from './../Footer/Footer';
+import { Link } from "react-router-dom";
 
 
 
@@ -84,16 +85,18 @@ function Home() {
           </div>
           {currentUsuarios?.map((el) => (
             <div className="box">
-
-              <Cards
-                key={el.id}
-                promedio={el.promedio}
-                nombres={el.nombres}
-                imagen={el.imagen ? el.imagen : 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQgemhlS2C1Ldo2xTSqZVm5aAXUGT3DaaJZVRLgof7-GCoq7n0YnVnC7zkRHkpdQr4j4Zk&usqp=CAU'}
-                descripcion={el.descripcion}
-                Profesions={el.Profesions.length ? el.Profesions : 'nada'}
-                id={el.id}
-              />
+              <Link key={el.id} to={`/trabajo/${el.id}`}style={{ textDecoration: "none" }}>
+                <Cards
+                    key={el.id}
+                    promedio={el.promedio}
+                    nombres={el.nombres}
+                    imagen={el.imagen ? el.imagen : 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQgemhlS2C1Ldo2xTSqZVm5aAXUGT3DaaJZVRLgof7-GCoq7n0YnVnC7zkRHkpdQr4j4Zk&usqp=CAU'}
+                    descripcion={el.descripcion}
+                    Profesions={el.Profesions.length ? el.Profesions : 'nada'}
+                    id={el.id}
+                  /> 
+               </Link>
+                
             </div>
           ))}
         </section>
