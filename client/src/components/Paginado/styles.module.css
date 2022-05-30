@@ -29,7 +29,10 @@
 }
 
 .botones_paginado{   
-    /* margin: 15px; */
+   
+    background-color: #0575E6;
+    color: white;
+    border: 1px solid #0575E6;
    padding: 8px 16px;
    margin-top: 5px;
    border: 1px solid gray;
@@ -37,4 +40,9 @@
    font-family: 'Bebas Neue', cursive;
    transition: all .2s;
 
+
+}
+
+.botones_paginado:focus{
+    background-color: #0576e67a;
 }

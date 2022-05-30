@@ -26,6 +26,7 @@ function LandingPage() {
           )}}  />{
         
             isAuthenticated && user.email==='giulianob94@hotmail.com'
+            ||isAuthenticated && user.email==='josecolmenares96@hotmail.com' 
             ||isAuthenticated && user.email==='nicosuasnavar@gmail.com'
             ||isAuthenticated && user.email==='jheinemberstithjn@ufps.edu.co'
             ||isAuthenticated && user.email==='gabrielcontegrand10@gmail.com'
