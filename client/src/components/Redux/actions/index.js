@@ -59,7 +59,7 @@ export function getTotalUsersBytype(){
         ]
         let usersByType =[]
         for(let i = 0; i < tipos.length ; i++){
-            let jsonTipos= await axios.get(`http://localhost:3001/users/db/${tipos[i]}`);
+            let jsonTipos= await axios.get(`http://localhost:3001/users?profesion=${tipos[i]}`);
             let cant = jsonTipos.data.length;
             usersByType.push([tipos[i],cant])
         }
