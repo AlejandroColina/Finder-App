@@ -27,7 +27,24 @@ header {
     -webkit-box-shadow: #bdc3c7 0 5px 5px;
     -moz-box-shadow: #bdc3c7 0 5px 5px;
     box-shadow: #bdc3c7 0 5px 5px;
+    animation: moveInRight 1s ease-out;
   }
+
+  @keyframes moveInRight {
+    0% {
+        opacity: 0;
+        transform: translateX(10rem)
+    }
+
+    80% {
+        transform: translateX(-1rem)
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0)
+    }
+}
   
   .bg {
     border-bottom: 8px solid #5cc0ff;

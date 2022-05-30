@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './styles.module.css';
 import { Link } from 'react-router-dom';
 
-function Destacados({ Profesions, logoProfesion, imagen, nombres, descripcion, promedio, id }) {
+function Destacados({ Profesions, logoProfesion, imagen, nombres, descripcion, promedio, id, apellidos }) {
     let stars = []
     for (let i = 1; i <= promedio; i++) stars.push(i);
     return (
@@ -17,8 +17,8 @@ function Destacados({ Profesions, logoProfesion, imagen, nombres, descripcion, p
                             <img className={styles.imgD} src={imagen} alt={nombres} />
                         </div>
                         <div className={styles.cardInfoPerson}>
-                            <h1>{Profesions}</h1>
-                            <p className={styles.cardP}>{nombres}</p>
+                            <h1 className={styles.cardH1}>{Profesions}</h1>
+                            <p className={styles.cardPI}>{`${nombres} ${apellidos}`}</p>
                             <p className={styles.cardP}>{descripcion}</p>
                             <p className={styles.cardPI}>
                                 {
