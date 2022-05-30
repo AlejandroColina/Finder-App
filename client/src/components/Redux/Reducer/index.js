@@ -5,7 +5,8 @@ const InitialState = {
     usersByType:[],
     empleos: [],
     ciudades: [],
-    adminMjes:[]
+    adminMjes:[],
+    loanding: false
 }
 
 
@@ -17,12 +18,13 @@ switch (action.type){
     case 'CARDS':
      return{
          ...state,
-         trabajadores: action.payload
+         trabajadores: action.payload,
+         loanding: false
      }
      case 'GET_ADMIN_USERS':
          return{
             ...state,
-            users: action.payload
+            users: action.payload,
          }
 
      case 'DETAIL':
@@ -60,6 +62,11 @@ switch (action.type){
         return{
             ...state,
             adminMjes:prev
+        }
+    case 'LOADER':
+        return {
+            ...state,
+             loanding: true
         }
 
     default:
