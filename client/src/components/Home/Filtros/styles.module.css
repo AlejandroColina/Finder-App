@@ -44,6 +44,8 @@
     transform: translate(-50%, 50%);
     margin: auto;
     padding: 4px;
+    padding-left: 3px;
+    padding-right: 3px;
     border-radius: 5px;
     margin-left: 5px;
     cursor: pointer;
