@@ -106,8 +106,17 @@ export function userMsj(payload){
 }
 
 
-export function loanding(){
+
+export function loanding(){ 
     return {
         type: 'LOADER'
+    }
+}
+
+
+export  function getDeleteDetail(){
+    return {
+        type: "GET_DELETE"
+
     }
 }

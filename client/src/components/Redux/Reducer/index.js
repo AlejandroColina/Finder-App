@@ -32,6 +32,11 @@ switch (action.type){
             ...state,
             detail: action.payload
         }
+    case "GET_DELETE":
+        return{
+            ...state,
+            detail: []
+        }     
      case 'GET_EMPLEOS':
          return{
              ...state,
