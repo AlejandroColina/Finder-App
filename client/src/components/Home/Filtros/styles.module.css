@@ -7,7 +7,8 @@
     display: flex;
     justify-content:center;
     align-items:center;
-    gap: 50px;
+    gap: 90px;
+    margin-left: 1.3rem;
 }
 
 .filtro{
@@ -30,7 +31,25 @@
     text-align: center;
     font-weight: bold;
     border-radius: 5px;
-    outline: none;
+    outline: none; 
+}
+
+
+
+
+
+.btn{
+    font-size: 1.4rem;
+    display: flex;
+    transform: translate(-50%, 50%);
+    margin: auto;
+    padding: 4px;
+    padding-left: 3px;
+    padding-right: 3px;
+    border-radius: 5px;
+    margin-left: 5px;
+    cursor: pointer;
+    border-color: blue;
 }
 
 

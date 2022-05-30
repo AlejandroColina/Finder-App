@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import { getCiudades, getEmpleos, rederCard } from "../Redux/actions/index";
 import { useEffect } from "react";
@@ -10,11 +11,15 @@ import Paginado from '../Paginado/Paginado'
 import Help from "../Help/Help";
 import Destacados from "./Destacados/Destacados";
 import Footer from './../Footer/Footer';
+import { Link } from "react-router-dom";
+import Loanding from "./loading/Loanding";
 
 
 
 function Home() {
-  const [filters, setFilters] = useState({
+
+  const EMPTY_FILTERS={
+    
     profesion: '',
     nombres: '',
     promedio: '',
@@ -22,13 +27,18 @@ function Home() {
     edad: '',
     ciudad: '',
     empleo: ''
-  })
+
+  }
+
+
+
+  const [filters, setFilters] = useState(EMPTY_FILTERS)
 
   const [descripcion, setDescripcion] = useState('')
 
 
   const trabajadores = useSelector((state) => state.trabajadores);
-
+const loanding = useSelector((state)=> state.loanding);
   const handleFilterChanges = (e) => {
     setFilters({
       ...filters,
@@ -57,14 +67,19 @@ function Home() {
 
   let destacados = trabajadores?.filter(el => el.promedio >= 4);
 
-  return (
+  const resetValues = () => {
+    setFilters(EMPTY_FILTERS)
+    setDescripcion('')
+  }
 
+  return (
+   <div>{ loanding? <Loanding/> :
     <div>
       <SearchBar descripcion={descripcion} setDescripcion={setDescripcion} />
 
       <div className={styles.contenidos}>
         <section className={styles.filtros}>
-          <Filtros filters={filters} handleFilterChanges={handleFilterChanges} />
+          <Filtros  resetValues={resetValues} filters={filters} handleFilterChanges={handleFilterChanges} />
         </section>
         {/* <section className={styles.posteos}></section> */}
 
@@ -84,16 +99,19 @@ function Home() {
           </div>
           {currentUsuarios?.map((el) => (
             <div className="box">
-
-              <Cards
-                key={el.id}
-                promedio={el.promedio}
-                nombres={el.nombres}
-                imagen={el.imagen ? el.imagen : 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQgemhlS2C1Ldo2xTSqZVm5aAXUGT3DaaJZVRLgof7-GCoq7n0YnVnC7zkRHkpdQr4j4Zk&usqp=CAU'}
-                descripcion={el.descripcion}
-                Profesions={el.Profesions.length ? el.Profesions : 'nada'}
-                id={el.id}
-              />
+              <Link key={el.id} to={`/trabajo/${el.id}`}style={{ textDecoration: "none" }}>
+                <Cards
+                    key={el.id}
+                    promedio={el.promedio}
+                    nombres={el.nombres}
+                    imagen={el.imagen ? el.imagen : 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQgemhlS2C1Ldo2xTSqZVm5aAXUGT3DaaJZVRLgof7-GCoq7n0YnVnC7zkRHkpdQr4j4Zk&usqp=CAU'}
+                    descripcion={el.descripcion}
+                    Profesions={el.Profesions.length ? el.Profesions : 'nada'}
+                    logoProfesion={el.logoProfesion}
+                    id={el.id}
+                  /> 
+               </Link>
+                
             </div>
           ))}
         </section>
@@ -128,6 +146,7 @@ function Home() {
       </div>
       <Help />
     </div>
+    } </div>
   );
 
 }

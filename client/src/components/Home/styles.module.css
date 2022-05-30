@@ -26,11 +26,13 @@
      background-color: rgb(255, 255, 255);
 }
 
-.paginado {
-     background-color: rgb(0, 0, 0);
+
+.paginado {   
+
      grid-row: 1;
      grid-column: 1 / -1;
 }
+
 
 .destacados {
      background-image: linear-gradient(to right, #1583f1fd, #030a4e);

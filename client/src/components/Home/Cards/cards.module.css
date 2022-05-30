@@ -27,7 +27,7 @@ header {
     -webkit-box-shadow: #bdc3c7 0 5px 5px;
     -moz-box-shadow: #bdc3c7 0 5px 5px;
     box-shadow: #bdc3c7 0 5px 5px;
-    animation: moveInRight 1s ease-out;
+    animation: moveInRight .85s ease-out;
   }
 
   @keyframes moveInRight {
@@ -48,6 +48,8 @@ header {
   
   .bg {
     border-bottom: 8px solid #5cc0ff;
+    width:100%;
+    height: 180px;
   }
   
   .bio:hover > .desc {
@@ -188,4 +190,5 @@ header {
       font-size: 2em;
      
   }
+  
   

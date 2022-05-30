@@ -1,18 +1,29 @@
 import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { getDetail } from "../Redux/actions/index"
+import { getDetail, getDeleteDetail } from "../Redux/actions/index"
 import "../Detail/Detail.css"
 import NavBar from '../NavBar/NavBar'
 import { Link } from "react-router-dom";
+import { useAuth0 } from '@auth0/auth0-react';
 
-export default function Detail() {
+export default function Detail({Profesions}) {
+  const { isAuthenticated, user } = useAuth0();
+  const { loginWithRedirect } = useAuth0();
+  const { logout } = useAuth0();
+  if (isAuthenticated) {
+    var onlyFirst = user.name.split(' ');
+  }
+  
   const dispatch = useDispatch();
   const { id } = useParams();
   const MyDetail = useSelector(state => state.detail)
 
   useEffect(() => {
-    dispatch(getDetail(id))      
+    dispatch(getDetail(id))
+    return function(){
+      dispatch(getDeleteDetail())  
+      }      
   }, [id, dispatch])
 
     return (   
@@ -21,49 +32,51 @@ export default function Detail() {
           <div className="ContenedorTotal">
 
               {/* // SECCION DETALLES */}
+                <div className="container1">
+                  <h2 className="about">Informacion Del Emprendedor </h2>
+                </div> 
+              
               <div className="container">
-                <div className="product-details">
+                <div className="product-details">                
+                <h2 className="aboutAcerca">Acerca de  </h2>
+                <br /> 
+                <div className="about">
+                <h1 className="aboutTitle">{MyDetail.nombres}{" "}{MyDetail.apellidos}</h1>        
+                <h1 className="aboutTitle">C.C:  {""} {MyDetail.documento}</h1>                               
+                <br /> 
+                <h1 className="aboutTitle">{MyDetail.ciudad}, {MyDetail.pais}</h1> 
+                <h1 className="aboutTitle">{MyDetail.direccion}</h1>
+                <br />
+                <h1 className="aboutTitle">Edad:{""} {MyDetail.edad}</h1>
+                <h1 className="aboutTitle">Puntaje: {""} ⭐ {MyDetail.promedio}</h1>
+                                <h1 className="aboutTitle">Genero:{""} {MyDetail.genero}</h1> 
+                  
+                </div>               
                 
-                <h2 className="about">Datos del Emprendedor  </h2>  
-                <br />              
-                <h1 className="about2">{MyDetail.nombres}{" "}{MyDetail.apellidos}</h1>        
-                <br />
-                <h1 className="about3">C.C:  {""} {MyDetail.documento}</h1> 
-                <br />
-                <h1 className="about3">Telefono:{""} {MyDetail.telefono}</h1> 
-                <br />
-                <h1 className="about3">Email:{""} {MyDetail.email}</h1> 
-                <br />
-                <h1 className="about3">Edad:{""} {MyDetail.edad}</h1>
-                <br />
-                <h1 className="about3">Puntuacion: {""} {MyDetail.puntuacion}⭐</h1>
-                <br />
-                <h1 className="about3">Promedio:{""} {MyDetail.puntuacion}</h1> 
 
-              <div className="control">
-                <button className="btn">
-                  <span className="price">80.000 $ </span>
-                  <span className="shopping-cart"><i 
-                  className="fa fa-shopping-cart" 
-                  aria-hidden="true"></i></span>
-                  <span className="buy">
-                    Contratar
-                  </span>
-                </button>                
-              </div>                    
+
+                <div className="control">
+                  <button className="btn">
+                    <span className="price">80.000 $ </span>
+                    <span className="shopping-cart"><i 
+                    className="fa fa-shopping-cart" 
+                    aria-hidden="true"></i></span>
+                    <span className="buy">
+                      Contratar
+                    </span>
+                  </button>                
+                </div>                    
               </div>                
                 <div className="product-image">
                   
-                  <img src="https://sc01.alicdn.com/kf/HTB1Cic9HFXXXXbZXpXXq6xXFXXX3/200006212/HTB1Cic9HFXXXXbZXpXXq6xXFXXX3.jpg" alt="Omar Dsoky"></img>
+                  <img className="divimg" src={MyDetail.imagen} alt="imagen_src"></img>
                   
+
                   <div className="info">
                     <h2 className="aboutD">Descripcion</h2>
-                    <ul>
-                    <h1 className="aboutDescripcion">{MyDetail.descripcion}</h1> 
-                    <br />
-                    
-                    <br />
-                    </ul>
+                      <h1 className="aboutDescripcion">{MyDetail.descripcion}</h1>                     
+                      <h1 className="aboutD">Profesiones</h1>
+                      <h1 className="aboutDescripcion">{MyDetail.Profesions}</h1>
                   </div>
                 </div>
               </div> 
@@ -71,10 +84,10 @@ export default function Detail() {
               <br />               
               <br />
 
+            </div>    
               <Link to="/home">
                 <button className="btnVolver">Volver</button>               
               </Link>
-            </div>    
       </>     
     )}
   

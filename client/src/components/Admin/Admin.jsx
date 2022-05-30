@@ -6,16 +6,25 @@ import Dashboard from "./Dashboard";
 import Usuarios from './Usuarios';
 import Error from '../Error'
 import { useAuth0 } from "@auth0/auth0-react";
+import { useEffect } from 'react';
+import {useDispatch} from 'react-redux';
+import { getTotalUsersBytype } from "../Redux/actions";
 
 export default function Admin(){
     const { user, isAuthenticated} = useAuth0();
+    const dispatch = useDispatch();
+    useEffect(()=>{
+        dispatch(getTotalUsersBytype())
+    },[dispatch]);
     return(
-          isAuthenticated && user.email==='cami.zupanovich@gmail.com'
-        ||isAuthenticated && user.email==='giulianob94@hotmail.com'
+
+        isAuthenticated && user.email==='giulianob94@hotmail.com'
         ||isAuthenticated && user.email==='nicosuasnavar@gmail.com'
         ||isAuthenticated && user.email==='jheinemberstithjn@ufps.edu.co'
         ||isAuthenticated && user.email==='gabrielcontegrand10@gmail.com'
-        ||isAuthenticated && user.email==='alejandro.colina@ucp.edu.co' ?
+        ||isAuthenticated && user.email==='alejandro.colina@ucp.edu.co' 
+        ||isAuthenticated && user.email==='josecolmenares96@hotmail.com' 
+        || isAuthenticated && user.email==='cami.zupanovich@gmail.com'?
 
         ( <div>
         <NavBar/>

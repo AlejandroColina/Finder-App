@@ -31,6 +31,7 @@ export default function NavBar(){
             <div onClick={() => { loginWithRedirect() }} className={s.navItems}>INGRESA</div>
           </div>
         }
+        
       </div>
         </>
     )

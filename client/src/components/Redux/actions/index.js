@@ -6,7 +6,7 @@ import axios from 'axios'
 
 export function rederCard(profesion, genero,promedio, ciudad, descripcion){
     return async function(dispatch){
-
+      dispatch(loanding())
         try{ 
         let data = await axios.get(`http://localhost:3001/users?profesion=${profesion}&genero=${genero}&promedio=${promedio}&ciudad=${ciudad}&descripcion=${descripcion}`)
         console.log(data.data)
@@ -59,7 +59,7 @@ export function getTotalUsersBytype(){
         ]
         let usersByType =[]
         for(let i = 0; i < tipos.length ; i++){
-            let jsonTipos= await axios.get(`http://localhost:3001/users/db/${tipos[i]}`);
+            let jsonTipos= await axios.get(`http://localhost:3001/users?profesion=${tipos[i]}`);
             let cant = jsonTipos.data.length;
             usersByType.push([tipos[i],cant])
         }
@@ -112,11 +112,27 @@ export const getCiudades = () => {
 
 }
 export function userMsj(payload){
-    console.log(payload)
+
     return({
         type: 'USER_MSJ',
         payload
     })
 }
 
+
+
+
+export function loanding(){ 
+    return {
+        type: 'LOADER'
+    }
+}
+
+
+export  function getDeleteDetail(){
+    return {
+        type: "GET_DELETE"
+
+    }
+}
 
