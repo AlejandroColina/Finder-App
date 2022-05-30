@@ -1,4 +1,4 @@
-import React,{useMemo} from 'react';
+import React from 'react';
 import { useSelector } from 'react-redux';
 import {
     Chart as ChartJS,
@@ -48,8 +48,7 @@ const options ={
         },
     },
 };
-    const data = useMemo(function(){
-        return{
+    const data ={
             datasets:[
                 {
                     label: 'usuarios',
@@ -62,7 +61,6 @@ const options ={
             ],
             labels,
         }
-    },[])
     return(
         <div>
             <Bar data={data} options={options}/>
