@@ -1,14 +1,14 @@
 import React from "react";
 import s from  './cards.module.css'
 import { Link } from "react-router-dom";
-export default function Cards({nombres,  imagen, descripcion, promedio, Profesions, id}) {
+export default function Cards({nombres,  imagen, descripcion, promedio, Profesions, id, logoProfesion}) {
   console.log(Profesions)
     return (
        
     <div className={s.container}>
     <header>
       <div className={s.bio}>
-        <img src="http://www.croop.cl/UI/twitter/images/up.jpg" alt="background" className={s.bg}/>
+        <img  src={logoProfesion} alt="background" className={s.bg}/>
         <div className={s.desc}>
           <h3>descripcion</h3>
           <p>{descripcion}</p>
