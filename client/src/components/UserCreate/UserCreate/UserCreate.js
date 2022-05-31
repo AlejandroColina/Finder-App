@@ -79,17 +79,6 @@ export default function UserCreate() {
     },
   });
 
-  //Profresiones
-  const empleos = useSelector((state) => state.empleosForm);
-  const [empleosSelected, setEmpleosSelected] = useState({});
-  console.log(empleosSelected);
-
-  const selectChange = (e) => {
-    let id = e.target.id;
-    let value = e.target.value;
-    setEmpleosSelected({ ...empleosSelected, [id]: value });
-  };
-
   //Cloudinary
   const uploadImage = async (e) => {
     const files = e.target.files;
@@ -111,13 +100,22 @@ export default function UserCreate() {
     setLoading(false);
   };
 
-  // Envío de datos a la DB
+  //Traer Profresiones
+  const empleos = useSelector((state) => state.empleosForm);
+  const [empleosSelected, setEmpleosSelected] = useState({});
 
+  const selectChange = (e) => {
+    let id = e.target.id;
+    let value = e.target.value;
+    setEmpleosSelected({ ...empleosSelected, [id]: value });
+  };
+
+  // Envío de datos a la DB
   function handleSubmit(e) {
     e.preventDefault();
     let profesionId = Object.keys(empleosSelected);
     axios
-      .post("http://localhost:3001/persona", { input, profesionId })
+      .post("http://localhost:3001/users/crear", { input, profesionId })
       .then((res) => {
         console.log(res);
         alert("Usuario creado");
@@ -139,8 +137,16 @@ export default function UserCreate() {
     telefono: "",
     direccion: "",
     genero: "",
+    puntuacion: [],
   });
+
   console.log(input);
+
+  const handleChange = (e) => {
+    let name = e.target.name;
+    let value = e.target.value;
+    setInput({ ...input, [name]: value });
+  };
 
   useEffect(() => {
     dispatch(getEmpleosForm());
@@ -167,111 +173,148 @@ export default function UserCreate() {
                 alt="File Not Found"
               />
             )}
-
-            <input
-              className="registro"
-              onChange={uploadImage}
-              name="file"
-              type="file"
-              placeholder="Cargar Imagen"
-            />
+            <div className="file-select">
+              <input
+                onChange={uploadImage}
+                name="file"
+                type="file"
+                placeholder="Cargar Imagen"
+              />
+            </div>
 
             <label htmlFor="nombres"></label>
+            {formik.touched.nombres && formik.errors.nombres ? (
+              <div className="required">{formik.errors.nombres}</div>
+            ) : null}
             <input
-              id="nombres"
+              className="inputs"
               placeholder="Nombres"
               name="nombres"
               type="text"
-              onChange={formik.handleChange}
               onBlur={formik.handleBlur}
-              value={formik.values.nombres}
+              onChange={handleChange}
+              value={input.nombres}
             />
-            {formik.touched.nombres && formik.errors.nombres ? (
-              <div>{formik.errors.nombres}</div>
-            ) : null}
 
             <label htmlFor="apellidos"></label>
+            {formik.touched.apellidos && formik.errors.apellidos ? (
+              <div className="required">{formik.errors.apellidos}</div>
+            ) : null}
             <input
+              className="inputs"
               id="apellidos"
               placeholder="Apellidos"
               name="apellidos"
               type="text"
-              onChange={formik.handleChange}
+              onChange={handleChange}
+              value={input.apellidos}
               onBlur={formik.handleBlur}
-              value={formik.values.apellidos}
             />
-            {formik.touched.apellidos && formik.errors.apellidos ? (
-              <div>{formik.errors.apellidos}</div>
+
+            <label htmlFor="edad"></label>
+            {formik.touched.apellidos && formik.errors.edad ? (
+              <div className="required">{formik.errors.edad}</div>
             ) : null}
-            <label htmlFor="email"></label>
             <input
+              className="inputs"
+              id="edad"
+              placeholder="Edad"
+              name="edad"
+              type="number"
+              onChange={handleChange}
+              value={input.edad}
+              onBlur={formik.handleBlur}
+            />
+
+            <label htmlFor="email"></label>
+            {formik.touched.email && formik.errors.email ? (
+              <div className="required">{formik.errors.email}</div>
+            ) : null}
+            <input
+              className="inputs"
               id="email"
               placeholder="Email"
               name="email"
               type="email"
-              onChange={formik.handleChange}
+              onChange={handleChange}
+              value={input.email}
               onBlur={formik.handleBlur}
-              value={formik.values.email}
             />
-            {formik.touched.email && formik.errors.email ? (
-              <div>{formik.errors.email}</div>
-            ) : null}
 
             <label htmlFor="documento"></label>
+            {formik.touched.documento && formik.errors.documento ? (
+              <div className="required">{formik.errors.documento}</div>
+            ) : null}
             <input
+              className="inputs"
               id="documento"
               placeholder="documento"
               name="documento"
               type="number"
-              onChange={formik.handleChange}
+              onChange={handleChange}
+              value={input.documento}
               onBlur={formik.handleBlur}
-              value={formik.values.documento}
             />
-            {formik.touched.documento && formik.errors.documento ? (
-              <div>{formik.errors.documento}</div>
+
+            <label htmlFor="genero"></label>
+            {formik.touched.genero && formik.errors.genero ? (
+              <div className="required">{formik.errors.genero}</div>
             ) : null}
+            <input
+              className="inputs"
+              id="genero"
+              placeholder="genero"
+              name="genero"
+              type="text"
+              onChange={handleChange}
+              value={input.genero}
+              onBlur={formik.handleBlur}
+            />
 
             <label htmlFor="descripcion"></label>
+            {formik.touched.descripcion && formik.errors.descripcion ? (
+              <div className="required">{formik.errors.descripcion}</div>
+            ) : null}
             <input
+              className="inputs"
               id="descripcion"
               placeholder="descripcion"
               name="descripcion"
               type="textarea"
-              onChange={formik.handleChange}
+              onChange={handleChange}
+              value={input.descripcion}
               onBlur={formik.handleBlur}
-              value={formik.values.descripcion}
             />
-            {formik.touched.descripcion && formik.errors.descripcion ? (
-              <div>{formik.errors.descripcion}</div>
-            ) : null}
 
             <label htmlFor="telefono"></label>
+            {formik.touched.telefono && formik.errors.telefono ? (
+              <div className="required">{formik.errors.telefono}</div>
+            ) : null}
             <input
+              className="inputs"
               id="telefono"
               placeholder="telefono"
               name="telefono"
-              type="number"
-              onChange={formik.handleChange}
+              type="string"
+              onChange={handleChange}
+              value={input.telefono}
               onBlur={formik.handleBlur}
-              value={formik.values.telefono}
             />
-            {formik.touched.telefono && formik.errors.telefono ? (
-              <div>{formik.errors.telefono}</div>
-            ) : null}
 
             <label htmlFor="direccion"></label>
+            {formik.touched.direccion && formik.errors.direccion ? (
+              <div className="required">{formik.errors.direccion}</div>
+            ) : null}
             <input
+              className="inputs"
               id="direccion"
               placeholder="direccion"
               name="direccion"
               type="text"
-              onChange={formik.handleChange}
+              onChange={handleChange}
+              value={input.direccion}
               onBlur={formik.handleBlur}
-              value={formik.values.direccion}
             />
-            {formik.touched.direccion && formik.errors.direccion ? (
-              <div>{formik.errors.direccion}</div>
-            ) : null}
 
             <label htmlFor="profesion"></label>
             {/* <select id="profesion" name="profesion">
@@ -283,7 +326,7 @@ export default function UserCreate() {
                 })}
             </select> */}
             <div>
-              <p>profesion:</p>
+              <p>profesion</p>
               {empleos &&
                 empleos.map((el) => (
                   <div>
@@ -298,7 +341,9 @@ export default function UserCreate() {
                   </div>
                 ))}
             </div>
-            <button type="submit">Registrarse!</button>
+            <button className="submit" type="submit">
+              Registrarse!
+            </button>
           </form>
         </div>
       </div>

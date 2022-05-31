@@ -18,22 +18,21 @@ router.post("/", async (req, res, next) => {
       genero,
       profesion,
     } = req.body;
-    console.log(req.body);
+
     let consultaBD = await Persona.findAll({ where: { documento: documento } });
 
     if (consultaBD.length) {
       return res.send("EL USUARIO YA EXISTE EN LA BASE DE DATOS");
     } else {
-      const validateEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+      // const validateEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 
       if (!validateEmail.test(email.replaceAll('"', "")))
         return res.status(404).send("ERROR CON EL CORREO ELECTRONICO");
-      if (
-        typeof edad !== "number" ||
-        typeof telefono !== "number" ||
-        typeof documento !== "number"
-      )
-        return res.status(404).send("ERROR CON VALORES NUMERICOS");
+      // if (
+      //     typeof edad !== 'number'
+      //     || typeof telefono !== 'number'
+      //     || typeof documento !== 'number'
+      // ) return res.status(404).send('ERROR CON VALORES NUMERICOS');
 
       if (
         nombres === undefined ||

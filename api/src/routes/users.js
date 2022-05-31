@@ -120,7 +120,7 @@ router.get("/ciudades", (req, res) => {
 router.get("/empleos", async (req, res, next) => {
   try {
     let consultaDB = await Profesion.findAll();
-    let profesiones = consultaDB?.map((e) => e.dataValues.name);
+    let profesiones = consultaDB?.map((e) => e.dataValues.nombre);
 
     !profesiones.length
       ? res.status(404).send("NO HAY PROFESIONES EN LA BASE DE DATOS.")
@@ -180,20 +180,22 @@ router.get("/trabajo/:id", async (req, res, next) => {
   }
 });
 
-router.post("/persona", function (req, res) {
-  // let profesionId = req.body.profesionId;
+router.post("/crear", function (req, res) {
+  let profesionId = req.body.profesionId;
+  console.log(req.body);
   Persona.create({
-    nombres: req.body.nombres,
-    apellidos: req.body.apellidos,
-    telefono: req.body.telefono,
-    email: req.body.email,
-    edad: req.body.edad,
-    descripcion: req.body.descripcion,
-    direccion: req.body.direccion,
-    documento: req.body.documento,
+    nombres: req.body.input.nombres,
+    apellidos: req.body.input.apellidos,
+    edad: integer.parseInt(req.body.input.edad),
+    email: req.body.input.email,
+    documento: parseInt(req.body.input.documento),
+    descripcion: req.body.input.descripcion,
+    telefono: parseInt(req.body.input.telefono),
+    direccion: req.body.input.direccion,
+    genero: req.body.input.genero,
   })
     .then((input) => {
-      // input.setProfesion(profesionId);
+      input.setProfesion(profesionId);
       res.status(200).send(input);
     })
     .catch((error) => console.log(error));

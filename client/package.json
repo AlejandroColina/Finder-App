@@ -10,12 +10,9 @@
     "@testing-library/react": "^13.2.0",
     "@testing-library/user-event": "^13.5.0",
     "axios": "^0.27.2",
-<<<<<<< HEAD
+    "chart.js": "^3.8.0",
     "cloudinary-react": "^1.7.2",
     "formik": "^2.2.9",
-=======
-    "chart.js": "^3.8.0",
->>>>>>> 36b5fa94947036eb08ea549ff91ef73e7d31ad81
     "react": "^18.1.0",
     "react-chartjs-2": "^4.1.0",
     "react-dom": "^18.1.0",

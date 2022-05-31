@@ -5,9 +5,8 @@
   display: flex;
 }
 
- .leftCard {
+.leftCard {
   width: 50%;
- 
 }
 
 .leftCard img {
@@ -15,12 +14,76 @@
   margin-top: 200px;
 }
 
-
-.rigthCard  {
+.rigthCard {
   background-color: white;
-
 }
 
+.inputs {
+  width: 100%;
+  padding: 10px;
+  border-radius: 4px;
+  margin-bottom: 16px;
+  border: 1px solid #0576e6a9;
+  font-size: 18px;
+}
+
+.required {
+  display: flex;
+  position: relative;
+  font-size: 18px;
+}
+
+.file-select {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  margin-bottom: 50px;
+}
+
+.file-select::before {
+  background-color: #0576e6a9;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 3px;
+  content: "Seleccionar imagen";
+  font-size: 16px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+
+.file-select input[type="file"] {
+  opacity: 0;
+  width: 200px;
+  height: 32px;
+  display: inline-block;
+}
+
+.userPic {
+  border-radius: 600px;
+  border: 2px solid rgb(173, 173, 173);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  margin-bottom: 30px;
+}
+
+.submit {
+  width: 100%;
+  background: #0576e6a9;
+  padding: 12px;
+  color: white;
+  margin: 16px 0;
+  border: none;
+  font-size: 16px;
+}
 
 /* 
 .formCont {
