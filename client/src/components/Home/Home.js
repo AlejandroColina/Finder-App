@@ -16,7 +16,7 @@ import Loanding from "./loading/Loanding";
 
 
 
-function Home() {
+function Home( {descripcion,setDescripcion}) {
 
   const EMPTY_FILTERS={
     
@@ -34,7 +34,7 @@ function Home() {
 
   const [filters, setFilters] = useState(EMPTY_FILTERS)
 
-  const [descripcion, setDescripcion] = useState('')
+  // const [descripcion, setDescripcion] = useState('')
 
 
   const trabajadores = useSelector((state) => state.trabajadores);
@@ -81,7 +81,7 @@ const loanding = useSelector((state)=> state.loanding);
         <section className={styles.filtros}>
           <Filtros  resetValues={resetValues} filters={filters} handleFilterChanges={handleFilterChanges} />
         </section>
-        {/* <section className={styles.posteos}></section> */}
+        
 
         <section className={styles.cards}>
 
@@ -115,7 +115,7 @@ const loanding = useSelector((state)=> state.loanding);
             </div>
           ))}
         </section>
-        {/* <section className={styles.publicar}>Anunciarse/Publicar</section> */}
+       
         <section className={styles.destacados}>
           <div className={styles.textDestacados} ><h1>Destacados 🔥</h1></div>
           <div className={styles.div__destacados}>
