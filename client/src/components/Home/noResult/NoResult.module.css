@@ -1,0 +1,21 @@
+.img{
+    width:600px;
+    height:400px;
+}
+
+.conte{
+    grid-column: 2;
+    width: 500px;
+    align-self: center;
+}
+
+.h1{
+    text-align: center;
+    font-size: 2rem;
+}
+.center{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}

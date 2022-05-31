@@ -42,7 +42,8 @@ export default function Cards({nombres,  imagen, descripcion, promedio, Profesio
       </div>
 
       <div className={s.follow}>
-      <Link to={`/trabajo/${id}`} > <div className={s.icontwitter}></div>mas info</Link> 
+      <div className={s.icontwitter}></div><Link to={`/trabajo/${id}`} >mas info</Link> 
+      
       </div>
       
     </div>

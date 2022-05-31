@@ -29,6 +29,7 @@ export default function Detail({Profesions}) {
     return (   
       <>
               <NavBar/>
+              <div className={'conte'}> 
           <div className="ContenedorTotal">
 
               {/* // SECCION DETALLES */}
@@ -88,7 +89,9 @@ export default function Detail({Profesions}) {
               <Link to="/home">
                 <button className="btnVolver">Volver</button>               
               </Link>
+              </div>
       </>     
+      
     )}
   
 
