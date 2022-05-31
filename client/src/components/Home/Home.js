@@ -11,9 +11,8 @@ import Paginado from '../Paginado/Paginado'
 import Help from "../Help/Help";
 import Destacados from "./Destacados/Destacados";
 import Footer from './../Footer/Footer';
-import { Link } from "react-router-dom";
 import Loanding from "./loading/Loanding";
-
+import NoResult from './noResult/NoResult'
 
 
 function Home() {
@@ -97,9 +96,10 @@ const loanding = useSelector((state)=> state.loanding);
               </div>
             }
           </div>
-          {currentUsuarios?.map((el) => (
+          { currentUsuarios.length?
+          currentUsuarios.map((el) => (
             <div className="box">
-              <Link key={el.id} to={`/trabajo/${el.id}`}style={{ textDecoration: "none" }}>
+            
                 <Cards
                     key={el.id}
                     promedio={el.promedio}
@@ -110,10 +110,10 @@ const loanding = useSelector((state)=> state.loanding);
                     logoProfesion={el.logoProfesion}
                     id={el.id}
                   /> 
-               </Link>
+              
                 
             </div>
-          ))}
+          )):  <NoResult/> }
         </section>
         {/* <section className={styles.publicar}>Anunciarse/Publicar</section> */}
         <section className={styles.destacados}>

@@ -75,6 +75,8 @@
 }
 
 .container1 {
+  display:flex;
+  justify-content:center;
   position: fixed;
   height: 35px;
   width: 950px;
@@ -154,6 +156,8 @@
 }
 /* the Button */
 .btn {
+  display: flex;
+  justify-content:center;
 	transform: translateY(0px);
 	transition: 0.3s linear;
 	background: #0576e6;
@@ -316,4 +320,10 @@
 }
 .product-image:hover img {
   transform: scale(1.2, 1.2);
+}
+
+
+.ContenedorTotal{
+  display: flex;
+  justify-content:center;
 }
