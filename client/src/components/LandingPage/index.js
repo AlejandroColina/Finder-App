@@ -9,7 +9,7 @@ import { useAuth0 } from '@auth0/auth0-react';
 import logoutImg from '../../assets/logout_white.png';
 import Help from '../Help/Help';
 
-function LandingPage() {
+function LandingPage({ descripcion, setDescripcion}) {
   const history=useHistory();
   const { isAuthenticated, user } = useAuth0();
   const { loginWithRedirect } = useAuth0();
@@ -53,7 +53,7 @@ function LandingPage() {
           </div>
         }
       </div>
-      <section id="1"><FirstCap /></section>
+      <section id="1"><FirstCap  descripcion={descripcion} setDescripcion={setDescripcion}/></section>
       <section id="2"><SecondCap /></section>
       <section id="3"><ThirdCap /></section>
       <Help/>

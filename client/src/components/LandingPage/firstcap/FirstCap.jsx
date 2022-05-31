@@ -1,23 +1,29 @@
-import React, { useState } from "react";
+import React, { useRef } from "react";
 import s from './FirstCap.module.css';
 import { useHistory } from "react-router-dom";
 import img_users from './users_logo_landing.png';
+
 //import {useDispatch} from 'react-redux';
 
-export default function FirstCap(){
-    const [input, setInput]=useState('')
-    //const dispatch = useDispatch();
+export default function FirstCap({ descripcion, setDescripcion}){
+    
+    
     const history = useHistory();
+    
 
-    const handleChange = (e)=>{
-        setInput(e)
-    }
+   
+    
+    const searchRef = useRef()
+
+
     const handleSubmit = (e)=>{
         e.preventDefault(e);
         //dispatch(search(input));
+       setDescripcion(searchRef.current.value)
         setTimeout(
             history.push('./home'),1000
-        )
+            )
+       
     }
     return(
         <div className={s.container}>
@@ -28,8 +34,8 @@ export default function FirstCap(){
                 <div className={s.importantText}>Contrata el mejor servicio ✔</div>
                 <form className={s.form} onSubmit={handleSubmit}>
                     <input className={s.input} 
-                    type='text' placeholder='Que te gustaria contratar?'
-                     onChange={(e)=>handleChange(e)}/>
+                    type='text' placeholder='Que te gustaria contratar?'  ref={searchRef}
+                    />
                     <input  className={s.btn} type='submit' value='⌕'/>
                 </form>
             </div>
