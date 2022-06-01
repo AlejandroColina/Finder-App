@@ -186,16 +186,17 @@ router.post("/crear", function (req, res) {
   Persona.create({
     nombres: req.body.input.nombres,
     apellidos: req.body.input.apellidos,
-    edad: integer.parseInt(req.body.input.edad),
+    edad: req.body.input.edad,
     email: req.body.input.email,
-    documento: parseInt(req.body.input.documento),
+    documento: req.body.input.documento,
     descripcion: req.body.input.descripcion,
-    telefono: parseInt(req.body.input.telefono),
+    telefono: req.body.input.telefono,
     direccion: req.body.input.direccion,
     genero: req.body.input.genero,
   })
+
     .then((input) => {
-      input.setProfesion(profesionId);
+      input.setProfesions(profesionId);
       res.status(200).send(input);
     })
     .catch((error) => console.log(error));

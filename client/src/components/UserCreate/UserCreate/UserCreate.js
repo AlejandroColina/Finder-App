@@ -73,10 +73,10 @@ export default function UserCreate() {
       direccion: "",
       profesion: "",
     },
-    validate,
-    onSubmit: (values) => {
-      alert(JSON.stringify(values, null, 2));
-    },
+    // validate,
+    // onSubmit: (values) => {
+    //   alert(JSON(values, null, 2));
+    // },
   });
 
   //Cloudinary
@@ -126,6 +126,9 @@ export default function UserCreate() {
       });
   }
 
+
+  
+
   // useState de los inputs
   const [input, setInput] = useState({
     nombres: "",
@@ -144,8 +147,18 @@ export default function UserCreate() {
 
   const handleChange = (e) => {
     let name = e.target.name;
+    console.log(name);
     let value = e.target.value;
-    setInput({ ...input, [name]: value });
+
+    setInput({
+      ...input,
+      [name]:
+        name === "edad" || name === "documento" || name === "telefono"
+          ? !isNaN(parseInt(value))
+            ? parseInt(value)
+            : (value = "")
+          : value,
+    });
   };
 
   useEffect(() => {
@@ -295,10 +308,10 @@ export default function UserCreate() {
               id="telefono"
               placeholder="telefono"
               name="telefono"
-              type="string"
+              type="number"
               onChange={handleChange}
               value={input.telefono}
-              onBlur={formik.handleBlur}
+              // onBlur={formik.handleBlur}
             />
 
             <label htmlFor="direccion"></label>
