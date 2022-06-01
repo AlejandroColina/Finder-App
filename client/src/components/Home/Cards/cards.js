@@ -9,6 +9,12 @@ export default function Cards({nombres,  imagen, descripcion, promedio, Profesio
     <header>
       <div className={s.bio}>
         <img  src={logoProfesion} alt="background" className={s.bg}/>
+        <img
+                className="userPic"
+                src={image}
+                style={{ width: "300px" }}
+                alt="File Not Found"
+              />
         <div className={s.desc}>
           <h3>descripcion</h3>
           <p>{descripcion}</p>
