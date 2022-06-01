@@ -36,6 +36,7 @@ function App() {
           <Route path="/customerLog" component={CustomerCreate} />
           <Route path="/admin" component={Admin} />
           <Route exact path="/trabajo/:id" component={Detail} />
+          <Route path="/perfil" component={Perfil}/>
           <Route path="/*" component={Error} />
         </Switch>
       </div>
