@@ -6,6 +6,9 @@ import "../Detail/Detail.css"
 import NavBar from '../NavBar/NavBar'
 import { Link } from "react-router-dom";
 import { useAuth0 } from '@auth0/auth0-react';
+import { PaypalCheckoutBtn } from "./PaypalCheckoutBtn";
+
+
 
 export default function Detail({Profesions}) {
   const { isAuthenticated, user } = useAuth0();
@@ -15,6 +18,13 @@ export default function Detail({Profesions}) {
     var onlyFirst = user.name.split(' ');
   }
   
+  const product = {
+    description: "Comision",
+    price: 25
+  }
+
+   
+
   const dispatch = useDispatch();
   const { id } = useParams();
   const MyDetail = useSelector(state => state.detail)
@@ -29,6 +39,7 @@ export default function Detail({Profesions}) {
     return (   
       <>
               <NavBar/>
+              <div className={'conte'}> 
           <div className="ContenedorTotal">
 
               {/* // SECCION DETALLES */}
@@ -56,7 +67,7 @@ export default function Detail({Profesions}) {
 
 
                 <div className="control">
-                  <button className="btn">
+                  {/* <button className="btn">
                     <span className="price">80.000 $ </span>
                     <span className="shopping-cart"><i 
                     className="fa fa-shopping-cart" 
@@ -64,7 +75,10 @@ export default function Detail({Profesions}) {
                     <span className="buy">
                       Contratar
                     </span>
-                  </button>                
+                  </button>                 */}
+                   <div className="paypal-button-container">
+                     <PaypalCheckoutBtn product={product} />
+                   </div>
                 </div>                    
               </div>                
                 <div className="product-image">
@@ -88,7 +102,9 @@ export default function Detail({Profesions}) {
               <Link to="/home">
                 <button className="btnVolver">Volver</button>               
               </Link>
+              </div>
       </>     
+      
     )}
   
 

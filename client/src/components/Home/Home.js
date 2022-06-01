@@ -11,12 +11,11 @@ import Paginado from '../Paginado/Paginado'
 import Help from "../Help/Help";
 import Destacados from "./Destacados/Destacados";
 import Footer from './../Footer/Footer';
-import { Link } from "react-router-dom";
 import Loanding from "./loading/Loanding";
+import NoResult from './noResult/NoResult'
 
 
-
-function Home() {
+function Home( {descripcion,setDescripcion}) {
 
   const EMPTY_FILTERS={
     
@@ -34,7 +33,7 @@ function Home() {
 
   const [filters, setFilters] = useState(EMPTY_FILTERS)
 
-  const [descripcion, setDescripcion] = useState('')
+  // const [descripcion, setDescripcion] = useState('')
 
 
   const trabajadores = useSelector((state) => state.trabajadores);
@@ -81,7 +80,7 @@ const loanding = useSelector((state)=> state.loanding);
         <section className={styles.filtros}>
           <Filtros  resetValues={resetValues} filters={filters} handleFilterChanges={handleFilterChanges} />
         </section>
-        {/* <section className={styles.posteos}></section> */}
+        
 
         <section className={styles.cards}>
 
@@ -97,9 +96,10 @@ const loanding = useSelector((state)=> state.loanding);
               </div>
             }
           </div>
-          {currentUsuarios?.map((el) => (
+          { currentUsuarios.length?
+          currentUsuarios.map((el) => (
             <div className="box">
-              <Link key={el.id} to={`/trabajo/${el.id}`}style={{ textDecoration: "none" }}>
+            
                 <Cards
                     key={el.id}
                     promedio={el.promedio}
@@ -110,12 +110,12 @@ const loanding = useSelector((state)=> state.loanding);
                     logoProfesion={el.logoProfesion}
                     id={el.id}
                   /> 
-               </Link>
+              
                 
             </div>
-          ))}
+          )):  <NoResult/> }
         </section>
-        {/* <section className={styles.publicar}>Anunciarse/Publicar</section> */}
+       
         <section className={styles.destacados}>
           <div className={styles.textDestacados} ><h1>Destacados 🔥</h1></div>
           <div className={styles.div__destacados}>

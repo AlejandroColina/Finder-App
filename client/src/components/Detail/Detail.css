@@ -69,12 +69,13 @@
   margin: 0 auto;
   overflow: hidden;
   background: rgb(238, 233, 233);
-  margin-top: 140px;  
-  margin-left: 235px; 
+  margin-top: 140px;   
   box-shadow: 3px 3px 5px 1px rgba(79, 117, 219, 0.568)
 }
 
 .container1 {
+  display:flex;
+  justify-content:center;
   position: fixed;
   height: 35px;
   width: 950px;
@@ -85,7 +86,7 @@
   margin: 0 auto;
   background: rgb(238, 233, 233);
   margin-top: 90px;  
-  margin-left: 235px; 
+  
   
 }
 
@@ -149,11 +150,15 @@
 /* control */
 .control {
   position: absolute;
-  bottom: 20%;
+  margin-top: 20px;
+  bottom: 10%;
   left: 22.8%;
+  width: 70%;
 }
 /* the Button */
 .btn {
+  display: flex;
+  justify-content:center;
 	transform: translateY(0px);
 	transition: 0.3s linear;
 	background: #0576e6;
@@ -316,4 +321,10 @@
 }
 .product-image:hover img {
   transform: scale(1.2, 1.2);
+}
+
+
+.ContenedorTotal{
+  display: flex;
+  justify-content:center;
 }
