@@ -5,6 +5,7 @@ import Home from './components/Home/Home';
 import Detail from './components/Detail/Detail';
 import Error from './components/Error/index';
 import Admin from './components/Admin/Admin';
+import Contratar from './components/Contratar/Contratar';
 
 function App() {
 
@@ -28,6 +29,7 @@ function App() {
         </Route>
         <Route path='/admin' component={Admin}/>
         <Route exact path= '/trabajo/:id' component={Detail}/> 
+        <Route exact path="/Contratar/:id" component={Contratar}/>
         <Route path='/*' component={Error} /> 
       </Switch>
     </div>

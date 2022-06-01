@@ -1,0 +1,40 @@
+.fondo{
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    width: 100%;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+
+.img{
+    border-radius: 10px;
+    width:250px; height:200px;
+    position: center;
+    
+}
+
+@media (max-width: 260px){
+    .img {  
+        width: 100%;
+        height: auto;
+     }
+  }
+
+.card{
+    display: flexbox;
+    flex-direction: column;
+    background-color: rgba(0, 0, 0, 0.8);
+    height: auto;
+    width: 100%;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+
+.nombre{
+    text-align: center;
+    font-size: 1.5rem;
+    margin-block-start: 10px;
+    margin-block-end: 10px;
+    margin: 5px
+}
