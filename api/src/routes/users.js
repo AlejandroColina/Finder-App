@@ -9,7 +9,7 @@ router.get('/', async (req, res, next) => {
 
   try {
 
-    let { profesion, nombres, promedio, genero, edad, ciudad, descripcion, email } = req.query;
+    let { profesion, nombres, promedio, genero, edad, ciudad, descripcion } = req.query;
 
 
     let personasDB = await Persona.findAll({ include: [Profesion, Direccion] });
@@ -93,18 +93,8 @@ router.get('/', async (req, res, next) => {
     if(ciudad){
       filtroPersonas = filtroPersonas.filter(persona => persona.ciudad.toLowerCase() == ciudad.toLowerCase())
     }
-    if(email){
-      console.log(filtroPersonas[0].email)
-      filtroPersonas = filtroPersonas.filter(persona => persona.email === email)
-    }
-
-
-
     // if (!Object.keys(req.query).length) 
     return res.json(filtroPersonas);
-
-
-
   } catch (error) {
     next(error)
   }
