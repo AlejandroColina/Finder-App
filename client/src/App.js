@@ -8,7 +8,7 @@ import Admin from "./components/Admin/Admin";
 import UserCreate from "./components/UserCreate/UserCreate/UserCreate";
 import { PayPalScriptProvider } from "@paypal/react-paypal-js";
 import CustomerCreate from "./components/UserCreate/CustomerCreate/CustomerCreate";
-
+import Perfil from './components/perfil/Perfil'
 
 function App() {
   const [descripcion, setDescripcion] = useState("");
