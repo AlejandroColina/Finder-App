@@ -69,8 +69,7 @@
   margin: 0 auto;
   overflow: hidden;
   background: rgb(238, 233, 233);
-  margin-top: 140px;  
-  margin-left: 235px; 
+  margin-top: 140px;   
   box-shadow: 3px 3px 5px 1px rgba(79, 117, 219, 0.568)
 }
 
@@ -87,7 +86,7 @@
   margin: 0 auto;
   background: rgb(238, 233, 233);
   margin-top: 90px;  
-  margin-left: 235px; 
+  
   
 }
 
@@ -151,8 +150,10 @@
 /* control */
 .control {
   position: absolute;
-  bottom: 20%;
+  margin-top: 20px;
+  bottom: 10%;
   left: 22.8%;
+  width: 70%;
 }
 /* the Button */
 .btn {
