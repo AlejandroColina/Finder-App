@@ -97,8 +97,6 @@ router.get("/", async (req, res, next) => {
         (persona) => persona.ciudad.toLowerCase() == ciudad.toLowerCase()
       );
     }
-
-    // if (!Object.keys(req.query).length)
     return res.json(filtroPersonas);
   } catch (error) {
     next(error);
@@ -201,5 +199,31 @@ router.post("/crear", function (req, res) {
     })
     .catch((error) => console.log(error));
 });
+
+router.patch("/modificar/:id", async (req, res) =>{
+  const id = req.params.id;
+  let { nombres, genero, edad, ciudad, descripcion, email } = req.query;
+  if(descripcion){
+    Persona.update({ descripcion: req.query.descripcion},{where:{id: id}})
+  }
+  if(nombres){
+    Persona.update({ nombres: req.query.nombres},{where:{id: id}})
+  }
+  if(genero){
+    Persona.update({ genero: req.query.genero},{where:{id: id}})
+  }
+  if(edad){
+    Persona.update({ edad: req.query.edad},{where:{id: id}})
+  }
+  if(ciudad){
+    Persona.update({ ciudad: req.query.ciudad},{where:{id: id}})
+  }
+  if(email){
+    Persona.update({ email: req.query.email},{where:{id: id}})
+  }
+  const objetivo = await Persona.findOne({where:{id: id}})
+  res.send(objetivo)
+})
+
 
 module.exports = router;
