@@ -224,7 +224,6 @@ router.post("/crear", async function (req, res) {
     })
       .then(async (input) => {
         input.setProfesions(profesionId);
-        console.log(profesionId)
         let PersonaId = await Persona.findOne({
           where: { documento: parseInt(input.documento) },
         });
