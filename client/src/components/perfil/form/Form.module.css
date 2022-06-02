@@ -1,0 +1,25 @@
+.form{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    margin-top:40px;
+}
+.div{
+    padding: 20px;
+}
+
+.input{
+width: 200px;
+height:20px;
+}
+.div_boton{
+    display: flex;
+    justify-content:center;
+}
+.button{
+    width:100px;
+    height: 20px;
+    background-color:#1081ad;
+    color: white;
+    border: none;
+}

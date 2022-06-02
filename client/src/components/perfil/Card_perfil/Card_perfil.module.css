@@ -1,0 +1,31 @@
+.img{
+  width:60px;  
+  border-radius:50%;
+}
+.centrar{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+.contenedor{
+    width: 200px;
+    height:250px;
+    border: 1px solid #333;
+}
+.descripcion{
+  margin-top: 5px;
+  padding: 10px;
+}
+.h3{
+    text-align: center;
+}
+.h2{
+    padding-top: 5px;
+    text-align: center;
+}
+.conte{
+    display: flex;
+    justify-content:center;
+    gap: 30px;
+}

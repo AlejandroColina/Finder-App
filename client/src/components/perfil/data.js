@@ -1,54 +1,44 @@
 let person = [
-    {
-        nombre: 'federico',
-        apellido: 'montoya',
-        edad: 37,
-        pais: 'Argentina',
-        ocupacion: 'guitarrista',
-        disponibilidad: 'ocupado',
-        imagen: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQgAu7AEIlFfrNfgnRff5AuhGsdpw4Fneagiw&usqp=CAU'
-    },
-    {
-        nombre: 'carlos',
-        apellido: 'uribe',
-        edad: 23,
-        ciudad: 'Ecuador',
-        ocupacion: 'pintor',
-        disponibilidad: 'disponible',
-        imagen: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQgAu7AEIlFfrNfgnRff5AuhGsdpw4Fneagiw&usqp=CAU'
-    }, {
-        nombre: 'santiago',
-        apellido: 'calle',
-        edad: 18,
-        ciudad: 'Colombia',
-        ocupacion: 'políglota',
-        disponibilidad: 'disponible',
-        imagen: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQgAu7AEIlFfrNfgnRff5AuhGsdpw4Fneagiw&usqp=CAU'
-    }, {
-        nombre: 'Camila',
-        apellido: 'alvarez',
-        ciudad: 29,
-        pais: 'Argentina',
-        ocupacion: 'Front-developer',
-        disponibilidad: 'ocupada',
-        imagen: 'https://i.blogs.es/89ae35/apple-music-note/450_1000.jpg'
-    }, {
-        nombre: 'matias',
-        apellido: 'monas',
-        edad: 24,
-        ciudad: 'Argentina',
-        ocupacion: 'instructor',
-        disponibilidad: 'ocupado',
-        imagen: 'https://i.blogs.es/89ae35/apple-music-note/450_1000.jpg'
-    }, {
-        nombre: 'federico',
-        apellido: 'panela',
-        edad: 28,
-        ciudad: 'Argentina',
-        ocupacion: 'instructor',
-        disponibilidad: 'ocupado',
-        imagen: 'https://i.blogs.es/89ae35/apple-music-note/450_1000.jpg'
-    },
+  {
+    id: 5,
+    nombres: "Jose Maria",
+    apellidos: "Adorno",
+    documento: "944608",
+    telefono: "822219",
+    email: "Clara52@hotmail.com",
+    edad: 20,
+    imagen:
+      "https://img.freepik.com/vector-gratis/perfil-hombre-dibujos-animados_18591-58482.jpg?w=2000",
+    promedio: 2,
+    genero: "mujer",
+    publicaciones: [
+      {
+        idPublicacion: 5,
+        descripcion:
+          "Consequuntur rem dicta omnis dolorum soluta et ratione facilis.",
+        precio: 3400,
+      },
+      {
+        idPublicacion: 5,
+        descripcion:
+          "Consequuntur rem dicta omnis dolorum soluta et ratione facilis.",
+        precio: 3400,
+      },
+      {
+        idPublicacion: 5,
+        descripcion:
+          "Consequuntur rem dicta omnis dolorum soluta et ratione facilis.",
+        precio: 3400,
+      },
+    ],
+    favoritos: [3, 7, 44],
+    Profesions: "Atencion al Cliente",
+    logoProfesion:
+      "https://www.entornoturistico.com/wp-content/uploads/2021/11/Servicio-y-atencio%CC%81n-al-cliente.jpg",
+    direccion: "331 Homero Colegio",
+    ciudad: "Corrientes",
+    pais: "Argentina",
+  },
 ];
 
-export default  person;
+export default person;

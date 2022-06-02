@@ -18,12 +18,18 @@
 }
 .perfil{
     display: flex;
-    justify-content:start;
     margin-left: 40px;
     margin-top:10px;
     width: 95%;
     height:150px;
-    border: 1px solid #333;
+    box-shadow: -1px 1px 4px 0px rgb(159 156 156)
+}
+.flex{
+    padding-top: 20px;
+}
+.con_per{
+    display: flex;
+    justify-content:start;
 }
 .imgper{
     width:150px;
@@ -40,18 +46,19 @@
 .publi{
     margin-top:20px;
     width: 80%;
-    height:auto;
-    border: 1px solid #333;
+    height:500px;
+    box-shadow: 1px 0px 7px rgb(133 130 130);
 }
 .conten{
     display:flex;
     justify-content:center;
 }
 .datos{
+   text-align: center;
     margin: 20px 30px 0px 20px;
     width:220px;
     height:500px;
-    border: 1px solid #333;
+    box-shadow: -1px 1px 14px rgb(133 130 130);
 }
 
 .h2{
@@ -61,4 +68,24 @@
 .logo{
     height: 40px;
     margin: 10px;
+}
+.centrar_publi{
+    display: flex;
+    justify-content:center;
+    flex-wrap: wrap;
+    margin-top: 30px;
+    gap: 50px;
+}
+.personal{
+    margin-top: 20px;
+}
+.info{
+    display: flex;
+    flex-direction:column;
+    align-items: center;
+    margin-top:10px;
+    
+}
+.boton{
+    margin-top: 7px;
 }

@@ -40,7 +40,7 @@ function App() {
           <Route path="/admin" component={Admin} />
           <Route path='/quieroseremprendedor' component={SecondCap}/>
           <Route exact path="/trabajo/:id" component={Detail} />
-          <Route path="/perfil" component={Perfil}/>
+          <Route path="/perfil/:email" component={Perfil}/>
           <Route path="/*" component={Error} />
         </Switch>
       </div>
