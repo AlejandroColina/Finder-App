@@ -208,7 +208,7 @@ router.post("/crear", async function (req, res) {
   let consultaBD = await Persona.findOne({
     where: { documento: req.body.input.documento },
   });
-
+  console.log(req.body)
   if (consultaBD == null) {
     Persona.create({
       nombres: req.body.input.nombres,
@@ -229,7 +229,12 @@ router.post("/crear", async function (req, res) {
           where: { documento: parseInt(input.documento) },
         });
         PersonaId = PersonaId.dataValues.id;
-
+        await Direccion.create({
+          PersonaId: PersonaId,
+          direccion: req.body.input?.direccion,
+          ciudad: req.body.input?.diudad ? req.body.input?.diudad : 'Sin ciudad.',
+          pais: 'Argentina',
+        });
         await Publicacion.create({
           PersonaId: PersonaId,
           descripcion: req.body.input?.descripcion,
