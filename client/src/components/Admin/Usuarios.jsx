@@ -18,6 +18,7 @@ export default function Usuarios(){
             </form> */}
         <div className={s.containertable} >
             <table className={s.table}>
+                <thead>
                 <tr>
                     <td className={s.tablecol}><strong>USER ID</strong></td>
                     <td className={s.tablecol}><strong>NOMBRE</strong></td>
@@ -26,7 +27,9 @@ export default function Usuarios(){
                     <td className={s.tablecol}><strong>DOCUMENTO</strong></td>
                     <td className={s.tablecol}><strong>DIRECCION</strong></td>
                     <td className={s.tablecol}><strong>CIUDAD</strong></td>
-                </tr>
+                </tr> 
+                </thead>
+                <tbody>
                 {usuarios?.map((user)=>{
                     return(
                   <tr key={user.id}>
@@ -39,6 +42,7 @@ export default function Usuarios(){
                       <td className={s.celdas}>{user.ciudad}</td>
                   </tr>)
                 })}
+                </tbody>
             </table>
         </div>
         </div>

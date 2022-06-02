@@ -8,13 +8,14 @@ import Error from '../Error'
 import { useAuth0 } from "@auth0/auth0-react";
 import { useEffect } from 'react';
 import {useDispatch} from 'react-redux';
-import { getTotalUsersBytype } from "../Redux/actions";
+import { getTotalUsersBytype,getAdminMsj } from "../Redux/actions";
 
 export default function Admin(){
     const { user, isAuthenticated} = useAuth0();
     const dispatch = useDispatch();
     useEffect(()=>{
-        dispatch(getTotalUsersBytype())
+        dispatch(getTotalUsersBytype());
+        dispatch(getAdminMsj());
     },[dispatch]);
     return(
 
@@ -38,9 +39,9 @@ export default function Admin(){
             </div>
 
         <div className={s.containerComp}>
-          <seccion id='1'><AdminMsj/></seccion>
-          <seccion id='2'><Dashboard/></seccion>
-          <seccion id='3'><Usuarios/></seccion>
+          <section id='1'><AdminMsj/></section>
+          <section id='2'><Dashboard/></section>
+          <section id='3'><Usuarios/></section>
         </div>
 
         </div>
