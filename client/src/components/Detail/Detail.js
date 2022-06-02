@@ -112,7 +112,7 @@ export default function Detail({Profesions}) {
                   <div className="info">
                     <h2 className="aboutD">Descripcion</h2>
                       <h1 className="aboutDescripcion">{MyDetail.descripcion}</h1>                     
-                      <h1 className="aboutD">Profesiones</h1>
+                      <h1 className="aboutD">Sector</h1>
                       <h1 className="aboutDescripcion">{MyDetail.Profesions}</h1>
                   </div>
                 </div>
