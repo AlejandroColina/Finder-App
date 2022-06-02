@@ -203,7 +203,7 @@ router.get("/trabajo/:id", async (req, res, next) => {
 });
 
 router.post("/crear", async function (req, res) {
-  let profesionId = req.body.profesionId;
+  let profesionId = req.body.selected;
 
   let consultaBD = await Persona.findOne({
     where: { documento: req.body.input.documento },
@@ -224,6 +224,7 @@ router.post("/crear", async function (req, res) {
     })
       .then(async (input) => {
         input.setProfesions(profesionId);
+        console.log(profesionId)
         let PersonaId = await Persona.findOne({
           where: { documento: parseInt(input.documento) },
         });

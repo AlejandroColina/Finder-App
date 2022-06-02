@@ -60,6 +60,7 @@ export default function UserCreate() {
   const dispatch = useDispatch();
 
   const [image, setImage] = useState("");
+  const [selected, setSelected] = useState(null)
   const [loading, setLoading] = useState(false);
   const formik = useFormik({
     initialValues: {
@@ -118,7 +119,7 @@ export default function UserCreate() {
     e.preventDefault();
     let profesionId = Object.keys(empleosSelected);
     axios
-      .post("http://localhost:3001/users/crear", { input, profesionId })
+      .post("http://localhost:3001/users/crear", { input, selected })
       .then((res) => {
         console.log(res);
         alert("Usuario creado");
@@ -165,6 +166,8 @@ export default function UserCreate() {
   useEffect(() => {
     dispatch(getEmpleosForm());
   }, [dispatch]);
+
+  const handleChange1 = (e) => { setSelected(e.target.value) }
 
   return (
     <>
@@ -312,7 +315,7 @@ export default function UserCreate() {
               type="number"
               onChange={handleChange}
               value={input.telefono}
-              // onBlur={formik.handleBlur}
+            // onBlur={formik.handleBlur}
             />
 
             <label htmlFor="direccion"></label>
@@ -341,14 +344,12 @@ export default function UserCreate() {
             </select> */}
             <div>
               <div>
-                <select>
+                <select value={selected} onChange={handleChange1}>
                   {empleos &&
-                    empleos.map((el) => (
+                    empleos.map((el, id) => (
                       <option
                         name="empleo"
-                        value={el.nombre}
-                        id={el.id}
-                        onChange={selectChange}
+                        value={id + 1}
                       >
                         {el.nombre}
                       </option>
