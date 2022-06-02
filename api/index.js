@@ -1,6 +1,6 @@
 const server = require('./src/app');
 const { DB_CONN } = require('./src/db');
-const { Profesion, Persona, Direccion } = require('./src/db');
+const { Profesion, Persona, Direccion, Publicacion } = require('./src/db');
 const tipos = require('./src/routes/tipos');
 const personas = require('./src/routes/data');
 
@@ -23,7 +23,7 @@ DB_CONN.sync({ force: true })
             })
         };
 
-        personas.map(async person => {
+        personas.map(async (person, PersonaId) => {
             let promedio = parseInt(person.puntuacion.reduce((a, b) => a + b) / person.puntuacion.length);
             let persona = await Persona.create({
                 nombres: person.nombres,
@@ -33,11 +33,18 @@ DB_CONN.sync({ force: true })
                 email: person.email,
                 edad: person.edad,
                 imagen: person.imagen,
-                descripcion: person.descripcion,
+                favoritos: person.favoritos,
                 promedio: promedio,
                 genero: person.genero,
                 puntuacion: person.puntuacion,
             });
+
+            await Publicacion.create({
+                descripcion: person.descripcion,
+                precio: person.precio,
+                PersonaId: PersonaId + 1
+            });
+
             await persona.setProfesions(person.profesion);
         });
 
@@ -51,6 +58,5 @@ DB_CONN.sync({ force: true })
                     pais: obj.pais
                 });
             })
-        }, 1000)
-
+        }, 1000);
     })
