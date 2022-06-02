@@ -286,7 +286,7 @@ router.get("/detalle/:idPublicacion", async (req, res, next) => {
     let idPersona = consultaBD.dataValues.PersonaId;
     let personaPost = await Persona.findAll({
       where: { id: idPersona },
-      include: [Direccion],
+      include: [Direccion, Profesion],
     });
 
     let obj = {
@@ -299,6 +299,7 @@ router.get("/detalle/:idPublicacion", async (req, res, next) => {
       documento: personaPost[0].dataValues.documento,
       descripcion: consultaBD.dataValues.descripcion,
       precio: consultaBD.dataValues.precio,
+      Profesions: personaPost[0].Profesions[0].dataValues.nombre,
       direccion: personaPost[0].Direccions[0]?.dataValues.direccion,
       ciudad: personaPost[0].Direccions[0]?.dataValues.ciudad,
       pais: personaPost[0].Direccions[0]?.dataValues.pais,
