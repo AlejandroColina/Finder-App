@@ -3,7 +3,7 @@ import { useState } from "react"
 import  Swal  from 'sweetalert2'
 export const PaypalCheckoutBtn = ( props ) => {
   
-    const { product } = props
+    let { product, setOrder } = props
 
     const [paidFor, setPaidFor] = useState(false)
     const [error, setError] = useState(null)
@@ -18,13 +18,13 @@ export const PaypalCheckoutBtn = ( props ) => {
 
     }
      
-    if(paidFor){
-            Swal.fire('Perfecto!', 'Has accedido a los contactos del trabajador.¡Contáctalo!', 'success' )
-    }
+    // if(paidFor){
+    //         Swal.fire('Perfecto!', 'Has accedido a los contactos del trabajador.¡Contáctalo!', 'success' )
+    // }
 
-    if(error){
-        Swal.fire('Error', error, 'error')
-    }
+    // if(error){
+    //     Swal.fire('Error', error, 'error')
+    // }
     
 
     return (
@@ -60,10 +60,11 @@ export const PaypalCheckoutBtn = ( props ) => {
         });
     }}
     onApprove={async(data, actions) => {
-        const order = await actions.order.capture()
-        console.log("order", order)
-
+        
+        
+        setOrder(await actions.order.capture())
         handleApprove(data.orderID)
+        
     }}
     onCancel={() => {
 

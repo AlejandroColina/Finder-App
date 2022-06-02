@@ -97,31 +97,50 @@ export const getEmpleosForm = () => {
   };
 };
 export const getCiudades = () => {
-  let url = "http://localhost:3001/users/ciudades";
 
-  return async (dispatch) => {
-    const resp = await axios.get(url);
-    return dispatch({
-      type: "GET_CIUDADES",
-      payload: resp.data,
-    });
-  };
-};
-export function userMsj(payload) {
-  return {
-    type: "USER_MSJ",
-    payload,
-  };
+    let url = 'http://localhost:3001/users/ciudades'
+
+    return async(dispatch) =>{
+        const resp = await axios.get(url)
+        return dispatch({
+            type: 'GET_CIUDADES',
+            payload: resp.data
+        })
+    }
+
 }
 
-export function loanding() {
-  return {
-    type: "LOADER",
-  };
+export function loanding(){ 
+    return {
+        type: 'LOADER'
+    }
 }
 
 export function getDeleteDetail() {
   return {
     type: "GET_DELETE",
   };
+}
+
+//mensaje del usuario al administrador a traves de HELP
+export function mensajeAlAdmin(msj){
+    return async(dispatch)=>{
+        const response = await axios.post('http://localhost:3001/mensaje/user',msj)
+        msj.id= response.data.id
+        dispatch({
+           type: 'MSJ_USER_AL_ADMIN',
+           payload: msj
+        })
+        alert(response.data.message)
+    }
+}
+//traer mensajes para el admin
+export function getAdminMsj(){
+    return async(dispatch) =>{
+        const responseget = await axios.get('http://localhost:3001/mensaje/user')
+        return dispatch({
+            type: 'GET_MSJ_ADMIN',
+            payload: responseget.data
+        })
+    }
 }

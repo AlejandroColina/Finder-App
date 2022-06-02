@@ -41,7 +41,7 @@ let tipos = [
     },
     {
         profesion: "Legales",
-        logo: "https://safetya.co/wp-content/uploads/2015/12/matriz-legal-sg-sst.jpg"
+        logo: "https://www.monempresarial.com/wp-content/uploads/2018/12/LEGAL-738x410.jpg"
     },
     {
         profesion: "Marqueting y Publicidad",

@@ -15,10 +15,10 @@ import Loanding from "./loading/Loanding";
 import NoResult from './noResult/NoResult'
 
 
-function Home( {descripcion,setDescripcion}) {
+function Home({ descripcion, setDescripcion }) {
 
-  const EMPTY_FILTERS={
-    
+  const EMPTY_FILTERS = {
+
     profesion: '',
     nombres: '',
     promedio: '',
@@ -37,7 +37,7 @@ function Home( {descripcion,setDescripcion}) {
 
 
   const trabajadores = useSelector((state) => state.trabajadores);
-const loanding = useSelector((state)=> state.loanding);
+  const loanding = useSelector((state) => state.loanding);
   const handleFilterChanges = (e) => {
     setFilters({
       ...filters,
@@ -72,80 +72,77 @@ const loanding = useSelector((state)=> state.loanding);
   }
 
   return (
-   <div>{ loanding? <Loanding/> :
-    <div>
-      <SearchBar descripcion={descripcion} setDescripcion={setDescripcion} />
+    <div>{loanding ? <Loanding /> :
+      <div>
+        <SearchBar descripcion={descripcion} setDescripcion={setDescripcion} />
 
-      <div className={styles.contenidos}>
-        <section className={styles.filtros}>
-          <Filtros  resetValues={resetValues} filters={filters} handleFilterChanges={handleFilterChanges} />
-        </section>
-        
+        <div className={styles.contenidos}>
+          <section className={styles.filtros}>
+            <Filtros resetValues={resetValues} filters={filters} handleFilterChanges={handleFilterChanges} />
+          </section>
 
-        <section className={styles.cards}>
 
-          <div className={styles.paginado}>
-            {
-              <div >
-                <Paginado
+          <section className={styles.cards}>
 
-                  personasPerPage={itemsPorPag}
-                  allPersonas={trabajadores.length}
-                  paginado={paginado}
-                />
-              </div>
-            }
-          </div>
-          { currentUsuarios.length?
-          currentUsuarios.map((el) => (
-            <div className="box">
-            
-                <Cards
+            <div className={styles.paginado}>
+              {
+                <div >
+                  <Paginado
+
+                    personasPerPage={itemsPorPag}
+                    allPersonas={trabajadores.length}
+                    paginado={paginado}
+                  />
+                </div>
+              }
+            </div>
+            {currentUsuarios.length ?
+              currentUsuarios.map((el) => el.publicaciones.map(e => (
+                <div className="box">
+                  <Cards
                     key={el.id}
                     promedio={el.promedio}
                     nombres={el.nombres}
                     imagen={el.imagen ? el.imagen : 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQgemhlS2C1Ldo2xTSqZVm5aAXUGT3DaaJZVRLgof7-GCoq7n0YnVnC7zkRHkpdQr4j4Zk&usqp=CAU'}
-                    descripcion={el.descripcion}
+                    descripcion={e.descripcion}
                     Profesions={el.Profesions.length ? el.Profesions : 'nada'}
                     logoProfesion={el.logoProfesion}
                     id={el.id}
-                  /> 
-              
-                
+                  />
+                </div>
+              ))) : <NoResult />}
+          </section>
+
+          <section className={styles.destacados}>
+            <div className={styles.textDestacados} ><h1>Destacados 🔥</h1></div>
+            <div className={styles.div__destacados}>
+              {
+                destacados.map(el => {
+                  return (
+                    <section key={el.id}>
+                      <Destacados
+                        key={`${el.id}A`}
+                        id={el.id}
+                        Profesions={el.Profesions}
+                        apellidos={el.apellidos}
+                        imagen={el.imagen}
+                        logoProfesion={el.logoProfesion}
+                        nombres={el.nombres}
+                        descripcion={el.descripcion}
+                        promedio={el.promedio}
+                      />
+                    </section>
+                  )
+                })
+              }
             </div>
-          )):  <NoResult/> }
-        </section>
-       
-        <section className={styles.destacados}>
-          <div className={styles.textDestacados} ><h1>Destacados 🔥</h1></div>
-          <div className={styles.div__destacados}>
-            {
-              destacados.map(el => {
-                return (
-                  <section key={el.id}>
-                    <Destacados
-                      key={`${el.id}A`}
-                      id={el.id}
-                      Profesions={el.Profesions}
-                      apellidos={el.apellidos}
-                      imagen={el.imagen}
-                      logoProfesion={el.logoProfesion}
-                      nombres={el.nombres}
-                      descripcion={el.descripcion}
-                      promedio={el.promedio}
-                    />
-                  </section>
-                )
-              })
-            }
-          </div>
-        </section>
-        <section className={styles.footer}>
-          <Footer />
-        </section>
+          </section>
+          <section className={styles.footer}>
+            <Footer />
+          </section>
+        </div>
+        <Help />
       </div>
-      <Help />
-    </div>
     } </div>
   );
 

@@ -59,18 +59,21 @@ export default function rootReducer(state = InitialState, action) {
         usersByType: action.payload,
       };
 
-    case "USER_MSJ":
-      let prev = state.adminMjes;
-      prev.push(action.payload);
-      return {
-        ...state,
-        adminMjes: prev,
-      };
-    case "LOADER":
-      return {
-        ...state,
-        loanding: true,
-      };
+    case 'MSJ_USER_AL_ADMIN':
+        return{
+            ...state,
+        }
+
+    case 'GET_MSJ_ADMIN':
+        return{
+            ...state,
+            adminMjes: action.payload
+        }
+    case 'LOADER':
+        return {
+            ...state,
+             loanding: true
+        }
 
     default:
       return state;
