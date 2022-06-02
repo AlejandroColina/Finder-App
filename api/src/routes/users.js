@@ -204,6 +204,7 @@ router.get("/trabajo/:id", async (req, res, next) => {
 router.post("/crear", async function (req, res) {
   let profesionId = req.body.profesionId;
 
+
   let consultaBD = await Persona.findOne({ where: { documento: req.body.input.documento } })
 
   if (consultaBD == null) {
@@ -217,6 +218,8 @@ router.post("/crear", async function (req, res) {
       telefono: req.body.input.telefono,
       direccion: req.body.input.direccion,
       genero: req.body.input.genero,
+      imagen: req.body.input.imagen,
+
     })
       .then(async (input) => {
         input.setProfesions(profesionId);

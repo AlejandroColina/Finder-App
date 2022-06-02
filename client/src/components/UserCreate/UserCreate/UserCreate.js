@@ -72,11 +72,13 @@ export default function UserCreate() {
       telefono: "",
       direccion: "",
       profesion: "",
+      imagen: "",
+      puntuacion: [],
     },
-    // validate,
-    // onSubmit: (values) => {
-    //   alert(JSON(values, null, 2));
-    // },
+    validate,
+    onSubmit: (values) => {
+      alert(JSON(values, null, 2));
+    },
   });
 
   //Cloudinary
@@ -97,6 +99,7 @@ export default function UserCreate() {
 
     const file = await res.json();
     setImage(file.secure_url);
+    setInput({ ...input, imagen: file.secure_url });
     setLoading(false);
   };
 
@@ -126,9 +129,6 @@ export default function UserCreate() {
       });
   }
 
-
-  
-
   // useState de los inputs
   const [input, setInput] = useState({
     nombres: "",
@@ -140,6 +140,7 @@ export default function UserCreate() {
     telefono: "",
     direccion: "",
     genero: "",
+    imagen: "",
     puntuacion: [],
   });
 
@@ -339,20 +340,22 @@ export default function UserCreate() {
                 })}
             </select> */}
             <div>
-              <p>profesion</p>
-              {empleos &&
-                empleos.map((el) => (
-                  <div>
-                    <input
-                      type="checkbox"
-                      name="empleo"
-                      value={el.nombre}
-                      id={el.id}
-                      onChange={selectChange}
-                    />
-                    <label for="empleo">{el.nombre}</label>
-                  </div>
-                ))}
+              <div>
+                <select>
+                  {empleos &&
+                    empleos.map((el) => (
+                      <option
+                        name="empleo"
+                        value={el.nombre}
+                        id={el.id}
+                        onChange={selectChange}
+                      >
+                        {el.nombre}
+                      </option>
+                    ))}
+                </select>
+                <label for="empleo">Seleccione profesion</label>
+              </div>
             </div>
             <button className="submit" type="submit">
               Registrarse!
