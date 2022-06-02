@@ -5,7 +5,7 @@ const InitialState = {
     usersByType:[],
     empleos: [],
     ciudades: [],
-    adminMjes:[],
+    adminMjes:[], //mensajes de los usuarios al admin
     loanding: false
 }
 
@@ -56,12 +56,15 @@ switch (action.type){
             usersByType: action.payload
         }
 
-    case 'USER_MSJ':
-        let prev = state.adminMjes;
-        prev.push(action.payload)
+    case 'MSJ_USER_AL_ADMIN':
         return{
             ...state,
-            adminMjes:prev
+        }
+
+    case 'GET_MSJ_ADMIN':
+        return{
+            ...state,
+            adminMjes: action.payload
         }
     case 'LOADER':
         return {

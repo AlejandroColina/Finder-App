@@ -2,7 +2,7 @@ import React from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useDispatch } from "react-redux";
 import { useState } from "react";
-import { userMsj } from "../Redux/actions";
+import {mensajeAlAdmin} from "../Redux/actions";
 import s from './Help.module.css';
 import {Link} from 'react-router-dom';
 
@@ -18,8 +18,7 @@ export default function Help(){
 
     const handleSubmit =(e)=>{
         e.preventDefault();
-        dispatch(userMsj({userId:user.id,message:input}));
-        alert('Mensaje enviado con exito')
+        dispatch(mensajeAlAdmin({email:user.email,mensaje:input}));
         setOptions(false);
     }
     return(
@@ -27,7 +26,7 @@ export default function Help(){
         {isAuthenticated? 
         <button title='Necesitas ayuda?' className={`${s.btn} ${s.position}`} onClick={()=>{setOptions(true)}}>?</button> 
         : 
-        <Link to='/#2' className={`${s.contacto} ${s.position}`}>⤏ Emprende con <strong>Finder</strong> ⤎</Link>} 
+        <Link to='/quieroseremprendedor' className={`${s.contacto} ${s.position}`}>⤏ Emprende con <strong>Finder</strong> ⤎</Link>} 
         {options? 
         <form className={`${s.chat} ${s.position}`} onSubmit={handleSubmit}>
             

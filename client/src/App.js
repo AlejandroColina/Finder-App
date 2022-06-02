@@ -5,6 +5,7 @@ import Home from './components/Home/Home';
 import Detail from './components/Detail/Detail';
 import Error from './components/Error/index';
 import Admin from './components/Admin/Admin';
+import SecondCap from './components/LandingPage/secondcap/SecondCap';
 
 function App() {
 
@@ -27,6 +28,7 @@ function App() {
           <Home descripcion={descripcion}  setDescripcion={setDescripcion} />
         </Route>
         <Route path='/admin' component={Admin}/>
+        <Route path='/quieroseremprendedor' component={SecondCap}/>
         <Route exact path= '/trabajo/:id' component={Detail}/> 
         <Route path='/*' component={Error} /> 
       </Switch>
