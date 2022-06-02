@@ -9,7 +9,9 @@ router.get("/", async (req, res, next) => {
     let { profesion, nombres, promedio, genero, edad, ciudad, descripcion } =
       req.query;
 
-    let personasDB = await Persona.findAll({ include: [Profesion, Direccion, Publicacion] });
+    let personasDB = await Persona.findAll({
+      include: [Profesion, Direccion, Publicacion],
+    });
     if (personasDB.length == 0)
       return res.send("LA BASE DE DATOS NO TIENE INFORMACION");
 
@@ -18,9 +20,9 @@ router.get("/", async (req, res, next) => {
         return {
           idPublicacion: obj.id,
           descripcion: obj.descripcion,
-          precio: obj.precio
-        }
-      })
+          precio: obj.precio,
+        };
+      });
 
       return {
         id: person.id,
@@ -46,18 +48,17 @@ router.get("/", async (req, res, next) => {
     let filtroPersonas = objPersonas;
 
     if (descripcion) {
-      let obj = []
+      let obj = [];
 
       for (let i = 0; i < filtroPersonas.length; i++) {
-        filtroPersonas[i].publicaciones.map(e => {
-
+        filtroPersonas[i].publicaciones.map((e) => {
           if (e.descripcion.includes(descripcion)) {
-            let array = []
+            let array = [];
             array.push({
               idPublicacion: e.idPublicacion,
               descripcion: e.descripcion,
-              precio: e.precio
-            })
+              precio: e.precio,
+            });
 
             obj.push({
               id: filtroPersonas[i].id,
@@ -76,10 +77,10 @@ router.get("/", async (req, res, next) => {
               direccion: filtroPersonas[i].direccion,
               ciudad: filtroPersonas[i].ciudad,
               pais: filtroPersonas[i].pais,
-            })
+            });
           }
-        })
-      };
+        });
+      }
 
       filtroPersonas = obj;
     }
@@ -204,8 +205,9 @@ router.get("/trabajo/:id", async (req, res, next) => {
 router.post("/crear", async function (req, res) {
   let profesionId = req.body.profesionId;
 
-
-  let consultaBD = await Persona.findOne({ where: { documento: req.body.input.documento } })
+  let consultaBD = await Persona.findOne({
+    where: { documento: req.body.input.documento },
+  });
 
   if (consultaBD == null) {
     Persona.create({
@@ -219,7 +221,6 @@ router.post("/crear", async function (req, res) {
       direccion: req.body.input.direccion,
       genero: req.body.input.genero,
       imagen: req.body.input.imagen,
-
     })
       .then(async (input) => {
         input.setProfesions(profesionId);
@@ -231,13 +232,12 @@ router.post("/crear", async function (req, res) {
         await Publicacion.create({
           PersonaId: PersonaId,
           descripcion: req.body.input?.descripcion,
-          precio: req.body.input?.precio
+          precio: req.body.input?.precio,
         });
         return res.status(200).send(input);
       })
       .catch((error) => console.log(error));
   } else {
-
     let PersonaId = await Persona.findOne({
       where: { documento: parseInt(req.body.input.documento) },
     });
@@ -246,11 +246,10 @@ router.post("/crear", async function (req, res) {
     let publicacion = await Publicacion.create({
       PersonaId: PersonaId,
       descripcion: req.body.input?.descripcion,
-      precio: req.body.input?.precio
+      precio: req.body.input?.precio,
     });
 
-
-    return res.send(publicacion)
+    return res.send(publicacion);
   }
 });
 
@@ -261,25 +260,25 @@ router.patch("/modificar/:id", async (req, res) => {
   //   Persona.update({ descripcion: req.query.descripcion }, { where: { id: id } })
   // }
   if (nombres) {
-    Persona.update({ nombres: req.query.nombres }, { where: { id: id } })
+    Persona.update({ nombres: req.query.nombres }, { where: { id: id } });
   }
   if (genero) {
-    Persona.update({ genero: req.query.genero }, { where: { id: id } })
+    Persona.update({ genero: req.query.genero }, { where: { id: id } });
   }
   if (edad) {
-    Persona.update({ edad: req.query.edad }, { where: { id: id } })
+    Persona.update({ edad: req.query.edad }, { where: { id: id } });
   }
   if (ciudad) {
-    Persona.update({ ciudad: req.query.ciudad }, { where: { id: id } })
+    Persona.update({ ciudad: req.query.ciudad }, { where: { id: id } });
   }
   if (email) {
-    Persona.update({ email: req.query.email }, { where: { id: id } })
+    Persona.update({ email: req.query.email }, { where: { id: id } });
   }
-  const objetivo = await Persona.findOne({ where: { id: id } })
-  res.send(objetivo)
-})
+  const objetivo = await Persona.findOne({ where: { id: id } });
+  res.send(objetivo);
+});
 
-router.get('/detalle/:idPublicacion', async (req, res, next) => {
+router.get("/detalle/:idPublicacion", async (req, res, next) => {
   try {
     const { idPublicacion } = req.params;
 
@@ -287,7 +286,7 @@ router.get('/detalle/:idPublicacion', async (req, res, next) => {
     let idPersona = consultaBD.dataValues.PersonaId;
     let personaPost = await Persona.findAll({
       where: { id: idPersona },
-      include: [Direccion]
+      include: [Direccion],
     });
 
     let obj = {
@@ -302,13 +301,12 @@ router.get('/detalle/:idPublicacion', async (req, res, next) => {
       precio: consultaBD.dataValues.precio,
       direccion: personaPost[0].Direccions[0]?.dataValues.direccion,
       ciudad: personaPost[0].Direccions[0]?.dataValues.ciudad,
-      pais: personaPost[0].Direccions[0]?.dataValues.pais
-    }
+      pais: personaPost[0].Direccions[0]?.dataValues.pais,
+    };
 
-    res.send(obj)
-
+    res.send(obj);
   } catch (error) {
-    next(error)
+    next(error);
   }
 });
 
