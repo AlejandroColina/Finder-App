@@ -193,6 +193,7 @@ router.post("/crear", function (req, res) {
     telefono: req.body.input.telefono,
     direccion: req.body.input.direccion,
     genero: req.body.input.genero,
+    imagen: req.body.input.imagen,
   })
 
     .then((input) => {
