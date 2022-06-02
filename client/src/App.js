@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import { Switch, Route } from "react-router-dom";
 import LandingPage from "./components/LandingPage/index";
@@ -8,6 +9,8 @@ import Admin from "./components/Admin/Admin";
 import UserCreate from "./components/UserCreate/UserCreate/UserCreate";
 import { PayPalScriptProvider } from "@paypal/react-paypal-js";
 import CustomerCreate from "./components/UserCreate/CustomerCreate/CustomerCreate";
+import SecondCap from './components/LandingPage/secondcap/SecondCap';
+
 
 function App() {
   const [descripcion, setDescripcion] = useState("");
@@ -27,13 +30,13 @@ function App() {
               setDescripcion={setDescripcion}
             />
           </Route>
-
           <Route exact path="/home">
             <Home descripcion={descripcion} setDescripcion={setDescripcion} />
           </Route>
           <Route path="/userLog" component={UserCreate} />
           <Route path="/customerLog" component={CustomerCreate} />
           <Route path="/admin" component={Admin} />
+          <Route path='/quieroseremprendedor' component={SecondCap}/>
           <Route exact path="/trabajo/:id" component={Detail} />
           <Route path="/*" component={Error} />
         </Switch>

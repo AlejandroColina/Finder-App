@@ -28,8 +28,8 @@ module.exports = (sequelize) => {
     imagen: {
       type: DataTypes.STRING,
     },
-    descripcion: {
-      type: DataTypes.STRING,
+    favoritos: {
+      type: DataTypes.ARRAY(DataTypes.INTEGER),
     },
     promedio: {
       type: DataTypes.INTEGER,
