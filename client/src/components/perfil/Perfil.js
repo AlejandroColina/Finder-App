@@ -7,6 +7,7 @@ import Card_perfil from "./Card_perfil/Card_perfil";
 import Form from './form/Form'
 import {useState} from 'react'
 import { useAuth0 } from '@auth0/auth0-react';
+import Footer from "../Footer/Footer";
 const Perfil = () => {
   const { isAuthenticated, user } = useAuth0();
  
@@ -66,6 +67,7 @@ const Perfil = () => {
           <h2 className={s.h2}>Publicaciones</h2>
           <div className={s.centrar_publi}>
             {person[0].publicaciones.map((el) => (
+              
               <Card_perfil
                 precio={el.precio}
                 descripcion={el.descripcion}
@@ -73,13 +75,14 @@ const Perfil = () => {
                 imagen={person[0].imagen}
                 Profesions={person[0].Profesions}
                 id={el.id}
+                logoProfesion={person[0].logoProfesion}
                />
             ))}
             </div>
             </div>}
         </div>
       </section>
-      <footer>jose andres</footer>
+      <footer className={s.footer}><Footer/></footer>
     </div>
   );
 };

@@ -74,6 +74,10 @@ export default function rootReducer(state = InitialState, action) {
             ...state,
              loanding: true
         }
+        case 'DELETE_POST':
+          return {
+            ...state
+          }
 
     default:
       return state;

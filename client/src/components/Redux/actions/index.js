@@ -144,3 +144,15 @@ export function getAdminMsj(){
         })
     }
 }
+
+
+export function eliminarPost(id){
+ return async (dispatch) => {
+   const json = await axios.delete('http://localhost:3001/post/'+ id)
+   return dispatch({
+     type: 'DELETE_POST',
+     payload: json.data
+   })
+ }
+
+}

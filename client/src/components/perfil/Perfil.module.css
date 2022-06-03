@@ -8,7 +8,7 @@
     width: 100%;
     height:70px; 
     position: sticky;
-    background-color: blue;
+    background-color: #205bf1ed;
 }
 
 .img{
@@ -22,7 +22,8 @@
     margin-top:10px;
     width: 95%;
     height:150px;
-    box-shadow: -1px 1px 4px 0px rgb(159 156 156)
+    box-shadow: -1px 1px 4px 0px rgb(159 156 156);
+    
 }
 .flex{
     padding-top: 20px;
@@ -46,8 +47,10 @@
 .publi{
     margin-top:20px;
     width: 80%;
-    height:500px;
+    height:auto;
     box-shadow: 1px 0px 7px rgb(133 130 130);
+    background-color: #205bf1ed;
+    margin-bottom: 20px;
 }
 .conten{
     display:flex;
@@ -63,7 +66,9 @@
 
 .h2{
     margin-top: 20px;
-    text-align: center
+    text-align: center;
+    color: #f8feff;
+    font-size: 4em;
 }
 .logo{
     height: 40px;

@@ -1,30 +1,68 @@
 import React from "react";
-import s from "./Card_perfil.module.css";
-const Card_perfil = ({ nombre, precio, descripcion, imagen, Profesions, id }) => {
+import s from './Card_perfil.module.css'
+import { Link } from "react-router-dom";
+import {useDispatch} from 'react-redux'
+import {eliminarPost} from '../../Redux/actions/index'
+export default function Cards({
+  nombres,
+  imagen,
+  descripcion,
+  promedio,
+  Profesions,
+  id,
+  logoProfesion,
+}) {
+ const dispatch = useDispatch();
 
- const handleonClik = (id) =>{
-    
+ const handleonClik = () =>{
+  dispatch(eliminarPost(id))
  }
-
-
   return (
-    <div className={s.contenedor}>
-      <div className={s.centrar}>
-        <img className={s.img} src={imagen} />
-        <h3>{nombre}</h3>
+    <div className={s.container}>
+      <header>
+        <div className={s.bio}>
+          <img src={logoProfesion} alt="background" className={s.bg} />
+
+          <div className={s.desc}>
+            <h3>descripcion</h3>
+            <p>{descripcion}</p>
+          </div>
+        </div>
+
+        <div className={s.avatarcontainer}>
+          <img src={imagen} alt="avatar" className={s.avatar} />
+          <p className={s.nombre}>{nombres}</p>
+          <div className={s.hover}>
+            <div className={s.icontwitter}></div>
+          </div>
+        </div>
+      </header>
+
+      <div className={s.content}>
+        <div className={s.data}>
+          <ul>
+            <li>
+              trabajos
+              <p>{Profesions}</p>
+            </li>
+            <li>
+              puntaje
+              <p>{promedio}</p>
+            </li>
+          </ul>
+        </div>
+
+        <div className={s.follow}>
+          <div className={s.icontwitter}></div>
+          
+        </div>
+       
       </div>
-      <h3 className={s.h3}>Descripcion:</h3>
-      <h2  className={s.h3}>{Profesions}</h2>
-      <div className={s.descripcion}>
-      <h1>{descripcion}</h1>
-      <h2 className={s.h2}>precio: {precio}</h2>
-      </div>
-      <div className={s.conte}>
-          <button>Eliminar</button>
-          <button>Editar</button>
+      <div className={s.botones}> 
+        <button>eliminar</button>
+        <button>editar</button>
       </div>
     </div>
   );
-};
+}
 
-export default Card_perfil;

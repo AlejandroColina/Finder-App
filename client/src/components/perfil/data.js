@@ -30,6 +30,7 @@ let person = [
           "Consequuntur rem dicta omnis dolorum soluta et ratione facilis.",
         precio: 3400,
       },
+     
     ],
     favoritos: [3, 7, 44],
     Profesions: "Atencion al Cliente",

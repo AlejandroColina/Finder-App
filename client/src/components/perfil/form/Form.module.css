@@ -2,7 +2,8 @@
     display:flex;
     justify-content:center;
     align-items:center;
-    margin-top:40px;
+    height:600px;
+    background-color: #205bf1ed;
 }
 .div{
     padding: 20px;
@@ -19,7 +20,7 @@ height:20px;
 .button{
     width:100px;
     height: 20px;
-    background-color:#1081ad;
-    color: white;
+    background-color:#ffffff;
+    color: rgb(60, 125, 245);
     border: none;
 }
