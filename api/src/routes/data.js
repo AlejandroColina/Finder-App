@@ -14,6 +14,12 @@ let personas = [
         genero: "hombre",
         pais: "Argentina",
         ciudad: "Buenos Aires",
+        precio:2500,
+        favoritos:[
+            11,
+            32,
+            43
+        ],
         puntuacion: [
             2,
             4,
@@ -36,6 +42,12 @@ let personas = [
         genero: "hombre",
         pais: "Argentina",
         ciudad: "Buenos Aires",
+        precio:1750,
+        favoritos:[
+            5,
+            29,
+            38
+        ],
         puntuacion: [
             2,
             5,
@@ -58,6 +70,12 @@ let personas = [
         genero: "hombre",
         pais: "Argentina",
         ciudad: "Corrientes",
+        precio:2900,
+        favoritos:[
+            13,
+            23,
+            35
+        ],
         puntuacion: [
             2,
             1,
@@ -80,6 +98,8 @@ let personas = [
         genero: "mujer",
         pais: "Argentina",
         ciudad: "Corrientes",
+        precio:2000,
+        favoritos:[],
         puntuacion: [
             2,
             2,
@@ -102,6 +122,12 @@ let personas = [
         genero: "mujer",
         pais: "Argentina",
         ciudad: "Corrientes",
+        precio:3400,
+        favoritos:[
+            3,
+            7,
+            44
+        ],
         puntuacion: [
             1,
             1,
@@ -124,6 +150,12 @@ let personas = [
         genero: "hombre",
         pais: "Argentina",
         ciudad: "Corrientes",
+        precio:3300,
+        favoritos:[
+            4,
+            11,
+            21
+        ],
         puntuacion: [
             4,
             2,
@@ -146,6 +178,8 @@ let personas = [
         genero: "mujer",
         pais: "Argentina",
         ciudad: "Rosario",
+        precio:1900,
+        favoritos:[],
         puntuacion: [
             4,
             5,
@@ -168,6 +202,12 @@ let personas = [
         genero: "hombre",
         pais: "Argentina",
         ciudad: "Rosario",
+        precio:1000,
+        favoritos:[
+            1,
+            2,
+            3
+        ],
         puntuacion: [
             4,
             5,
@@ -190,6 +230,12 @@ let personas = [
         genero: "hombre",
         pais: "Argentina",
         ciudad: "Mar del Plata",
+        precio:1750,
+        favoritos:[
+            50,
+            1,
+            3
+        ],
         puntuacion: [
             5,
             2,
@@ -212,6 +258,12 @@ let personas = [
         genero: "hombre",
         pais: "Argentina",
         ciudad: "Mar del Plata",
+        precio:2100,
+        favoritos:[
+            45,
+            47,
+            43
+        ],
         puntuacion: [
             3,
             5,
@@ -234,6 +286,12 @@ let personas = [
         genero: "hombre",
         pais: "Argentina",
         ciudad: "Mar del Plata",
+        precio:2500,
+        favoritos:[
+            15,
+            27,
+            33
+        ],
         puntuacion: [
             5,
             1,
@@ -256,6 +314,12 @@ let personas = [
         genero: "mujer",
         pais: "Argentina",
         ciudad: "Mar del Plata",
+        precio:1900,
+        favoritos:[
+            17,
+            27,
+            39
+        ],
         puntuacion: [
             1,
             4,
@@ -278,6 +342,12 @@ let personas = [
         genero: "hombre",
         pais: "Argentina",
         ciudad: "Mar del Plata",
+        precio:3100,
+        favoritos:[
+            15,
+            21,
+            33
+        ],
         puntuacion: [
             5,
             4,
@@ -300,6 +370,8 @@ let personas = [
         genero: "hombre",
         pais: "Argentina",
         ciudad: "Mar del Plata",
+        precio:3350,
+        favoritos:[],
         puntuacion: [
             4,
             3,
@@ -322,6 +394,12 @@ let personas = [
         genero: "mujer",
         pais: "Argentina",
         ciudad: "Godoy Cruz",
+        precio:2200,
+        favoritos:[
+            34,
+            22,
+            31
+        ],
         puntuacion: [
             5,
             3,
@@ -344,6 +422,12 @@ let personas = [
         genero: "mujer",
         pais: "Argentina",
         ciudad: "Godoy Cruz",
+        precio:3400,
+        favoritos:[
+            16,
+            23,
+            32
+        ],
         puntuacion: [
             5,
             1,
@@ -366,6 +450,12 @@ let personas = [
         genero: "mujer",
         pais: "Argentina",
         ciudad: "Godoy Cruz",
+        precio:3000,
+        favoritos:[
+            12,
+            2,
+            33
+        ],
         puntuacion: [
             2,
             4,
@@ -388,6 +478,8 @@ let personas = [
         genero: "mujer",
         pais: "Argentina",
         ciudad: "Godoy Cruz",
+        precio:1000,
+        favoritos:[],
         puntuacion: [
             2,
             1,
@@ -410,6 +502,12 @@ let personas = [
         genero: "hombre",
         pais: "Argentina",
         ciudad: "Banfield",
+        precio:4000,
+        favoritos:[
+            37,
+            28,
+            23
+        ],
         puntuacion: [
             5,
             5,
@@ -432,6 +530,12 @@ let personas = [
         genero: "mujer",
         pais: "Argentina",
         ciudad: "Banfield",
+        precio:2100,
+        favoritos:[
+            35,
+            23,
+            31
+        ],
         puntuacion: [
             1,
             4,
@@ -454,6 +558,12 @@ let personas = [
         genero: "mujer",
         pais: "Argentina",
         ciudad: "Banfield",
+        precio:1400,
+        favoritos:[
+            10,
+            20,
+            30
+        ],
         puntuacion: [
             3,
             4,
@@ -476,6 +586,12 @@ let personas = [
         genero: "hombre",
         pais: "Argentina",
         ciudad: "Banfield",
+        precio:2000,
+        favoritos:[
+            40,
+            22,
+            3
+        ],
         puntuacion: [
             5,
             5,
@@ -498,6 +614,12 @@ let personas = [
         genero: "mujer",
         pais: "Argentina",
         ciudad: "Banfield",
+        precio:2050,
+        favoritos:[
+            4,
+            23,
+            37
+        ],
         puntuacion: [
             5,
             5,
@@ -520,6 +642,12 @@ let personas = [
         genero: "hombre",
         pais: "Argentina",
         ciudad: "La Plata",
+        precio:1750,
+        favoritos:[
+            1,
+            50,
+            46
+        ],
         puntuacion: [
             3,
             5,
@@ -542,6 +670,12 @@ let personas = [
         genero: "hombre",
         pais: "Argentina",
         ciudad: "La Plata",
+        precio:3900,
+        favoritos:[
+            45,
+            26,
+            38
+        ],
         puntuacion: [
             2,
             2,
@@ -564,6 +698,12 @@ let personas = [
         genero: "mujer",
         pais: "Argentina",
         ciudad: "La Plata",
+        precio:2900,
+        favoritos:[
+            12,
+            7,
+            41
+        ],
         puntuacion: [
             3,
             3,
@@ -586,6 +726,12 @@ let personas = [
         genero: "mujer",
         pais: "Argentina",
         ciudad: "La Plata",
+        precio:3100,
+        favoritos:[
+            14,
+            29,
+            33
+        ],
         puntuacion: [
             1,
             2,
@@ -608,6 +754,12 @@ let personas = [
         genero: "mujer",
         pais: "Argentina",
         ciudad: "Resistencia",
+        precio:3300,
+        favoritos:[
+            4,
+            7,
+            2
+        ],
         puntuacion: [
             1,
             1,
@@ -630,6 +782,12 @@ let personas = [
         genero: "hombre",
         pais: "Argentina",
         ciudad: "Resistencia",
+        precio:2500,
+        favoritos:[
+           31,
+            42,
+            13
+        ],
         puntuacion: [
             5,
             1,
@@ -652,6 +810,12 @@ let personas = [
         genero: "hombre",
         pais: "Argentina",
         ciudad: "Resistencia",
+        precio:2100,
+        favoritos:[
+            11,
+            22,
+            34
+        ],
         puntuacion: [
             2,
             2,
@@ -674,6 +838,12 @@ let personas = [
         genero: "hombre",
         pais: "Argentina",
         ciudad: "Lanus",
+        precio:2890,
+        favoritos:[
+            1,
+            5,
+            33
+        ],
         puntuacion: [
             4,
             5,
@@ -696,6 +866,12 @@ let personas = [
         genero: "mujer",
         pais: "Argentina",
         ciudad: "Lanus",
+        precio:1700,
+        favoritos:[
+            43,
+            25,
+            19
+        ],
         puntuacion: [
             5,
             4,
@@ -718,6 +894,12 @@ let personas = [
         genero: "hombre",
         pais: "Argentina",
         ciudad: "Lanus",
+        precio:2100,
+        favoritos:[
+            26,
+            18,
+            43
+        ],
         puntuacion: [
             4,
             3,
@@ -740,6 +922,12 @@ let personas = [
         genero: "mujer",
         pais: "Argentina",
         ciudad: "Salta",
+        precio:3700,
+        favoritos:[
+            50,
+            46,
+            37
+        ],
         puntuacion: [
             5,
             5,
@@ -762,6 +950,12 @@ let personas = [
         genero: "hombre",
         pais: "Argentina",
         ciudad: "Salta",
+        precio:3300,
+        favoritos:[
+            18,
+            35,
+            47
+        ],
         puntuacion: [
             2,
             1,
@@ -784,6 +978,12 @@ let personas = [
         genero: "hombre",
         pais: "Argentina",
         ciudad: "Salta",
+        precio:5100,
+        favoritos:[
+            30,
+            20,
+            10
+        ],
         puntuacion: [
             5,
             4,
@@ -806,6 +1006,12 @@ let personas = [
         genero: "mujer",
         pais: "Argentina",
         ciudad: "Quilmes",
+        precio:4700,
+        favoritos:[
+            35,
+            26,
+            17
+        ],
         puntuacion: [
             1,
             1,
@@ -828,6 +1034,12 @@ let personas = [
         genero: "mujer",
         pais: "Argentina",
         ciudad: "Quilmes",
+        precio:2000,
+        favoritos:[
+            13,
+            22,
+            31
+        ],
         puntuacion: [
             2,
             3,
@@ -850,6 +1062,12 @@ let personas = [
         genero: "mujer",
         pais: "Argentina",
         ciudad: "Quilmes",
+        precio:4200,
+        favoritos:[
+            34,
+            23,
+            9
+        ],
         puntuacion: [
             5,
             5,
@@ -872,6 +1090,12 @@ let personas = [
         genero: "hombre",
         pais: "Argentina",
         ciudad: "Quilmes",
+        precio:2300,
+        favoritos:[
+            17,
+            26,
+            39
+        ],
         puntuacion: [
             5,
             5,
@@ -894,6 +1118,12 @@ let personas = [
         genero: "hombre",
         pais: "Argentina",
         ciudad: "Godoy Cruz",
+        precio:5000,
+        favoritos:[
+            41,
+            14,
+            3
+        ],
         puntuacion: [
             3,
             3,
@@ -916,6 +1146,12 @@ let personas = [
         genero: "hombre",
         pais: "Argentina",
         ciudad: "Lanus",
+        precio:7000,
+        favoritos:[
+            6,
+            23,
+            36
+        ],
         puntuacion: [
             3,
             1,
@@ -938,6 +1174,12 @@ let personas = [
         genero: "hombre",
         pais: "Argentina",
         ciudad: "Santa Fe",
+        precio:4500,
+        favoritos:[
+            17,
+            27,
+            33
+        ],
         puntuacion: [
             2,
             3,
@@ -960,6 +1202,12 @@ let personas = [
         genero: "hombre",
         pais: "Argentina",
         ciudad: "Salta",
+        precio:11000,
+        favoritos:[
+            47,
+            48,
+            49
+        ],
         puntuacion: [
             2,
             3,
@@ -982,6 +1230,12 @@ let personas = [
         genero: "mujer",
         pais: "Argentina",
         ciudad: "Rosario",
+        precio:15000,
+        favoritos:[
+            13,
+            12,
+            11
+        ],
         puntuacion: [
             1,
             1,
@@ -1004,6 +1258,12 @@ let personas = [
         genero: "mujer",
         pais: "Argentina",
         ciudad: "	Rosario",
+        precio:2000,
+        favoritos:[
+            7,
+            8,
+            9
+        ],
         puntuacion: [
             2,
             1,
@@ -1026,6 +1286,12 @@ let personas = [
         genero: "mujer",
         pais: "Argentina",
         ciudad: "Córdoba",
+        precio:9000,
+        favoritos:[
+            4,
+            5,
+            6
+        ],
         puntuacion: [
             5,
             5,
@@ -1048,6 +1314,12 @@ let personas = [
         genero: "mujer",
         pais: "Argentina",
         ciudad: "Córdoba",
+        precio:2000,
+        favoritos:[
+            16,
+            19,
+            50
+        ],
         puntuacion: [
             1,
             1,
@@ -1070,6 +1342,12 @@ let personas = [
         genero: "hombre",
         pais: "Argentina",
         ciudad: "Buenos Aires",
+        precio:1000,
+        favoritos:[
+            45,
+            25,
+            31
+        ],
         puntuacion: [
             2,
             2,
@@ -1092,6 +1370,12 @@ let personas = [
         genero: "hombre",
         pais: "Argentina",
         ciudad: "Buenos Aires",
+        precio:8000,
+        favoritos:[
+            11,
+            22,
+            33
+        ],
         puntuacion: [
             4,
             2,

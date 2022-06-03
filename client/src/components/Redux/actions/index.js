@@ -33,7 +33,7 @@ export function getUsers() {
 }
 export function getDetail(id) {
   return async function (dispatch) {
-    var json = await axios.get("http://localhost:3001/users/trabajo/" + id);
+    var json = await axios.get("http://localhost:3001/users/detalle/" + id);
     return dispatch({
       type: "DETAIL",
       payload: json.data,
