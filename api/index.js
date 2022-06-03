@@ -4,7 +4,7 @@ const { Profesion, Persona, Direccion, Publicacion } = require('./src/db');
 const tipos = require('./src/routes/tipos');
 const personas = require('./src/routes/data');
 
-DB_CONN.sync({ force: false })
+DB_CONN.sync({ force: true })
     .then(() => {
         console.log('============================');
         console.log('Connected to DB')
