@@ -1,13 +1,14 @@
 import React from 'react';
 import FirstCap from './firstcap/FirstCap';
 import SecondCap from './secondcap/SecondCap';
-import ThirdCap from './thirdcap/ThirdCap';
+import ThirdCap from './thirdcap';
 import logo from '../../assets/logo_finder_white.png';
 import s from './styles.module.css';
 import { Link, useHistory } from 'react-router-dom';
 import { useAuth0 } from '@auth0/auth0-react';
 import logoutImg from '../../assets/logout_white.png';
 import Help from '../Help/Help';
+import { Helmet } from 'react-helmet';
 
 function LandingPage({ descripcion, setDescripcion}) {
   const history=useHistory();
@@ -19,6 +20,7 @@ function LandingPage({ descripcion, setDescripcion}) {
   }
   return (
     <>
+       <Helmet><title>Finder -  Inicio</title></Helmet>
       <div className={s.nav}>
         <img className={s.logo} src={logo} alt='finder'onClick={()=>{
           setTimeout(
