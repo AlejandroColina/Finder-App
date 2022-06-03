@@ -27,12 +27,10 @@ export default function Admin(){
         ||isAuthenticated && user.email==='josecolmenares96@hotmail.com' 
         || isAuthenticated && user.email==='cami.zupanovich@gmail.com'?
 
-        ( <div>
+        ( <div className={s.container}>
         <NavBar/>
-         
-        <div className={s.row}>
         
-            <div className={` ${s.seccionLinks} ${s.column}`}>
+            <div className={s.seccionLinks}>
             <a className={s.navItems} href='#1'>Soporte</a>
             <a className={s.navItems} href='#2'>Dashboard</a>
             <a className={s.navItems} href='#3'>Usuarios</a>
@@ -44,7 +42,6 @@ export default function Admin(){
           <section id='3'><Usuarios/></section>
         </div>
 
-        </div>
         </div> ) : (<Error/>)
     )
 }

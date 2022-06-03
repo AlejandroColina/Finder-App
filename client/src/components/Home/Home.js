@@ -9,6 +9,7 @@ import { SearchBar } from "./SearchBar/SearchBar";
 import { Filtros } from "./Filtros/Filtros";
 import Paginado from '../Paginado/Paginado'
 import Help from "../Help/Help";
+import { Helmet } from 'react-helmet';
 
 import Footer from './../Footer/Footer';
 import Loanding from "./loading/Loanding";
@@ -76,14 +77,17 @@ function Home({ descripcion, setDescripcion }) {
   if(loanding){
     return (
     <div>
-    <Loanding />
+      <Helmet><title>Cargando..</title></Helmet>
+       <Loanding />
     </div>
     )  
   }
 
 
+
   return (
     <div>
+       <Helmet><title>Finder -  Home</title></Helmet>
       <div>
         <SearchBar descripcion={descripcion} setDescripcion={setDescripcion} />
 

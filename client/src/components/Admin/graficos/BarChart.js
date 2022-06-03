@@ -62,7 +62,7 @@ const options ={
             labels,
         }
     return(
-        <div>
+        <div >
             <Bar data={data} options={options}/>
         </div>
     )

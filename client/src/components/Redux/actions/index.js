@@ -145,3 +145,24 @@ export function getAdminMsj(){
     }
 }
 
+
+//abrir el mensaje
+export function getOneMsj(id){
+  return async(dispatch)=>{
+    const detailMsj = await axios.get(`http://localhost:3001/mensaje/user/${id}`,{})
+    return dispatch({
+      type: 'READ_MSJ_ADMIN',
+      payload: detailMsj.data
+    })
+  }
+}
+//leer
+export function readMsj(id,read){
+  return async(dispatch) => {
+  const updateRead = await axios.put(`http://localhost:3001/mensaje/user/${id}`,read)
+  return dispatch({
+    type: 'OPEN_MSJ_ADMIN'
+  })
+}
+}
+

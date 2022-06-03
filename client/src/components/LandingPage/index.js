@@ -1,13 +1,14 @@
 import React from 'react';
 import FirstCap from './firstcap/FirstCap';
 import SecondCap from './secondcap/SecondCap';
-import ThirdCap from './thirdcap/ThirdCap';
+import ThirdCap from './thirdcap';
 import logo from '../../assets/logo_finder_white.png';
 import s from './styles.module.css';
 import { Link, useHistory } from 'react-router-dom';
 import { useAuth0 } from '@auth0/auth0-react';
 import logoutImg from '../../assets/logout_white.png';
 import Help from '../Help/Help';
+import { Helmet } from 'react-helmet';
 
 function LandingPage({ descripcion, setDescripcion}) {
   const history=useHistory();
@@ -19,19 +20,17 @@ function LandingPage({ descripcion, setDescripcion}) {
   }
   return (
     <>
+       <Helmet><title>Finder -  Inicio</title></Helmet>
       <div className={s.nav}>
         <img className={s.logo} src={logo} alt='finder'onClick={()=>{
           setTimeout(
               history.push('./home'),1000
           )}}  />{
         
-            isAuthenticated && user.email==='giulianob94@hotmail.com'
-            ||isAuthenticated && user.email==='josecolmenares96@hotmail.com' 
-            ||isAuthenticated && user.email==='nicosuasnavar@gmail.com'
-            ||isAuthenticated && user.email==='jheinemberstithjn@ufps.edu.co'
-            ||isAuthenticated && user.email==='gabrielcontegrand10@gmail.com'
-            ||isAuthenticated && user.email==='alejandro.colina@ucp.edu.co' 
-             || isAuthenticated && user.email==='cami.zupanovich@gmail.com'? <div className={s.navItems} onClick={()=>{
+            isAuthenticated && ( user.email==='cami.zupanovich@gmail.com' || user.email==='giulianob94@hotmail.com'
+            || user.email==='josecolmenares96@hotmail.com' || user.email==='nicosuasnavar@gmail.com'
+            ||user.email==='jheinemberstithjn@ufps.edu.co' || user.email==='gabrielcontegrand10@gmail.com'
+            || user.email==='alejandro.colina@ucp.edu.co' ) ? <div className={s.navItems} onClick={()=>{
               setTimeout(
                   history.push('./admin'),1000
               )}}>ADMINISTRAR</div> : null}
