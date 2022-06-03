@@ -20,14 +20,14 @@
 }
 
 .li{
-    display: inline;
+    display: flex;
     flex-direction: row;
     height: 10rem;
     margin: 5px;
     color: gainsboro;
     animation: moveInBottom .85s ease-out;
     cursor: pointer;
-    
+    list-style: none;
 }
 
 .botones_paginado{   
