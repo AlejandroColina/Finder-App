@@ -5,7 +5,7 @@ const Destacados = React.lazy(
 )
 
 // HOOK para Lazyload
-function useNearScreen( {distancia = '100px'}){
+export function useNearScreen( {distancia = '100px'}){
     
     const [isNearScreen, setShow] = useState(false)
     const fromRef = useRef()
@@ -42,8 +42,8 @@ export default function LazyDestacados ( props ){
     
     
     return <div ref={fromRef}>
-        <Suspense fallback={<h3>Cargando..</h3>}>
-        { isNearScreen ? <Destacados {...props}/> : <h3>Cargando..</h3>}
+        <Suspense fallback={null}>
+        { isNearScreen ? <Destacados {...props}/> : null }
         </Suspense>
            </div>
 
