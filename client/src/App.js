@@ -16,13 +16,13 @@ function App() {
   const [descripcion, setDescripcion] = useState("");
 
   return (
-    <PayPalScriptProvider
-      options={{
-        "client-id":
-          "Aap4jadH7cd-dUPZ0_VDpphpU312qOG2pZihjsiNVszEuX1skS15JjLcgJ68g6uiP-a-B05RNSHnEy2_",
-      }}
-    >
-      <div className="App">
+    <div className="App">
+        <PayPalScriptProvider
+          options={{
+            "client-id":
+              "Aap4jadH7cd-dUPZ0_VDpphpU312qOG2pZihjsiNVszEuX1skS15JjLcgJ68g6uiP-a-B05RNSHnEy2_",
+          }}
+        >
         <Switch>
           <Route exact path="/">
             <LandingPage
@@ -40,8 +40,8 @@ function App() {
           <Route exact path="/trabajo/:id" component={Detail} />
           <Route path="/*" component={Error} />
         </Switch>
-      </div>
     </PayPalScriptProvider>
+      </div>
   );
 }
 
