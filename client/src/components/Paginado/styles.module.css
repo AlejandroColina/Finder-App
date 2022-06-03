@@ -26,22 +26,29 @@
     margin: 5px;
     color: gainsboro;
     animation: moveInBottom .85s ease-out;
+    cursor: pointer;
+    
 }
 
 .botones_paginado{   
-   
+   margin: 0 5px;
     background-color: #0575E6;
     color: white;
     border: 1px solid #0575E6;
    padding: 8px 16px;
    margin-top: 5px;
    border: 1px solid gray;
-   border-radius: 3px;
+   border-radius: 33%;
    font-family: 'Bebas Neue', cursive;
    transition: all .2s;
-
-
+    height: 4.5rem;
 }
+
+.botones_paginado:hover{
+    cursor: pointer;
+    transform: translateY(-0.5rem);
+}
+
 
 .botones_paginado:focus{
     background-color: #0576e67a;

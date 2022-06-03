@@ -20,7 +20,7 @@ function LandingPage({ descripcion, setDescripcion}) {
   }
   return (
     <>
-       <Helmet><title>Inicio - Finder</title></Helmet>
+       <Helmet><title>Finder -  Inicio</title></Helmet>
       <div className={s.nav}>
         <img className={s.logo} src={logo} alt='finder'onClick={()=>{
           setTimeout(
