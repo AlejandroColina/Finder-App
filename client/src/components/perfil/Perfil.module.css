@@ -1,0 +1,96 @@
+.portada{
+    margin-top:20px;
+    display: flex;
+    justify-content:center;
+}
+
+.nav{
+    width: 100%;
+    height:70px; 
+    position: sticky;
+    background-color: #205bf1ed;
+}
+
+.img{
+    width: 96%;
+    height:400px;
+    border-radius: 15px;
+}
+.perfil{
+    display: flex;
+    margin-left: 40px;
+    margin-top:10px;
+    width: 95%;
+    height:150px;
+    box-shadow: -1px 1px 4px 0px rgb(159 156 156);
+    
+}
+.flex{
+    padding-top: 20px;
+}
+.con_per{
+    display: flex;
+    justify-content:start;
+}
+.imgper{
+    width:150px;
+    height: 120px;
+    margin: 20px;
+    border-radius: 15px;
+}
+.nombre{
+   margin-top: 30px;
+    align-items: center;
+    height: 100px;
+}
+
+.publi{
+    margin-top:20px;
+    width: 80%;
+    height:auto;
+    box-shadow: 1px 0px 7px rgb(133 130 130);
+    background-color: #205bf1ed;
+    margin-bottom: 20px;
+}
+.conten{
+    display:flex;
+    justify-content:center;
+}
+.datos{
+   text-align: center;
+    margin: 20px 30px 0px 20px;
+    width:220px;
+    height:500px;
+    box-shadow: -1px 1px 14px rgb(133 130 130);
+}
+
+.h2{
+    margin-top: 20px;
+    text-align: center;
+    color: #f8feff;
+    font-size: 4em;
+}
+.logo{
+    height: 40px;
+    margin: 10px;
+}
+.centrar_publi{
+    display: flex;
+    justify-content:center;
+    flex-wrap: wrap;
+    margin-top: 30px;
+    gap: 50px;
+}
+.personal{
+    margin-top: 20px;
+}
+.info{
+    display: flex;
+    flex-direction:column;
+    align-items: center;
+    margin-top:10px;
+    
+}
+.boton{
+    margin-top: 7px;
+}
