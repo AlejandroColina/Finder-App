@@ -8,6 +8,7 @@ const InitialState = {
   ciudades: [],
   adminMjes: [],
   loanding: false,
+  msjDetailAdmin:{}
 };
 
 export default function rootReducer(state = InitialState, action) {
@@ -74,6 +75,17 @@ export default function rootReducer(state = InitialState, action) {
             ...state,
              loanding: true
         }
+
+    case 'READ_MSJ_ADMIN':
+      return{
+        ...state,
+        msjDetailAdmin:action.payload
+      }
+
+    case 'OPEN_MSJ_ADMIN':
+      return{
+        ...state,
+      }
 
     default:
       return state;
