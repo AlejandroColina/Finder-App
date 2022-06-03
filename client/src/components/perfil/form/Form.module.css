@@ -1,0 +1,26 @@
+.form{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:600px;
+    background-color: #205bf1ed;
+}
+.div{
+    padding: 20px;
+}
+
+.input{
+width: 200px;
+height:20px;
+}
+.div_boton{
+    display: flex;
+    justify-content:center;
+}
+.button{
+    width:100px;
+    height: 20px;
+    background-color:#ffffff;
+    color: rgb(60, 125, 245);
+    border: none;
+}

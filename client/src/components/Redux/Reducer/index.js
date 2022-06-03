@@ -75,6 +75,10 @@ export default function rootReducer(state = InitialState, action) {
             ...state,
              loanding: true
         }
+        case 'DELETE_POST':
+          return {
+            ...state
+          }
 
     case 'READ_MSJ_ADMIN':
       return{

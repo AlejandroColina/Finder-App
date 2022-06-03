@@ -144,6 +144,8 @@ export function getAdminMsj(){
         })
     }
 }
+
+
 //abrir el mensaje
 export function getOneMsj(id){
   return async(dispatch)=>{
@@ -163,3 +165,4 @@ export function readMsj(id,read){
   })
 }
 }
+
