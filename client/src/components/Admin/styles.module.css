@@ -1,22 +1,20 @@
 /*estilos contenedores*/
+.container{
+    background-color: #0575E6;
+    width: 100%;
+    height: 100%;
 
-.row{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-}
-.column{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    margin-top: 60px;
 }
 .seccionLinks{
     background-color: #0575E6;
     height: 100vh;
     width: 15%;
     position: fixed;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    margin-top: 60px;
 }
 .navItems{
     padding: 20px 0px;
@@ -32,16 +30,14 @@
     color: #0575E6;
 }
 .containerComp{
-    padding-top: 60px;
     margin-left: 15%;
-    justify-content: center;
-    right: 0px;
 }
-/*estilos de dashboard*/
 .containerDash{
     padding-top: 60px;
     min-height: 100vh;
+    background-color: white;
 }
+/*estilo titulo*/
 .title{
     width: 100%;
     color: white;
@@ -60,15 +56,25 @@
     min-height: 100vh;
     padding-top: 60px;
 }
-.card{
-    margin: 20px;
-    box-shadow: 0px 0px 10px #0575E6;
+.bandeja{
+    width: 100%;
+    min-height: 100vh;
+    padding-top: 60px;
     display: flex;
     flex-direction: column;
-    justify-content:space-between;
-    align-items: center;
-    width: 300px;
-    height: min-content;
+}
+.celdasMsj{
+    padding: 5px;
+    color: #001b38;
+    font-size: 15px;
+}
+.celdaBtn{
+    color: #0575E6;
+    font-size: 25px;
+    font-weight: bolder;
+}
+.tablecolBandeja{
+    background-color: #001b38;
 }
 .importantText{
     background-color: #0575E6;
@@ -77,10 +83,74 @@
     font-size: 15px;
     width: 280px;
 }
-.text{
+/* estilos tabla*/
+.containertable{
+    padding: 20px;
+}
+.table{
+    width: 100%;
+}
+.tablecol{
+    background-color: #0576e6a9;
+    color: white;
+    padding: 10px;
+}
+.celdas{
+    border-bottom: 1px solid  #0576e65b;
+    padding: 5px;
+}
+/*dashboard*/
+.typeContainer{
+    display: flex;
+    flex-direction: row;
+    margin: 20px;
+}
+.type{
     font-size: 15px;
-    padding: 8px;
-    color: #0575E6;
+    color: #0576e6a9;
+}
+/*mensaje detalle*/
+.containerReading{
+    background-color: white;
+    position: fixed;
+    top: 80px;
+    right: 2%;
+    box-shadow:1px 2px 20px #001b38;
+    width: 360px;
+    padding-top: 30px;
+}
+.closeReading{
+    position: fixed;
+    top: 80px;
+    right: 2%;
+    width: 360px;
+    background: none;
+    display: flex;
+    justify-content: flex-end;
+    padding: 5px;
+    border: none;
+    font-size: 10px;
+    background-color: #001b38;
+    color: white;
+}
+.contMsj{
+    width: 100%;
+    padding:10px;
+}
+.text{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    font-size: 10px;
+    background-color: #001b38;
+    color: white;
+    height: 20px;
+    width: 300px;
+}
+.mail{
+    font-size: 15px;
+    padding: 5px;
+    color: #001b38;
 }
 .textarea{
     width: 100%;
@@ -93,9 +163,9 @@
     color: #0576e6a9;
 }
 .btn{
-    background-color: #0576e6a9;
+    background-color: #001b38;
     color: white;
-    border: 1px solid #0576e6a9;
+    border: 1px solid #001b38;
     font-size: 15px;
     width: 100%;
     transition: 1s;
@@ -104,34 +174,6 @@
 }
 .btn:hover{
     background-color: white;
-    color: #0575E6;
+    color: #001b38;
     border: 1px solid white;
-}
-
-/* estilos tabla*/
-.containertable{
-    padding: 20px;
-}
-.table{
-    width: 100%;
-    border: 2px solid  #0576e65b;
-}
-.tablecol{
-    background-color: #0576e6a9;
-    color: white;
-    padding: 10px;
-}
-.celdas{
-    border-top: 1px solid  #0576e65b;
-    padding: 5px;
-}
-/*dashboard*/
-.typeContainer{
-    display: flex;
-    flex-direction: row;
-    margin: 20px;
-}
-.type{
-    font-size: 15px;
-    color: #0576e6a9;
 }
