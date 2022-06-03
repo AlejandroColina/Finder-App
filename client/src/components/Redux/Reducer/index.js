@@ -8,7 +8,8 @@ const InitialState = {
   ciudades: [],
   adminMjes: [],
   loanding: false,
-  msjDetailAdmin:{}
+  msjDetailAdmin: {},
+  ubicacion: {}
 };
 
 export default function rootReducer(state = InitialState, action) {
@@ -61,34 +62,40 @@ export default function rootReducer(state = InitialState, action) {
       };
 
     case 'MSJ_USER_AL_ADMIN':
-        return{
-            ...state,
-        }
+      return {
+        ...state,
+      }
 
     case 'GET_MSJ_ADMIN':
-        return{
-            ...state,
-            adminMjes: action.payload
-        }
+      return {
+        ...state,
+        adminMjes: action.payload
+      }
     case 'LOADER':
-        return {
-            ...state,
-             loanding: true
-        }
-        case 'DELETE_POST':
-          return {
-            ...state
-          }
+      return {
+        ...state,
+        loanding: true
+      }
+    case 'DELETE_POST':
+      return {
+        ...state
+      }
 
     case 'READ_MSJ_ADMIN':
-      return{
+      return {
         ...state,
-        msjDetailAdmin:action.payload
+        msjDetailAdmin: action.payload
       }
 
     case 'OPEN_MSJ_ADMIN':
-      return{
+      return {
         ...state,
+      }
+
+    case 'UBICACION':
+      return {
+        ...state,
+        ubicacion: action.payload
       }
 
     default:
