@@ -5,7 +5,7 @@ export function rederCard(profesion, genero, promedio, ciudad, descripcion) {
     dispatch(loanding());
     try {
       let data = await axios.get(
-        `http://localhost:3001/users?profesion=${profesion}&genero=${genero}&promedio=${promedio}&ciudad=${ciudad}&descripcion=${descripcion}`
+        `http://localhost:3001/publicaciones?profesion=${profesion}&genero=${genero}&promedio=${promedio}&ciudad=${ciudad}&descripcion=${descripcion}`
       );
       console.log(data.data);
       return dispatch({
