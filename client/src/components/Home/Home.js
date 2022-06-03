@@ -33,7 +33,7 @@ function Home({ descripcion, setDescripcion }) {
 
 
   const loanding = useSelector((state) => state.loanding);
-  
+
 
   const [filters, setFilters] = useState(EMPTY_FILTERS)
 
@@ -74,20 +74,20 @@ function Home({ descripcion, setDescripcion }) {
     setDescripcion('')
   }
   //Skeleton
-  if(loanding){
+  if (loanding) {
     return (
-    <div>
-      <Helmet><title>Cargando..</title></Helmet>
-       <Loanding />
-    </div>
-    )  
+      <div>
+        <Helmet><title>Cargando..</title></Helmet>
+        <Loanding />
+      </div>
+    )
   }
 
 
 
   return (
     <div>
-       <Helmet><title>Finder -  Home</title></Helmet>
+      <Helmet><title>Finder -  Home</title></Helmet>
       <div>
         <SearchBar descripcion={descripcion} setDescripcion={setDescripcion} />
 
@@ -112,20 +112,20 @@ function Home({ descripcion, setDescripcion }) {
               }
             </div>
             {currentUsuarios.length ?
-              currentUsuarios.map((el) => el.publicaciones.map(e => (
+              currentUsuarios.map((el) => (
                 <div className="box">
                   <Cards
-                    key={el.id}
+                    key={el.idPublicacion}
                     promedio={el.promedio}
                     nombres={el.nombres}
                     imagen={el.imagen ? el.imagen : 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQgemhlS2C1Ldo2xTSqZVm5aAXUGT3DaaJZVRLgof7-GCoq7n0YnVnC7zkRHkpdQr4j4Zk&usqp=CAU'}
-                    descripcion={e.descripcion}
+                    descripcion={el.descripcion}
                     Profesions={el.Profesions.length ? el.Profesions : 'nada'}
                     logoProfesion={el.logoProfesion}
-                    id={el.id}
+                    id={el.idPersona}
                   />
                 </div>
-              ))) : <NoResult />}
+              )) : <NoResult />}
           </section>
 
           <section className={styles.destacados}>
@@ -135,7 +135,7 @@ function Home({ descripcion, setDescripcion }) {
                 destacados.map(el => {
                   return (
                     <section key={el.id}>
-                    
+
                       <Destacados
                         key={`${el.id}A`}
                         id={el.id}
@@ -147,7 +147,7 @@ function Home({ descripcion, setDescripcion }) {
                         descripcion={el.descripcion}
                         promedio={el.promedio}
                       />
-                     
+
                     </section>
                   )
                 })
@@ -160,7 +160,7 @@ function Home({ descripcion, setDescripcion }) {
         </div>
         <Help />
       </div>
-     </div>
+    </div>
   );
 
 }
