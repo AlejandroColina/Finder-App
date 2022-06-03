@@ -208,7 +208,7 @@ router.post("/crear", async function (req, res) {
   let consultaBD = await Persona.findOne({
     where: { documento: req.body.input.documento },
   });
-  console.log(req.body)
+  
   if (consultaBD == null) {
     Persona.create({
       nombres: req.body.input.nombres,

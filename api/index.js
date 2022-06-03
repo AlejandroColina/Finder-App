@@ -1,8 +1,8 @@
 const server = require('./src/app');
 const { DB_CONN } = require('./src/db');
 const { Profesion, Persona, Direccion, Publicacion } = require('./src/db');
-const tipos = require('./src/routes/tipos');
-const personas = require('./src/routes/data');
+const tipos = require('./src/routes/infoFake/tipos');
+const personas = require('./src/routes/infoFake/data');
 
 DB_CONN.sync({ force: true })
     .then(() => {
