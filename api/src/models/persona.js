@@ -8,7 +8,7 @@ module.exports = (sequelize) => {
     },
     apellidos: {
       type: DataTypes.STRING(50),
-      allowNull: false,
+      // allowNull: false,
     },
     documento: {
       type: DataTypes.BIGINT,
@@ -16,7 +16,7 @@ module.exports = (sequelize) => {
     },
     telefono: {
       type: DataTypes.BIGINT,
-      allowNull: false,
+      // allowNull: false,
     },
     email: {
       type: DataTypes.STRING(50),

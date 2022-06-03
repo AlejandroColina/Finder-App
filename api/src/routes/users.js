@@ -208,7 +208,7 @@ router.post("/crear", async function (req, res) {
   let consultaBD = await Persona.findOne({
     where: { documento: req.body.input.documento },
   });
-  
+
   if (consultaBD == null) {
     Persona.create({
       nombres: req.body.input.nombres,
@@ -258,28 +258,79 @@ router.post("/crear", async function (req, res) {
   }
 });
 
-router.patch("/modificar/:id", async (req, res) => {
-  const id = req.params.id;
-  let { nombres, genero, edad, ciudad, descripcion, email } = req.query;
-  // if (descripcion) {
-  //   Persona.update({ descripcion: req.query.descripcion }, { where: { id: id } })
-  // }
+router.post('/nuevo', async (req, res, next) => {
+  try {
+    const { nombres, email, imagen } = req.body;
+    let consulta = await Persona.findOne({
+      where: {
+        email: email
+      }
+    })
+
+    if (consulta == null) {
+      let persona = await Persona.create({
+        nombres: nombres,
+        email: email,
+        imagen: imagen
+      });
+      return res.json(persona)
+    } else {
+      return res.json(consulta)
+    }
+
+  } catch (error) {
+    next(error)
+  }
+});
+
+router.get('/validar/:email', async (req, res, next) => {
+  try {
+    const { email } = req.params;
+
+    let consulta = await Persona.findAll({
+      include: [Profesion, Direccion, Publicacion],
+      where: { email: email }
+    });
+
+    if (
+      consulta[0].apellidos == null ||
+      consulta[0].documento == null ||
+      consulta[0].telefono == null
+    ) { res.send(false) } else {
+      res.send(true);
+    }
+  } catch (error) {
+    next(error)
+  }
+});
+
+router.patch("/modificar/:email", async (req, res) => {
+  const email = req.params.email;
+  let { nombres, apellidos, telefono, genero, edad, ciudad, documento } = req.query;
+  
+  if (documento) {
+    Persona.update({ documento: req.query.documento }, { where: { email: email } })
+  }
+  if (apellidos) {
+    Persona.update({ apellidos: req.query.apellidos }, { where: { email: email } })
+  }
+  if (telefono) {
+    Persona.update({ telefono: req.query.telefono }, { where: { email: email } })
+  }
   if (nombres) {
-    Persona.update({ nombres: req.query.nombres }, { where: { id: id } });
+    Persona.update({ nombres: req.query.nombres }, { where: { email: email } });
   }
   if (genero) {
-    Persona.update({ genero: req.query.genero }, { where: { id: id } });
+    Persona.update({ genero: req.query.genero }, { where: { email: email } });
   }
   if (edad) {
-    Persona.update({ edad: req.query.edad }, { where: { id: id } });
+    Persona.update({ edad: req.query.edad }, { where: { email: email } });
   }
   if (ciudad) {
-    Persona.update({ ciudad: req.query.ciudad }, { where: { id: id } });
+    Persona.update({ ciudad: req.query.ciudad }, { where: { email: email } });
   }
-  if (email) {
-    Persona.update({ email: req.query.email }, { where: { id: id } });
-  }
-  const objetivo = await Persona.findOne({ where: { id: id } });
+  
+  const objetivo = await Persona.findOne({ where: { email: email } });
   res.send(objetivo);
 });
 
@@ -319,4 +370,19 @@ router.get("/detalle/:idPublicacion", async (req, res, next) => {
   }
 });
 
+router.get('/perfil/:email', async (req, res, next) => {
+  try {
+    const { email } = req.params;
+
+    let consulta = await Persona.findAll({
+      include: [Profesion, Direccion, Publicacion],
+      where: { email: email }
+    });
+
+    return res.json(consulta);
+
+  } catch (error) {
+    next(error)
+  }
+});
 module.exports = router;
