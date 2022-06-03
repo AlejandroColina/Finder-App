@@ -32,9 +32,9 @@ export default function Detail({Profesions}) {
 
   let price = 0
   if(MyDetail.promedio >= 1) price = 10
-  if(MyDetail.promedio >= 2) price = 15
-  if(MyDetail.promedio >= 3) price = 30
   if(MyDetail.promedio >= 4) price = 50
+  if(MyDetail.promedio >= 3) price = 30
+  if(MyDetail.promedio >= 2) price = 15
   
   const product = {
     description: "Comision",
