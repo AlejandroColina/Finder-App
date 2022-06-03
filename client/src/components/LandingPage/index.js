@@ -27,13 +27,10 @@ function LandingPage({ descripcion, setDescripcion}) {
               history.push('./home'),1000
           )}}  />{
         
-            isAuthenticated && user.email==='giulianob94@hotmail.com'
-            ||isAuthenticated && user.email==='josecolmenares96@hotmail.com' 
-            ||isAuthenticated && user.email==='nicosuasnavar@gmail.com'
-            ||isAuthenticated && user.email==='jheinemberstithjn@ufps.edu.co'
-            ||isAuthenticated && user.email==='gabrielcontegrand10@gmail.com'
-            ||isAuthenticated && user.email==='alejandro.colina@ucp.edu.co' 
-             || isAuthenticated && user.email==='cami.zupanovich@gmail.com'? <div className={s.navItems} onClick={()=>{
+            isAuthenticated && ( user.email==='cami.zupanovich@gmail.com' || user.email==='giulianob94@hotmail.com'
+            || user.email==='josecolmenares96@hotmail.com' || user.email==='nicosuasnavar@gmail.com'
+            ||user.email==='jheinemberstithjn@ufps.edu.co' || user.email==='gabrielcontegrand10@gmail.com'
+            || user.email==='alejandro.colina@ucp.edu.co' ) ? <div className={s.navItems} onClick={()=>{
               setTimeout(
                   history.push('./admin'),1000
               )}}>ADMINISTRAR</div> : null}

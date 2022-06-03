@@ -5,7 +5,7 @@ export function rederCard(profesion, genero, promedio, ciudad, descripcion) {
     dispatch(loanding());
     try {
       let data = await axios.get(
-        `http://localhost:3001/users?profesion=${profesion}&genero=${genero}&promedio=${promedio}&ciudad=${ciudad}&descripcion=${descripcion}`
+        `http://localhost:3001/publicaciones?profesion=${profesion}&genero=${genero}&promedio=${promedio}&ciudad=${ciudad}&descripcion=${descripcion}`
       );
       console.log(data.data);
       return dispatch({
@@ -144,3 +144,25 @@ export function getAdminMsj(){
         })
     }
 }
+
+
+//abrir el mensaje
+export function getOneMsj(id){
+  return async(dispatch)=>{
+    const detailMsj = await axios.get(`http://localhost:3001/mensaje/user/${id}`,{})
+    return dispatch({
+      type: 'READ_MSJ_ADMIN',
+      payload: detailMsj.data
+    })
+  }
+}
+//leer
+export function readMsj(id,read){
+  return async(dispatch) => {
+  const updateRead = await axios.put(`http://localhost:3001/mensaje/user/${id}`,read)
+  return dispatch({
+    type: 'OPEN_MSJ_ADMIN'
+  })
+}
+}
+
