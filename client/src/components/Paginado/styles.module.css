@@ -20,14 +20,14 @@
 }
 
 .li{
-    display: inline;
+    display: flex;
     flex-direction: row;
     height: 10rem;
     margin: 5px;
     color: gainsboro;
     animation: moveInBottom .85s ease-out;
     cursor: pointer;
-    
+    list-style: none;
 }
 
 .botones_paginado{   
@@ -43,7 +43,7 @@
    transition: all .2s;
     height: 4.5rem;
     
-    font-weight: 600;
+    font-weight: bold;
     color: whitesmoke;
 }
 
