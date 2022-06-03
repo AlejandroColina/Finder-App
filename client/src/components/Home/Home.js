@@ -9,10 +9,11 @@ import { SearchBar } from "./SearchBar/SearchBar";
 import { Filtros } from "./Filtros/Filtros";
 import Paginado from '../Paginado/Paginado'
 import Help from "../Help/Help";
-import Destacados from "./Destacados/Destacados";
+
 import Footer from './../Footer/Footer';
 import Loanding from "./loading/Loanding";
 import NoResult from './noResult/NoResult'
+import Destacados from "./Destacados";
 
 
 function Home({ descripcion, setDescripcion }) {
@@ -30,6 +31,8 @@ function Home({ descripcion, setDescripcion }) {
   }
 
 
+  const loanding = useSelector((state) => state.loanding);
+  
 
   const [filters, setFilters] = useState(EMPTY_FILTERS)
 
@@ -37,7 +40,6 @@ function Home({ descripcion, setDescripcion }) {
 
 
   const trabajadores = useSelector((state) => state.trabajadores);
-  const loanding = useSelector((state) => state.loanding);
   const handleFilterChanges = (e) => {
     setFilters({
       ...filters,
@@ -70,9 +72,18 @@ function Home({ descripcion, setDescripcion }) {
     setFilters(EMPTY_FILTERS)
     setDescripcion('')
   }
+  //Skeleton
+  if(loanding){
+    return (
+    <div>
+    <Loanding />
+    </div>
+    )  
+  }
+
 
   return (
-    <div>{loanding ? <Loanding /> :
+    <div>
       <div>
         <SearchBar descripcion={descripcion} setDescripcion={setDescripcion} />
 
@@ -120,6 +131,7 @@ function Home({ descripcion, setDescripcion }) {
                 destacados.map(el => {
                   return (
                     <section key={el.id}>
+                    
                       <Destacados
                         key={`${el.id}A`}
                         id={el.id}
@@ -131,6 +143,7 @@ function Home({ descripcion, setDescripcion }) {
                         descripcion={el.descripcion}
                         promedio={el.promedio}
                       />
+                     
                     </section>
                   )
                 })
@@ -143,7 +156,7 @@ function Home({ descripcion, setDescripcion }) {
         </div>
         <Help />
       </div>
-    } </div>
+     </div>
   );
 
 }
