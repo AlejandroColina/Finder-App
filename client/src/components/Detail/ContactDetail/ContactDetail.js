@@ -3,8 +3,8 @@ import styles from './styles.module.css';
 
 
 export const ContactDetail = ({ MyDetail }) => {
-  
   const { telefono, email, documento } = MyDetail
+  console.log(MyDetail)
   
     return (
     <div className={styles.container}>

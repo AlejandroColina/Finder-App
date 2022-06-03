@@ -87,7 +87,7 @@ function Home({ descripcion, setDescripcion }) {
 
   return (
     <div>
-       <Helmet><title>Home - Finder</title></Helmet>
+       <Helmet><title>Finder -  Home</title></Helmet>
       <div>
         <SearchBar descripcion={descripcion} setDescripcion={setDescripcion} />
 
