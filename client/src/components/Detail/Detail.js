@@ -36,6 +36,27 @@ export default function Detail({Profesions}) {
       }      
   }, [id, dispatch])
 
+
+  let price = 0
+  if(MyDetail.promedio >= 1) price = 10
+  if(MyDetail.promedio >= 4) price = 50
+  if(MyDetail.promedio >= 3) price = 30
+  if(MyDetail.promedio >= 2) price = 15
+  
+  const product = {
+    description: "Comision",
+    price: price
+  }
+
+   const [order, setOrder] = useState(null)
+   if(order) {
+     console.log(order)
+      Swal.fire({ title:'Perfecto!', text:'Has accedido a los contactos del trabajador.¡Contáctalo!', icon:'success' } )
+
+    }
+
+
+
     return (   
       <>
               <NavBar/>
