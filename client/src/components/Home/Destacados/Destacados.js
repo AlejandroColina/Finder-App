@@ -1,8 +1,12 @@
 import React from 'react';
-import styles from './styles.module.css';
-import { Link } from 'react-router-dom';
+import styles from './styles.module.css'
 
-function Destacados({ Profesions, logoProfesion, imagen, nombres, descripcion, promedio, id, apellidos }) {
+import { Link } from "react-router-dom";
+
+
+
+
+export default function Destacados({ Profesions, logoProfesion, imagen, nombres, descripcion, promedio, id, apellidos }) {
     let stars = []
     for (let i = 1; i <= promedio; i++) stars.push(i);
     return (
@@ -32,5 +36,3 @@ function Destacados({ Profesions, logoProfesion, imagen, nombres, descripcion, p
         </div>
     )
 }
-
-export default Destacados

@@ -17,19 +17,19 @@ export const Filtros = ({ handleFilterChanges, resetValues , filters}) => {
       <label className={styles.label}>Sector</label>
       <select className={styles.select} name="profesion" onChange={handleFilterChanges} value={profesion}>
         <option value=''>Todos</option>
-        {empleos?.map(e => <option value={e}>{e}</option>)}
+        {empleos?.map(e => <option key={e} value={e}>{e}</option>)}
       </select>
     </div>
 
     <div className={styles.filtro}>
       <label className={styles.label}>Puntaje</label>
       <select className={styles.select} name="promedio" onChange={handleFilterChanges} value={promedio}>
-        <option value='' >Todos</option>
-        <option value='1' >+1</option>
-        <option value='2' >+2</option>
-        <option value='3' >+3</option>
-        <option value='4' >+4</option>
-        <option value='5' >5</option>
+        <option key={0} value='' >Todos</option>
+        <option key={1} value='1' >+1</option>
+        <option key={2} value='2' >+2</option>
+        <option key={3} value='3' >+3</option>
+        <option key={4} value='4' >+4</option>
+        <option key={5} value='5' >5</option>
       </select>
     </div>
 
@@ -37,7 +37,7 @@ export const Filtros = ({ handleFilterChanges, resetValues , filters}) => {
       <label className={styles.label}>Ciudad</label>
       <select className={styles.select} name="ciudad" onChange={handleFilterChanges} value={ciudad}>
         <option value=''>Todas</option>
-        {ciudades?.map(ciudad => <option  value={ciudad}>{ciudad}</option>)}
+        {ciudades?.map(ciudad => <option key={ciudad} value={ciudad}>{ciudad}</option>)}
       </select>
     </div>
     

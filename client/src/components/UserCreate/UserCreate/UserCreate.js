@@ -60,6 +60,7 @@ export default function UserCreate() {
   const dispatch = useDispatch();
 
   const [image, setImage] = useState("");
+  const [selected, setSelected] = useState(null)
   const [loading, setLoading] = useState(false);
   const formik = useFormik({
     initialValues: {
@@ -72,11 +73,13 @@ export default function UserCreate() {
       telefono: "",
       direccion: "",
       profesion: "",
+      imagen: "",
+      puntuacion: [],
     },
-    // validate,
-    // onSubmit: (values) => {
-    //   alert(JSON(values, null, 2));
-    // },
+    validate,
+    onSubmit: (values) => {
+      alert(JSON(values, null, 2));
+    },
   });
 
   //Cloudinary
@@ -97,6 +100,7 @@ export default function UserCreate() {
 
     const file = await res.json();
     setImage(file.secure_url);
+    setInput({ ...input, imagen: file.secure_url });
     setLoading(false);
   };
 
@@ -115,7 +119,7 @@ export default function UserCreate() {
     e.preventDefault();
     let profesionId = Object.keys(empleosSelected);
     axios
-      .post("http://localhost:3001/users/crear", { input, profesionId })
+      .post("http://localhost:3001/users/crear", { input, selected })
       .then((res) => {
         console.log(res);
         alert("Usuario creado");
@@ -125,9 +129,6 @@ export default function UserCreate() {
         alert("No se pudo crear el usuario");
       });
   }
-
-
-  
 
   // useState de los inputs
   const [input, setInput] = useState({
@@ -140,6 +141,7 @@ export default function UserCreate() {
     telefono: "",
     direccion: "",
     genero: "",
+    imagen: "",
     puntuacion: [],
   });
 
@@ -164,6 +166,8 @@ export default function UserCreate() {
   useEffect(() => {
     dispatch(getEmpleosForm());
   }, [dispatch]);
+
+  const handleChange1 = (e) => { setSelected(e.target.value) }
 
   return (
     <>
@@ -311,7 +315,7 @@ export default function UserCreate() {
               type="number"
               onChange={handleChange}
               value={input.telefono}
-              // onBlur={formik.handleBlur}
+            // onBlur={formik.handleBlur}
             />
 
             <label htmlFor="direccion"></label>
@@ -339,20 +343,20 @@ export default function UserCreate() {
                 })}
             </select> */}
             <div>
-              <p>profesion</p>
-              {empleos &&
-                empleos.map((el) => (
-                  <div>
-                    <input
-                      type="checkbox"
-                      name="empleo"
-                      value={el.nombre}
-                      id={el.id}
-                      onChange={selectChange}
-                    />
-                    <label for="empleo">{el.nombre}</label>
-                  </div>
-                ))}
+              <div>
+                <select value={selected} onChange={handleChange1}>
+                  {empleos &&
+                    empleos.map((el, id) => (
+                      <option
+                        name="empleo"
+                        value={id + 1}
+                      >
+                        {el.nombre}
+                      </option>
+                    ))}
+                </select>
+                <label for="empleo">Seleccione profesion</label>
+              </div>
             </div>
             <button className="submit" type="submit">
               Registrarse!

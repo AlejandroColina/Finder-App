@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { getDetail, getDeleteDetail } from "../Redux/actions/index"
@@ -7,8 +7,7 @@ import NavBar from '../NavBar/NavBar'
 import { Link } from "react-router-dom";
 import { useAuth0 } from '@auth0/auth0-react';
 import { PaypalCheckoutBtn } from "./PaypalCheckoutBtn";
-import Swal from "sweetalert2";
-import { ContactDetail } from "./ContactDetail/ContactDetail";
+
 
 
 export default function Detail({Profesions}) {
@@ -19,35 +18,23 @@ export default function Detail({Profesions}) {
     var onlyFirst = user.name.split(' ');
   }
   
+  const product = {
+    description: "Comision",
+    price: 25
+  }
+
+   
+
   const dispatch = useDispatch();
   const { id } = useParams();
   const MyDetail = useSelector(state => state.detail)
-  console.log(MyDetail)
+
   useEffect(() => {
     dispatch(getDetail(id))
     return function(){
       dispatch(getDeleteDetail())  
       }      
   }, [id, dispatch])
-
-  let price = 0
-  if(MyDetail.promedio >= 1) price = 10
-  if(MyDetail.promedio >= 2) price = 15
-  if(MyDetail.promedio >= 3) price = 30
-  if(MyDetail.promedio >= 4) price = 50
-  
-  const product = {
-    description: "Comision",
-    price: price
-  }
-
-   const [order, setOrder] = useState(null)
-   if(order) {
-     console.log(order)
-      Swal.fire({ title:'Perfecto!', text:'Has accedido a los contactos del trabajador.¡Contáctalo!', icon:'success' } )
-
-    }
-
 
     return (   
       <>
@@ -89,30 +76,20 @@ export default function Detail({Profesions}) {
                       Contratar
                     </span>
                   </button>                 */}
-                  { (!order) ? 
                    <div className="paypal-button-container">
-                     <PaypalCheckoutBtn setOrder={setOrder}  product={product} />
+                     <PaypalCheckoutBtn product={product} />
                    </div>
-                  :
-                  <div className="detail">
-                    <ContactDetail MyDetail={MyDetail} />
-                  </div>
-                }
-
-                
-                
                 </div>                    
               </div>                
                 <div className="product-image">
                   
                   <img className="divimg" src={MyDetail.imagen} alt="imagen_src"></img>
-                 
-
+                  
 
                   <div className="info">
                     <h2 className="aboutD">Descripcion</h2>
                       <h1 className="aboutDescripcion">{MyDetail.descripcion}</h1>                     
-                      <h1 className="aboutD">Sector</h1>
+                      <h1 className="aboutD">Profesiones</h1>
                       <h1 className="aboutDescripcion">{MyDetail.Profesions}</h1>
                   </div>
                 </div>
@@ -129,6 +106,3 @@ export default function Detail({Profesions}) {
       </>     
       
     )}
-  
-
-    
