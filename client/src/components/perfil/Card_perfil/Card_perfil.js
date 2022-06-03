@@ -1,6 +1,12 @@
 import React from "react";
 import s from "./Card_perfil.module.css";
-const Card_perfil = ({ nombre, precio, descripcion, imagen, Profesions }) => {
+const Card_perfil = ({ nombre, precio, descripcion, imagen, Profesions, id }) => {
+
+ const handleonClik = (id) =>{
+    
+ }
+
+
   return (
     <div className={s.contenedor}>
       <div className={s.centrar}>

@@ -72,6 +72,7 @@ const Perfil = () => {
                 nombre={person[0].nombres}
                 imagen={person[0].imagen}
                 Profesions={person[0].Profesions}
+                id={el.id}
                />
             ))}
             </div>
