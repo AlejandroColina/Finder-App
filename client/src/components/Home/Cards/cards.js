@@ -25,7 +25,7 @@ export default function Cards({
 
         <div className={s.avatarcontainer}>
           <img src={imagen} alt="avatar" className={s.avatar} />
-          <p className={s.nombre}>{nombres}</p>
+          <p className={s.nombre}>{nombres.split(' ')[0]}</p>
           <div className={s.hover}>
             <div className={s.icontwitter}></div>
           </div>
