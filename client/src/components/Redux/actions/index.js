@@ -180,3 +180,12 @@ export function getUbicacion() {
   }
 }
 
+export function getPublicacionDeUsuario(email){
+  return async(dispatch)=>{
+      let publicaciones = await axios.get(`http://localhost:3001/publicaciones?email=${email}`)
+      return dispatch({
+        type: 'PUBLICACIONES_USUARIO',
+        payload: publicaciones.data
+      })
+  }
+}

@@ -1,15 +1,24 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { getDetail, getDeleteDetail } from "../Redux/actions/index";
+import { getDetail, getDeleteDetail, getPublicacionDeUsuario } from "../Redux/actions/index";
 import NavBar from '../NavBar/NavBar';
 import s from './Detail.module.css';
-import { useAuth0 } from '@auth0/auth0-react';
+import { useAuth0, User } from '@auth0/auth0-react';
 import { PaypalCheckoutBtn } from "./PaypalCheckoutBtn";
 import Swal from "sweetalert2";
 import { ContactDetail } from "./ContactDetail/ContactDetail";
-import Comentarios from "../Comentarios/Comentarios";
 import gps from '../../assets/gps.png';
+import Box from '@mui/material/Box';
+import Rating from '@mui/material/Rating';
+import Typography from '@mui/material/Typography';
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
+import {CardActionArea} from '@mui/material';
+import Footer from '../Footer/Footer';
+import Help from '../Help/Help';
+import Comentar from './Comentar/Comentar';
 
 
 
@@ -30,7 +39,8 @@ export default function Detail({Profesions}) {
   console.log(MyDetail)
   
   useEffect(() => {
-    dispatch(getDetail(id))
+    dispatch(getDetail(id));
+    dispatch(getPublicacionDeUsuario(MyDetail.email));
     return function(){
       dispatch(getDeleteDetail())  
     }      
@@ -57,24 +67,8 @@ export default function Detail({Profesions}) {
 
     }
 
-
-
-/*     Profesions: "Educacion y Docencia"
-    apellidos: "Robledo"
-    ciudad: "Buenos Aires"
-    descripcion: "Sed officiis quo dolores ut consequuntur temporibus recusandae facere."
-    direccion: "83731 Chavez Glorieta"
-    documento: "379771"
-    edad: 22
-    email: "Gonzalo97@yahoo.com"
-    genero: "hombre"
-    imagen: "https://image.shutterstock.com/image-photo/drummer-playing-drums-smoke-powder-260nw-1040614744.jpg"
-    nombres: "Alfonso"
-    pais: "Argentina"
-    precio: 1750
-    promedio: 3
-    telefono: "570768" */
-
+    const publicaciones  = useSelector((state)=>state.publicacionesDeUnaPersona);
+    const Todaspublicaciones = publicaciones.filter((p)=>p.id!==MyDetail.id);
     return (   
       <>
       <NavBar/>
@@ -85,33 +79,82 @@ export default function Detail({Profesions}) {
 
         <div className={s.card}>
 
-          <div className={s.nombres}>Hola Soy<p> </p><strong>{MyDetail.nombres} </strong>!</div>
+          <div className={s.nombres}><span className={s.espacio}>Hola Soy</span><strong>{MyDetail.nombres} </strong>!</div>
           <img className={s.img} src={MyDetail.imagen} alt={MyDetail.nombres}/>
           <div className={s.ciudad}>
             <img src={gps} alt='ubicacion' className={s.gps}/>
             {MyDetail.ciudad},{MyDetail.pais}
           </div>
-
-          {(!order) ? 
-            <div className="paypal-button-container">
-               <PaypalCheckoutBtn product={product} setOrder={setOrder}/>
-            </div>
-          : <ContactDetail MyDetail={MyDetail}  />
-                }
+          <div className={s.acerca}>Acerca de</div>
+          <div className={s.descripcion}>"{MyDetail.descripcion}"</div>
+          <br/><br/>
 
         </div>
 
-      <div className="control">
-          {/* <button className="btn">
-              <span className="price">80.000 $ </span>
-              <span className="shopping-cart">
-              <i className="fa fa-shopping-cart" aria-hidden="true"></i></span>
-              <span className="buy">
-              Contratar
-              </span>
-              </button>                 */}
-      </div>       
-              <Comentarios/>
+
+        <div className={s.containerInfo}>
+
+          <div className={s.titulos}>SERVICIO</div>
+          <hr/>
+          <div className={s.subtitulos}>{MyDetail.Profesions}</div>
+          <div className={s.contenido}>{MyDetail.descripcion}</div>
+          <div className={s.containerPrice}>
+            <div className={s.borderPrice}>
+              <span className={s.valor}>Valor:</span>
+              <span className={s.precio}>{MyDetail.precio}</span> 
+            </div>
+            <br/>
+             {(!order) ? 
+              <div className={s.paypal}>
+               <PaypalCheckoutBtn product={product} setOrder={setOrder}/>
+              </div>
+             : <ContactDetail MyDetail={MyDetail}  />
+             }
+          </div>
+          <br/><br/><br/><br/>
+          
+           <div className={s.titulos}>RESEÑAS
+          <Box sx={{ '& > legend': { mt: 2 },}}>
+          {MyDetail.promedio?
+           <Rating  size='large' value={MyDetail.promedio} readOnly />
+           :
+           <Rating size='large' name="no-value" value={null} />
+          }
+          </Box> </div>
+          <hr/>
+            <Comentar nombre={user.name} publicacion={id} />
+          <br/><br/><br/><br/><br/><br/>
+          
+           <div className={s.titulos}>Mas Publicaciones del emprendedor</div>
+           <hr/>
+           <br/><br/>
+           {publicaciones? publicaciones.map((p)=>
+          <Card sx={{ maxWidth: 345 }}>
+          <CardActionArea>
+          <CardMedia
+            component="img"
+            height="140"
+            image={p.imagen}
+            alt="green iguana"
+           />
+          <CardContent>
+            <Typography gutterBottom variant="h5" component="div">
+             {p.Profesions}
+            </Typography>
+            <Typography variant="body2" color="text.secondary">
+             {p.descripcion}
+            </Typography>
+          </CardContent>
+          </CardActionArea>
+          </Card>) : null}
+
+        </div>
       </div>
+          <br/><br/><br/><br/><br/><br/>
+          <br/><br/><br/><br/><br/><br/>
+          <br/><br/><br/><br/><br/><br/>
+          <br/><br/><br/><br/><br/><br/>
+      <Footer/>
+      <Help/>
       </>
     )}
