@@ -272,7 +272,9 @@ router.post('/nuevo', async (req, res, next) => {
         nombres,
         apellidos,
         email,
-        imagen
+        imagen,
+        favoritos: [],
+        trabajosPagos: []
       });
       return res.json(persona)
     } else {
@@ -390,7 +392,7 @@ router.get("/detalle/:idPublicacion", async (req, res, next) => {
 router.get('/perfil/:email', async (req, res, next) => {
   try {
     const { email } = req.params;
-console.log(req.params)
+    console.log(req.params)
     let consulta = await Persona.findAll({
       include: [Profesion, Direccion, Publicacion],
       where: { email: email }
@@ -402,4 +404,5 @@ console.log(req.params)
     next(error)
   }
 });
+
 module.exports = router;
