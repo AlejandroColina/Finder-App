@@ -131,7 +131,7 @@ function Home({ descripcion, setDescripcion }) {
           </section>
 
           <section className={styles.destacados}>
-            <div className={styles.textDestacados} ><h1>Destacados 🔥</h1></div>
+            <div className={styles.textDestacados} ><h1>Destacados <i style={{color: 'yellow' , margin: '10px', textShadow: '3px 4px black'}} class="fa-solid fa-bolt-lightning"></i></h1></div>
             <div className={styles.div__destacados}>
               {
                 destacados.map(el => {
