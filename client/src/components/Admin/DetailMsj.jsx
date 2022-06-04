@@ -1,11 +1,10 @@
 import React,{useEffect, useState} from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {readMsj} from '../Redux/actions';
 import s from './styles.module.css';
 
 export default function DetatilMsj(){
     const dispatch = useDispatch();
-    const [input, setInput]= useState('');
+    const [input, setInput]= useState('')
     const handleChange =(e)=>{
         setInput(e);
     }

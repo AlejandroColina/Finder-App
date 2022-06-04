@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 import s from './styles.module.css';
 import { useDispatch, useSelector } from "react-redux";
-import {getOneMsj} from '../Redux/actions'
+import {getOneMsj,readMsj} from '../Redux/actions';
 import DetatilMsj from "./DetailMsj";
 
 export default function AdminMsj (){
     const dispatch = useDispatch();
     const msj = useSelector((state)=>state.adminMjes)
     const [open,setOpen]= useState(false);
+    const read ={ read: true}
 
   //  const readOne = useSelector((state)=>state.msjDetailAdmin);
     return(<div className={s.containerDash}>
@@ -25,9 +26,10 @@ export default function AdminMsj (){
             {
                 msj ? msj.map((msj)=>
                 <tr key={msj.id} onClick={()=>{
+                    dispatch(readMsj(msj.id,read));
                     dispatch(getOneMsj(msj.id));
                     setOpen(true);}} >
-                    <td className={s.celdaBtn} > ✉ </td>
+                    <td className={s.celdaBtn} >{msj.read? <span className={s.readed}>☑</span> : <span>✉</span> }</td>
                     <td className={s.celdasMsj} >{msj.source}</td>
                     <td className={s.celdasMsj} >{msj.email}</td>
                     <td className={s.celdasMsj} >{msj.createdAt.slice(0,10)}</td>
