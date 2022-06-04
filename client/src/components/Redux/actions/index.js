@@ -202,3 +202,20 @@ export function getPefil(email){
     }catch (error) {console.log(error)}
   }
 }
+
+
+
+export function ValidarInfo(email){
+  return async dispatch => {
+    try{
+      let info = await axios.get('http://localhost:3001/users/validar/' + email)
+      console.log(info.data)
+      return dispatch({
+        type: 'INFO_VALI',
+        payloasd: info.data
+      })
+    }catch (error) {console.log(error)}
+  }
+}
+
+

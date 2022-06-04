@@ -10,12 +10,14 @@ import { useAuth0 } from "@auth0/auth0-react";
 import Footer from "../Footer/Footer";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getPefil } from '../Redux/actions/index'
+import { getPefil, ValidarInfo } from "../Redux/actions/index";
 
 const Perfil = () => {
   const { isAuthenticated, user } = useAuth0();
   const dispatch = useDispatch();
   const [perfil, setPerfil] = useState(false);
+  const StatePerfil = useSelector((state) => state.perfil);
+  const validar = useSelector(state => state.validar)
 
   const handlePerfil = () => {
     setPerfil(true);
@@ -26,9 +28,13 @@ const Perfil = () => {
   };
 
   useEffect(() => {
-    dispatch(getPefil(user?.email))
+    dispatch(getPefil(user?.email));
+   
   }, [dispatch]);
 
+  useEffect(() => {
+    dispatch(ValidarInfo(user?.email))
+  })
 
   return (
     <div>
@@ -47,7 +53,7 @@ const Perfil = () => {
           <img className={s.imgper} src={person[0].imagen} alt="perfil" />
           <div className={s.nombre}>
             <h2>PERFIL</h2>
-            <h1>{isAuthenticated ? user.name : person[0].nombres}</h1>
+            <h1>{StatePerfil[0]?.nombres}</h1>
             <div className={s.flex}>
               <button onClick={handlePerfil}>Completar perfil</button>
             </div>
@@ -57,21 +63,24 @@ const Perfil = () => {
           </div>
         </div>
       </section>
+
       <section className={s.conten}>
         <div className={s.datos}>
-          <h1 className={s.personal}>imformacion personal</h1>
+          <button className={s.end} disabled={{validar}}>Crear publicacion</button>
+          {!validar? <p className={s.rojo}> complete su perfil para poder hacer una apublicacion</p>: ''}
+          <h1 className={s.personal}>informacion personal</h1>
           <div className={s.info}>
             <h2>nombre completo :</h2>
-            <h2>{isAuthenticated ? user.name : person[0].nombres}</h2>
+            <h2>{StatePerfil[0]?.nombres}</h2>
             <h2>apellido :</h2>
-            <h2>{person[0].apellidos}</h2>
+            <h2>{StatePerfil[0]?.apellidos}</h2>
 
             <h2>telefono :</h2>
-            <h2>{person[0].telefono}</h2>
+            <h2>{StatePerfil[0]?.telefono}</h2>
             <h2>email :</h2>
-            <h2>{isAuthenticated ? user.email : person[0].nombres}</h2>
+            <h2>{StatePerfil[0]?.email}</h2>
             <h2>edad :</h2>
-            <h2>{person[0].edad}</h2>
+            <h2>{StatePerfil[0]?.edad ? StatePerfil[0]?.edad : "20"}</h2>
           </div>
         </div>
         <div className={s.publi}>
@@ -81,18 +90,22 @@ const Perfil = () => {
             <div>
               <h2 className={s.h2}>Publicaciones</h2>
               <div className={s.centrar_publi}>
-                {person[0].publicaciones.map((el) => (
-                  <Card_perfil
-                    key={el.id}
-                    precio={el.precio}
-                    descripcion={el.descripcion}
-                    nombre={person[0].nombres}
-                    imagen={person[0].imagen}
-                    Profesions={person[0].Profesions}
-                    id={el.id}
-                    logoProfesion={person[0].logoProfesion}
-                  />
-                ))}
+                {StatePerfil && StatePerfil[0]?.publicaciones ? (
+                  StatePerfil[0].publicaciones.map((el) => (
+                    <Card_perfil
+                      key={el.id}
+                      precio={el.precio}
+                      descripcion={el.descripcion}
+                      nombre={StatePerfil[0]?.nombres}
+                      imagen={StatePerfil[0]?.imagen}
+                      Profesions={StatePerfil[0]?.Profesions}
+                      id={el.id}
+                      logoProfesion={StatePerfil[0]?.logoProfesion}
+                    />
+                  ))
+                ) : (
+                  <p>NO TIENE</p>
+                )}
               </div>
             </div>
           )}
