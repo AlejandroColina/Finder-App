@@ -35,6 +35,7 @@ DB_CONN.sync({ force: true })
                 imagen: person.imagen,
                 favoritos: person.favoritos,
                 promedio: promedio,
+                trabajosPagos: [],
                 genero: person.genero,
                 puntuacion: person.puntuacion,
             });
