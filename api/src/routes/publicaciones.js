@@ -93,4 +93,16 @@ router.get("/", async (req, res, next) => {
   }
 });
 
+router.post('/crear', async (req, res, next) => {
+  try {
+    const { descripcion, precio, idPersona } = req.body
+
+    await Publicacion.create({ PersonaId: idPersona, precio, descripcion });
+    res.send('Publicación creada.')
+  } catch (error) {
+    next(error)
+  }
+
+});
+
 module.exports = router;
