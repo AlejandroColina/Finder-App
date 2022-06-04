@@ -10,7 +10,8 @@ const InitialState = {
   loanding: false,
   msjDetailAdmin: {},
   ubicacion: {},
-  perfil: []
+  perfil: [],
+  validar: true
 };
 
 export default function rootReducer(state = InitialState, action) {
@@ -103,6 +104,12 @@ export default function rootReducer(state = InitialState, action) {
           ...state,
           perfil: action.payload
         }
+
+        case 'INFO_VALI':
+          return{
+            ...state,
+             validar: action.payload
+          }
 
     default:
       return state;
