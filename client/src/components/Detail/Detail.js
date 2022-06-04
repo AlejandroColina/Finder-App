@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { getDetail, getDeleteDetail, getPublicacionDeUsuario } from "../Redux/actions/index";
 import NavBar from '../NavBar/NavBar';
 import s from './Detail.module.css';
-import { useAuth0, User } from '@auth0/auth0-react';
+import { useAuth0} from '@auth0/auth0-react';
 import { PaypalCheckoutBtn } from "./PaypalCheckoutBtn";
 import Swal from "sweetalert2";
 import { ContactDetail } from "./ContactDetail/ContactDetail";

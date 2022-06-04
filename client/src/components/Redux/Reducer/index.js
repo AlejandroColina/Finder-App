@@ -10,11 +10,8 @@ const InitialState = {
   loanding: false,
   msjDetailAdmin: {},
   ubicacion: {},
-<<<<<<< HEAD
   publicacionesDeUnaPersona:[],
-=======
   perfil: []
->>>>>>> 1d4c64799093f3889599ae1bb76cbc1e1b780428
 };
 
 export default function rootReducer(state = InitialState, action) {
