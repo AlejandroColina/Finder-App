@@ -1,0 +1,38 @@
+.container{
+    min-height: 100vh;
+}
+.card{
+    position: fixed;
+    top:120px;
+    left: 50px;
+    width:300px ;
+    box-shadow:1px 2px 20px #001b38;
+    overflow: hidden;
+}
+.nombres{
+    font-size: 20px;
+    color: #001b38;
+    display: flex;
+    justify-content: center;
+    font-weight: lighter;
+    padding: 5px;
+}
+.img{
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin: 20px 75px;
+}
+.ciudad{
+    font-size: 15px;
+    color: #001b38;
+    font-style: italic;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    text-align: center;
+}
+.gps{
+    width: 30px;
+    height: auto;
+}

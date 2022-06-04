@@ -118,6 +118,8 @@ function Home({ descripcion, setDescripcion }) {
                     key={el.idPublicacion}
                     promedio={el.promedio}
                     nombres={el.nombres}
+                    ciudad={el.ciudad}
+                    precio={el.precio}
                     imagen={el.imagen ? el.imagen : 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQgemhlS2C1Ldo2xTSqZVm5aAXUGT3DaaJZVRLgof7-GCoq7n0YnVnC7zkRHkpdQr4j4Zk&usqp=CAU'}
                     descripcion={el.descripcion}
                     Profesions={el.Profesions.length ? el.Profesions : 'nada'}
@@ -129,7 +131,7 @@ function Home({ descripcion, setDescripcion }) {
           </section>
 
           <section className={styles.destacados}>
-            <div className={styles.textDestacados} ><h1>Destacados 🔥</h1></div>
+            <div className={styles.textDestacados} ><h1>Destacados <i style={{color: 'yellow' , margin: '10px', textShadow: '3px 4px black'}} class="fa-solid fa-bolt-lightning"></i></h1></div>
             <div className={styles.div__destacados}>
               {
                 destacados.map(el => {

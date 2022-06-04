@@ -39,7 +39,6 @@ router.get(('/user/:id'),async(req,res)=>{
             }
         });
         res.status(200).send(msj);
-        console.log('ruta',msj)
     }catch{
         res.json({message:"No se pudo cargar el mensaje"})
     }
@@ -47,8 +46,8 @@ router.get(('/user/:id'),async(req,res)=>{
 
 router.put(('/user/:id'),async(req,res)=>{
     const id = req.params.id;
-    try{
         let {read} =req.body
+    try{
         await MensajeAdmin.update({read},{
             where:{
                 id
