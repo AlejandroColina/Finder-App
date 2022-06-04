@@ -95,20 +95,37 @@ header {
   
   .data {
     /* margin-top: 0.2em; */
+    display: flex;
+    gap: 3px;
+    align-self: stretch;
+    flex-direction: column;
     color: #070808;
     text-align: center;
+    list-style: none;
+   
   }
-  .data li {
-      
-    width: 40%;
+  .listItem {
+    color: rgba(128, 128, 128, 0.944);
+    height: 3px;
     text-align: center;
-    display: inline-block;
-    font-size: 1.5em;
+    
+    margin-bottom: 20px;
+    font-size: 1.65rem;
+    font-weight: 550;
     font-family: "Lato";
-    border-right: solid 1px #bdc3c7;
+    /* border-top: 3px solid #167abd; */
+   
+    
   }
-  .data li:last-child {
-    border: none;
+  
+  .listItem:first-child{
+    border-top: none;
+  }
+ 
+  .listItem:last-child {
+    height: auto;
+    margin-bottom: 0px;
+    border-bottom: none;
     
   }
   .data li span {
@@ -156,7 +173,8 @@ header {
   }
   
   .follow {
-    margin: 2em auto 0 auto;
+    text-decoration: none;
+    margin: 12px auto auto auto;
     background-color: #2589cc;
     width: 150px;
     color: white;
@@ -180,17 +198,30 @@ header {
     -moz-transition-timing-function: ease;
     -o-transition-timing-function: ease;
     transition-timing-function: ease;
+    padding: 10px;
   }
   .follow:hover {
     background-color: #167abd;
     cursor: pointer;
+    
   }
+
   .nombre{
       text-align: center;
       font-size: 2em;
+      margin-right: -6px;
+      font-size: 2.3rem;
+      color: rgb(0 76 203);
      
+      
   }
 
+  .boton{
+    font-family: cursive;
+    
+    font-size: 1.7rem;
+    font-weight: bolder;
+  }
  
   
   
