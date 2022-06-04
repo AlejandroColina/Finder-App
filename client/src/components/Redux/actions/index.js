@@ -5,7 +5,7 @@ export function rederCard(profesion, genero, promedio, ciudad, descripcion) {
     dispatch(loanding());
     try {
       let data = await axios.get(
-        `http://localhost:3001/users?profesion=${profesion}&genero=${genero}&promedio=${promedio}&ciudad=${ciudad}&descripcion=${descripcion}`
+        `http://localhost:3001/publicaciones?profesion=${profesion}&genero=${genero}&promedio=${promedio}&ciudad=${ciudad}&descripcion=${descripcion}`
       );
       console.log(data.data);
       return dispatch({
@@ -98,22 +98,22 @@ export const getEmpleosForm = () => {
 };
 export const getCiudades = () => {
 
-    let url = 'http://localhost:3001/users/ciudades'
+  let url = 'http://localhost:3001/users/ciudades'
 
-    return async(dispatch) =>{
-        const resp = await axios.get(url)
-        return dispatch({
-            type: 'GET_CIUDADES',
-            payload: resp.data
-        })
-    }
+  return async (dispatch) => {
+    const resp = await axios.get(url)
+    return dispatch({
+      type: 'GET_CIUDADES',
+      payload: resp.data
+    })
+  }
 
 }
 
-export function loanding(){ 
-    return {
-        type: 'LOADER'
-    }
+export function loanding() {
+  return {
+    type: 'LOADER'
+  }
 }
 
 export function getDeleteDetail() {
@@ -123,33 +123,33 @@ export function getDeleteDetail() {
 }
 
 //mensaje del usuario al administrador a traves de HELP
-export function mensajeAlAdmin(msj){
-    return async(dispatch)=>{
-        const response = await axios.post('http://localhost:3001/mensaje/user',msj)
-        msj.id= response.data.id
-        dispatch({
-           type: 'MSJ_USER_AL_ADMIN',
-           payload: msj
-        })
-        alert(response.data.message)
-    }
+export function mensajeAlAdmin(msj) {
+  return async (dispatch) => {
+    const response = await axios.post('http://localhost:3001/mensaje/user', msj)
+    msj.id = response.data.id
+    dispatch({
+      type: 'MSJ_USER_AL_ADMIN',
+      payload: msj
+    })
+    alert(response.data.message)
+  }
 }
 //traer mensajes para el admin
-export function getAdminMsj(){
-    return async(dispatch) =>{
-        const responseget = await axios.get('http://localhost:3001/mensaje/user')
-        return dispatch({
-            type: 'GET_MSJ_ADMIN',
-            payload: responseget.data
-        })
-    }
+export function getAdminMsj() {
+  return async (dispatch) => {
+    const responseget = await axios.get('http://localhost:3001/mensaje/user')
+    return dispatch({
+      type: 'GET_MSJ_ADMIN',
+      payload: responseget.data
+    })
+  }
 }
 
 
 //abrir el mensaje
-export function getOneMsj(id){
-  return async(dispatch)=>{
-    const detailMsj = await axios.get(`http://localhost:3001/mensaje/user/${id}`,{})
+export function getOneMsj(id) {
+  return async (dispatch) => {
+    const detailMsj = await axios.get(`http://localhost:3001/mensaje/user/${id}`, {})
     return dispatch({
       type: 'READ_MSJ_ADMIN',
       payload: detailMsj.data
@@ -157,12 +157,26 @@ export function getOneMsj(id){
   }
 }
 //leer
-export function readMsj(id,read){
-  return async(dispatch) => {
-  const updateRead = await axios.put(`http://localhost:3001/mensaje/user/${id}`,read)
-  return dispatch({
-    type: 'OPEN_MSJ_ADMIN'
-  })
+export function readMsj(id, read) {
+  return async (dispatch) => {
+    const updateRead = await axios.put(`http://localhost:3001/mensaje/user/${id}`, read)
+    return dispatch({
+      type: 'OPEN_MSJ_ADMIN'
+    })
+  }
 }
+
+export function getUbicacion() {
+  return async (dispatch) => {
+    try {
+      let api = await axios.get('https://ipapi.co/json/')
+      return dispatch({
+        type: 'UBICACION',
+        payload: api.data
+      })
+    } catch (error) {
+      console.log(error)
+    }
+  }
 }
 

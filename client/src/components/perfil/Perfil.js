@@ -50,14 +50,14 @@ const Perfil = () => {
           <h1 className={s.personal}>imformacion personal</h1>
           <div className={s.info}>
             <h2>nombre completo :</h2>
-            <h2>{person[0].nombres}</h2>
+            <h2>{isAuthenticated ? user.name: person[0].nombres}</h2>
             <h2>apellido :</h2>
             <h2>{person[0].apellidos}</h2>
 
             <h2>telefono :</h2>
             <h2>{person[0].telefono}</h2>
             <h2>email :</h2>
-            <h2>{person[0].email}</h2>
+            <h2>{isAuthenticated ? user.email: person[0].nombres}</h2>
             <h2>edad :</h2>
             <h2>{person[0].edad}</h2>
           </div>

@@ -14,7 +14,7 @@ router.get("/", async (req, res, next) => {
     let obj = [];
 
     let personas = await Persona.findAll({
-      include: [Profesion]
+      include: [Profesion, Direccion]
     });
 
     tablaPublicacion?.map(async (posts) => {
@@ -24,9 +24,11 @@ router.get("/", async (req, res, next) => {
       let persona = personas.filter(e => e.dataValues.id === idPersona);
       let user = persona[0]?.dataValues;
       let profesion = persona[0]?.dataValues?.Profesions[0]?.dataValues;
+      let direccion = persona[0]?.dataValues?.Direccions[0]?.dataValues;
 
       obj.push({
         idPublicacion: post.id,
+        idPersona: user.id,
         nombres: user.nombres,
         apellido: user.apellidos,
         promedio: user.promedio,
@@ -36,7 +38,7 @@ router.get("/", async (req, res, next) => {
         logoProfesion: profesion.logo,
         genero: user.genero,
         edad: user.edad,
-        ciudad: user.ciudad
+        ciudad: direccion.ciudad
       })
     });
 
