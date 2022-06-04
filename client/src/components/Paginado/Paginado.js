@@ -54,7 +54,7 @@ export default function Paginado({personasPerPage, allPersonas, paginado}) {
            
              <li ><button style={stylesNext} className={styles.botones_paginado}
               onClick={() => {
-                  if(page===6) return;
+                  if(page=== pageNumbers.length ) return;
                   paginado(page+1)
                   setPage(page + 1)
                   console.log(page)
