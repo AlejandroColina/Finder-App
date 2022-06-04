@@ -23,7 +23,8 @@ function LandingPage({ descripcion, setDescripcion }) {
   (async () => {
     if (isAuthenticated) {
       await axios.post('http://localhost:3001/users/nuevo', {
-        nombres: user.name,
+        nombres: user.given_name,
+        apellidos: user.family_name,
         imagen: user.picture,
         email: user.email
       })
@@ -54,6 +55,7 @@ function LandingPage({ descripcion, setDescripcion }) {
             <div className={s.infoUser}>
               <img className={s.avatarImg} src={user.picture} alt='avatar' />
               <div className={s.salir}>{onlyFirst[0].toUpperCase()}</div>
+              <Link to={`/perfil/${user.email}`}><button>Perfil</button></Link>
               <button title='Salir' className={s.salir} onClick={() => logout({ returnTo: window.location.origin })}>
                 <img src={logoutImg} alt='logout' height='25px' /></button>
             </div>
