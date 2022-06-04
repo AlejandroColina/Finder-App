@@ -2,7 +2,11 @@ import React from "react";
 import s from './Card_perfil.module.css'
 import { Link } from "react-router-dom";
 import {useDispatch} from 'react-redux'
+<<<<<<< HEAD
+//import {eliminarPost} from '../../Redux/actions/index'
+=======
 // import {eliminarPost} from '../../Redux/actions/index'
+>>>>>>> 6c33e7a818a592a555f2454e7447ec5a89837237
 export default function Cards({
   nombres,
   imagen,
@@ -14,9 +18,15 @@ export default function Cards({
 }) {
  const dispatch = useDispatch();
 
+<<<<<<< HEAD
+/*  const handleonClik = () =>{
+  dispatch(eliminarPost(id))
+ } */
+=======
 //  const handleonClik = () =>{
 //   dispatch(eliminarPost(id))
 //  }
+>>>>>>> 6c33e7a818a592a555f2454e7447ec5a89837237
   return (
     <div className={s.container}>
       <header>

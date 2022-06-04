@@ -4,7 +4,7 @@ const { Profesion, Persona, Direccion, Publicacion } = require('./src/db');
 const tipos = require('./src/routes/infoFake/tipos');
 const personas = require('./src/routes/infoFake/data');
 
-DB_CONN.sync({ force: true })
+DB_CONN.sync({ force: false })
     .then(() => {
         console.log('============================');
         console.log('Connected to DB')
