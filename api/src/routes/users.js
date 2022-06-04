@@ -260,7 +260,7 @@ router.post("/crear", async function (req, res) {
 
 router.post('/nuevo', async (req, res, next) => {
   try {
-    const { nombres, email, imagen } = req.body;
+    const { nombres, email, imagen, apellidos } = req.body;
     let consulta = await Persona.findOne({
       where: {
         email: email
@@ -269,9 +269,10 @@ router.post('/nuevo', async (req, res, next) => {
 
     if (consulta == null) {
       let persona = await Persona.create({
-        nombres: nombres,
-        email: email,
-        imagen: imagen
+        nombres,
+        apellidos,
+        email,
+        imagen
       });
       return res.json(persona)
     } else {

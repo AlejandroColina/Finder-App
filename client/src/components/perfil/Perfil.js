@@ -10,12 +10,13 @@ import { useAuth0 } from "@auth0/auth0-react";
 import Footer from "../Footer/Footer";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {getPefil} from '../Redux/actions/index'
+import { getPefil } from '../Redux/actions/index'
+
 const Perfil = () => {
   const { isAuthenticated, user } = useAuth0();
-const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const [perfil, setPerfil] = useState(false);
-  console.log(user);
+
   const handlePerfil = () => {
     setPerfil(true);
   };
@@ -23,9 +24,11 @@ const dispatch = useDispatch();
   const handleVolver = () => {
     setPerfil(false);
   };
+
   useEffect(() => {
-  dispatch(getPefil(user.email))
-  },[dispatch]);
+    dispatch(getPefil(user?.email))
+  }, [dispatch]);
+
 
   return (
     <div>
@@ -80,6 +83,7 @@ const dispatch = useDispatch();
               <div className={s.centrar_publi}>
                 {person[0].publicaciones.map((el) => (
                   <Card_perfil
+                    key={el.id}
                     precio={el.precio}
                     descripcion={el.descripcion}
                     nombre={person[0].nombres}
