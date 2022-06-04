@@ -1,0 +1,33 @@
+.form{
+    width: 100%;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+.box{
+    width: 100%;
+    margin-bottom: 15px;
+}
+.title{
+    font-size: 25px;
+    font-weight: lighter;
+    margin-bottom: 8px;
+    color: #001b38;
+}
+.input{
+    background: none;
+    outline: 0px;
+    resize: none;
+    border: 1px solid #001b383e;
+}
+.btn{
+    background: none;
+    border: none;
+    padding: 10px;
+    color: #001b38;
+    font-size: 15px;
+}
+.btn:hover{
+    text-decoration: underline;
+}

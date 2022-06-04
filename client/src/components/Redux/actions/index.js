@@ -180,6 +180,16 @@ export function getUbicacion() {
   }
 }
 
+export function getPublicacionDeUsuario(email){
+  return async(dispatch)=>{
+      let publicaciones = await axios.get(`http://localhost:3001/publicaciones?email=${email}`)
+      return dispatch({
+        type: 'PUBLICACIONES_USUARIO',
+        payload: publicaciones.data
+      })
+  }
+}
+
 export function getPefil(email){
   console.log(email)
   return async (dispatch) =>{
@@ -194,6 +204,7 @@ export function getPefil(email){
 }
 
 
+
 export function ValidarInfo(email){
   return async dispatch => {
     try{
@@ -206,4 +217,5 @@ export function ValidarInfo(email){
     }catch (error) {console.log(error)}
   }
 }
+
 

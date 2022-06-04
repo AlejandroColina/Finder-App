@@ -37,6 +37,9 @@ module.exports = (sequelize) => {
     genero: {
       type: DataTypes.STRING,
     },
+    trabajosPagos: {
+      type: DataTypes.ARRAY(DataTypes.INTEGER),
+    },
     puntuacion: {
       type: DataTypes.ARRAY(DataTypes.INTEGER),
       validate: {
