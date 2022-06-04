@@ -3,10 +3,10 @@ import s from "./Form.module.css";
 import { useState } from "react";
 const Form = () => {
   const { input, setInput } = useState({
-    nombre: "",
-    apellido: "",
-    telefono: "",
-    documento: "",
+    nombre: "gg",
+    apellido: "gg",
+    telefono: "g",
+    documento: "g",
   });
   const handleOnchange = (e) => {
     setInput({
@@ -22,21 +22,21 @@ const Form = () => {
         <div className={s.div}>
           <input
             name="nombre"
-            value={input.name}
+            value={input.nombre}
             className={s.input}
             type="text"
             placeholder="name"
-            onChange={handleOnchange}
+            onChange={(e) =>handleOnchange(e)}
           ></input>
         </div>
         <div className={s.div}>
           <input
            name='apellido' 
-            value={input.apellido}
+           value={input.apellido}
             className={s.input}
             type="text"
             placeholder="apellido"
-            onChange={handleOnchange}
+            onChange={(e) =>handleOnchange(e)}
           ></input>
         </div>
         <div className={s.div}>
@@ -46,17 +46,17 @@ const Form = () => {
             className={s.input}
             type="text"
             placeholder="documento"
-            onChange={handleOnchange}
+            onChange={(e) =>handleOnchange(e)}
           ></input>
         </div>
         <div className={s.div}>
           <input
             name="telefono"
-            value={input.telefono}
+           value={input.telefono}
             className={s.input}
             type="text"
             placeholder="telefono"
-            onChange={handleOnchange}
+            onChange={(e) =>handleOnchange(e)}
           ></input>
         </div>
         <div className={s.div_boton}>
