@@ -8,7 +8,7 @@ export default function Paginado({personasPerPage, allPersonas, paginado}) {
         pageNumbers.push(i)
     }
 
-    const [page, setPage] = useState(1);
+    const [page, setPage] = useState(1); //estado
 
     
 
