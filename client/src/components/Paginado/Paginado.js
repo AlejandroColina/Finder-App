@@ -39,8 +39,9 @@ export default function Paginado({personasPerPage, allPersonas, paginado}) {
            
             {pageNumbers &&
             pageNumbers.map(number=> (
-            <li  key={number}>
-                 <button className={styles.botones_paginado} 
+            <li  key={number} >
+                 <button style={(page === number)? { backgroundColor:' #0576e67a'} : null } 
+                 className={styles.botones_paginado} 
                  onClick={() => {
                      
                      paginado(number)
