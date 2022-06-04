@@ -180,6 +180,7 @@ export function getUbicacion() {
   }
 }
 
+<<<<<<< HEAD
 export function getPublicacionDeUsuario(email){
   return async(dispatch)=>{
       let publicaciones = await axios.get(`http://localhost:3001/publicaciones?email=${email}`)
@@ -189,3 +190,18 @@ export function getPublicacionDeUsuario(email){
       })
   }
 }
+=======
+export function getPefil(email){
+  console.log(email)
+  return async (dispatch) =>{
+    try{
+     let json = await axios.get('http://localhost:3001/users/perfil/' + email) 
+     return dispatch({
+       type: 'GET_PERFIL',
+       payload: json.data
+     })
+    }catch (error) {console.log(error)}
+  }
+}
+
+>>>>>>> 1d4c64799093f3889599ae1bb76cbc1e1b780428

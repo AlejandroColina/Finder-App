@@ -8,7 +8,7 @@ export default function Paginado({personasPerPage, allPersonas, paginado}) {
         pageNumbers.push(i)
     }
 
-    const [page, setPage] = useState(1)
+    const [page, setPage] = useState(1); //estado
 
     
 
@@ -39,8 +39,9 @@ export default function Paginado({personasPerPage, allPersonas, paginado}) {
            
             {pageNumbers &&
             pageNumbers.map(number=> (
-            <li  key={number}>
-                 <button className={styles.botones_paginado} 
+            <li  key={number} >
+                 <button style={(page === number)? { backgroundColor:' #0576e67a'} : null } 
+                 className={styles.botones_paginado} 
                  onClick={() => {
                      
                      paginado(number)
@@ -53,7 +54,7 @@ export default function Paginado({personasPerPage, allPersonas, paginado}) {
            
              <li ><button style={stylesNext} className={styles.botones_paginado}
               onClick={() => {
-                  if(page===6) return;
+                  if(page=== pageNumbers.length ) return;
                   paginado(page+1)
                   setPage(page + 1)
                   console.log(page)
