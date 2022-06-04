@@ -5,10 +5,19 @@ import styles from './styles.module.css'
 
 export const Filtros = ({ handleFilterChanges, resetValues , filters}) => {
 
+
   const empleos = useSelector(state => state.empleos)
   const ciudades = useSelector(state => state.ciudades)
 
   const { profesion, promedio, genero, ciudad} = filters
+
+  const styleBtn = {
+    color: 'grey',
+    textShadow: '0px 1px white',
+    width: '5rem',
+    height: '2rem',
+    fontSize: '19px'
+  }
 
   return (
     <div className={styles.container}>
@@ -54,7 +63,7 @@ export const Filtros = ({ handleFilterChanges, resetValues , filters}) => {
       <button 
       className={styles.btn}
       onClick={resetValues}
-      >Restablecer
+      ><i style={styleBtn} class="fa-solid fa-rotate-left"></i>
       </button>
     </div>
 

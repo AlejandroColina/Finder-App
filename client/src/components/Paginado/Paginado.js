@@ -20,7 +20,7 @@ export default function Paginado({personasPerPage, allPersonas, paginado}) {
         fontWeight: 'bolder',
         padding: '6px 18px',
         letterSpacing: '1px',
-        border: '3px solid goldenrod'
+        border: '3px solid gray'
     }
 
     return(
