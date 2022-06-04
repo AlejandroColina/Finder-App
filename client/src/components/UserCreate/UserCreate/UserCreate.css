@@ -1,36 +1,62 @@
-.formCont {
+.page {
   background: linear-gradient(90deg, #1a2980 0%, #26d0ce 100%);
-  width: 100%;
+}
+
+.formCont {
+  box-sizing: border-box;
   min-height: 100vh;
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  max-width: 1170px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 1.5em;
+  background-color: white;
+  box-shadow: 0 0 20px 0 rgba(255, 255, 255, 0.3);
 }
 
 .leftCard {
-  width: 50%;
+  display: flex;
 }
 
-.leftCard img {
-  width: 70%;
-  margin-top: 200px;
+.leftCard div {
+  background: linear-gradient(90deg, #1a2980 0%, #26d0ce 100%);
+  width: 100%;
+  margin-left: 40px;
 }
 
 .rigthCard {
   background-color: white;
+  padding: 1em;
+  margin: 0;
+}
+
+.rigthCard form {
+  display: flex;
+  width: 100%;
 }
 
 .inputs {
   width: 100%;
-  padding: 10px;
-  border-radius: 4px;
+  padding: 0.7em;
+  border: none;
+  border-bottom: 1px solid #0576e6a9;
+  outline: 0;
+  color: #000;
   margin-bottom: 16px;
-  border: 1px solid #0576e6a9;
   font-size: 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
 }
 
 .required {
+  width: 100%;
+  font-size: 13px;
+  justify-content: center;
+  align-items: center;
   display: flex;
-  position: relative;
-  font-size: 18px;
 }
 
 .file-select {
@@ -66,22 +92,28 @@
 }
 
 .userPic {
-  border-radius: 600px;
-  border: 2px solid rgb(173, 173, 173);
+  height: 300px;
+  border-radius: 150px;
   display: flex;
-  justify-content: center;
-  align-items: center;
   margin: auto;
   margin-bottom: 30px;
+}
+
+.loader {
+  max-width: 300px;
+  align-items: center;
+  display: flex;
+  margin: auto;
 }
 
 .submit {
   width: 100%;
   background: #0576e6a9;
-  padding: 12px;
+  padding: 1em;
   color: white;
-  margin: 16px 0;
-  border: none;
+  margin: 16px;
+  border: 0;
+  text-transform: uppercase;
   font-size: 16px;
 }
 

@@ -203,12 +203,12 @@ router.get("/trabajo/:id", async (req, res, next) => {
 });
 
 router.post("/crear", async function (req, res) {
-  let profesionId = req.body.profesionId;
+  let profesionId = req.body.selected;
 
   let consultaBD = await Persona.findOne({
     where: { documento: req.body.input.documento },
   });
-
+  console.log(req.body)
   if (consultaBD == null) {
     Persona.create({
       nombres: req.body.input.nombres,
@@ -228,7 +228,12 @@ router.post("/crear", async function (req, res) {
           where: { documento: parseInt(input.documento) },
         });
         PersonaId = PersonaId.dataValues.id;
-
+        await Direccion.create({
+          PersonaId: PersonaId,
+          direccion: req.body.input?.direccion,
+          ciudad: req.body.input?.diudad ? req.body.input?.diudad : 'Sin ciudad.',
+          pais: 'Argentina',
+        });
         await Publicacion.create({
           PersonaId: PersonaId,
           descripcion: req.body.input?.descripcion,
@@ -286,7 +291,7 @@ router.get("/detalle/:idPublicacion", async (req, res, next) => {
     let idPersona = consultaBD.dataValues.PersonaId;
     let personaPost = await Persona.findAll({
       where: { id: idPersona },
-      include: [Direccion],
+      include: [Direccion, Profesion],
     });
 
     let obj = {
@@ -299,6 +304,7 @@ router.get("/detalle/:idPublicacion", async (req, res, next) => {
       documento: personaPost[0].dataValues.documento,
       descripcion: consultaBD.dataValues.descripcion,
       precio: consultaBD.dataValues.precio,
+      Profesions: personaPost[0].Profesions[0].dataValues.nombre,
       direccion: personaPost[0].Direccions[0]?.dataValues.direccion,
       ciudad: personaPost[0].Direccions[0]?.dataValues.ciudad,
       pais: personaPost[0].Direccions[0]?.dataValues.pais,

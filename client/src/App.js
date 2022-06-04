@@ -12,6 +12,7 @@ import CustomerCreate from "./components/UserCreate/CustomerCreate/CustomerCreat
 import SecondCap from './components/LandingPage/secondcap/SecondCap';
 
 
+
 function App() {
   const [descripcion, setDescripcion] = useState("");
 
