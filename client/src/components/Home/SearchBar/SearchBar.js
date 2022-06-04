@@ -6,6 +6,7 @@ import logoutImg from '../../../assets/logout_white.png';
 import logo from '../../../assets/logo_finder_white.png'
 import notification from '../../../assets/notification_white.png';
 import { useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 
 export const SearchBar = ( {setDescripcion, descripcion }) => {
@@ -57,7 +58,7 @@ export const SearchBar = ( {setDescripcion, descripcion }) => {
 
               <div className={styles.userNav}>
 
-                <div  className={styles.userName}>{onlyFirst[0].toUpperCase()}</div>
+              <Link to={`/perfil/${user.email}`}className={styles.userName}><div title='Mi Perfil' >{onlyFirst[0].toUpperCase()}</div></Link>
                 <button title='Salir' className={styles.salir} onClick={() => logout({ returnTo: window.location.origin })}>
                 <img src={logoutImg} alt='logout' height='25px' /></button>
 
