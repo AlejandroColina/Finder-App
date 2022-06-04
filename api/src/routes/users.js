@@ -306,8 +306,24 @@ router.get('/validar/:email', async (req, res, next) => {
 
 router.patch("/modificar/:email", async (req, res) => {
   const email = req.params.email;
-  let { nombres, apellidos, telefono, genero, edad, ciudad, documento } = req.query;
-  
+  let { nombres, apellidos, telefono, genero, edad, ciudad, documento, profesion, direccion } = req.query;
+
+  if (profesion) {
+    let persona = await Persona.findOne({ where: { email: email } });
+    // let profesions = await Profesion.findOne({ where: { id: profesion } }) //Se utilizará para settear varias profesiones a un usuario.
+    await persona.setProfesions(profesion)
+  }
+
+  if (direccion) {
+    let persona = await Persona.findOne({ where: { email: email } });
+    await Direccion.update({ direccion: direccion }, { where: { PersonaId: persona.dataValues.id } });
+  }
+
+  if (ciudad) {
+    let persona = await Persona.findOne({ where: { email: email } });
+    await Direccion.update({ ciudad: ciudad }, { where: { PersonaId: persona.dataValues.id } });
+  }
+
   if (documento) {
     Persona.update({ documento: req.query.documento }, { where: { email: email } })
   }
@@ -329,7 +345,7 @@ router.patch("/modificar/:email", async (req, res) => {
   if (ciudad) {
     Persona.update({ ciudad: req.query.ciudad }, { where: { email: email } });
   }
-  
+
   const objetivo = await Persona.findOne({ where: { email: email } });
   res.send(objetivo);
 });
@@ -373,7 +389,7 @@ router.get("/detalle/:idPublicacion", async (req, res, next) => {
 router.get('/perfil/:email', async (req, res, next) => {
   try {
     const { email } = req.params;
-
+console.log(req.params)
     let consulta = await Persona.findAll({
       include: [Profesion, Direccion, Publicacion],
       where: { email: email }
