@@ -24,3 +24,10 @@ height:20px;
     color: rgb(60, 125, 245);
     border: none;
 }
+
+.h1{
+    text-align: center;
+    font-size: 3em;
+    color:#ffffff;
+    margin-bottom: 30px;
+}
