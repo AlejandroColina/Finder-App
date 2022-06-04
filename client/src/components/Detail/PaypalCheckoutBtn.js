@@ -30,7 +30,7 @@ export const PaypalCheckoutBtn = ( props ) => {
     return (
     <PayPalButtons style={{
         color: 'blue',
-        size: "medium",
+        size: "small",
         shape: "pill",
         label: 'pay',
     }}
