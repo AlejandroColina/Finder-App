@@ -1,4 +1,5 @@
 .container{
+    display: flex;
     min-height: 100vh;
 }
 .card{
@@ -106,4 +107,22 @@
     margin-right: 50px;
     margin-top: 25px;
     height: 30px;
+}
+
+@media only screen and (max-width:400px){
+    .container{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        width: 100%;
+    }
+    .card{
+        position: relative;
+    }
+    .containerInfo{
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
 }

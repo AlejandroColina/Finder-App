@@ -78,7 +78,6 @@ export default function Detail({Profesions}) {
         {/* tarjeta de contacto */}
 
         <div className={s.card}>
-
           <div className={s.nombres}><span className={s.espacio}>Hola Soy</span><strong>{MyDetail.nombres} </strong>!</div>
           <img className={s.img} src={MyDetail.imagen} alt={MyDetail.nombres}/>
           <div className={s.ciudad}>
@@ -88,7 +87,6 @@ export default function Detail({Profesions}) {
           <div className={s.acerca}>Acerca de</div>
           <div className={s.descripcion}>"{MyDetail.descripcion}"</div>
           <br/><br/>
-
         </div>
 
 
