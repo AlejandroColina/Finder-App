@@ -180,3 +180,16 @@ export function getUbicacion() {
   }
 }
 
+export function getPefil(email){
+  console.log(email)
+  return async (dispatch) =>{
+    try{
+     let json = await axios.get('http://localhost:3001/users/perfil/' + email) 
+     return dispatch({
+       type: 'GET_PERFIL',
+       payload: json.data
+     })
+    }catch (error) {console.log(error)}
+  }
+}
+

@@ -9,7 +9,8 @@ const InitialState = {
   adminMjes: [],
   loanding: false,
   msjDetailAdmin: {},
-  ubicacion: {}
+  ubicacion: {},
+  perfil: []
 };
 
 export default function rootReducer(state = InitialState, action) {
@@ -97,6 +98,11 @@ export default function rootReducer(state = InitialState, action) {
         ...state,
         ubicacion: action.payload
       }
+      case 'GET_PERFIL':
+        return {
+          ...state,
+          perfil: action.payload
+        }
 
     default:
       return state;

@@ -41,7 +41,7 @@ function LandingPage({ descripcion, setDescripcion }) {
         }} />{
 
           isAuthenticated && (user.email === 'cami.zupanovich@gmail.com' || user.email === 'giulianob94@hotmail.com'
-            || user.email === 'josecolmenares96@hotmail.com' || user.email === 'nicosuasnavar@gmail.com'
+            || user.email === 'joseandrescolmenares02@gmail.com' || user.email === 'nicosuasnavar@gmail.com'
             || user.email === 'jheinemberstithjn@ufps.edu.co' || user.email === 'gabrielcontegrand10@gmail.com'
             || user.email === 'alejandro.colina@ucp.edu.co') ? <div className={s.navItems} onClick={() => {
               setTimeout(
