@@ -54,8 +54,7 @@ function LandingPage({ descripcion, setDescripcion }) {
             <a href="#3" className={s.navItems}>EXPERIENCIA FINDER</a>
             <div className={s.infoUser}>
               <img className={s.avatarImg} src={user.picture} alt='avatar' />
-              <div className={s.salir}>{onlyFirst[0].toUpperCase()}</div>
-              <Link to={`/perfil/${user.email}`}><button>Perfil</button></Link>
+              <Link to={`/perfil/${user.email}`} title='Mi Perfil' className={s.navItems}><div>{onlyFirst[0].toUpperCase()}</div></Link>
               <button title='Salir' className={s.salir} onClick={() => logout({ returnTo: window.location.origin })}>
                 <img src={logoutImg} alt='logout' height='25px' /></button>
             </div>

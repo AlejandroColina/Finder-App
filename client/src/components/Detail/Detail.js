@@ -67,8 +67,8 @@ export default function Detail({Profesions}) {
 
     }
 
-    const publicaciones  = useSelector((state)=>state.publicacionesDeUnaPersona);
-    const Todaspublicaciones = publicaciones.filter((p)=>p.id!==MyDetail.id);
+    const Todaspublicaciones  = useSelector((state)=>state.publicacionesDeUnaPersona);
+    const publicaciones = Todaspublicaciones.filter((p)=>p.id!==MyDetail.id);
     return (   
       <>
       <NavBar/>
@@ -129,13 +129,13 @@ export default function Detail({Profesions}) {
            <hr/>
            <br/><br/>
            {publicaciones? publicaciones.map((p)=>
-          <Card sx={{ maxWidth: 345 }}>
+          <Card sx={{ maxWidth: 345 }} key={p.id}>
           <CardActionArea>
           <CardMedia
             component="img"
             height="140"
             image={p.imagen}
-            alt="green iguana"
+            alt="emprendedor"
            />
           <CardContent>
             <Typography gutterBottom variant="h5" component="div">
