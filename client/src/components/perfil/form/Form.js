@@ -3,7 +3,6 @@ import s from "./Form.module.css";
 const Form = () => {
   return (
     <div className={s.form}>
-      
       <div>
       <h1 className={s.h1}>Completar perfil</h1>
         <div className={s.div}>
