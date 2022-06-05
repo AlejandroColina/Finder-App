@@ -392,7 +392,6 @@ router.get("/detalle/:idPublicacion", async (req, res, next) => {
 router.get('/perfil/:email', async (req, res, next) => {
   try {
     const { email } = req.params;
-    console.log(req.params)
     let consulta = await Persona.findAll({
       include: [Profesion, Direccion, Publicacion],
       where: { email: email }
