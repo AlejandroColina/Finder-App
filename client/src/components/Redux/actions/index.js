@@ -180,41 +180,53 @@ export function getUbicacion() {
   }
 }
 
-export function getPublicacionDeUsuario(email){
-  return async(dispatch)=>{
-      let publicaciones = await axios.get(`http://localhost:3001/publicaciones?email=${email}`)
-      return dispatch({
-        type: 'PUBLICACIONES_USUARIO',
-        payload: publicaciones.data
-      })
+export function getPublicacionDeUsuario(email) {
+  return async (dispatch) => {
+    let publicaciones = await axios.get(`http://localhost:3001/publicaciones?email=${email}`)
+    return dispatch({
+      type: 'PUBLICACIONES_USUARIO',
+      payload: publicaciones.data
+    })
   }
 }
 
-export function getPefil(email){
+export function getPefil(email) {
   console.log(email)
-  return async (dispatch) =>{
-    try{
-     let json = await axios.get('http://localhost:3001/users/perfil/' + email) 
-     return dispatch({
-       type: 'GET_PERFIL',
-       payload: json.data
-     })
-    }catch (error) {console.log(error)}
+  return async (dispatch) => {
+    try {
+      let json = await axios.get('http://localhost:3001/users/perfil/' + email)
+      return dispatch({
+        type: 'GET_PERFIL',
+        payload: json.data
+      })
+    } catch (error) { console.log(error) }
   }
 }
 
 
 
-export function ValidarInfo(email){
+export function ValidarInfo(email) {
   return async dispatch => {
-    try{
+    try {
       let info = await axios.get('http://localhost:3001/users/validar/' + email)
       console.log(info.data)
       return dispatch({
         type: 'INFO_VALI',
         payloasd: info.data
       })
-    }catch (error) {console.log(error)}
+    } catch (error) { console.log(error) }
+  }
+}
+
+export function cambiarInfo(email, nombres, apellidos, telefono, documento, edad) {
+  return async dispatch => {
+    try {
+      let info = await axios.patch(`http://localhost:3001/users/modificar/${email}?nombres=${nombres}&apellidos=${apellidos}&telefono=${telefono}&documento=${documento}&edad=${edad}`)
+      return dispatch({
+        type: 'MODIFICAR',
+        payloasd: info.data
+      })
+    } catch (error) { console.log(error) }
   }
 }
 
