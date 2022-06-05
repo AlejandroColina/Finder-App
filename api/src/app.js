@@ -18,5 +18,8 @@ server.use('/delete', del);
 server.use('/comentario', comentario);
 server.use('/favoritos', favoritos);
 server.use('/trabajos', trabajos);
+server.get('*', (req, res) => {
+    res.send('<h1>Página NO encontrada en FINDER. 😡🥶</h1>')
+});
 
 module.exports = server;
