@@ -1,27 +1,35 @@
 import React from "react";
 import s from "./Form.module.css";
 import { useDispatch, useSelector } from "react-redux";
-
+import { cambiarInfo, ValidarInfo } from '../../Redux/actions/index';
 import { useState } from "react";
-const Form = () => {
-  const Perfil = useSelector((state) => state.perfil);
+import { useAuth0 } from '@auth0/auth0-react';
 
-  const [ input, setInput ] = useState({
-    nombre: '',
-    apellido: "",
+
+const Form = () => {
+  const { user } = useAuth0();
+  // const Perfil = useSelector((state) => state.perfil);
+  const dispatch = useDispatch();
+  const [input, setInput] = useState({
+    nombres: '',
+    apellidos: "",
     telefono: "",
     documento: "",
   });
- 
-  console.log(input)
-
 
   const handleOnchange = (e) => {
     setInput({
       ...input,
-      [e.target.name] : e.target.value,
+      [e.target.name]: e.target.value,
     });
   };
+
+  const handleOnClick = () => {
+    dispatch(cambiarInfo(user?.email, input))
+    setTimeout(() => {
+      dispatch(ValidarInfo(user?.email))
+    }, 1000)
+  }
 
   return (
     <div className={s.form}>
@@ -29,32 +37,32 @@ const Form = () => {
         <h1 className={s.h1}>Completar perfil</h1>
         <div className={s.div}>
           <input
-            name="nombre"
-           value={input.nombre}
+            name="nombres"
+            value={input.nombres}
             className={s.input}
             type="text"
             placeholder="name"
-            onChange={(e) =>handleOnchange(e)}
+            onChange={(e) => handleOnchange(e)}
           ></input>
         </div>
         <div className={s.div}>
           <input
-           name='apellido' 
-           value={input.apellido}
+            name='apellidos'
+            value={input.apellidos}
             className={s.input}
             type="text"
-            placeholder="apellido"
-            onChange={(e) =>handleOnchange(e)}
+            placeholder="apellidos"
+            onChange={(e) => handleOnchange(e)}
           ></input>
         </div>
         <div className={s.div}>
           <input
-            name="documento" 
+            name="documento"
             value={input.documento}
             className={s.input}
             type="text"
             placeholder="documento"
-            onChange={(e) =>handleOnchange(e)}
+            onChange={(e) => handleOnchange(e)}
           ></input>
         </div>
         <div className={s.div}>
@@ -64,11 +72,11 @@ const Form = () => {
             className={s.input}
             type="text"
             placeholder="telefono"
-            onChange={(e) =>handleOnchange(e)}
+            onChange={(e) => handleOnchange(e)}
           ></input>
         </div>
         <div className={s.div_boton}>
-          <button className={s.button}>Guardar</button>
+          <button onClick={handleOnClick} >Guardar</button>
         </div>
       </div>
     </div>
