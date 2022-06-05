@@ -1,17 +1,25 @@
 import React from "react";
 import s from "./Form.module.css";
+import { useDispatch, useSelector } from "react-redux";
+
 import { useState } from "react";
 const Form = () => {
-  const { input, setInput } = useState({
-    nombre: "gg",
-    apellido: "gg",
-    telefono: "g",
-    documento: "g",
+  const Perfil = useSelector((state) => state.perfil);
+
+  const [ input, setInput ] = useState({
+    nombre: '',
+    apellido: "",
+    telefono: "",
+    documento: "",
   });
+ 
+  console.log(input)
+
+
   const handleOnchange = (e) => {
     setInput({
       ...input,
-      [s.target.name]: e.target.value,
+      [e.target.name] : e.target.value,
     });
   };
 
@@ -22,7 +30,7 @@ const Form = () => {
         <div className={s.div}>
           <input
             name="nombre"
-            value={input.nombre}
+           value={input.nombre}
             className={s.input}
             type="text"
             placeholder="name"
@@ -41,7 +49,7 @@ const Form = () => {
         </div>
         <div className={s.div}>
           <input
-            name="documento"
+            name="documento" 
             value={input.documento}
             className={s.input}
             type="text"
@@ -52,7 +60,7 @@ const Form = () => {
         <div className={s.div}>
           <input
             name="telefono"
-           value={input.telefono}
+            value={input.telefono}
             className={s.input}
             type="text"
             placeholder="telefono"
