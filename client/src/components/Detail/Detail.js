@@ -66,13 +66,14 @@ export default function Detail({Profesions}) {
       Swal.fire({ title:'Perfecto!', text:'Has accedido a los contactos del trabajador.¡Contáctalo!', icon:'success' } )
 
     }
-
+    const [open,setOpen] =useState(false);
     const Todaspublicaciones  = useSelector((state)=>state.publicacionesDeUnaPersona);
     const publicaciones = Todaspublicaciones.filter((p)=>p.id!==MyDetail.id);
     return (   
       <>
+      
       <NavBar/>
-              
+      
       <div className={s.container}>
         
         {/* tarjeta de contacto */}
@@ -101,13 +102,19 @@ export default function Detail({Profesions}) {
               <span className={s.valor}>Valor:</span>
               <span className={s.precio}>{MyDetail.precio}</span> 
             </div>
-            <br/>
+            {open? 
+            <div>
              {(!order) ? 
               <div className={s.paypal}>
                <PaypalCheckoutBtn product={product} setOrder={setOrder}/>
               </div>
              : <ContactDetail MyDetail={MyDetail}  />
-             }
+             }<div className={s.valor} onClick={()=>{setOpen(false)}}>Cancelar</div> 
+           </div>:
+            <div className={`${s.borderPrice} ${s.contratar}`} onClick={()=>{setOpen(true)}}>
+              <span className={s.precio}>Contratar</span> 
+            </div>}
+            <br/>
           </div>
           <br/><br/><br/><br/>
           
@@ -126,32 +133,47 @@ export default function Detail({Profesions}) {
            <div className={s.titulos}>Mas Publicaciones del emprendedor</div>
            <hr/>
            <br/><br/>
-           {publicaciones? publicaciones.map((p)=>
-          <Card sx={{ maxWidth: 345 }} key={p.id}>
+           <div className={s.cardsContainer}>
+           {/* {publicaciones? publicaciones.map((p)=> */}
+          <Card className={s.cardUi} sx={{ maxWidth: 345 }} /* key={p.id} */>
           <CardActionArea>
           <CardMedia
             component="img"
             height="140"
-            image={p.imagen}
+            image="https://comercioyjusticia.info/elinversorylaconstruccion/wp-content/uploads/sites/9/2015/09/color-pintura.jpg"
             alt="emprendedor"
            />
           <CardContent>
             <Typography gutterBottom variant="h5" component="div">
-             {p.Profesions}
+             PINTOR
             </Typography>
             <Typography variant="body2" color="text.secondary">
-             {p.descripcion}
+             Materiales incluidos, trabajo rapido y prolijo. El valor es por metro2.
             </Typography>
           </CardContent>
           </CardActionArea>
-          </Card>) : null}
-
+          </Card>
+          <Card className={s.cardUi} sx={{ maxWidth: 345 }} /* key={p.id} */>
+          <CardActionArea>
+          <CardMedia
+            component="img"
+            height="140"
+            image="https://comercioyjusticia.info/elinversorylaconstruccion/wp-content/uploads/sites/9/2015/09/color-pintura.jpg"
+            alt="emprendedor"
+           />
+          <CardContent>
+            <Typography gutterBottom variant="h5" component="div">
+             PINTOR
+            </Typography>
+            <Typography variant="body2" color="text.secondary">
+             Materiales incluidos, trabajo rapido y prolijo. El valor es por metro2.
+            </Typography>
+          </CardContent>
+          </CardActionArea>
+          </Card>
+          </div>{/* ) : null} */}
         </div>
       </div>
-          <br/><br/><br/><br/><br/><br/>
-          <br/><br/><br/><br/><br/><br/>
-          <br/><br/><br/><br/><br/><br/>
-          <br/><br/><br/><br/><br/><br/>
       <Footer/>
       <Help/>
       </>
