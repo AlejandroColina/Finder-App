@@ -181,58 +181,27 @@ router.get("/trabajo/:id", async (req, res, next) => {
 
 router.post("/crear", async function (req, res) {
   let profesionId = req.body.selected;
-
-  let consultaBD = await Persona.findOne({
-    where: { documento: req.body.input.documento },
+  let consulta = await Persona.findOne({
+    where: { email: req.body.email },
   });
 
-  if (consultaBD == null) {
-    Persona.create({
-      nombres: req.body.input.nombres,
-      apellidos: req.body.input.apellidos,
-      edad: req.body.input.edad,
-      email: req.body.input.email,
-      documento: req.body.input.documento,
-      descripcion: req.body.input.descripcion,
-      telefono: req.body.input.telefono,
-      direccion: req.body.input.direccion,
-      genero: req.body.input.genero,
-      imagen: req.body.input.imagen,
-    })
-      .then(async (input) => {
-        input.setProfesions(profesionId);
-        let PersonaId = await Persona.findOne({
-          where: { documento: parseInt(input.documento) },
-        });
-        PersonaId = PersonaId.dataValues.id;
-        await Direccion.create({
-          PersonaId: PersonaId,
-          direccion: req.body.input?.direccion,
-          ciudad: req.body.input?.diudad ? req.body.input?.diudad : 'Sin ciudad.',
-          pais: 'Argentina',
-        });
-        await Publicacion.create({
-          PersonaId: PersonaId,
-          descripcion: req.body.input?.descripcion,
-          precio: req.body.input?.precio,
-        });
-        return res.status(200).send(input);
-      })
-      .catch((error) => console.log(error));
-  } else {
-    let PersonaId = await Persona.findOne({
-      where: { documento: parseInt(req.body.input.documento) },
-    });
-    PersonaId = PersonaId.dataValues.id;
+  let PersonaId = consulta.dataValues.id;
 
-    let publicacion = await Publicacion.create({
-      PersonaId: PersonaId,
-      descripcion: req.body.input?.descripcion,
-      precio: req.body.input?.precio,
-    });
+  await Publicacion.create({
+    PersonaId: PersonaId,
+    descripcion: req.body.input?.descripcion,
+    precio: 3000,
+    // precio: req.body.input?.precio,
+  });
 
-    return res.send(publicacion);
-  }
+  await Direccion.create({
+    PersonaId: PersonaId,
+    ciudad: req.body.input?.ciudad,
+  });
+
+  await consulta.setProfesions(parseInt(profesionId))
+  return res.send('Publicación creada');
+
 });
 
 router.post('/nuevo', async (req, res, next) => {
