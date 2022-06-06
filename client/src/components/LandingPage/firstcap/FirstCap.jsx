@@ -3,7 +3,7 @@ import s from './FirstCap.module.css';
 import { useHistory } from "react-router-dom";
 import img_users from './users_logo_landing.png';
 import { useDispatch } from 'react-redux';
-import { getUsers, rederCard } from "../../Redux/actions";
+import { getUsers, rederCard, getEmpleosForm } from "../../Redux/actions";
 
 export default function FirstCap({ descripcion, setDescripcion }) {
 
@@ -14,6 +14,7 @@ export default function FirstCap({ descripcion, setDescripcion }) {
     useEffect(() => {
         dispatch(rederCard());
         dispatch(getUsers());
+        dispatch(getEmpleosForm());
     }, [dispatch])
 
     const searchRef = useRef()
