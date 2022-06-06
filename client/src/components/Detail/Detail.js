@@ -48,7 +48,7 @@ export default function Detail({Profesions}) {
   
   let { promedio } = MyDetail
 
-  let precio = 25 * promedio
+  let precio = 15
   let price = precio
   
   const product = {
