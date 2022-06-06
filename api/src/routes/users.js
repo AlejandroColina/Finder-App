@@ -273,15 +273,11 @@ router.get('/validar/:email', async (req, res, next) => {
     });
 
     if (
-<<<<<<< HEAD
-      consulta[0].apellidos == null ||
-      consulta[0].documento == null ||
-      consulta[0].telefono == null
-=======
+
       consulta[0]?.apellidos == null ||
       consulta[0]?.documento == null ||
       consulta[0]?.telefono == null
->>>>>>> 117b6292cd8210e986eaf6d09ac4c170b1389b30
+
     ) { res.send(true) } else {
       res.send(false);
     }
