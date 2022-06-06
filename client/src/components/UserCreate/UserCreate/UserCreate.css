@@ -1,63 +1,63 @@
 .page {
   background: linear-gradient(90deg, #1a2980 0%, #26d0ce 100%);
+  display: flex;
+  height: 150vh;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
 }
 
 .formCont {
-  box-sizing: border-box;
-  min-height: 100vh;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  max-width: 1170px;
-  margin-left: auto;
-  margin-right: auto;
-  padding: 1.5em;
-  background-color: white;
-  box-shadow: 0 0 20px 0 rgba(255, 255, 255, 0.3);
-}
-
-.leftCard {
-  display: flex;
-}
-
-.leftCard div {
-  background: linear-gradient(90deg, #1a2980 0%, #26d0ce 100%);
+  max-width: 900px;
   width: 100%;
+  height: 900px;
+  padding: 25px 30px;
+  border-radius: 25px;
+  background: white;
+}
+
+.cajaSelect {
+  margin: 20px auto;
+  border: 1px solid #000000;
+  height: 30px;
+  width: 230px;
+  overflow: hidden;
+  position: relative;
+}
+
+.formCont select {
+  background: transparent;
+  border: none;
+  font-size: 14px;
+  height: 30px;
+  padding: 5px;
+  width: 230px;
+  margin: auto;
+}
+
+.banner {
+  width: 80%;
+  margin-bottom: 300px;
   margin-left: 40px;
 }
 
-.rigthCard {
-  background-color: white;
-  padding: 1em;
-  margin: 0;
-}
-
-.rigthCard form {
-  display: flex;
-  width: 100%;
-}
+/* Campos */
 
 .inputs {
-  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: 80%;
   padding: 0.7em;
   border: none;
   border-bottom: 1px solid #0576e6a9;
   outline: 0;
   color: #000;
   margin-bottom: 16px;
-  font-size: 18px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  font-size: 1.5em;
   margin: auto;
 }
 
-.required {
-  width: 100%;
-  font-size: 13px;
-  justify-content: center;
-  align-items: center;
-  display: flex;
-}
+/* File select */
 
 .file-select {
   position: relative;
@@ -78,33 +78,41 @@
   content: "Seleccionar imagen";
   font-size: 16px;
   position: absolute;
-  left: 0;
-  right: 0;
+  left: 10;
+  right: 10;
   top: 0;
   bottom: 0;
+  padding: 10px;
 }
 
 .file-select input[type="file"] {
   opacity: 0;
-  width: 200px;
   height: 32px;
   display: inline-block;
+  pointer-events: visible;
 }
 
+/* Imagen de usuario */
+
 .userPic {
-  height: 300px;
-  border-radius: 150px;
+  height: 200px;
+  width: 200px;
+  border-radius: 350px;
   display: flex;
   margin: auto;
   margin-bottom: 30px;
 }
 
+/* Loader */
+
 .loader {
-  max-width: 300px;
+  max-width: 100px;
   align-items: center;
   display: flex;
   margin: auto;
 }
+
+/* Botón de submit */
 
 .submit {
   width: 100%;

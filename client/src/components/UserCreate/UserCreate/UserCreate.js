@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./UserCreate.css";
 import pic from "./img_fast.png";
 import user from "./user.png";
+import banner from "./banner.png";
 import loader from "./1495.gif";
 import axios from "axios";
 import "./UserCreate.css";
@@ -120,7 +121,7 @@ export default function UserCreate() {
     setLoading(true);
 
     const res = await fetch(
-      "https://api.cloudinary.com/v1_1/userfiles/image/upload",
+      "https://api.cloudinary.com/v1_1/userfiles/image/upload/",
       {
         method: "POST",
         body: data,
@@ -147,182 +148,164 @@ export default function UserCreate() {
         <>
           <div className="page">
             <div className="formCont">
-              <div className="rightCard">
-                <form onSubmit={handleSubmit}>
-                  {/* Imagen */}
+              <form onSubmit={handleSubmit}>
+                {/* Imagen */}
 
-                  {loading ? (
-                    <img className="loader" src={loader} alt="" />
-                  ) : !image ? (
-                    <img
-                      className="userPic"
-                      src={user}
-                      style={{ width: "300px" }}
-                      alt="File Not Found"
-                    />
-                  ) : (
-                    <img
-                      className="userPic"
-                      src={image}
-                      style={{ width: "300px" }}
-                      alt="File Not Found"
-                    />
-                  )}
+                {loading ? (
+                  <img className="loader" src={loader} alt="" />
+                ) : !image ? (
+                  <img className="userPic" src={user} alt="File Not Found" />
+                ) : (
+                  <img className="userPic" src={image} alt="File Not Found" />
+                )}
 
-                  <div className="file-select">
-                    <input
-                      onChange={uploadImage}
-                      name="file"
-                      type="file"
-                      placeholder="Cargar Imagen"
-                    />
-                  </div>
-
-                  {/* Nombre */}
-
+                <div className="file-select">
                   <input
-                    className="inputs"
-                    placeholder="Nombres"
-                    id="nombres"
-                    name="nombres"
-                    type="text"
-                    onChange={handleChange}
-                    value={input.nombres}
-                    required
+                    onChange={uploadImage}
+                    name="file"
+                    type="file"
+                    placeholder="Cargar Imagen"
                   />
+                </div>
 
-                  {/* Apellido */}
+                {/* Nombre */}
 
-                  <input
-                    className="inputs"
-                    placeholder="Apellidos"
-                    id="apellidos"
-                    name="apellidos"
-                    type="text"
-                    onChange={handleChange}
-                    value={input.apellidos}
-                    required
-                  />
+                <input
+                  className="inputs"
+                  placeholder="Nombres"
+                  id="nombres"
+                  name="nombres"
+                  type="text"
+                  onChange={handleChange}
+                  value={input.nombres}
+                  required
+                />
 
-                  {/* Edad */}
+                {/* Apellido */}
 
-                  <input
-                    className="inputs"
-                    id="edad"
-                    placeholder="Edad"
-                    name="edad"
-                    type="number"
-                    onChange={handleChange}
-                    value={input.edad}
-                    required
-                  />
+                <input
+                  className="inputs"
+                  placeholder="Apellidos"
+                  id="apellidos"
+                  name="apellidos"
+                  type="text"
+                  onChange={handleChange}
+                  value={input.apellidos}
+                  required
+                />
 
-                  {/* Email */}
+                {/* Edad */}
 
-                  <input
-                    className="inputs"
-                    id="email"
-                    placeholder="Email"
-                    name="email"
-                    type="email"
-                    onChange={handleChange}
-                    value={input.email}
-                    required
-                  />
+                <input
+                  className="inputs"
+                  id="edad"
+                  placeholder="Edad"
+                  name="edad"
+                  type="number"
+                  onChange={handleChange}
+                  value={input.edad}
+                  required
+                />
 
-                  {/* Documento */}
+                {/* Email */}
 
-                  <input
-                    className="inputs"
-                    id="documento"
-                    placeholder="Documento"
-                    name="documento"
-                    type="number"
-                    onChange={handleChange}
-                    value={input.documento}
-                    required
-                  />
+                <input
+                  className="inputs"
+                  id="email"
+                  placeholder="Email"
+                  name="email"
+                  type="email"
+                  onChange={handleChange}
+                  value={input.email}
+                  required
+                />
 
-                  {/* Género */}
+                {/* Documento */}
 
-                  <input
-                    className="inputs"
-                    id="genero"
-                    placeholder="Genero"
-                    name="genero"
-                    type="text"
-                    onChange={handleChange}
-                    value={input.genero}
-                    required
-                  />
+                <input
+                  className="inputs"
+                  id="documento"
+                  placeholder="Documento"
+                  name="documento"
+                  type="number"
+                  onChange={handleChange}
+                  value={input.documento}
+                  required
+                />
 
-                  {/* Teléfono */}
+                {/* Género */}
 
-                  <input
-                    className="inputs"
-                    id="telefono"
-                    placeholder="Telefono"
-                    name="telefono"
-                    type="number"
-                    onChange={handleChange}
-                    value={input.telefono}
-                    required
-                  />
+                <input
+                  className="inputs"
+                  id="genero"
+                  placeholder="Genero"
+                  name="genero"
+                  type="text"
+                  onChange={handleChange}
+                  value={input.genero}
+                  required
+                />
 
-                  {/* Dirección */}
+                {/* Teléfono */}
 
-                  <input
-                    className="inputs"
-                    id="direccion"
-                    placeholder="Direccion"
-                    name="direccion"
-                    type="text"
-                    onChange={handleChange}
-                    value={input.direccion}
-                    required
-                  />
+                <input
+                  className="inputs"
+                  id="telefono"
+                  placeholder="Telefono"
+                  name="telefono"
+                  type="number"
+                  onChange={handleChange}
+                  value={input.telefono}
+                  required
+                />
 
-                  {/* Descripcion */}
+                {/* Dirección */}
 
-                  <textarea
-                    className="inputs"
-                    rows="3"
-                    id="descripcion"
-                    placeholder="Descripcion"
-                    name="descripcion"
-                    type="textarea"
-                    onChange={handleChange}
-                    value={input.descripcion}
-                    required
-                  />
+                <input
+                  className="inputs"
+                  id="direccion"
+                  placeholder="Direccion"
+                  name="direccion"
+                  type="text"
+                  onChange={handleChange}
+                  value={input.direccion}
+                  required
+                />
 
-                  {/* Profesion */}
+                {/* Descripcion */}
 
-                  <label htmlFor="profesion"></label>
-                  <div>
-                    <div>
-                      <label for="empleo">Seleccione profesion</label>
-                      <select value={selected} onChange={handleChange1}>
-                        {empleos &&
-                          empleos.map((el, id) => (
-                            <option name="empleo" value={id + 1}>
-                              {el.nombre}
-                            </option>
-                          ))}
-                      </select>
-                    </div>
-                  </div>
+                <textarea
+                  className="inputs"
+                  rows="3"
+                  id="descripcion"
+                  placeholder="Descripcion"
+                  name="descripcion"
+                  type="textarea"
+                  onChange={handleChange}
+                  value={input.descripcion}
+                  required
+                />
 
-                  {/* Subbmit */}
+                {/* Profesion */}
+                <div className="cajaSelect">
+                  <label htmlFor="profesion">
+                    <select value={selected} onChange={handleChange1}>
+                      {empleos &&
+                        empleos.map((el, id) => (
+                          <option name="empleo" value={id + 1}>
+                            {el.nombre}
+                          </option>
+                        ))}
+                    </select>
+                  </label>
+                </div>
 
-                  <button className="submit" type="submit">
-                    Registrarse!
-                  </button>
-                </form>
-              </div>
-              <div className="leftCard">
-                <div></div>
-              </div>
+                {/* Subbmit */}
+                <button className="submit" type="submit">
+                  Registrarse!
+                </button>
+              </form>
+              {/* <img className="banner" src={banner} alt="" /> */}
             </div>
           </div>
         </>
