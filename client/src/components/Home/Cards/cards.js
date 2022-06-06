@@ -48,11 +48,11 @@ export default function Cards({
             <li className={s.listItem}>             
               {Profesions}
             </li>
-            <li className={s.listItem}>             
-             {estrellas?.map(() => <i style={{color: 'goldenrod', margin: '2px'}} class="fa-solid fa-star"></i>)}
-            </li>
             <li  className={s.listItem}>      
-         <i style={{ color: 'brown', margin: '9px'}} class="fa-solid fa-house-chimney"></i>{ciudad}
+         <i class="fa-solid fa-location-dot" style={{color: 'brown', fontWeight: '600', marginRight:'6px', marginTop: '0px'}}></i>{ciudad}
+            <li className={s.listItem} style={{marginTop: '10px', marginBottom: '7px'}}>             
+             {estrellas?.map(() => <i style={{color: 'goldenrod', margin: '2px',}} class="fa-solid fa-star"></i>)}
+            </li>
             </li>
           </ul>
         </div>
