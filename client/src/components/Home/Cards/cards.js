@@ -14,7 +14,7 @@ export default function Cards({
 }) {
   
   let estrellas = []
-  console.log(estrellas)
+  
   for (let i = 0; i < promedio; i++) {
     estrellas.push('estrellita')
   } 

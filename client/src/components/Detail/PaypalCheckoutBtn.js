@@ -29,10 +29,14 @@ export const PaypalCheckoutBtn = ( props ) => {
 
     return (
     <PayPalButtons style={{
-        color: 'blue',
-        size: "small",
-        shape: "pill",
-        label: 'pay',
+        // color: 'blue',
+        // size: "small",
+        // shape: "pill",
+        // label: 'pay',
+        layout: 'horizontal',
+        shape: 'pill',
+        
+        label: 'pay'
     }}
     onClick={(data, actions) => {
         const hasAlreadyPurchased = false
@@ -55,7 +59,9 @@ export const PaypalCheckoutBtn = ( props ) => {
                     amount: {
                         value: product.price
                     }
-                }
+                },
+                    
+                
             ]
         });
     }}
