@@ -127,3 +127,21 @@
 .cardUi{
     margin: 25px;
 }
+
+
+.swal2-popup {
+  height: 80%;
+  display: none;
+  position: relative;
+  box-sizing: border-box;
+  grid-template-columns: minmax(0,100%);
+  width: 30%;
+  max-width: 100%;
+  padding: 0 0 1.25em;
+  border: none;
+  border-radius: 5px;
+  background: #fff;
+  color: #545454;
+  font-family: inherit;
+  font-size: 1.6rem !important;
+}
