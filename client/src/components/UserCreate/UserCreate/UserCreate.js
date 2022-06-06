@@ -6,6 +6,8 @@ import axios from "axios";
 import "./UserCreate.css";
 import { getEmpleosForm } from "../../Redux/actions";
 import { useDispatch, useSelector } from "react-redux";
+import { useAuth0 } from '@auth0/auth0-react';
+import { Link } from 'react-router-dom';
 
 //Validadores
 
@@ -57,6 +59,7 @@ const validate = (values) => {
 //Componente Principal
 
 export default function UserCreate() {
+  const { user } = useAuth0();
   const dispatch = useDispatch();
 
   const [image, setImage] = useState("");
@@ -64,17 +67,10 @@ export default function UserCreate() {
   const [loading, setLoading] = useState(false);
   const formik = useFormik({
     initialValues: {
-      nombres: "",
-      apellidos: "",
       edad: "",
-      email: "",
-      documento: "",
       descripcion: "",
-      telefono: "",
       direccion: "",
       profesion: "",
-      imagen: "",
-      puntuacion: [],
     },
     validate,
     onSubmit: (values) => {
@@ -117,11 +113,9 @@ export default function UserCreate() {
   // Envío de datos a la DB
   function handleSubmit(e) {
     e.preventDefault();
-    let profesionId = Object.keys(empleosSelected);
     axios
-      .post("http://localhost:3001/users/crear", { input, selected })
+      .post("http://localhost:3001/users/crear", { input, selected, email: user?.email })
       .then((res) => {
-        console.log(res);
         alert("Usuario creado");
       })
       .catch((error) => {
@@ -132,30 +126,20 @@ export default function UserCreate() {
 
   // useState de los inputs
   const [input, setInput] = useState({
-    nombres: "",
-    apellidos: "",
     edad: "",
-    email: "",
-    documento: "",
     descripcion: "",
-    telefono: "",
     direccion: "",
-    genero: "",
-    imagen: "",
-    puntuacion: [],
+    imagen: ""
   });
-
-  console.log(input);
 
   const handleChange = (e) => {
     let name = e.target.name;
-    console.log(name);
     let value = e.target.value;
 
     setInput({
       ...input,
       [name]:
-        name === "edad" || name === "documento" || name === "telefono"
+        name === "edad"
           ? !isNaN(parseInt(value))
             ? parseInt(value)
             : (value = "")
@@ -180,6 +164,8 @@ export default function UserCreate() {
         */}
         <div className="rightCard">
           <form onSubmit={handleSubmit}>
+            <Link to={`/perfil/${user?.email}`} > <button >Perfil</button></Link>
+            <Link to='/home' > <button >ir a home</button></Link>
             {loading ? (
               <h3>Loading...</h3>
             ) : (
@@ -199,35 +185,6 @@ export default function UserCreate() {
               />
             </div>
 
-            <label htmlFor="nombres"></label>
-            {formik.touched.nombres && formik.errors.nombres ? (
-              <div className="required">{formik.errors.nombres}</div>
-            ) : null}
-            <input
-              className="inputs"
-              placeholder="Nombres"
-              name="nombres"
-              type="text"
-              onBlur={formik.handleBlur}
-              onChange={handleChange}
-              value={input.nombres}
-            />
-
-            <label htmlFor="apellidos"></label>
-            {formik.touched.apellidos && formik.errors.apellidos ? (
-              <div className="required">{formik.errors.apellidos}</div>
-            ) : null}
-            <input
-              className="inputs"
-              id="apellidos"
-              placeholder="Apellidos"
-              name="apellidos"
-              type="text"
-              onChange={handleChange}
-              value={input.apellidos}
-              onBlur={formik.handleBlur}
-            />
-
             <label htmlFor="edad"></label>
             {formik.touched.apellidos && formik.errors.edad ? (
               <div className="required">{formik.errors.edad}</div>
@@ -243,50 +200,6 @@ export default function UserCreate() {
               onBlur={formik.handleBlur}
             />
 
-            <label htmlFor="email"></label>
-            {formik.touched.email && formik.errors.email ? (
-              <div className="required">{formik.errors.email}</div>
-            ) : null}
-            <input
-              className="inputs"
-              id="email"
-              placeholder="Email"
-              name="email"
-              type="email"
-              onChange={handleChange}
-              value={input.email}
-              onBlur={formik.handleBlur}
-            />
-
-            <label htmlFor="documento"></label>
-            {formik.touched.documento && formik.errors.documento ? (
-              <div className="required">{formik.errors.documento}</div>
-            ) : null}
-            <input
-              className="inputs"
-              id="documento"
-              placeholder="documento"
-              name="documento"
-              type="number"
-              onChange={handleChange}
-              value={input.documento}
-              onBlur={formik.handleBlur}
-            />
-
-            <label htmlFor="genero"></label>
-            {formik.touched.genero && formik.errors.genero ? (
-              <div className="required">{formik.errors.genero}</div>
-            ) : null}
-            <input
-              className="inputs"
-              id="genero"
-              placeholder="genero"
-              name="genero"
-              type="text"
-              onChange={handleChange}
-              value={input.genero}
-              onBlur={formik.handleBlur}
-            />
 
             <label htmlFor="descripcion"></label>
             {formik.touched.descripcion && formik.errors.descripcion ? (
@@ -303,20 +216,6 @@ export default function UserCreate() {
               onBlur={formik.handleBlur}
             />
 
-            <label htmlFor="telefono"></label>
-            {formik.touched.telefono && formik.errors.telefono ? (
-              <div className="required">{formik.errors.telefono}</div>
-            ) : null}
-            <input
-              className="inputs"
-              id="telefono"
-              placeholder="telefono"
-              name="telefono"
-              type="number"
-              onChange={handleChange}
-              value={input.telefono}
-            // onBlur={formik.handleBlur}
-            />
 
             <label htmlFor="direccion"></label>
             {formik.touched.direccion && formik.errors.direccion ? (
@@ -334,14 +233,6 @@ export default function UserCreate() {
             />
 
             <label htmlFor="profesion"></label>
-            {/* <select id="profesion" name="profesion">
-              {empleos &&
-                empleos.map((e) => {
-                  <option value={e.nombre} id={e.id}>
-                    {e.nombre}
-                  </option>;
-                })}
-            </select> */}
             <div>
               <div>
                 <select value={selected} onChange={handleChange1}>
