@@ -8,6 +8,7 @@ const mensaje = require('./routes/mensaje');
 const del = require('./routes/delete');
 const favoritos = require('./routes/favoritos');
 const comentario = require('./routes/comentario');
+const pregunta = require('./routes/pregunta');
 const cors = require('cors');
 server.use(cors());
 
@@ -16,6 +17,7 @@ server.use('/publicaciones', publicaciones);
 server.use('/mensaje', mensaje);
 server.use('/delete', del);
 server.use('/comentario', comentario);
+server.use('/pregunta', pregunta);
 server.use('/favoritos', favoritos);
 server.use('/trabajos', trabajos);
 server.get('*', (req, res) => {

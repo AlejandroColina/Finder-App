@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { getDetail, getDeleteDetail, getPublicacionDeUsuario } from "../Redux/actions/index";
+import { getDetail, getDeleteDetail, getPublicacionDeUsuario, getOpiniones } from "../Redux/actions/index";
 import NavBar from '../NavBar/NavBar';
 import s from './Detail.module.css';
 import { useAuth0} from '@auth0/auth0-react';
@@ -19,28 +19,31 @@ import {CardActionArea} from '@mui/material';
 import Footer from '../Footer/Footer';
 import Help from '../Help/Help';
 import Comentar from './Comentar/Comentar';
+import Preguntar from './Preguntar/Preguntar';
 
 
 
 export default function Detail({Profesions}) {
-  const { isAuthenticated, user } = useAuth0();
+/*   const { isAuthenticated, user } = useAuth0();
   const { loginWithRedirect } = useAuth0();
   const { logout } = useAuth0();
   if (isAuthenticated) {
     var onlyFirst = user.name.split(' ');
-  }
+  } */
   
   
   
   
   const dispatch = useDispatch();
   const { id } = useParams();
-  const MyDetail = useSelector(state => state.detail)
+  const MyDetail = useSelector(state => state.detail);
+  const opiniones = useSelector(state=> state.opiniones);
   console.log(MyDetail)
   
   useEffect(() => {
     dispatch(getDetail(id));
     dispatch(getPublicacionDeUsuario(MyDetail.email));
+    dispatch(getOpiniones(id));
     return function(){
       dispatch(getDeleteDetail())  
     }      
@@ -115,6 +118,10 @@ export default function Detail({Profesions}) {
           </div>
           <br/><br/><br/><br/>
           
+          <div className={s.titulos}>Tenes dudas?</div>
+          <hr/>
+          <Preguntar /* nombre={user.name} */ nombre='cami' publicacion={MyDetail.id} />
+          <br/><br/><br/><br/>
            <div className={s.titulos}>RESEÑAS
           <Box sx={{ '& > legend': { mt: 2 },}}>
           {MyDetail.promedio?
@@ -124,11 +131,18 @@ export default function Detail({Profesions}) {
           }
           </Box> </div>
           <hr/> 
-          {(order) ? 
-          <Comentar nombre={user.name} publicacion={id} />
-            :
+          {/* {(order) ?  */}
+          <Comentar /* nombre={user.name} */ nombre='cami' publicacion={id} />
+           {/* /*  :
             null
-        }
+          */ }
+          {opiniones? opiniones.map((r)=> 
+          <div key={r.id}>
+            <div>{r.persona}</div>
+            <div>{r.comentario}</div>
+            <Rating  size='small' value={r.puntaje} readOnly />
+          </div> )
+          : null}
           <br/><br/><br/><br/><br/><br/>
           
            <div className={s.titulos}>Mas Publicaciones del emprendedor</div>
