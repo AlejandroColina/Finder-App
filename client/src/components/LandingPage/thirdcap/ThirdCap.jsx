@@ -47,11 +47,11 @@ export default function ThirdCap() {
                         <Cards
                             key={users[actual]?.id}
                             promedio={users[actual]?.promedio}
-                            logoProfesion={users[actual]?.logoProfesion}
+                            logoProfesion={users[actual]?.publicaciones[0]?.Profesion?.logo}
                             nombres={users[actual]?.nombres}
                             imagen={users[actual]?.imagen}
                             descripcion={' '}
-                            Profesions={users[actual]?.Profesions}
+                            Profesions={users[actual]?.publicaciones[0]?.Profesion?.nombre}
                             id={users[actual]?.id}
                             ciudad={users[actual]?.ciudad}
                         />

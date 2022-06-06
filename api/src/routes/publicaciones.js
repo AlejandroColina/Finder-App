@@ -10,11 +10,13 @@ router.get("/", async (req, res, next) => {
     let { profesion, nombres, promedio, genero, edad, ciudad, descripcion } =
       req.query;
 
-    let tablaPublicacion = await Publicacion.findAll();
+    let tablaPublicacion = await Publicacion.findAll(
+      { include: [Profesion] }
+    );
     let obj = [];
 
     let personas = await Persona.findAll({
-      include: [Profesion, Direccion]
+      include: [Direccion]
     });
 
     tablaPublicacion?.map(async (posts) => {
@@ -23,9 +25,8 @@ router.get("/", async (req, res, next) => {
 
       let persona = personas.filter(e => e.dataValues.id === idPersona);
       let user = persona[0]?.dataValues;
-      let profesion = persona[0]?.dataValues?.Profesions[0]?.dataValues;
       let direccion = persona[0]?.dataValues?.Direccions[0]?.dataValues;
-
+      
       obj.push({
         idPublicacion: post.id,
         idPersona: user.id,
@@ -33,9 +34,10 @@ router.get("/", async (req, res, next) => {
         apellido: user.apellidos,
         promedio: user.promedio,
         imagen: user.imagen,
+        titulo: post.titulo,
         descripcion: post.descripcion,
-        Profesions: profesion.nombre,
-        logoProfesion: profesion.logo,
+        Profesions: post.Profesion.dataValues.nombre,
+        logoProfesion: post.Profesion.dataValues.logo,
         genero: user.genero,
         edad: user.edad,
         ciudad: direccion.ciudad
