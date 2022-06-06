@@ -23,9 +23,9 @@ DB_CONN.sync({ force: true })
             })
         };
 
-        personas.map(async (person, PersonaId) => {
+        personas.map(async (person, index) => {
             let promedio = parseInt(person.puntuacion.reduce((a, b) => a + b) / person.puntuacion.length);
-            let persona = await Persona.create({
+            await Persona.create({
                 nombres: person.nombres,
                 apellidos: person.apellidos,
                 documento: person.documento,
@@ -43,10 +43,10 @@ DB_CONN.sync({ force: true })
             await Publicacion.create({
                 descripcion: person.descripcion,
                 precio: person.precio,
-                PersonaId: PersonaId + 1
+                titulo: 'Trabajo profesional finder ' + (index + 1),
+                PersonaId: index + 1,
+                ProfesionId: person.profesion,
             });
-
-            await persona.setProfesions(person.profesion);
         });
 
         setTimeout(() => {
