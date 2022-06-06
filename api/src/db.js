@@ -31,8 +31,8 @@ Direccion.belongsTo(Persona);
 Persona.hasMany(Publicacion);
 Publicacion.belongsTo(Persona);
 
-Persona.belongsToMany(Profesion, { through: 'rel_person_profesion' });
-Profesion.belongsToMany(Persona, { through: 'rel_person_profesion' });
+Profesion.hasMany(Publicacion);
+Publicacion.belongsTo(Profesion);
 
 Publicacion.hasMany(Comentario);
 Comentario.belongsTo(Publicacion);
