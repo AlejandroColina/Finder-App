@@ -1,11 +1,13 @@
 import React from "react";
 import s from "./Form.module.css";
 import { useDispatch, useSelector } from "react-redux";
-
+import {cambiarInfo} from '../../Redux/actions/index'
 import { useState } from "react";
+import { useAuth0 } from "@auth0/auth0-react";
 const Form = () => {
   const Perfil = useSelector((state) => state.perfil);
-
+  const { user } = useAuth0();
+ const dispatch = useDispatch();
   const [ input, setInput ] = useState({
     nombre: '',
     apellido: "",
@@ -22,6 +24,10 @@ const Form = () => {
       [e.target.name] : e.target.value,
     });
   };
+
+  const handleOnclick = (e) =>{ 
+    dispatch(cambiarInfo(user?.email, input))
+  }
 
   return (
     <div className={s.form}>
@@ -68,7 +74,7 @@ const Form = () => {
           ></input>
         </div>
         <div className={s.div_boton}>
-          <button className={s.button}>Guardar</button>
+          <button >Guardar</button>
         </div>
       </div>
     </div>

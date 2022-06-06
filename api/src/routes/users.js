@@ -299,8 +299,8 @@ router.get('/validar/:email', async (req, res, next) => {
       consulta[0].apellidos == null ||
       consulta[0].documento == null ||
       consulta[0].telefono == null
-    ) { res.send(false) } else {
-      res.send(true);
+    ) { res.send(true) } else {
+      res.send(false);
     }
   } catch (error) {
     next(error)

@@ -212,19 +212,19 @@ export function ValidarInfo(email) {
       console.log(info.data)
       return dispatch({
         type: 'INFO_VALI',
-        payloasd: info.data
+        payload: info.data
       })
     } catch (error) { console.log(error) }
   }
 }
 
-export function cambiarInfo(email, nombres, apellidos, telefono, documento, edad) {
+export function cambiarInfo(email, input) {
   return async dispatch => {
     try {
-      let info = await axios.patch(`http://localhost:3001/users/modificar/${email}?nombres=${nombres}&apellidos=${apellidos}&telefono=${telefono}&documento=${documento}&edad=${edad}`)
+      let info = await axios.patch(`http://localhost:3001/users/modificar/${email}?nombres=${input.nombres}&apellidos=${input.apellidos}&telefono=${input.telefono}&documento=${input.documento}`)
       return dispatch({
         type: 'MODIFICAR',
-        payloasd: info.data
+        payload: info.data
       })
     } catch (error) { console.log(error) }
   }
