@@ -46,13 +46,10 @@ export default function Detail({Profesions}) {
     }      
   }, [id, dispatch])
   
-  let price;
-  let promedio = Math.floor(MyDetail.promedio)
-  if(promedio === 1) price = 10
-  if(promedio === 2) price = 15
-  if(promedio === 3) price = 25
-  if(promedio === 4) price = 35
-  if(promedio === 5) price = 50
+  let { promedio } = MyDetail
+
+  let precio = 25 * promedio
+  let price = precio
   
   const product = {
     description: "Comision",
@@ -104,7 +101,7 @@ export default function Detail({Profesions}) {
             <br/>
              {(!order) ? 
               <div className={s.paypal}>
-               <PaypalCheckoutBtn product={product} setOrder={setOrder}/>
+               <PaypalCheckoutBtn product={product}  setOrder={setOrder}/>
               </div>
              : <ContactDetail MyDetail={MyDetail}  />
              }
@@ -119,8 +116,12 @@ export default function Detail({Profesions}) {
            <Rating size='large' name="no-value" value={null} />
           }
           </Box> </div>
-          <hr/>
-            <Comentar nombre={user.name} publicacion={id} />
+          <hr/> 
+          {(order) ? 
+          <Comentar nombre={user.name} publicacion={id} />
+            :
+            null
+        }
           <br/><br/><br/><br/><br/><br/>
           
            <div className={s.titulos}>Mas Publicaciones del emprendedor</div>

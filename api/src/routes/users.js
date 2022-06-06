@@ -165,29 +165,6 @@ router.get("/empleosForm", async (req, res, next) => {
   }
 });
 
-// router.get("/:ocupacion", (req, res) => {
-//   axios
-//     .get("http://localhost:3001/users")
-//     .then((respuesta) => {
-//       let personas = respuesta.data;
-//       let tuPersona = personas.filter((el) =>
-//         el.descripcion
-//           .toLowerCase()
-//           .includes(req.params.ocupacion.toLowerCase())
-//       );
-//       if (!tuPersona.length) {
-//         res.send([]);
-//       }
-//       if (tuPersona.length > 0) {
-//         res.send(tuPersona);
-//       }
-//       res.end();
-//     })
-//     .catch((error) => {
-//       console.log(error);
-//     });
-// });
-
 router.get("/trabajo/:id", async (req, res, next) => {
   const id = req.params.id;
   try {
@@ -296,9 +273,15 @@ router.get('/validar/:email', async (req, res, next) => {
     });
 
     if (
+<<<<<<< HEAD
       consulta[0].apellidos == null ||
       consulta[0].documento == null ||
       consulta[0].telefono == null
+=======
+      consulta[0]?.apellidos == null ||
+      consulta[0]?.documento == null ||
+      consulta[0]?.telefono == null
+>>>>>>> 117b6292cd8210e986eaf6d09ac4c170b1389b30
     ) { res.send(true) } else {
       res.send(false);
     }
@@ -392,7 +375,6 @@ router.get("/detalle/:idPublicacion", async (req, res, next) => {
 router.get('/perfil/:email', async (req, res, next) => {
   try {
     const { email } = req.params;
-    console.log(req.params)
     let consulta = await Persona.findAll({
       include: [Profesion, Direccion, Publicacion],
       where: { email: email }

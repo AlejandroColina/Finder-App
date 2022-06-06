@@ -18,6 +18,9 @@ router.get('/:idPublicacion', async(req,res)=>{
     }
 })
 
+
+
+
 router.post('/', async(req,res)=>{
     try{
         const {puntaje, comentario, persona,PublicacionId} =req.body;

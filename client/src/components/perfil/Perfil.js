@@ -13,29 +13,27 @@ import { useDispatch, useSelector } from "react-redux";
 import { getPefil, ValidarInfo } from "../Redux/actions/index";
 
 const Perfil = () => {
-  const { isAuthenticated, user } = useAuth0();
+  const { user } = useAuth0();
   const dispatch = useDispatch();
+
+  
+  const { validar } = useSelector(state => state);
   const [perfil, setPerfil] = useState(false);
   const StatePerfil = useSelector((state) => state.perfil);
-  const validar = useSelector(state => state.validar)
-
+  
   const handlePerfil = () => {
     setPerfil(true);
   };
-
+  
   const handleVolver = () => {
     setPerfil(false);
   };
-
+  
   useEffect(() => {
     dispatch(getPefil(user?.email));
-   
-  }, [dispatch]);
-
-  useEffect(() => {
-    dispatch(ValidarInfo(user?.email))
-  })
-
+    dispatch(ValidarInfo(user?.email));
+  }, [dispatch, user?.email]);
+  
   return (
     <div>
       <nav className={s.nav}>
@@ -66,8 +64,8 @@ const Perfil = () => {
 
       <section className={s.conten}>
         <div className={s.datos}>
-          <button className={s.end} disabled={{validar}}>Crear publicacion</button>
-          {!validar? <p className={s.rojo}> complete su perfil para poder hacer una apublicacion</p>: ''}
+          <button className={s.end} disabled={validar}>Crear publicacion</button>
+          {!validar ? <p className={s.rojo}> complete su perfil para poder hacer una apublicacion</p> : ''}
           <h1 className={s.personal}>informacion personal</h1>
           <div className={s.info}>
             <h2>nombre completo :</h2>
