@@ -132,7 +132,7 @@ export default function UserCreate() {
     setImage(file.secure_url);
     setInput({ ...input, imagen: file.secure_url });
     setLoading(false);
-  };
+  }
 
   return (
     <>
