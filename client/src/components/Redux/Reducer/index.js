@@ -12,7 +12,8 @@ const InitialState = {
   ubicacion: {},
   validar: true,
   publicacionesDeUnaPersona: [],
-  perfil: []
+  perfil: [],
+  opiniones:[],
 
 };
 
@@ -123,6 +124,20 @@ export default function rootReducer(state = InitialState, action) {
       return {
         ...state
       }
+
+    case 'GET_OPINIONES':
+      return{
+        ...state,
+        opiniones: action.payload
+      }
+    case 'POST_OPINION':
+      return{
+        ...state,
+      }
+      case 'DELETE_OPINION':
+        return{
+          ...state,
+        }
 
     default:
       return state;

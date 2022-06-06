@@ -223,10 +223,43 @@ export function cambiarInfo(email, input) {
       let info = await axios.patch(`http://localhost:3001/users/modificar/${email}?nombres=${input.nombres}&apellidos=${input.apellidos}&telefono=${input.telefono}&documento=${input.documento}`)
       return dispatch({
         type: 'MODIFICAR',
-        payloasd: info.data
+        payload: info.data
       })
     } catch (error) { console.log(error) }
   }
 }
 
+export function getOpiniones(id){
+  return async (dispatch)=>{
+    try{
+      let opiniones = await axios.get(`http://localhost:3001/comentario/${id}`)
+      return dispatch({
+        type:'GET_OPINIONES',
+        payload: opiniones.data
+      })
+    }catch(error){ console.log(error)}
+  }
+}
+
+export function postOpinion(input){
+  return async (dispatch)=>{
+    try{
+      await axios.post('http://localhost:3001/comentario',input)
+      return dispatch({
+        type:'POST_OPINION',
+      })
+    }catch(error){ console.log(error)}
+  }
+}
+
+export function deleteOpinion(id){
+  return async (dispatch)=>{
+    try{
+      await axios.delete(`http://localhost:3001/comentario/${id}`)
+      return dispatch({
+        type:'DELETE_OPINION',
+      })
+    }catch(error){ console.log(error)}
+  }
+}
 
