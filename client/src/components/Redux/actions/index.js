@@ -230,3 +230,13 @@ export function cambiarInfo(email, input) {
 }
 
 
+export function eliminarPost(id){
+  console.log(id)
+  return async dispatch => {
+    let borrar = await axios.delete('http://localhost:3001/delete/post/' + id)
+    return dispatch({
+      type: 'DELETE',
+    })
+  }}
+
+

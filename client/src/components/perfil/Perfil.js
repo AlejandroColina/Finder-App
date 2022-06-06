@@ -11,23 +11,25 @@ import Footer from "../Footer/Footer";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getPefil, ValidarInfo } from "../Redux/actions/index";
-import { Link } from 'react-router-dom';
-
+import { Link } from "react-router-dom";
+import Favorito from "./favoritos/Favoritos";
 const Perfil = () => {
   const { user } = useAuth0();
   const dispatch = useDispatch();
 
-
-  const { validar } = useSelector(state => state);
+  const { validar } = useSelector((state) => state);
+  const [favorito, setFavorito] = useState(false);
   const [perfil, setPerfil] = useState(false);
   const StatePerfil = useSelector((state) => state.perfil);
 
   const handlePerfil = () => {
     setPerfil(true);
+    setFavorito(false);
   };
 
   const handleVolver = () => {
     setPerfil(false);
+    setFavorito(false);
   };
 
   useEffect(() => {
@@ -35,11 +37,18 @@ const Perfil = () => {
     dispatch(ValidarInfo(user?.email));
   }, [dispatch, user?.email]);
 
+  const handleState = () => {
+    setFavorito(true);
+  };
+
   return (
-    <div>
+    <div >
       <nav className={s.nav}>
         <img className={s.logo} src={logo} alt="finder" />
-        <Link to='/home' > <button >Ir a home</button></Link>
+        <Link to="/home">
+          {" "}
+          <button>Ir a home</button>
+        </Link>
       </nav>
       <div className={s.portada}>
         <img
@@ -49,25 +58,42 @@ const Perfil = () => {
         />
       </div>
       <section className={s.perfil}>
-        <div className={s.con_per}>
-          <img className={s.imgper} src={user?.picture} alt="perfil" />
+        
+         
           <div className={s.nombre}>
+          <img className={s.imgper} src={user?.picture} alt="perfil" />
+          <div> 
             <h2>PERFIL</h2>
             <h1>{StatePerfil[0]?.nombres}</h1>
-            <div className={s.flex}>
-              <button onClick={handlePerfil}>Completar perfil</button>
             </div>
-            <button onClick={handleVolver} className={s.boton}>
-              volver
-            </button>
           </div>
+          <div className={s.mover}>
+          <button className={s.botones} onClick={handleState}>Favoritos</button>
+          <button  className={s.botones} onClick={handlePerfil}>Editar perfil</button>
+          <button  className={s.botones} onClick={handleVolver} >
+            perfil
+          </button>
         </div>
+        
+       
       </section>
 
       <section className={s.conten}>
         <div className={s.datos}>
-          <Link to='/userLog' > <button className={s.end} disabled={validar}>Crear publicacion</button></Link>
-          {validar ? <p className={s.rojo}> complete su perfil para poder hacer una apublicacion</p> : ''}
+          <Link to="/userLog">
+            {" "}
+            <button className={s.boton} disabled={validar}>
+              Crear publicacion
+            </button>
+          </Link>
+          {validar ? (
+            <p className={s.rojo}>
+              {" "}
+              complete su perfil para poder hacer una apublicacion
+            </p>
+          ) : (
+            ""
+          )}
           <h1 className={s.personal}>informacion personal</h1>
           <div className={s.info}>
             <h2>nombre completo :</h2>
@@ -84,29 +110,35 @@ const Perfil = () => {
           </div>
         </div>
         <div className={s.publi}>
-          {perfil ? (
-            <Form />
+          {favorito ? (
+            <Favorito />
           ) : (
             <div>
-              <h2 className={s.h2}>Publicaciones</h2>
-              <div className={s.centrar_publi}>
-                {StatePerfil && StatePerfil[0]?.Publicacions ? (
-                  StatePerfil[0].Publicacions.map((el) => (
-                    <Card_perfil
-                      key={el.id}
-                      precio={el.precio}
-                      descripcion={el.descripcion}
-                      nombre={StatePerfil[0]?.nombres}
-                      imagen={StatePerfil[0]?.imagen}
-                      Profesions={StatePerfil[0]?.Profesions[0].nombre}
-                      id={el.id}
-                      logoProfesion={StatePerfil[0]?.Profesions[0].logo}
-                    />
-                  ))
-                ) : (
-                  <p>NO TIENE</p>
-                )}
-              </div>
+              {perfil ? (
+                <Form />
+              ) : (
+                <div>
+                  <h2 className={s.h2}>Publicaciones</h2>
+                  <div className={s.centrar_publi}>
+                    {StatePerfil && StatePerfil[0]?.Publicacions ? (
+                      StatePerfil[0].Publicacions.map((el) => (
+                        <Card_perfil
+                          key={el.id}
+                          precio={el.precio}
+                          descripcion={el.descripcion}
+                          nombre={StatePerfil[0]?.nombres}
+                          imagen={StatePerfil[0]?.imagen}
+                          Profesions={StatePerfil[0]?.Profesions[0].nombre}
+                          id={el.id}
+                          logoProfesion={StatePerfil[0]?.Profesions[0].logo}
+                        />
+                      ))
+                    ) : (
+                      <p>NO TIENE</p>
+                    )}
+                  </div>
+                </div>
+              )}
             </div>
           )}
         </div>

@@ -2,7 +2,7 @@ import React from "react";
 import s from './Card_perfil.module.css'
 import { Link } from "react-router-dom";
 import {useDispatch} from 'react-redux'
-// import {eliminarPost} from '../../Redux/actions/index'
+import {eliminarPost} from '../../Redux/actions/index'
 export default function Cards({
   nombres,
   imagen,
@@ -14,9 +14,9 @@ export default function Cards({
 }) {
  const dispatch = useDispatch();
 
-//  const handleonClik = () =>{
-//   dispatch(eliminarPost(id))
-//  }
+ const handleonClik = () =>{
+  dispatch(eliminarPost(id))
+ }
   return (
     <div className={s.container}>
       <header>
@@ -59,7 +59,7 @@ export default function Cards({
        
       </div>
       <div className={s.botones}> 
-        <button>eliminar</button>
+        <button onClick={handleonClik}>eliminar</button>
         <button>editar</button>
       </div>
     </div>

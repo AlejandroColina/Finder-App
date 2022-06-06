@@ -124,6 +124,11 @@ export default function rootReducer(state = InitialState, action) {
         ...state
       }
 
+      case 'DELETE':
+        return {
+          ...state
+        }
+
     default:
       return state;
   }
