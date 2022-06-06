@@ -2,6 +2,7 @@
     display: flex;
     min-height: 100vh;
 }
+
 .card{
     position:fixed;
     top:120px;
@@ -59,10 +60,11 @@
     margin-left: 400px;
 }
 .containerInfo{
-    position: absolute;
-    left: 500px;
-    top: 120px ;
+    position: relative;
+    margin-left: 500px;
+    margin-top: 120px ;
     width: 800px;
+    margin-bottom: 300px;
 }
 .titulos{
     font-size: 25px;
@@ -108,23 +110,22 @@
     margin-top: 25px;
     height: 30px;
 }
-
-@media only screen and (max-width:400px){
-    .container{
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        width: 100%;
-    }
-    .card{
-        position: relative;
-    }
-    .containerInfo{
-        position: relative;
-        display: flex;
-        flex-direction: column;
-        width: 100%;
-    }
+.contratar{
+    color: white;
+    background-color: #0575e6;
+    transition: 1s;
+}
+.contratar:hover{
+    background-color: white;
+    color: #001b38;
+}
+.cardsContainer{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.cardUi{
+    margin: 25px;
 }
 
 
