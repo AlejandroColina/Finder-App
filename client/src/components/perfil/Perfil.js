@@ -12,6 +12,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getPefil, ValidarInfo } from "../Redux/actions/index";
 import { Link } from 'react-router-dom';
+import { Helmet } from "react-helmet";
 
 const Perfil = () => {
   const { user } = useAuth0();
@@ -37,6 +38,12 @@ const Perfil = () => {
 
   return (
     <div>
+      {(user) ? 
+      <Helmet><title>{ `${StatePerfil[0]?.nombres}` } - Perfil</title></Helmet>
+      :
+      <Helmet><title>Cargando..</title></Helmet>
+     }
+      
       <nav className={s.nav}>
         <img className={s.logo} src={logo} alt="finder" />
         <Link to='/home' > <button >Ir a home</button></Link>
