@@ -132,6 +132,13 @@ export default function rootReducer(state = InitialState, action) {
         ...state
       }
 
+
+      case 'DELETE':
+        return {
+          ...state
+        }
+
+
     case 'GET_OPINIONES':
       return{
         ...state,
