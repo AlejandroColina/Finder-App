@@ -18,11 +18,11 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import {CardActionArea} from '@mui/material';
+import { Helmet } from 'react-helmet'
 import Footer from '../Footer/Footer';
 import Help from '../Help/Help';
 import Comentar from './Comentar/Comentar';
 import Preguntar from './Preguntar/Preguntar';
-
 
 
 export default function Detail({Profesions}) {
@@ -85,7 +85,10 @@ export default function Detail({Profesions}) {
     const publicaciones = Todaspublicaciones.filter((p)=>p.id!==MyDetail.id);
     return (   
       <>
-      
+      { (!MyDetail.nombres) ?
+         <Helmet><title>Cargando..</title></Helmet>
+        : <Helmet><title>{`${MyDetail.nombres}`} - Finder </title></Helmet>
+      }
       <NavBar/>
       
       <div className={s.container}>

@@ -8,6 +8,7 @@ import { getEmpleosForm } from "../../Redux/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { useAuth0 } from '@auth0/auth0-react';
 import { Link } from 'react-router-dom';
+import { Helmet } from "react-helmet";
 
 //Validadores
 
@@ -155,6 +156,7 @@ export default function UserCreate() {
 
   return (
     <>
+    <Helmet><title>Nuevo Post - Finder</title></Helmet>
       <div className="formCont">
         <div className="leftCard">
           <img src={pic} alt="" />
