@@ -125,6 +125,7 @@ function Home({ descripcion, setDescripcion }) {
                     Profesions={el.Profesions.length ? el.Profesions : 'nada'}
                     logoProfesion={el.logoProfesion}
                     id={el.idPersona}
+                    idPublicacion={el.idPublicacion}
                   />
                 </div>
               )) : <NoResult />}

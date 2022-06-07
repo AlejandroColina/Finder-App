@@ -10,6 +10,7 @@ export default function Cards({
   id,
   logoProfesion,
   ciudad,
+  idPublicacion
 
 }) {
 
@@ -19,9 +20,15 @@ export default function Cards({
     estrellas.push('estrellita')
   }
 
+  const handleOnClick = () => {
+   
+  }
+
   return (
     <div key={`${id}F`} className={s.container}>
+      <button onClick={handleOnClick }>Favoritos</button>
       <header>
+      
         <div className={s.bio}>
           <img src={logoProfesion} alt="background" className={s.bg} />
 
@@ -40,7 +47,7 @@ export default function Cards({
           </div>
         </div>
       </header>
-
+      
       <div className={s.content}>
         <div >
           <ul className={s.data}>
@@ -57,7 +64,7 @@ export default function Cards({
             </li>
           </ul>
         </div>
-
+        
         <Link to={`/trabajo/${id}`}>
           <div className={s.follow}>
             <div className={s.boton}>
@@ -66,6 +73,7 @@ export default function Cards({
 
           </div>
         </Link>
+        
       </div>
     </div>
   );
