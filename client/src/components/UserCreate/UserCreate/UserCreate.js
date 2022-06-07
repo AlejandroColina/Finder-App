@@ -7,6 +7,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { useAuth0 } from '@auth0/auth0-react';
 import { Link } from 'react-router-dom';
 import styles from './UserCreate.module.css';
+import { Helmet } from "react-helmet";
+
 
 //Validadores
 
@@ -176,7 +178,6 @@ export default function UserCreate() {
 
   return (
     <section className={styles.container}>
-
       <div className={styles.div_form} >
         <div className={styles.formulario1}>
           <div className={styles.log}></div>
@@ -191,6 +192,7 @@ export default function UserCreate() {
           <div className={styles.log3}>
             Inspírate, piensa ,comparte tus habilidades, sé <b>finder</b>!
           </div>
+
         </div>
         <form className={styles.formulario} onSubmit={handleSubmit}>
 

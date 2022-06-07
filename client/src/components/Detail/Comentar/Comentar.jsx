@@ -3,13 +3,17 @@ import Box from '@mui/material/Box';
 import Rating from '@mui/material/Rating';
 import Typography from '@mui/material/Typography';
 import s from './Comentar.module.css';
+import { postOpinion } from '../../Redux/actions';
+import { useDispatch } from 'react-redux';
+import Swal from "sweetalert2";
 
-export default function Comentar({nombre,publicacion}){
+export default function Comentar({nombre,publicacion, setComento}){
+    const dispatch=useDispatch();
     const [input, setInput]= useState({
-        persona:{nombre},
+        persona:nombre,
         puntaje:'',
         comentario:'',
-        PublicacionId:{publicacion}
+        PublicacionId:parseInt(publicacion)
     })
 
     const handleChange = (e)=>{
@@ -18,23 +22,29 @@ export default function Comentar({nombre,publicacion}){
             [e.target.name]: e.target.value
         })
     }
+    const handleSubmit = (input,e)=>{
+        e.preventDefault();
+        dispatch(postOpinion(input));
+        Swal.fire({ text:'Gracias por tu recomendacion!', icon:'success' } );
+        setComento(true);
+    }
     return(
-        <form className={s.form}><Box className={s.box}>
-        <div className={s.title} >Que te parecio el servicio?</div>
-        <Rating
-          size="large" 
-          name='puntaje'
-          value={input.puntaje}
-          onChange={(e)=>handleChange(e)}
-        />
-      </Box>
-        <textarea name='comentario'
-         className={s.input}
-        rows='6'
-        type='text'
-        onChange={(e)=>handleChange(e)}
-        value={input.comentario} required/>
-        <input type='submit' className={s.btn}/>
+        <form className={s.form} onSubmit={(e)=>handleSubmit(input,e)}>
+            <Box className={s.box}>
+              <div className={s.title} >Que te parecio el servicio?</div>
+              <Rating
+               size="large" 
+               name='puntaje'
+               value={input.puntaje}
+               onChange={(e)=>handleChange(e)}/>
+            </Box>
+            <textarea name='comentario'
+            className={s.input}
+            rows='6'
+            type='text'
+            onChange={(e)=>handleChange(e)}
+            value={input.comentario} required/>
+            <input type='submit' className={s.btn}/>
         </form>
     )
 }
