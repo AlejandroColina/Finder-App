@@ -14,6 +14,7 @@ const InitialState = {
   publicacionesDeUnaPersona: [],
   perfil: [],
   opiniones:[],
+  preguntas:[],
 
 };
 
@@ -138,6 +139,24 @@ export default function rootReducer(state = InitialState, action) {
         return{
           ...state,
         }
+
+    case 'GET_PREGUNTAS':
+      return{
+        ...state,
+        preguntas: action.payload
+      }
+    case 'POST_PREGUNTA':
+      return{
+        ...state,
+      }
+    case 'DELETE_PREGUNTA':
+      return{
+        ...state,
+      }
+    case 'RESPONDER_PREGUNTA':
+      return{
+        ...state,
+      }
 
     default:
       return state;
