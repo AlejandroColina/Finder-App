@@ -1,53 +1,65 @@
-import React, { useEffect } from "react";
+import React, { useState } from "react";
 import s from './ThirdCap.module.css';
 import Cards from './../../Home/Cards/cards';
 import { useSelector } from 'react-redux';
-import { getUsers } from "../../Redux/actions";
-import { useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 export default function ThirdCap() {
-    let dispatach = useDispatch()
-    useEffect(() => {
-        dispatach(getUsers())
-    }, [dispatach])
+    const { users, empleosForm } = useSelector(state => state);
+    const [actual, setActual] = useState(0);
 
-    const { users } = useSelector(state => state);
+    let handleNext = () => {
+        setActual(actual + 1)
+    }
+    let handlePrev = () => {
+        setActual(actual - 1)
+    }
+
     return (
         <div className={s.container}>
             <div className={s.r}>
-                <button >{'<'}</button>
-                <Cards
-                    key={1}
-                    promedio={4}
-                    logoProfesion={"https://www3.paho.org/hq/images/stories/2019/midwives-nurses.jpg"}
-                    nombres={'Fernando'}
-                    imagen={'https://static.abc.es/media/MM/2021/11/10/PaulRudd-k2bE--1296x900@abc.jpg'}
-                    descripcion={'Dolorum sed accusamus qui officiis quod nisi.'}
-                    Profesions={'Enfermeria'}
-                    id={1}
-                />
-                <Cards
-                    key={2}
-                    promedio={4}
-                    logoProfesion={"https://www.uamerica.edu.co/wp-content/documentos/Ing-Industrial-17102019-1080x675.jpg"}
-                    nombres={'Alfonso'}
-                    imagen={'https://image.shutterstock.com/image-photo/drummer-playing-drums-smoke-powder-260nw-1040614744.jpg'}
-                    descripcion={'Sed officiis quo dolores ut consequuntur temporibus recusandae facere.'}
-                    Profesions={'Ingenierias'}
-                    id={2}
-                />
-                <Cards
-                    key={3}
-                    promedio={5}
-                    logoProfesion={"https://bridgecom.co/wp-content/uploads/2017/07/internet.jpg"}
-                    nombres={'Alejandra'}
-                    imagen={'https://www.trendtic.cl/wp-content/uploads/2021/03/mujer-trabajando.jpg'}
-                    descripcion={'Quo quo ut vitae id incidunt.'}
-                    Profesions={'Comercial, Ventas y Negocios'}
-                    id={3}
-                />
-
-                <button>{'>'}</button>
+                <div className={s.s1}>
+                    Comunidad FINDER te brinda ofertas
+                    profesionales y las
+                    mejores experiencias
+                </div>
+                <div className={s.ss}>
+                    <div className={s.r1}>
+                        <div className={s.s2}>
+                            {
+                                empleosForm.map((e, id) => {
+                                    return (
+                                        <div key={id} className={s.imgs}>
+                                            <Link className={s.link} to='/home'>
+                                                <img src={e.logo} alt={e.nombre} />
+                                                <h3 className={s.prof}>{e?.nombre?.split(' ')[0]}</h3>
+                                            </Link>
+                                        </div>
+                                    )
+                                })
+                            }
+                        </div>
+                    </div>
+                    <div className={s.rb1}>
+                        <button disabled={actual === 0 ? true : false} onClick={handlePrev}>{'<'}</button>
+                    </div>
+                    <div className={s.r2}>
+                        <Cards
+                            key={users[actual]?.id}
+                            promedio={users[actual]?.promedio}
+                            logoProfesion={users[actual]?.logoProfesion}
+                            nombres={users[actual]?.nombres}
+                            imagen={users[actual]?.imagen}
+                            descripcion={' '}
+                            Profesions={users[actual]?.Profesions}
+                            id={users[actual]?.id}
+                            ciudad={users[actual]?.ciudad}
+                        />
+                    </div>
+                    <div className={s.rb2}>
+                        <button disabled={actual === users.length - 1 ? true : false} onClick={handleNext}>{'>'}</button>
+                    </div>
+                </div>
             </div>
         </div>
     )

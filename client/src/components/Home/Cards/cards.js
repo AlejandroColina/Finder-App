@@ -9,23 +9,32 @@ export default function Cards({
   Profesions,
   id,
   logoProfesion,
+  ciudad,
+
 }) {
-  console.log(Profesions);
+
+  let estrellas = []
+  
+  for (let i = 0; i < promedio; i++) {
+    estrellas.push('estrellita')
+  }
+
   return (
-    <div className={s.container}>
+    <div key={`${id}F`} className={s.container}>
       <header>
         <div className={s.bio}>
           <img src={logoProfesion} alt="background" className={s.bg} />
 
           <div className={s.desc}>
-            <h3>descripcion</h3>
             <p>{descripcion}</p>
           </div>
         </div>
 
         <div className={s.avatarcontainer}>
           <img src={imagen} alt="avatar" className={s.avatar} />
-          <p className={s.nombre}>{nombres}</p>
+          <div className={s.centrado}>
+            <p className={s.nombre}>{nombres?.split(' ')[0]}</p>
+          </div>
           <div className={s.hover}>
             <div className={s.icontwitter}></div>
           </div>
@@ -33,23 +42,30 @@ export default function Cards({
       </header>
 
       <div className={s.content}>
-        <div className={s.data}>
-          <ul>
-            <li>
-              trabajos
-              <p>{Profesions}</p>
+        <div >
+          <ul className={s.data}>
+            <li className={s.listItem}>
+              {Profesions}
             </li>
-            <li>
-              puntaje
-              <p>{promedio}</p>
+
+            <li  className={s.listItem}>      
+         <i class="fa-solid fa-location-dot" style={{color: 'brown', fontWeight: '600', marginRight:'6px', marginTop: '0px'}}></i>{ciudad}
+            <li className={s.listItem} style={{marginTop: '10px', marginBottom: '7px'}}>             
+             {estrellas?.map(() => <i style={{color: 'goldenrod', margin: '2px',}} class="fa-solid fa-star"></i>)}
+            </li>
+
             </li>
           </ul>
         </div>
 
-        <div className={s.follow}>
-          <div className={s.icontwitter}></div>
-          <Link to={`/trabajo/${id}`}>mas info</Link>
-        </div>
+        <Link to={`/trabajo/${id}`}>
+          <div className={s.follow}>
+            <div className={s.boton}>
+              Más datos
+            </div>
+
+          </div>
+        </Link>
       </div>
     </div>
   );

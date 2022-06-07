@@ -9,20 +9,24 @@
     justify-content: space-around;
     background: linear-gradient(90deg, #0575E6 0%, #021B79 100%);
     color: white;
+    
 }
 .title{
     font-size: 40px;
     margin-bottom: 20px;
+    font-family: 'Rubik', sans-serif;
 }
 .text{
     font-size: 20px;
     margin-bottom: 15px;
+    font-family: 'Raleway', sans-serif;
 }
 .importantText{
     margin-top: 5%;
     font-size: 25px;
     font-weight: bolder;
     color:#68E1FD ;
+    font-family: 'Raleway', sans-serif;
 }
 .form{
     width: 80%;
@@ -85,8 +89,10 @@
     }
     .title{
         font-size: 20px;
+        font-family: 'Rubik', sans-serif;
     }
     .text{
         font-size: 15px;
+        font-family: 'Raleway', sans-serif;
     }
 }

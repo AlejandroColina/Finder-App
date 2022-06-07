@@ -1,0 +1,149 @@
+.container {
+  display: flex;
+  height: 50vh;
+}
+.card {
+  /* position:fixed;
+    top:120px;
+    left: 50px; */
+  height: 100vh;
+  width: 420px;
+  box-shadow: 1px 2px 10px #001b38;
+  overflow: hidden;
+}
+.nombres {
+  font-size: 20px;
+  color: #001b38;
+  display: flex;
+  justify-content: center;
+  font-weight: lighter;
+  padding-top: 15px;
+}
+.espacio {
+  margin-right: 5px;
+}
+.img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  display: flex;
+  margin: auto;
+  margin-top: 60px;
+}
+.gps {
+  width: 25px;
+  height: auto;
+}
+.ciudad {
+  font-size: 15px;
+  color: #001b38;
+  font-style: italic;
+  display: flex;
+  justify-content: center;
+  margin: 20px 0 20px 0;
+}
+.acerca {
+  display: flex;
+  margin: auto;
+  justify-content: center;
+  font-size: 3em;
+  color: #001b38;
+  font-weight: lighter;
+  font-style: italic;
+}
+.descripcion {
+  padding: 5px 25px;
+  font-size: 2em;
+  color: #0575e6;
+  font-style: oblique;
+  text-align: center;
+}
+.coments {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-left: 400px;
+}
+.containerInfo {
+  position: absolute;
+  left: 500px;
+  top: 120px;
+  width: 800px;
+}
+.titulos {
+  font-size: 25px;
+  color: #001b38;
+  font-weight: lighter;
+}
+.subtitulos {
+  font-size: 15px;
+  color: rgba(0, 0, 0, 0.484);
+  display: flex;
+  justify-content: flex-end;
+}
+.contenido {
+  font-size: 20px;
+  font-weight: bold;
+  color: #001b38;
+  padding: 30px 10px;
+}
+.containerPrice {
+  color: #001b38;
+  font-size: 20px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.paypal {
+  width: 500px;
+}
+.valor {
+  font-weight: lighter;
+  margin: 5px;
+}
+.precio {
+  font-weight: bolder;
+  margin: 5px;
+}
+.borderPrice {
+  padding: 10px;
+  box-shadow: 1px 2px 10px #001b3895;
+  border-radius: 5%;
+  margin-right: 50px;
+  height: 30px;
+}
+
+@media only screen and (max-width: 400px) {
+  .container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+  }
+  .card {
+    position: relative;
+  }
+  .containerInfo {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+}
+
+.swal2-popup {
+  height: 80%;
+  display: none;
+  position: relative;
+  box-sizing: border-box;
+  grid-template-columns: minmax(0, 100%);
+  width: 30%;
+  max-width: 100%;
+  padding: 0 0 1.25em;
+  border: none;
+  border-radius: 5px;
+  background: #fff;
+  color: #545454;
+  font-family: inherit;
+  font-size: 1.6rem !important;
+}

@@ -1,108 +1,194 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { getDetail, getDeleteDetail } from "../Redux/actions/index"
-import "../Detail/Detail.css"
-import NavBar from '../NavBar/NavBar'
-import { Link } from "react-router-dom";
-import { useAuth0 } from '@auth0/auth0-react';
+import {
+  getDetail,
+  getDeleteDetail,
+  getPublicacionDeUsuario,
+} from "../Redux/actions/index";
+import NavBar from "../NavBar/NavBar";
+import s from "./Detail.module.css";
+import { useAuth0 } from "@auth0/auth0-react";
 import { PaypalCheckoutBtn } from "./PaypalCheckoutBtn";
+import Swal from "sweetalert2";
+import { ContactDetail } from "./ContactDetail/ContactDetail";
+import gps from "../../assets/gps.png";
+import Box from "@mui/material/Box";
+import Rating from "@mui/material/Rating";
+import Typography from "@mui/material/Typography";
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import CardMedia from "@mui/material/CardMedia";
+import { CardActionArea } from "@mui/material";
+import Footer from "../Footer/Footer";
+import Help from "../Help/Help";
+import Comentar from "./Comentar/Comentar";
 
-
-
-export default function Detail({Profesions}) {
+export default function Detail({ Profesions }) {
   const { isAuthenticated, user } = useAuth0();
   const { loginWithRedirect } = useAuth0();
   const { logout } = useAuth0();
   if (isAuthenticated) {
-    var onlyFirst = user.name.split(' ');
+    var onlyFirst = user.name.split(" ");
   }
-  
-  const product = {
-    description: "Comision",
-    price: 25
-  }
-
-   
 
   const dispatch = useDispatch();
   const { id } = useParams();
-  const MyDetail = useSelector(state => state.detail)
+  const MyDetail = useSelector((state) => state.detail);
+  console.log(MyDetail);
 
   useEffect(() => {
-    dispatch(getDetail(id))
-    return function(){
-      dispatch(getDeleteDetail())  
-      }      
-  }, [id, dispatch])
+    dispatch(getDetail(id));
+    dispatch(getPublicacionDeUsuario(MyDetail.email));
+    return function () {
+      dispatch(getDeleteDetail());
+    };
+  }, [id, dispatch]);
 
-    return (   
-      <>
-              <NavBar/>
-              <div className={'conte'}> 
-          <div className="ContenedorTotal">
+  let { promedio } = MyDetail;
 
-              {/* // SECCION DETALLES */}
-                <div className="container1">
-                  <h2 className="about">Informacion Del Emprendedor </h2>
-                </div> 
-              
-              <div className="container">
-                <div className="product-details">                
-                <h2 className="aboutAcerca">Acerca de  </h2>
-                <br /> 
-                <div className="about">
-                <h1 className="aboutTitle">{MyDetail.nombres}{" "}{MyDetail.apellidos}</h1>        
-                <h1 className="aboutTitle">C.C:  {""} {MyDetail.documento}</h1>                               
-                <br /> 
-                <h1 className="aboutTitle">{MyDetail.ciudad}, {MyDetail.pais}</h1> 
-                <h1 className="aboutTitle">{MyDetail.direccion}</h1>
-                <br />
-                <h1 className="aboutTitle">Edad:{""} {MyDetail.edad}</h1>
-                <h1 className="aboutTitle">Puntaje: {""} ⭐ {MyDetail.promedio}</h1>
-                                <h1 className="aboutTitle">Genero:{""} {MyDetail.genero}</h1> 
-                  
-                </div>               
-                
+  let precio = 15;
+  let price = precio;
 
+  const product = {
+    description: "Comision",
+    price: price,
+  };
 
-                <div className="control">
-                  {/* <button className="btn">
-                    <span className="price">80.000 $ </span>
-                    <span className="shopping-cart"><i 
-                    className="fa fa-shopping-cart" 
-                    aria-hidden="true"></i></span>
-                    <span className="buy">
-                      Contratar
-                    </span>
-                  </button>                 */}
-                   <div className="paypal-button-container">
-                     <PaypalCheckoutBtn product={product} />
-                   </div>
-                </div>                    
-              </div>                
-                <div className="product-image">
-                  
-                  <img className="divimg" src={MyDetail.imagen} alt="imagen_src"></img>
-                  
+  const [order, setOrder] = useState(false);
+  if (order) {
+    console.log(order);
+    Swal.fire({
+      title: "Perfecto!",
+      text: "Has accedido a los contactos del trabajador.¡Contáctalo!",
+      icon: "success",
+    });
+  }
 
-                  <div className="info">
-                    <h2 className="aboutD">Descripcion</h2>
-                      <h1 className="aboutDescripcion">{MyDetail.descripcion}</h1>                     
-                      <h1 className="aboutD">Profesiones</h1>
-                      <h1 className="aboutDescripcion">{MyDetail.Profesions}</h1>
-                  </div>
-                </div>
-              </div> 
-              <br />               
-              <br />               
-              <br />
+  const Todaspublicaciones = useSelector(
+    (state) => state.publicacionesDeUnaPersona
+  );
+  const publicaciones = Todaspublicaciones.filter((p) => p.id !== MyDetail.id);
+  return (
+    <>
+      <NavBar />
 
-            </div>    
-              <Link to="/home">
-                <button className="btnVolver">Volver</button>               
-              </Link>
+      <div className={s.container}>
+        {/* tarjeta de contacto */}
+
+        <div className={s.card}>
+          <div className={s.nombres}>
+            <span className={s.espacio}>Hola Soy</span>
+            <strong>{MyDetail.nombres} </strong>!
+          </div>
+          <img className={s.img} src={MyDetail.imagen} alt={MyDetail.nombres} />
+          <div className={s.ciudad}>
+            <img src={gps} alt="ubicacion" className={s.gps} />
+            {MyDetail.ciudad},{MyDetail.pais}
+          </div>
+          <div className={s.acerca}>Acerca de</div>
+          <div className={s.descripcion}>"{MyDetail.descripcion}"</div>
+          <br />
+          <br />
+        </div>
+
+        <div className={s.containerInfo}>
+          <div className={s.titulos}>SERVICIO</div>
+          <hr />
+          <div className={s.subtitulos}>{MyDetail.Profesions}</div>
+          <div className={s.contenido}>{MyDetail.descripcion}</div>
+          <div className={s.containerPrice}>
+            <div className={s.borderPrice}>
+              <span className={s.valor}>Valor:</span>
+              <span className={s.precio}>{MyDetail.precio}</span>
+            </div>
+            <br />
+            {!order ? (
+              <div className={s.paypal}>
+                <PaypalCheckoutBtn product={product} setOrder={setOrder} />
               </div>
-      </>     
-      
-    )}
+            ) : (
+              <ContactDetail MyDetail={MyDetail} />
+            )}
+          </div>
+          <br />
+          <br />
+          <br />
+          <br />
+
+          <div className={s.titulos}>
+            RESEÑAS
+            <Box sx={{ "& > legend": { mt: 2 } }}>
+              {MyDetail.promedio ? (
+                <Rating size="large" value={MyDetail.promedio} readOnly />
+              ) : (
+                <Rating size="large" name="no-value" value={null} />
+              )}
+            </Box>{" "}
+          </div>
+          <hr />
+          {order ? <Comentar nombre={user.name} publicacion={id} /> : null}
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+
+          <div className={s.titulos}>Mas Publicaciones del emprendedor</div>
+          <hr />
+          <br />
+          <br />
+          {publicaciones
+            ? publicaciones.map((p) => (
+                <Card sx={{ maxWidth: 345 }} key={p.id}>
+                  <CardActionArea>
+                    <CardMedia
+                      component="img"
+                      height="140"
+                      image={p.imagen}
+                      alt="emprendedor"
+                    />
+                    <CardContent>
+                      <Typography gutterBottom variant="h5" component="div">
+                        {p.Profesions}
+                      </Typography>
+                      <Typography variant="body2" color="text.secondary">
+                        {p.descripcion}
+                      </Typography>
+                    </CardContent>
+                  </CardActionArea>
+                </Card>
+              ))
+            : null}
+        </div>
+      </div>
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <Footer />
+      <Help />
+    </>
+  );
+}

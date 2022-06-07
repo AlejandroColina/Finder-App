@@ -1,8 +1,9 @@
 .contenidos {
      display: grid;
-     grid-template-rows: 20vh ;
+     /* grid-template-rows: 20vh ; */
      grid-auto-rows: min-content;
      grid-template-columns: 25vw repeat(5, 1fr);
+     font-family: 'Rubik', sans-serif;
 }
 
 .filtros {
@@ -25,20 +26,20 @@
      gap: 20px;
      padding: 20px;
      background-color: rgb(255, 255, 255);
-     padding-bottom: 15rem;
+     padding-bottom: 2.5rem;
 }
 
 
 .paginado {   
-
-     grid-row: 1;
+     grid-row: 4 / 5 ;
      grid-column: 1 / -1;
+     margin-top: 15px;
 }
 
 
 .destacados {
      background-image: linear-gradient(to right, #1583f1fd, #030a4e);
-     grid-row: 3/4;
+     grid-row: 5/6;
      grid-column: 1/-1;
      display: flex;
      flex-direction: row;
@@ -71,7 +72,7 @@
 }
 
 .footer {
-     grid-row: 4/5;
+     grid-row: 6/7;
      grid-column: 1/-1;
 }
 

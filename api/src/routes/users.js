@@ -165,29 +165,6 @@ router.get("/empleosForm", async (req, res, next) => {
   }
 });
 
-// router.get("/:ocupacion", (req, res) => {
-//   axios
-//     .get("http://localhost:3001/users")
-//     .then((respuesta) => {
-//       let personas = respuesta.data;
-//       let tuPersona = personas.filter((el) =>
-//         el.descripcion
-//           .toLowerCase()
-//           .includes(req.params.ocupacion.toLowerCase())
-//       );
-//       if (!tuPersona.length) {
-//         res.send([]);
-//       }
-//       if (tuPersona.length > 0) {
-//         res.send(tuPersona);
-//       }
-//       res.end();
-//     })
-//     .catch((error) => {
-//       console.log(error);
-//     });
-// });
-
 router.get("/trabajo/:id", async (req, res, next) => {
   const id = req.params.id;
   try {
@@ -258,28 +235,98 @@ router.post("/crear", async function (req, res) {
   }
 });
 
-router.patch("/modificar/:id", async (req, res) => {
-  const id = req.params.id;
-  let { nombres, genero, edad, ciudad, descripcion, email } = req.query;
-  // if (descripcion) {
-  //   Persona.update({ descripcion: req.query.descripcion }, { where: { id: id } })
-  // }
+router.post('/nuevo', async (req, res, next) => {
+  try {
+    const { nombres, email, imagen, apellidos } = req.body;
+    let consulta = await Persona.findOne({
+      where: {
+        email: email
+      }
+    })
+
+    if (consulta == null) {
+      let persona = await Persona.create({
+        nombres,
+        apellidos,
+        email,
+        imagen,
+        favoritos: [],
+        trabajosPagos: []
+      });
+      return res.json(persona)
+    } else {
+      return res.json(consulta)
+    }
+
+  } catch (error) {
+    next(error)
+  }
+});
+
+router.get('/validar/:email', async (req, res, next) => {
+  try {
+    const { email } = req.params;
+
+    let consulta = await Persona.findAll({
+      include: [Profesion, Direccion, Publicacion],
+      where: { email: email }
+    });
+
+    if (
+      consulta[0]?.apellidos == null ||
+      consulta[0]?.documento == null ||
+      consulta[0]?.telefono == null
+    ) { res.send(true) } else {
+      res.send(false);
+    }
+  } catch (error) {
+    next(error)
+  }
+});
+
+router.patch("/modificar/:email", async (req, res) => {
+  const email = req.params.email;
+  let { nombres, apellidos, telefono, genero, edad, ciudad, documento, profesion, direccion } = req.query;
+
+  if (profesion) {
+    let persona = await Persona.findOne({ where: { email: email } });
+    // let profesions = await Profesion.findOne({ where: { id: profesion } }) //Se utilizará para settear varias profesiones a un usuario.
+    await persona.setProfesions(profesion)
+  }
+
+  if (direccion) {
+    let persona = await Persona.findOne({ where: { email: email } });
+    await Direccion.update({ direccion: direccion }, { where: { PersonaId: persona.dataValues.id } });
+  }
+
+  if (ciudad) {
+    let persona = await Persona.findOne({ where: { email: email } });
+    await Direccion.update({ ciudad: ciudad }, { where: { PersonaId: persona.dataValues.id } });
+  }
+
+  if (documento) {
+    Persona.update({ documento: req.query.documento }, { where: { email: email } })
+  }
+  if (apellidos) {
+    Persona.update({ apellidos: req.query.apellidos }, { where: { email: email } })
+  }
+  if (telefono) {
+    Persona.update({ telefono: req.query.telefono }, { where: { email: email } })
+  }
   if (nombres) {
-    Persona.update({ nombres: req.query.nombres }, { where: { id: id } });
+    Persona.update({ nombres: req.query.nombres }, { where: { email: email } });
   }
   if (genero) {
-    Persona.update({ genero: req.query.genero }, { where: { id: id } });
+    Persona.update({ genero: req.query.genero }, { where: { email: email } });
   }
   if (edad) {
-    Persona.update({ edad: req.query.edad }, { where: { id: id } });
+    Persona.update({ edad: req.query.edad }, { where: { email: email } });
   }
   if (ciudad) {
-    Persona.update({ ciudad: req.query.ciudad }, { where: { id: id } });
+    Persona.update({ ciudad: req.query.ciudad }, { where: { email: email } });
   }
-  if (email) {
-    Persona.update({ email: req.query.email }, { where: { id: id } });
-  }
-  const objetivo = await Persona.findOne({ where: { id: id } });
+
+  const objetivo = await Persona.findOne({ where: { email: email } });
   res.send(objetivo);
 });
 
@@ -302,6 +349,9 @@ router.get("/detalle/:idPublicacion", async (req, res, next) => {
       genero: personaPost[0].dataValues.genero,
       puntaje: personaPost[0].dataValues.puntaje,
       documento: personaPost[0].dataValues.documento,
+      email: personaPost[0].dataValues.email,
+      promedio: personaPost[0].dataValues.promedio,
+      telefono: personaPost[0].dataValues.telefono,
       descripcion: consultaBD.dataValues.descripcion,
       precio: consultaBD.dataValues.precio,
       Profesions: personaPost[0].Profesions[0].dataValues.nombre,
@@ -313,6 +363,21 @@ router.get("/detalle/:idPublicacion", async (req, res, next) => {
     res.send(obj);
   } catch (error) {
     next(error);
+  }
+});
+
+router.get('/perfil/:email', async (req, res, next) => {
+  try {
+    const { email } = req.params;
+    let consulta = await Persona.findAll({
+      include: [Profesion, Direccion, Publicacion],
+      where: { email: email }
+    });
+
+    return res.json(consulta);
+
+  } catch (error) {
+    next(error)
   }
 });
 

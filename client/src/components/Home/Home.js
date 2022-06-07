@@ -9,6 +9,7 @@ import { SearchBar } from "./SearchBar/SearchBar";
 import { Filtros } from "./Filtros/Filtros";
 import Paginado from '../Paginado/Paginado'
 import Help from "../Help/Help";
+import { Helmet } from 'react-helmet';
 
 import Footer from './../Footer/Footer';
 import Loanding from "./loading/Loanding";
@@ -32,7 +33,7 @@ function Home({ descripcion, setDescripcion }) {
 
 
   const loanding = useSelector((state) => state.loanding);
-  
+
 
   const [filters, setFilters] = useState(EMPTY_FILTERS)
 
@@ -73,17 +74,20 @@ function Home({ descripcion, setDescripcion }) {
     setDescripcion('')
   }
   //Skeleton
-  if(loanding){
+  if (loanding) {
     return (
-    <div>
-    <Loanding />
-    </div>
-    )  
+      <div>
+        <Helmet><title>Cargando..</title></Helmet>
+        <Loanding />
+      </div>
+    )
   }
+
 
 
   return (
     <div>
+      <Helmet><title>Finder -  Home</title></Helmet>
       <div>
         <SearchBar descripcion={descripcion} setDescripcion={setDescripcion} />
 
@@ -108,30 +112,32 @@ function Home({ descripcion, setDescripcion }) {
               }
             </div>
             {currentUsuarios.length ?
-              currentUsuarios.map((el) => el.publicaciones.map(e => (
+              currentUsuarios.map((el) => (
                 <div className="box">
                   <Cards
-                    key={el.id}
+                    key={el.idPublicacion}
                     promedio={el.promedio}
                     nombres={el.nombres}
+                    ciudad={el.ciudad}
+                    precio={el.precio}
                     imagen={el.imagen ? el.imagen : 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQgemhlS2C1Ldo2xTSqZVm5aAXUGT3DaaJZVRLgof7-GCoq7n0YnVnC7zkRHkpdQr4j4Zk&usqp=CAU'}
-                    descripcion={e.descripcion}
+                    descripcion={el.descripcion}
                     Profesions={el.Profesions.length ? el.Profesions : 'nada'}
                     logoProfesion={el.logoProfesion}
-                    id={el.id}
+                    id={el.idPersona}
                   />
                 </div>
-              ))) : <NoResult />}
+              )) : <NoResult />}
           </section>
 
           <section className={styles.destacados}>
-            <div className={styles.textDestacados} ><h1>Destacados 🔥</h1></div>
+            <div className={styles.textDestacados} ><h1>Destacados <i style={{color: 'yellow' , margin: '10px', textShadow: '3px 4px black'}} class="fa-solid fa-bolt-lightning"></i></h1></div>
             <div className={styles.div__destacados}>
               {
                 destacados.map(el => {
                   return (
                     <section key={el.id}>
-                    
+
                       <Destacados
                         key={`${el.id}A`}
                         id={el.id}
@@ -143,7 +149,7 @@ function Home({ descripcion, setDescripcion }) {
                         descripcion={el.descripcion}
                         promedio={el.promedio}
                       />
-                     
+
                     </section>
                   )
                 })
@@ -156,7 +162,7 @@ function Home({ descripcion, setDescripcion }) {
         </div>
         <Help />
       </div>
-     </div>
+    </div>
   );
 
 }

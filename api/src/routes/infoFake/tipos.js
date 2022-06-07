@@ -4,7 +4,7 @@ let tipos = [
         logo: "https://noticiaslogisticaytransporte.com/wp-content/uploads/2018/03/IX-Bar%C3%B3metro-C%C3%ADrculo-Log%C3%ADstico-del-SIL.jpg"
     },
     {
-        profesion: "Administracion,Contabilidad y Finanzas",
+        profesion: "Administracion Contabilidad y Finanzas",
         logo: "https://micarrerauniversitaria.com/wp-content/uploads/2018/02/0004_shutterstock_164852162.jpg"
     },
     {
@@ -12,7 +12,7 @@ let tipos = [
         logo: "https://www.entornoturistico.com/wp-content/uploads/2021/11/Servicio-y-atencio%CC%81n-al-cliente.jpg"
     },
     {
-        profesion: "Comercial, Ventas y Negocios",
+        profesion: "Comercial Ventas y Negocios",
         logo: "http://www.fuerzacomercial.es/wp-content/uploads/2016/09/Estrategias-de-ventas-claves-para-mejorar-resultados1.jpg"
     },
     {
@@ -52,7 +52,7 @@ let tipos = [
         logo: "https://ofertadeempleoya.com/wp-content/uploads/2018/08/Oficios-varios.png"
     },
     {
-        profesion: "Tecnologia, sistemas y Telecomunicaciones",
+        profesion: "Tecnologia sistemas y Telecomunicaciones",
         logo: "https://bridgecom.co/wp-content/uploads/2017/07/internet.jpg"
     }
 ]

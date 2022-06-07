@@ -13,11 +13,11 @@ import { useDispatch, useSelector } from "react-redux";
 
 export default function UserCreate() {
   const [error, setError] = useState({});
+  const [image, setImage] = useState("");
+  const [selected, setSelected] = useState(null);
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
   const dispatch = useDispatch();
-  const [image, setImage] = useState("");
-  const [selected, setSelected] = useState("");
 
   //Validaciónes
   let validation = () => {
@@ -94,6 +94,10 @@ export default function UserCreate() {
     });
   };
 
+  const handleChange1 = (e) => {
+    setSelected(e.target.value);
+  };
+
   //Traer Profresiones
   const empleos = useSelector((state) => state.empleosForm);
   const [empleosSelected, setEmpleosSelected] = useState({});
@@ -108,9 +112,21 @@ export default function UserCreate() {
     dispatch(getEmpleosForm());
   }, [dispatch]);
 
-  const handleChange1 = (e) => {
-    setSelected(e.target.value);
-  };
+  // Envío de datos a la DB
+  function handleSubmit(e) {
+    e.preventDefault();
+    let profesionId = Object.keys(empleosSelected);
+    axios
+      .post("http://localhost:3001/users/crear", { input, selected })
+      .then((res) => {
+        console.log(res);
+        alert("Usuario creado");
+      })
+      .catch((error) => {
+        console.log(error);
+        alert("No se pudo crear el usuario");
+      });
+  }
 
   //Cloudinary
   const uploadImage = async (e) => {
@@ -132,7 +148,71 @@ export default function UserCreate() {
     setImage(file.secure_url);
     setInput({ ...input, imagen: file.secure_url });
     setLoading(false);
-  }
+  };
+
+  // // useState de los inputs
+  // const [input, setInput] = useState({
+  //   nombres: "",
+  //   apellidos: "",
+  //   edad: "",
+  //   email: "",
+  //   documento: "",
+  //   descripcion: "",
+  //   telefono: "",
+  //   direccion: "",
+  //   genero: "",
+  //   imagen: "",
+  //   puntuacion: [],
+  // });
+
+  // console.log(input);
+
+  // const handleChange = (e) => {
+  //   let name = e.target.name;
+  //   console.log(name);
+  //   let value = e.target.value;
+
+  //   setInput({
+  //     ...input,
+  //     [name]:
+  //       name === "edad" || name === "documento" || name === "telefono"
+  //         ? !isNaN(parseInt(value))
+  //           ? parseInt(value)
+  //           : (value = "")
+  //         : value,
+  //   });
+  // };
+
+  // useEffect(() => {
+  //   dispatch(getEmpleosForm());
+  // }, [dispatch]);
+
+  // const handleChange1 = (e) => {
+  //   setSelected(e.target.value);
+  // };
+
+  // //Cloudinary
+  // const uploadImage = async (e) => {
+  //   const files = e.target.files;
+  //   const data = new FormData();
+  //   data.append("file", files[0]);
+  //   data.append("upload_preset", "preset");
+  //   setLoading(true);
+
+  //   const res = await fetch(
+  //     "https://api.cloudinary.com/v1_1/userfiles/image/upload/",
+  //     {
+  //       method: "POST",
+  //       body: data,
+  //     }
+  //   );
+
+  //   const file = await res.json();
+  //   setImage(file.secure_url);
+  //   setInput({ ...input, imagen: file.secure_url });
+  //   setLoading(false);
+  // }
+  // const handleChange1 = (e) => { setSelected(e.target.value) }
 
   return (
     <>

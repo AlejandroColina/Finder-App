@@ -8,6 +8,12 @@ const InitialState = {
   ciudades: [],
   adminMjes: [],
   loanding: false,
+  msjDetailAdmin: {},
+  ubicacion: {},
+  validar: true,
+  publicacionesDeUnaPersona: [],
+  perfil: []
+
 };
 
 export default function rootReducer(state = InitialState, action) {
@@ -60,20 +66,63 @@ export default function rootReducer(state = InitialState, action) {
       };
 
     case 'MSJ_USER_AL_ADMIN':
-        return{
-            ...state,
-        }
+      return {
+        ...state,
+      }
 
     case 'GET_MSJ_ADMIN':
-        return{
-            ...state,
-            adminMjes: action.payload
-        }
+      return {
+        ...state,
+        adminMjes: action.payload
+      }
     case 'LOADER':
-        return {
-            ...state,
-             loanding: true
-        }
+      return {
+        ...state,
+        loanding: true
+      }
+    case 'DELETE_POST':
+      return {
+        ...state
+      }
+
+    case 'READ_MSJ_ADMIN':
+      return {
+        ...state,
+        msjDetailAdmin: action.payload
+      }
+
+    case 'OPEN_MSJ_ADMIN':
+      return {
+        ...state,
+      }
+
+    case 'UBICACION':
+      return {
+        ...state,
+        ubicacion: action.payload
+      }
+    case 'GET_PERFIL':
+      return {
+        ...state,
+        perfil: action.payload
+      }
+
+
+    case 'INFO_VALI':
+      return {
+        ...state,
+        validar: action.payload
+      }
+
+    case 'PUBLICACIONES_USUARIO':
+      return {
+        ...state,
+        publicacionesDeUnaPersona: action.payload
+      }
+    case 'MODIFICAR':
+      return {
+        ...state
+      }
 
     default:
       return state;
