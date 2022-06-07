@@ -2,6 +2,7 @@
     display: flex;
     min-height: 100vh;
 }
+
 .card{
     position:fixed;
     top:120px;
@@ -52,17 +53,12 @@
     color: #0575e6;
     font-style: oblique;
 }
-.coments{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-left: 400px;
-}
 .containerInfo{
-    position: absolute;
-    left: 500px;
-    top: 120px ;
+    position: relative;
+    margin-left: 500px;
+    margin-top: 120px ;
     width: 800px;
+    margin-bottom: 300px;
 }
 .titulos{
     font-size: 25px;
@@ -108,23 +104,39 @@
     margin-top: 25px;
     height: 30px;
 }
-
-@media only screen and (max-width:400px){
-    .container{
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        width: 100%;
-    }
-    .card{
-        position: relative;
-    }
-    .containerInfo{
-        position: relative;
-        display: flex;
-        flex-direction: column;
-        width: 100%;
-    }
+.contratar{
+    color: white;
+    background-color: #0575e6;
+    transition: 1s;
+}
+.contratar:hover{
+    background-color: white;
+    color: #001b38;
+}
+.commentsBox{
+    padding: 0px 75px;
+}
+.containerComments{
+    display: flex;
+    flex-direction: column;
+    margin: 30px 0px;
+    padding: 15px;
+}
+.commentPersona{
+    display: flex;
+    justify-content: space-between;
+    font-size: 18px;
+    color: #000b16cc;
+    font-style: italic;
+    font-weight: lighter;
+}
+.cardsContainer{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.cardUi{
+    margin: 25px;
 }
 
 
@@ -143,4 +155,48 @@
   color: #545454;
   font-family: inherit;
   font-size: 1.6rem !important;
+}
+.form{
+    width: 100%;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+.input{
+    background: none;
+    outline: 0px;
+    resize: none;
+    border: 1px solid #001b383e;
+}
+.btn{
+    background: none;
+    border: none;
+    padding: 10px;
+    color: #001b38;
+    font-size: 15px;
+}
+.btn:hover{
+    text-decoration: underline;
+}
+.respuesta{
+    display: flex;
+    justify-content: flex-start;
+    font-size: 15px;
+    color: #00060c;
+    font-weight: lighter;
+    margin-top: 10px;
+}
+.figura{
+    width: 25px;
+    height: 15px;
+    border-left: 2px solid #001b384a;
+    border-bottom:2px solid #001b384a;
+    margin-right: 10px;
+    margin-left: 10px;
+}
+.pregunta{
+    font-size: 15px;
+    font-weight: bold;
+    color: #00060c;
 }

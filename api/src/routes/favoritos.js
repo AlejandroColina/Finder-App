@@ -16,9 +16,17 @@ router.get('/:idPersona', async (req, res, next) => {
             let TusFavoritos = [];
 
             for (let f, j, i = 0; i < misFav.length; i++) {
-                j = await Publicacion.findOne({ where: { id: misFav[i] } });
+                j = await Publicacion.findOne({
+                    where: { id: misFav[i] },
+                    include: [Profesion]
+                });
                 f = await Persona.findAll(
-                    { include: [Profesion, Direccion], where: { id: j.PersonaId } }
+                    {
+                        include: [
+                            Direccion,
+                            { model: Publicacion, include: [Profesion] }
+                        ], where: { id: j.PersonaId }
+                    }
                 );
                 TusFavoritos.push({
                     idPublicacion: misFav[i],
@@ -28,12 +36,15 @@ router.get('/:idPersona', async (req, res, next) => {
                     promedio: f[0].dataValues.promedio,
                     imagen: f[0].dataValues.imagen,
                     descripcion: j.descripcion,
-                    Profesions: f[0].dataValues.Direccions[0].dataValues.nombre,
-                    logoProfesion: f[0].dataValues.Direccions[0].dataValues.logo,
+                    precio: j.precio,
+                    titulo: j.titulo,
+                    Profesions: j.dataValues.Profesion.dataValues.nombre,
+                    logoProfesion: j.dataValues.Profesion.dataValues.logo,
                     genero: f[0].dataValues.genero,
                     edad: f[0].dataValues.edad,
                     ciudad: f[0].dataValues.Direccions[0].dataValues.ciudad
                 });
+                console.log()
             };
 
             return res.json(TusFavoritos);

@@ -1,13 +1,13 @@
 const express = require("express");
 const router = express.Router();
 const axios = require("axios");
-const {Comentario,Publicacion} = require('../db');
+const {Pregunta,Publicacion} = require('../db');
 router.use(express.json());
 
 router.get('/:idPublicacion', async(req,res)=>{
     try{
         const {idPublicacion}=req.params;
-        let comments = await Comentario.findAll({
+        let comments = await Pregunta.findAll({
             where: {
                 PublicacionId: idPublicacion
             }
@@ -23,19 +23,17 @@ router.get('/:idPublicacion', async(req,res)=>{
 
 router.post('/', async(req,res)=>{
     try{
-        const {puntaje, comentario, persona,PublicacionId} =req.body;
-        
-        if(!puntaje || !comentario || !persona){
-            return res.send({message:"No se pudo comentar la publicacion, intente mas tarde"})
+        const { pregunta, persona,PublicacionId} =req.body;
+        if(!pregunta || !persona){
+            return res.send({message:"No se pudo realizar la consulta, intente mas tarde"})
         }else{
-            await Comentario.create({
+            await Pregunta.create({
                 PublicacionId,
-                puntaje: parseInt(puntaje),
-                comentario,
+                pregunta,
                 persona
             })
         }
-        return res.status(200).json({message:"Gracias por tu comentario !"})
+        return res.status(200).json({message:"tu consulta fue enviada con exito"})
     }catch{
         res.status(400).json({message:"Algo salio mal, intenta mas tarde!"})
     }
@@ -43,7 +41,7 @@ router.post('/', async(req,res)=>{
 router.delete('/:id',async(req,res)=>{
     try{
         let {id}= req.params;
-        let toDelete = await Comentario.findOne({
+        let toDelete = await Pregunta.findOne({
             where:{
                 id,
             }
@@ -52,6 +50,21 @@ router.delete('/:id',async(req,res)=>{
         res.status(200).json({message:"Comentario borrado con exito!"})
     }catch{
         res.status(400).json({message:"Algo salio mal !"})
+    }
+})
+
+router.put('/:id', async(req,res)=>{
+    try{
+        let {id} = req.params;
+        let {respuesta} = req.body;
+        await Pregunta.update({respuesta},{
+            where:{
+                id
+            }
+        })
+        res.status(200).send('se respondio')
+    }catch{
+        res.status(400).send('no se pudo responder')
     }
 })
 module.exports=router;

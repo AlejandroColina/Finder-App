@@ -23,7 +23,7 @@ fs.readdirSync(path.join(__dirname, '/models'))
 
 modelDefiners.forEach(model => model(sequelize));
 
-const { Persona, Profesion, Direccion, Publicacion , Comentario} = sequelize.models;
+const { Persona, Profesion, Direccion, Publicacion , Comentario, Pregunta} = sequelize.models;
 
 Persona.hasMany(Direccion);
 Direccion.belongsTo(Persona);
@@ -31,11 +31,14 @@ Direccion.belongsTo(Persona);
 Persona.hasMany(Publicacion);
 Publicacion.belongsTo(Persona);
 
-Persona.belongsToMany(Profesion, { through: 'rel_person_profesion' });
-Profesion.belongsToMany(Persona, { through: 'rel_person_profesion' });
+Profesion.hasMany(Publicacion);
+Publicacion.belongsTo(Profesion);
 
 Publicacion.hasMany(Comentario);
 Comentario.belongsTo(Publicacion);
+
+Publicacion.hasMany(Pregunta);
+Pregunta.belongsTo(Publicacion);
 
 
 

@@ -10,7 +10,9 @@ router.get("/", async (req, res, next) => {
       req.query;
 
     let personasDB = await Persona.findAll({
-      include: [Profesion, Direccion, Publicacion],
+      include: [Direccion,
+        { model: Publicacion, include: [Profesion] }
+      ],
     });
     if (personasDB.length == 0)
       return res.send("LA BASE DE DATOS NO TIENE INFORMACION");
@@ -35,10 +37,8 @@ router.get("/", async (req, res, next) => {
         imagen: person.imagen,
         promedio: person.promedio,
         genero: person.genero,
-        publicaciones: publicacion,
+        publicaciones: person.Publicacions,
         favoritos: person.favoritos,
-        Profesions: person.Profesions?.map((e) => e.nombre).join(),
-        logoProfesion: person.Profesions?.map((e) => e.logo).join(),
         direccion: person.Direccions?.map((e) => e.direccion).join(),
         ciudad: person.Direccions?.map((e) => e.ciudad).join(),
         pais: person.Direccions?.map((e) => e.pais).join(),
@@ -180,27 +180,37 @@ router.get("/trabajo/:id", async (req, res, next) => {
 });
 
 router.post("/crear", async function (req, res) {
-  let profesionId = req.body.selected;
+
+  let { ciudad, descripcion, email, multimedia, precio, ProfesionId, titulo } = req.body.toSend;
+
   let consulta = await Persona.findOne({
-    where: { email: req.body.email },
+    where: { email: email },
   });
 
-  let PersonaId = consulta.dataValues.id;
+  let PersonaId = consulta?.dataValues.id;
 
-  await Publicacion.create({
-    PersonaId: PersonaId,
-    descripcion: req.body.input?.descripcion,
-    precio: 3000,
-    // precio: req.body.input?.precio,
-  });
+  if (PersonaId) {
+    ProfesionId = parseInt(ProfesionId)
 
-  await Direccion.create({
-    PersonaId: PersonaId,
-    ciudad: req.body.input?.ciudad,
-  });
+    await Publicacion.create({
+      PersonaId,
+      ProfesionId,
+      descripcion,
+      precio,
+      titulo,
+      multimedia: ['https://www.monempresarial.com/wp-content/uploads/2018/12/LEGAL-738x410.jpg']
+    });
 
-  await consulta.setProfesions(parseInt(profesionId))
-  return res.send('Publicación creada');
+    await Direccion.create({
+      PersonaId: PersonaId,
+      ciudad: ciudad,
+      pais: 'Argentina',
+      direccion: 'Calle principal'
+    });
+
+    return res.send('Publicación creada');
+  }
+  res.status(404).send('No se pudo publicar')
 
 });
 
@@ -211,7 +221,7 @@ router.post('/nuevo', async (req, res, next) => {
       where: {
         email: email
       }
-    })
+    });
 
     if (consulta == null) {
       let persona = await Persona.create({
@@ -237,7 +247,6 @@ router.get('/validar/:email', async (req, res, next) => {
     const { email } = req.params;
 
     let consulta = await Persona.findAll({
-      include: [Profesion, Direccion, Publicacion],
       where: { email: email }
     });
 
@@ -257,13 +266,7 @@ router.get('/validar/:email', async (req, res, next) => {
 
 router.patch("/modificar/:email", async (req, res) => {
   const email = req.params.email;
-  let { nombres, apellidos, telefono, genero, edad, ciudad, documento, profesion, direccion } = req.query;
-
-  if (profesion) {
-    let persona = await Persona.findOne({ where: { email: email } });
-    // let profesions = await Profesion.findOne({ where: { id: profesion } }) //Se utilizará para settear varias profesiones a un usuario.
-    await persona.setProfesions(profesion)
-  }
+  let { nombres, apellidos, telefono, genero, edad, ciudad, documento, direccion } = req.query;
 
   if (direccion) {
     let persona = await Persona.findOne({ where: { email: email } });
@@ -305,14 +308,19 @@ router.get("/detalle/:idPublicacion", async (req, res, next) => {
   try {
     const { idPublicacion } = req.params;
 
-    let consultaBD = await Publicacion.findByPk(idPublicacion);
+    let consultaBD = await Publicacion.findByPk(idPublicacion, { include: [Profesion] });
+
     let idPersona = consultaBD.dataValues.PersonaId;
     let personaPost = await Persona.findAll({
       where: { id: idPersona },
-      include: [Direccion, Profesion],
+      include: [
+        Direccion,
+        { model: Publicacion, include: [Profesion] }
+      ],
     });
 
     let obj = {
+      idPersona:personaPost[0].dataValues.id,
       nombres: personaPost[0].dataValues.nombres,
       apellidos: personaPost[0].dataValues.apellidos,
       imagen: personaPost[0].dataValues.imagen,
@@ -323,9 +331,10 @@ router.get("/detalle/:idPublicacion", async (req, res, next) => {
       email: personaPost[0].dataValues.email,
       promedio: personaPost[0].dataValues.promedio,
       telefono: personaPost[0].dataValues.telefono,
+      titulo: consultaBD.dataValues.titulo,
       descripcion: consultaBD.dataValues.descripcion,
       precio: consultaBD.dataValues.precio,
-      Profesions: personaPost[0].Profesions[0].dataValues.nombre,
+      Profesions: consultaBD.dataValues.Profesion.dataValues.nombre,
       direccion: personaPost[0].Direccions[0]?.dataValues.direccion,
       ciudad: personaPost[0].Direccions[0]?.dataValues.ciudad,
       pais: personaPost[0].Direccions[0]?.dataValues.pais,
@@ -341,8 +350,11 @@ router.get('/perfil/:email', async (req, res, next) => {
   try {
     const { email } = req.params;
     let consulta = await Persona.findAll({
-      include: [Profesion, Direccion, Publicacion],
-      where: { email: email }
+      include: [
+        Direccion,
+        { model: Publicacion, include: [Profesion] }
+      ],
+      where: { email: email },
     });
 
     return res.json(consulta);

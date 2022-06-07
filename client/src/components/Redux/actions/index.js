@@ -229,6 +229,84 @@ export function cambiarInfo(email, input) {
   }
 }
 
+export function getOpiniones(id){
+  return async (dispatch)=>{
+    try{
+      let opiniones = await axios.get(`http://localhost:3001/comentario/${id}`)
+      return dispatch({
+        type:'GET_OPINIONES',
+        payload: opiniones.data
+      })
+    }catch(error){ console.log(error)}
+  }
+}
+
+export function postOpinion(input){
+  return async (dispatch)=>{
+    try{
+      await axios.post('http://localhost:3001/comentario',input)
+      return dispatch({
+        type:'POST_OPINION',
+      })
+    }catch(error){ console.log(error)}
+  }
+}
+
+export function deleteOpinion(id){
+  return async (dispatch)=>{
+    try{
+      await axios.delete(`http://localhost:3001/comentario/${id}`)
+      return dispatch({
+        type:'DELETE_OPINION',
+      })
+    }catch(error){ console.log(error)}
+  }
+}
+
+export function getPreguntas(id){
+  return async (dispatch)=>{
+    try{
+      let preguntas = await axios.get(`http://localhost:3001/pregunta/${id}`)
+      return dispatch({
+        type:'GET_PREGUNTAS',
+        payload: preguntas.data
+      })
+    }catch(error){ console.log(error)}
+  }
+}
+
+export function postPregunta(input){
+  return async (dispatch)=>{
+    try{
+      await axios.post('http://localhost:3001/pregunta',input)
+      return dispatch({
+        type:'POST_PREGUNTA',
+      })
+    }catch(error){ console.log(error)}
+  }
+}
+
+export function deletePregunta(id){
+  return async (dispatch)=>{
+    try{
+      await axios.delete(`http://localhost:3001/pregunta/${id}`)
+      return dispatch({
+        type:'DELETE_PREGUNTA',
+      })
+    }catch(error){ console.log(error)}
+  }
+}
+
+export function responderPregunta(id,input){
+  return async (dispatch)=>{
+    try{
+      await axios.put(`http://localhost:3001/pregunta/${id}`,input)
+      return dispatch({
+        type:'RESPONDER_PREGUNTA',
+      })
+    }catch(error){ console.log(error)}
+  }
+}
 
 export function eliminarPost(id){
   console.log(id)

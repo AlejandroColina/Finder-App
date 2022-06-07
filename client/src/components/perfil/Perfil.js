@@ -13,6 +13,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { getPefil, ValidarInfo } from "../Redux/actions/index";
 import { Link } from "react-router-dom";
 import Favorito from "./favoritos/Favoritos";
+import { Helmet } from "react-helmet";
+
+
 const Perfil = () => {
   const { user } = useAuth0();
   const dispatch = useDispatch();
@@ -42,7 +45,15 @@ const Perfil = () => {
   };
 
   return (
-    <div >
+
+    <div>
+      {(!StatePerfil) ? 
+      <Helmet><title>Cargando..</title></Helmet>
+      :
+      <Helmet><title>{ `${StatePerfil[0]?.nombres}` } - Perfil</title></Helmet>
+     }
+      
+
       <nav className={s.nav}>
         <img className={s.logo} src={logo} alt="finder" />
         <Link to="/home">
@@ -114,6 +125,7 @@ const Perfil = () => {
             <Favorito />
           ) : (
             <div>
+
               {perfil ? (
                 <Form />
               ) : (
@@ -139,6 +151,7 @@ const Perfil = () => {
                   </div>
                 </div>
               )}
+
             </div>
           )}
         </div>

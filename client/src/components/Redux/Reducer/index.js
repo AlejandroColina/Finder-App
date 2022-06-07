@@ -12,7 +12,9 @@ const InitialState = {
   ubicacion: {},
   validar: true,
   publicacionesDeUnaPersona: [],
-  perfil: []
+  perfil: [],
+  opiniones:[],
+  preguntas:[],
 
 };
 
@@ -124,11 +126,46 @@ export default function rootReducer(state = InitialState, action) {
         ...state
       }
 
+<<<<<<< HEAD
       case 'DELETE':
         return {
           ...state
         }
 
+=======
+    case 'GET_OPINIONES':
+      return{
+        ...state,
+        opiniones: action.payload
+      }
+    case 'POST_OPINION':
+      return{
+        ...state,
+      }
+      case 'DELETE_OPINION':
+        return{
+          ...state,
+        }
+
+    case 'GET_PREGUNTAS':
+      return{
+        ...state,
+        preguntas: action.payload
+      }
+    case 'POST_PREGUNTA':
+      return{
+        ...state,
+      }
+    case 'DELETE_PREGUNTA':
+      return{
+        ...state,
+      }
+    case 'RESPONDER_PREGUNTA':
+      return{
+        ...state,
+      }
+
+>>>>>>> 6171e697134b4f6a8d2153a6f939ddaa76f1af28
     default:
       return state;
   }

@@ -40,6 +40,9 @@ module.exports = (sequelize) => {
     trabajosPagos: {
       type: DataTypes.ARRAY(DataTypes.INTEGER),
     },
+    acercade: {
+      type: DataTypes.TEXT,
+    },
     puntuacion: {
       type: DataTypes.ARRAY(DataTypes.INTEGER),
       validate: {
