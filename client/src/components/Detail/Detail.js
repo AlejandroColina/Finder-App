@@ -79,6 +79,7 @@ export default function Detail({Profesions}) {
             [e.target.name]: e.target.value
         })
     }
+    const [comento, setComento]=useState(false);
     const [open,setOpen] =useState(false);
     const Todaspublicaciones  = useSelector((state)=>state.publicacionesDeUnaPersona);
     const publicaciones = Todaspublicaciones.filter((p)=>p.id!==MyDetail.id);
@@ -169,8 +170,8 @@ export default function Detail({Profesions}) {
           }
           </Box> </div>
           <hr/> 
-          {(order) ? 
-          <Comentar nombre={user.name}  publicacion={id} />
+          {(order && !comento) ? 
+          <Comentar nombre={user.name}  publicacion={id} setComento={setComento} />
            :
             null}
           <div className={s.commentsBox}>
