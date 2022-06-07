@@ -7,7 +7,7 @@ import { postOpinion } from '../../Redux/actions';
 import { useDispatch } from 'react-redux';
 import Swal from "sweetalert2";
 
-export default function Comentar({nombre,publicacion}){
+export default function Comentar({nombre,publicacion, setComento}){
     const dispatch=useDispatch();
     const [input, setInput]= useState({
         persona:nombre,
@@ -25,8 +25,8 @@ export default function Comentar({nombre,publicacion}){
     const handleSubmit = (input,e)=>{
         e.preventDefault();
         dispatch(postOpinion(input));
-        console.log(input);
-        Swal.fire({ text:'Gracias por tu recomendacion!', icon:'success' } )
+        Swal.fire({ text:'Gracias por tu recomendacion!', icon:'success' } );
+        setComento(true);
     }
     return(
         <form className={s.form} onSubmit={(e)=>handleSubmit(input,e)}>
