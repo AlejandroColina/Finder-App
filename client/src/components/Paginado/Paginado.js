@@ -10,7 +10,7 @@ export default function Paginado({personasPerPage, allPersonas, paginado}) {
 
     const [page, setPage] = useState(1); //estado
 
-    
+    const stylesFocus = { backgroundColor:' #0576e67a', color: 'black', textShadow: '0px 1px black'}
 
     const stylesNext = {
         color: 'whitesmoke',
@@ -40,7 +40,7 @@ export default function Paginado({personasPerPage, allPersonas, paginado}) {
             {pageNumbers &&
             pageNumbers.map(number=> (
             <li  key={number} >
-                 <button style={(page === number)? { backgroundColor:' #0576e67a'} : null } 
+                 <button style={(page === number)? stylesFocus: null } 
                  className={styles.botones_paginado} 
                  onClick={() => {
                      
