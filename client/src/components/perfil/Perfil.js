@@ -140,9 +140,9 @@ const Perfil = () => {
                           descripcion={el.descripcion}
                           nombre={StatePerfil[0]?.nombres}
                           imagen={StatePerfil[0]?.imagen}
-                          Profesions={StatePerfil[0]?.Profesions[0].nombre}
+                          Profesions={el.Profesion.nombre}
                           id={el.id}
-                          logoProfesion={StatePerfil[0]?.Profesions[0].logo}
+                          logoProfesion={el.Profesion.logo}
                         />
                       ))
                     ) : (
