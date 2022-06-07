@@ -38,10 +38,10 @@ const Perfil = () => {
 
   return (
     <div>
-      {(user) ? 
-      <Helmet><title>{ `${StatePerfil[0]?.nombres}` } - Perfil</title></Helmet>
-      :
+      {(!StatePerfil) ? 
       <Helmet><title>Cargando..</title></Helmet>
+      :
+      <Helmet><title>{ `${StatePerfil[0]?.nombres}` } - Perfil</title></Helmet>
      }
       
       <nav className={s.nav}>
