@@ -180,30 +180,37 @@ router.get("/trabajo/:id", async (req, res, next) => {
 });
 
 router.post("/crear", async function (req, res) {
-  let profesionId = req.body.selected;
+
+  let { ciudad, descripcion, email, multimedia, precio, ProfesionId, titulo } = req.body.toSend;
+
   let consulta = await Persona.findOne({
-    where: { email: req.body.email },
+    where: { email: email },
   });
 
-  let PersonaId = consulta.dataValues.id;
+  let PersonaId = consulta?.dataValues.id;
 
-  await Publicacion.create({
-    PersonaId: PersonaId,
-    descripcion: req.body.input?.descripcion,
-    precio: 3000,
-    ProfesionId: profesionId,
-    titulo: '',
-    // precio: req.body.input?.precio,
-  });
+  if (PersonaId) {
+    ProfesionId = parseInt(ProfesionId)
 
-  await Direccion.create({
-    PersonaId: PersonaId,
-    ciudad: req.body.input?.direccion,
-    pais: 'Argentina',
-    direccion: 'Calle principal'
-  });
+    await Publicacion.create({
+      PersonaId,
+      ProfesionId,
+      descripcion,
+      precio,
+      titulo,
+      multimedia: ['https://www.monempresarial.com/wp-content/uploads/2018/12/LEGAL-738x410.jpg']
+    });
 
-  return res.send('Publicación creada');
+    await Direccion.create({
+      PersonaId: PersonaId,
+      ciudad: ciudad,
+      pais: 'Argentina',
+      direccion: 'Calle principal'
+    });
+
+    return res.send('Publicación creada');
+  }
+  res.status(404).send('No se pudo publicar')
 
 });
 
@@ -311,6 +318,7 @@ router.get("/detalle/:idPublicacion", async (req, res, next) => {
     });
 
     let obj = {
+      idPersona:personaPost[0].dataValues.id,
       nombres: personaPost[0].dataValues.nombres,
       apellidos: personaPost[0].dataValues.apellidos,
       imagen: personaPost[0].dataValues.imagen,

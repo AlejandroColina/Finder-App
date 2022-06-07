@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { useFormik } from "formik";
-import "./UserCreate.css";
 import pic from "./img_fast.png";
 import axios from "axios";
-import "./UserCreate.css";
-import { getEmpleosForm } from "../../Redux/actions";
+import { getEmpleosForm, getCiudades } from "../../Redux/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { useAuth0 } from '@auth0/auth0-react';
 import { Link } from 'react-router-dom';
+import styles from './UserCreate.module.css';
 import { Helmet } from "react-helmet";
+
 
 //Validadores
 
@@ -64,14 +64,14 @@ export default function UserCreate() {
   const dispatch = useDispatch();
 
   const [image, setImage] = useState("");
-  const [selected, setSelected] = useState(null)
+  const [selected, setSelected] = useState(null);
+  const [city, setCity] = useState('');
   const [loading, setLoading] = useState(false);
   const formik = useFormik({
     initialValues: {
-      edad: "",
+      titulo: "",
       descripcion: "",
-      direccion: "",
-      profesion: "",
+      precio: "",
     },
     validate,
     onSubmit: (values) => {
@@ -97,12 +97,13 @@ export default function UserCreate() {
 
     const file = await res.json();
     setImage(file.secure_url);
-    setInput({ ...input, imagen: file.secure_url });
+    setInput({ ...input, multimedia: file.secure_url });
     setLoading(false);
   };
 
   //Traer Profresiones
   const empleos = useSelector((state) => state.empleosForm);
+  const ciudades = useSelector(state => state.ciudades);
   const [empleosSelected, setEmpleosSelected] = useState({});
 
   const selectChange = (e) => {
@@ -111,11 +112,33 @@ export default function UserCreate() {
     setEmpleosSelected({ ...empleosSelected, [id]: value });
   };
 
-  // Envío de datos a la DB
+  const [input, setInput] = useState({
+    titulo: "",
+    descripcion: "",
+    precio: "",
+    multimedia: [],
+  });
+
+  let toSend = {
+    titulo: input.titulo,
+    descripcion: input.descripcion,
+    ProfesionId: selected,
+    precio: input.precio,
+    multimedia: [],
+    email: user?.email,
+    ciudad: city,
+  }
+
   function handleSubmit(e) {
     e.preventDefault();
+    setInput({
+      titulo: "",
+      descripcion: "",
+      precio: "",
+      multimedia: [],
+    })
     axios
-      .post("http://localhost:3001/users/crear", { input, selected, email: user?.email })
+      .post("http://localhost:3001/users/crear", { toSend })
       .then((res) => {
         alert("Usuario creado");
       })
@@ -126,12 +149,7 @@ export default function UserCreate() {
   }
 
   // useState de los inputs
-  const [input, setInput] = useState({
-    edad: "",
-    descripcion: "",
-    direccion: "",
-    imagen: ""
-  });
+
 
   const handleChange = (e) => {
     let name = e.target.name;
@@ -140,7 +158,7 @@ export default function UserCreate() {
     setInput({
       ...input,
       [name]:
-        name === "edad"
+        name === "precio"
           ? !isNaN(parseInt(value))
             ? parseInt(value)
             : (value = "")
@@ -150,35 +168,38 @@ export default function UserCreate() {
 
   useEffect(() => {
     dispatch(getEmpleosForm());
+    dispatch(getCiudades());
   }, [dispatch]);
 
   const handleChange1 = (e) => { setSelected(e.target.value) }
+  const handleChange2 = (e) => { setCity(e.target.value) }
+
+  console.log('ELEGIDO: ', toSend)
 
   return (
-    <>
-    <Helmet><title>Nuevo Post - Finder</title></Helmet>
-      <div className="formCont">
-        <div className="leftCard">
-          <img src={pic} alt="" />
+    <section className={styles.container}>
+      <div className={styles.div_form} >
+        <div className={styles.formulario1}>
+          <div className={styles.log}></div>
+          <div className={styles.log2}>
+            <Link to={`/perfil/${user?.email}`} >
+              <button className={styles.btn1} >Perfil</button>
+            </Link>
+            <Link to='/home' >
+              <button className={styles.btn1} >ir a home</button>
+            </Link>
+          </div>
+          <div className={styles.log3}>
+            Inspírate, piensa ,comparte tus habilidades, sé <b>finder</b>!
+          </div>
+
         </div>
-        {/* 
-           onSubmit={formik.handleSubmit}
-        */}
-        <div className="rightCard">
-          <form onSubmit={handleSubmit}>
-            <Link to={`/perfil/${user?.email}`} > <button >Perfil</button></Link>
-            <Link to='/home' > <button >ir a home</button></Link>
-            {loading ? (
-              <h3>Loading...</h3>
-            ) : (
-              <img
-                className="userPic"
-                src={image}
-                style={{ width: "300px" }}
-                alt="File Not Found"
-              />
-            )}
-            <div className="file-select">
+        <form className={styles.formulario} onSubmit={handleSubmit}>
+
+
+          <div className={styles.formulario2}>
+
+            <div className={styles.file_select}>
               <input
                 onChange={uploadImage}
                 name="file"
@@ -187,16 +208,16 @@ export default function UserCreate() {
               />
             </div>
 
-            <label htmlFor="edad"></label>
+            <label htmlFor="Título de la publicación"></label>
             {formik.touched.apellidos && formik.errors.edad ? (
-              <div className="required">{formik.errors.edad}</div>
+              <div className={styles.required}>{formik.errors.edad}</div>
             ) : null}
             <input
-              className="inputs"
-              id="edad"
-              placeholder="Edad"
-              name="edad"
-              type="number"
+              className={styles.inputs}
+              id="titulo"
+              placeholder="Un título para la publicación..."
+              name="titulo"
+              type="text"
               onChange={handleChange}
               value={input.edad}
               onBlur={formik.handleBlur}
@@ -205,12 +226,12 @@ export default function UserCreate() {
 
             <label htmlFor="descripcion"></label>
             {formik.touched.descripcion && formik.errors.descripcion ? (
-              <div className="required">{formik.errors.descripcion}</div>
+              <div className={styles.required}>{formik.errors.descripcion}</div>
             ) : null}
-            <input
-              className="inputs"
+            <textarea
+              className={styles.textarea}
               id="descripcion"
-              placeholder="descripcion"
+              placeholder="Descripcion..."
               name="descripcion"
               type="textarea"
               onChange={handleChange}
@@ -218,13 +239,26 @@ export default function UserCreate() {
               onBlur={formik.handleBlur}
             />
 
-
-            <label htmlFor="direccion"></label>
-            {formik.touched.direccion && formik.errors.direccion ? (
-              <div className="required">{formik.errors.direccion}</div>
+            <label htmlFor="Precio"></label>
+            {formik.touched.apellidos && formik.errors.edad ? (
+              <div className={styles.required}>{formik.errors.edad}</div>
             ) : null}
             <input
-              className="inputs"
+              className={styles.inputs}
+              id="precio"
+              placeholder="Precio solicitado para el servicio..."
+              name="precio"
+              type="number"
+              onChange={handleChange}
+              value={input.edad}
+              onBlur={formik.handleBlur}
+            />
+            {/* <label htmlFor="direccion"></label>
+            {formik.touched.direccion && formik.errors.direccion ? (
+              <div className={styles.required}>{formik.errors.direccion}</div>
+            ) : null}
+            <input
+              className={styles.inputs}
               id="direccion"
               placeholder="direccion"
               name="direccion"
@@ -232,32 +266,45 @@ export default function UserCreate() {
               onChange={handleChange}
               value={input.direccion}
               onBlur={formik.handleBlur}
-            />
+            /> */}
 
-            <label htmlFor="profesion"></label>
-            <div>
+            <div className={styles.div_select}>
+              <select className={styles.selects} value={city} onChange={handleChange2}>
+                {ciudades &&
+                  ciudades.map((el, id) => (
+                    <option
+                      value={el}
+                    >
+                      {el}
+                    </option>
+                  ))}
+              </select>
+
               <div>
-                <select value={selected} onChange={handleChange1}>
-                  {empleos &&
-                    empleos.map((el, id) => (
-                      <option
-                        name="empleo"
-                        value={id + 1}
-                      >
-                        {el.nombre}
-                      </option>
-                    ))}
-                </select>
-                <label for="empleo">Seleccione profesion</label>
+                <div>
+                  <select className={styles.selects} value={selected} onChange={handleChange1}>
+                    {empleos &&
+                      empleos.map((el, id) => (
+                        <option
+                          name="empleo"
+                          value={id + 1}
+                        >
+                          {el.nombre}
+                        </option>
+                      ))}
+                  </select>
+                </div>
               </div>
             </div>
-            <button className="submit" type="submit">
-              Registrarse!
+
+            <button className={styles.btn} type="submit">
+              Crear publicación
             </button>
-          </form>
-        </div>
+          </div>
+        </form>
       </div>
-    </>
+
+    </section>
   );
 }
 

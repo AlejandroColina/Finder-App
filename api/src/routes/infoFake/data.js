@@ -1257,7 +1257,7 @@ let personas = [
         profesion: 5,
         genero: "mujer",
         pais: "Argentina",
-        ciudad: "	Rosario",
+        ciudad: "Rosario",
         precio:2000,
         favoritos:[
             7,
