@@ -137,8 +137,8 @@ export default function Detail({Profesions}) {
           <div className={s.commentsBox}>
           {preguntas? preguntas.map((p)=> <div key={p.id}>
           <div className={s.containerComments}>
-            <div className={s.commentPersona}>{p.pregunta}</div>
-            <>{p.respuesta? <div className={s.respuesta}>~{p.respuesta}</div> : 
+            <div className={s.pregunta}>{p.pregunta}</div>
+            <>{p.respuesta? <><div className={s.respuesta}><div className={s.figura}></div>{p.respuesta}</div> </>: 
           <form 
             className={s.form}
             onSubmit={(e)=>{
