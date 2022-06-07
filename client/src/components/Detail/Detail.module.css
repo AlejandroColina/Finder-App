@@ -126,7 +126,7 @@
     display: flex;
     justify-content: space-between;
     font-size: 18px;
-    color: #001b38cc;
+    color: #000b16cc;
     font-style: italic;
     font-weight: lighter;
 }
@@ -181,9 +181,22 @@
 }
 .respuesta{
     display: flex;
-    justify-content: flex-end;
+    justify-content: flex-start;
     font-size: 15px;
     color: #00060c;
     font-weight: lighter;
     margin-top: 10px;
+}
+.figura{
+    width: 25px;
+    height: 15px;
+    border-left: 2px solid #001b384a;
+    border-bottom:2px solid #001b384a;
+    margin-right: 10px;
+    margin-left: 10px;
+}
+.pregunta{
+    font-size: 15px;
+    font-weight: bold;
+    color: #00060c;
 }
