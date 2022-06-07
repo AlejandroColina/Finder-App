@@ -263,3 +263,48 @@ export function deleteOpinion(id){
   }
 }
 
+export function getPreguntas(id){
+  return async (dispatch)=>{
+    try{
+      let preguntas = await axios.get(`http://localhost:3001/pregunta/${id}`)
+      return dispatch({
+        type:'GET_PREGUNTAS',
+        payload: preguntas.data
+      })
+    }catch(error){ console.log(error)}
+  }
+}
+
+export function postPregunta(input){
+  return async (dispatch)=>{
+    try{
+      await axios.post('http://localhost:3001/pregunta',input)
+      return dispatch({
+        type:'POST_PREGUNTA',
+      })
+    }catch(error){ console.log(error)}
+  }
+}
+
+export function deletePregunta(id){
+  return async (dispatch)=>{
+    try{
+      await axios.delete(`http://localhost:3001/pregunta/${id}`)
+      return dispatch({
+        type:'DELETE_PREGUNTA',
+      })
+    }catch(error){ console.log(error)}
+  }
+}
+
+export function responderPregunta(id,input){
+  return async (dispatch)=>{
+    try{
+      await axios.put(`http://localhost:3001/pregunta/${id}`,input)
+      return dispatch({
+        type:'RESPONDER_PREGUNTA',
+      })
+    }catch(error){ console.log(error)}
+  }
+}
+

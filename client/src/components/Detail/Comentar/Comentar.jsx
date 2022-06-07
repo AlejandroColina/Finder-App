@@ -5,6 +5,7 @@ import Typography from '@mui/material/Typography';
 import s from './Comentar.module.css';
 import { postOpinion } from '../../Redux/actions';
 import { useDispatch } from 'react-redux';
+import Swal from "sweetalert2";
 
 export default function Comentar({nombre,publicacion}){
     const dispatch=useDispatch();
@@ -25,6 +26,7 @@ export default function Comentar({nombre,publicacion}){
         e.preventDefault();
         dispatch(postOpinion(input));
         console.log(input);
+        Swal.fire({ text:'Gracias por tu recomendacion!', icon:'success' } )
     }
     return(
         <form className={s.form} onSubmit={(e)=>handleSubmit(input,e)}>

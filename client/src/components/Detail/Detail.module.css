@@ -53,12 +53,6 @@
     color: #0575e6;
     font-style: oblique;
 }
-.coments{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-left: 400px;
-}
 .containerInfo{
     position: relative;
     margin-left: 500px;
@@ -119,6 +113,23 @@
     background-color: white;
     color: #001b38;
 }
+.commentsBox{
+    padding: 0px 75px;
+}
+.containerComments{
+    display: flex;
+    flex-direction: column;
+    margin: 30px 0px;
+    padding: 15px;
+}
+.commentPersona{
+    display: flex;
+    justify-content: space-between;
+    font-size: 18px;
+    color: #001b38cc;
+    font-style: italic;
+    font-weight: lighter;
+}
 .cardsContainer{
     display: flex;
     flex-wrap: wrap;
@@ -144,4 +155,35 @@
   color: #545454;
   font-family: inherit;
   font-size: 1.6rem !important;
+}
+.form{
+    width: 100%;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+.input{
+    background: none;
+    outline: 0px;
+    resize: none;
+    border: 1px solid #001b383e;
+}
+.btn{
+    background: none;
+    border: none;
+    padding: 10px;
+    color: #001b38;
+    font-size: 15px;
+}
+.btn:hover{
+    text-decoration: underline;
+}
+.respuesta{
+    display: flex;
+    justify-content: flex-end;
+    font-size: 15px;
+    color: #00060c;
+    font-weight: lighter;
+    margin-top: 10px;
 }
