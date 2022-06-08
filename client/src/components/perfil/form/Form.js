@@ -1,6 +1,7 @@
 import React from "react";
 import s from "./Form.module.css";
 import { useDispatch, useSelector } from "react-redux";
+
 import { cambiarInfo, ValidarInfo } from '../../Redux/actions/index';
 import { useState } from "react";
 import { useAuth0 } from '@auth0/auth0-react';
@@ -13,6 +14,7 @@ const Form = () => {
   const [input, setInput] = useState({
     nombres: '',
     apellidos: "",
+
     telefono: "",
     documento: "",
   });
@@ -24,11 +26,13 @@ const Form = () => {
     });
   };
 
+
   const handleOnClick = () => {
     dispatch(cambiarInfo(user?.email, input))
     setTimeout(() => {
       dispatch(ValidarInfo(user?.email))
     }, 1000)
+
   }
 
   return (
@@ -76,7 +80,9 @@ const Form = () => {
           ></input>
         </div>
         <div className={s.div_boton}>
+
           <button onClick={handleOnClick} >Guardar</button>
+
         </div>
       </div>
     </div>

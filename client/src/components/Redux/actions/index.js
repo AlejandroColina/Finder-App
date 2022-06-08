@@ -17,6 +17,14 @@ export function rederCard(profesion, genero, promedio, ciudad, descripcion) {
   };
 }
 
+export function getCarta(tipo) {
+  return async function (dispatch){
+      var json = await axios.get(`http://localhost:3001/users/coincidencias/${tipo}`)
+      console.log(tipo)
+       return dispatch({type: "CARDST", payload :json.data})
+  }
+}
+
 export function getUsers() {
   return async function (dispatch) {
     try {
@@ -307,4 +315,14 @@ export function responderPregunta(id,input){
     }catch(error){ console.log(error)}
   }
 }
+
+export function eliminarPost(id){
+  console.log(id)
+  return async dispatch => {
+    let borrar = await axios.delete('http://localhost:3001/delete/post/' + id)
+    return dispatch({
+      type: 'DELETE',
+    })
+  }}
+
 
