@@ -3,7 +3,7 @@ import { useHistory, useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { getDetail, getDeleteDetail, 
   getPublicacionDeUsuario, getOpiniones, 
-  getPreguntas,responderPregunta } from "../Redux/actions/index";
+  getPreguntas,responderPregunta, getCarta } from "../Redux/actions/index";
 import NavBar from '../NavBar/NavBar';
 import s from './Detail.module.css';
 import { useAuth0} from '@auth0/auth0-react';
@@ -14,6 +14,7 @@ import gps from '../../assets/gps.png';
 import Box from '@mui/material/Box';
 import Rating from '@mui/material/Rating';
 import Typography from '@mui/material/Typography';
+import { Link } from "react-router-dom";
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
@@ -33,14 +34,28 @@ export default function Detail({Profesions}) {
     var onlyFirst = user.name.split(' ');
   } 
   
-  
-  
   const history = useHistory();
   const dispatch = useDispatch();
   const { id } = useParams();
   const MyDetail = useSelector(state => state.detail);
+  const publi = useSelector(state => state.info);
   const opiniones = useSelector(state=> state.opiniones);
   const preguntas = useSelector(state=> state.preguntas);
+    
+      //paginado publicaciones similares
+      const [page,setPage] = useState(0);
+      const currentPage = publi.slice(page,page+3); 
+  
+      const handlePrev = (e)=>{
+          if(page>0)
+          setPage(page-3)
+          }
+      const handleNext = (e)=>{
+          if(page<publi.length-3)
+          setPage(page +3)
+      }
+  
+    
   
   useEffect(() => {
     dispatch(getDetail(id));
@@ -81,8 +96,7 @@ export default function Detail({Profesions}) {
     }
     const [comento, setComento]=useState(false);
     const [open,setOpen] =useState(false);
-    const Todaspublicaciones  = useSelector((state)=>state.publicacionesDeUnaPersona);
-    const publicaciones = Todaspublicaciones.filter((p)=>p.id!==MyDetail.id);
+    dispatch(getCarta(MyDetail.Profesions))
     return (   
       <>
       { (!MyDetail.nombres) ?
@@ -137,7 +151,7 @@ export default function Detail({Profesions}) {
           
           <div className={s.titulos}>Tenes dudas?</div>
           <hr/>
-          <Preguntar nombre={user.name}  publicacion={id} />
+          <Preguntar nombre={user? user.name : null }  publicacion={id} />
           <div className={s.commentsBox}>
           {preguntas? preguntas.map((p)=> <div key={p.id}>
           <div className={s.containerComments}>
@@ -187,51 +201,64 @@ export default function Detail({Profesions}) {
           </div>
           <br/><br/><br/><br/><br/><br/>
           
-           <div className={s.titulos}>Mas Publicaciones del emprendedor</div>
+           <div className={s.titulos}>Publicaciones similares</div>
            <hr/>
            <br/><br/>
            <div className={s.cardsContainer}>
-           {/* {publicaciones? publicaciones.map((p)=> */}
-          <Card className={s.cardUi} sx={{ maxWidth: 345 }} /* key={p.id} */>
-          <CardActionArea>
-          <CardMedia
-            component="img"
-            height="140"
-            image="https://comercioyjusticia.info/elinversorylaconstruccion/wp-content/uploads/sites/9/2015/09/color-pintura.jpg"
-            alt="emprendedor"
-           />
-          <CardContent>
-            <Typography gutterBottom variant="h5" component="div">
-             PINTOR
-            </Typography>
-            <Typography variant="body2" color="text.secondary">
-             Materiales incluidos, trabajo rapido y prolijo. El valor es por metro2.
-            </Typography>
-          </CardContent>
-          </CardActionArea>
-          </Card>
-          <Card className={s.cardUi} sx={{ maxWidth: 345 }} /* key={p.id} */>
-          <CardActionArea>
-          <CardMedia
-            component="img"
-            height="140"
-            image="https://comercioyjusticia.info/elinversorylaconstruccion/wp-content/uploads/sites/9/2015/09/color-pintura.jpg"
-            alt="emprendedor"
-           />
-          <CardContent>
-            <Typography gutterBottom variant="h5" component="div">
-             PINTOR
-            </Typography>
-            <Typography variant="body2" color="text.secondary">
-             Materiales incluidos, trabajo rapido y prolijo. El valor es por metro2.
-            </Typography>
-          </CardContent>
-          </CardActionArea>
-          </Card>
-          </div>{/* ) : null} */}
+           {publi && publi[0] ? (
+                  currentPage.map((el) => (
+                    <Link to={`/trabajo/${el.id}`} className={s.link} >
+                      <Card className={s.cardUi} sx={{ maxWidth: 345 }} 
+                    key={el.id}>
+                    <CardActionArea>
+                    <CardMedia
+                      component="img"
+                      height="140"
+                      image={el.Publicacions[0].multimedia? el.Publicacions[0].multimedia : el.imagen}
+                      alt="emprendedor"
+                     />
+                    <CardContent>
+                      <Typography gutterBottom variant="h5" component="div">
+                      {el.Publicacions[0].titulo}
+                      </Typography>
+                      <Typography gutterBottom variant="h6" component="div">
+                      ${el.Publicacions[0].precio}
+                      </Typography>
+                      <Typography variant="body2" color="text.secondary">
+                      {el.Publicacions[0].descripcion}
+                      </Typography>
+                    </CardContent>
+                    </CardActionArea>
+                    </Card></Link>
+                  ))
+                ) : (
+                  <p>NO SE ENCONTRARON</p>
+                )}
+          <div className={s.paginate}>{page>0?
+            <button
+            className={s.btnPaginate}
+            onClick={handlePrev}>ANTERIOR</button> : null }
+            {page< publi.length-1?
+            <button
+            className={s.btnPaginate}
+            onClick={handleNext}>SIGUIENTE</button> :null }
+          </div>
+          </div>
         </div>
       </div>
       <Footer/>
       <Help/>
       </>
     )}
+
+
+    {/* <Carta
+                      key={el.id}
+                      precio={el.Publicacions[0].precio}
+                      descripcion={el.Publicacions[0].descripcion}
+                      nombre={el.nombres}
+                      imagen={el.imagen}
+                      Profesions={el.Publicacions[0].Profesion.nombre}
+                      id={el.id}
+                      logoProfesion={el.Publicacions[0].Profesion.logo}
+                    /> */}

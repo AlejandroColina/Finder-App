@@ -251,9 +251,11 @@ router.get('/validar/:email', async (req, res, next) => {
     });
 
     if (
+
       consulta[0]?.apellidos == null ||
       consulta[0]?.documento == null ||
       consulta[0]?.telefono == null
+
     ) { res.send(true) } else {
       res.send(false);
     }
@@ -361,5 +363,30 @@ router.get('/perfil/:email', async (req, res, next) => {
     next(error)
   }
 });
+
+router.get("/coincidencias/:tipo", async (req, res) =>{
+  const tipo = req.params.tipo;
+  let respuesta = [];
+  try {
+    let todos = await Persona.findAll({
+      include: [
+        Direccion,
+        { model: Publicacion, include: [Profesion] }
+      ],
+    });
+    for (let i = 0; i < todos.length; i++) {
+      for (let j = 0; j < todos[i].Publicacions.length; j++) {
+        if(todos[i].Publicacions[j].Profesion.nombre === tipo){
+          respuesta.push(todos[i])
+        }
+        
+      }
+      
+    }
+    res.send(respuesta)
+  } catch (error) {
+    console.log(error)
+  }
+})
 
 module.exports = router;
