@@ -137,6 +137,10 @@
 }
 .cardUi{
     margin: 25px;
+    width: 200px;
+}
+.link{
+    text-decoration: none;
 }
 
 
@@ -178,6 +182,25 @@
 }
 .btn:hover{
     text-decoration: underline;
+}
+.paginate{
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+.btnPaginate{
+    margin: 0px 20px;
+    background: none;
+    border: 1px solid #001b3848;
+    padding: 5px 10px;
+    color: #001b38;
+    font-size: 10px;
+    transition: 1s;
+}
+.btnPaginate:hover{
+    background-color: #001b38;
+    color: white;
 }
 .respuesta{
     display: flex;
