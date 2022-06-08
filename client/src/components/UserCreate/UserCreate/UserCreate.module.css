@@ -94,24 +94,26 @@
 
 .container {
   background: linear-gradient(90deg, #1a2980 0%, #26d0ce 100%);
-  height: 100vh;
+  min-height: 100vh;
   width: 100vw;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  flex-direction: column;
+  justify-content: space-evenly;
 }
 
 .div_form {
-  height: 80%;
+  height: 80vh;
   width: 80%;
+  margin: 0 auto 10vh auto;
+  top: 10vh;
+  position: relative;
   display: grid;
-  align-items: center;
   flex-direction: row;
   justify-content: space-around;
-  grid-template-columns: 20% 60%;
+  grid-template-columns: 30% 60%;
 }
 
-.formulario1 {
+.div1_form {
   height: 100%;
   width: 100%;
   display: grid;
@@ -121,18 +123,60 @@
 }
 
 .formulario {
+  height: 100%;
+  width: 100%;
   border-radius: 6px;
   background-color: #ffffff1f;
   box-shadow: 0 0 10px 5px #ffffff1f;
-  height: 100%;
-  width: 100%;
   display: grid;
   align-items: center;
   justify-content: center;
-  
 }
 
+.div2_form {
+  height: 50vh;
+  width: 60vw;
+  margin: 5vh auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  /* position: relative; */
+}
+
+.divImg {
+  margin: 8px;
+  height: 120px;
+  width: 120px;
+  border-radius: 6px;
+  display: flex;
   
+  position: relative;
+}
+
+.fotoForm {
+  height: 120px;
+  width: 120px;
+  border-radius: 6px;
+}
+
+.Ximg {
+  background-color: #e60505a9;
+  font-weight: bold;
+  color: white;
+  height: 20px;
+  width: 20px;
+  border: none;
+  border-radius: 3px;
+  position: absolute;
+  cursor: pointer;
+}
+
+.Ximg:hover {
+  background-color: #e60505c7;
+  font-weight: bold;
+  color: white;
+}
+
 .formulario2 {
   height: 100%;
   width: 100%;
@@ -170,6 +214,14 @@
   cursor: pointer;
 }
 
+.btn_file{
+  background-color: #26d0ce;
+}
+
+.btn_file{
+  display: none;
+}
+
 .log {
   background-image: url('../../../assets/logo_finder_light_blue.png');
   background-repeat: no-repeat;
@@ -189,6 +241,13 @@
 
 .log3 {
   color: white;
+  font-size: 24px;
+  text-align: center;
+  font-style: oblique;
+}
+
+.log4 {
+  color: rgb(221, 221, 221);
   font-size: 24px;
   text-align: center;
   font-style: oblique;
