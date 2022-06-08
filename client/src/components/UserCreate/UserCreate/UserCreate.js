@@ -57,14 +57,12 @@ const validate = (values) => {
   return errors;
 };
 
-//Componente Principal
-
 export default function UserCreate() {
   const { user } = useAuth0();
   const dispatch = useDispatch();
 
-  const [image, setImage] = useState("");
-  const [selected, setSelected] = useState(null);
+  const [image, setImage] = useState([]);
+  const [selected, setSelected] = useState('');
   const [city, setCity] = useState(0);
   const [loading, setLoading] = useState(false);
   const formik = useFormik({
@@ -79,7 +77,11 @@ export default function UserCreate() {
     },
   });
 
-  //Cloudinary
+  useEffect(() => {
+    dispatch(getEmpleosForm());
+    dispatch(getCiudades());
+  }, [dispatch]);
+
   const uploadImage = async (e) => {
     const files = e.target.files;
     const data = new FormData();
@@ -96,12 +98,14 @@ export default function UserCreate() {
     );
 
     const file = await res.json();
-    setImage(file.secure_url);
-    setInput({ ...input, multimedia: file.secure_url });
+
+    setImage(() => {
+      if (file.secure_url.length) return [...image, file.secure_url]
+      return image
+    });
     setLoading(false);
   };
 
-  //Traer Profresiones
   const empleos = useSelector((state) => state.empleosForm);
   const ciudades = useSelector(state => state.ciudades);
   const [empleosSelected, setEmpleosSelected] = useState({});
@@ -124,32 +128,10 @@ export default function UserCreate() {
     descripcion: input.descripcion,
     ProfesionId: selected,
     precio: input.precio,
-    multimedia: [],
+    multimedia: image,
     email: user?.email,
     ciudad: city,
   }
-
-  function handleSubmit(e) {
-    e.preventDefault();
-    setInput({
-      titulo: "",
-      descripcion: "",
-      precio: "",
-      multimedia: [],
-    })
-    axios
-      .post("http://localhost:3001/users/crear", { toSend })
-      .then((res) => {
-        alert("Usuario creado");
-      })
-      .catch((error) => {
-        console.log(error);
-        alert("No se pudo crear el usuario");
-      });
-  }
-
-  // useState de los inputs
-
 
   const handleChange = (e) => {
     let name = e.target.name;
@@ -166,20 +148,37 @@ export default function UserCreate() {
     });
   };
 
-  useEffect(() => {
-    dispatch(getEmpleosForm());
-    dispatch(getCiudades());
-  }, [dispatch]);
+  function handleSubmit(e) {
+    e.preventDefault();
+    setInput({
+      titulo: "",
+      descripcion: "",
+      precio: "",
+      multimedia: []
+    })
+    setSelected('')
+    setImage([])
+    setCity(0)
+
+    axios
+      .post("http://localhost:3001/users/crear", { toSend })
+      .then((res) => {
+        alert("Publicación creada");
+      })
+      .catch((error) => {
+        console.log(error);
+        alert("No se pudo crear la publicación");
+      });
+  }
 
   const handleChange1 = (e) => { setSelected(e.target.value) }
   const handleChange2 = (e) => { setCity(e.target.value) }
 
-  console.log('ELEGIDO: ', toSend)
-
   return (
     <section className={styles.container}>
       <div className={styles.div_form} >
-        <div className={styles.formulario1}>
+
+        <div className={styles.div1_form}>
           <div className={styles.log}></div>
           <div className={styles.log2}>
             <Link to={`/perfil/${user?.email}`} >
@@ -192,21 +191,12 @@ export default function UserCreate() {
           <div className={styles.log3}>
             Inspírate, piensa ,comparte tus habilidades, sé <b>finder</b>!
           </div>
-
         </div>
+
         <form className={styles.formulario} onSubmit={handleSubmit}>
 
-
           <div className={styles.formulario2}>
-
-            <div className={styles.file_select}>
-              <input
-                onChange={uploadImage}
-                name="file"
-                type="file"
-                placeholder="Cargar Imagen"
-              />
-            </div>
+            <h1 className={styles.log4}> Crea tu publicación</h1>
 
             <label htmlFor="Título de la publicación"></label>
             {formik.touched.apellidos && formik.errors.edad ? (
@@ -219,7 +209,7 @@ export default function UserCreate() {
               name="titulo"
               type="text"
               onChange={handleChange}
-              value={input.edad}
+              value={input.titulo}
               onBlur={formik.handleBlur}
             />
 
@@ -250,29 +240,15 @@ export default function UserCreate() {
               name="precio"
               type="number"
               onChange={handleChange}
-              value={input.edad}
+              value={input.precio}
               onBlur={formik.handleBlur}
             />
-            {/* <label htmlFor="direccion"></label>
-            {formik.touched.direccion && formik.errors.direccion ? (
-              <div className={styles.required}>{formik.errors.direccion}</div>
-            ) : null}
-            <input
-              className={styles.inputs}
-              id="direccion"
-              placeholder="direccion"
-              name="direccion"
-              type="text"
-              onChange={handleChange}
-              value={input.direccion}
-              onBlur={formik.handleBlur}
-            /> */}
 
             <div className={styles.div_select}>
               <select className={styles.selects} value={city} onChange={handleChange2}>
                 {ciudades &&
                   ciudades.map((el, index) => (
-                    <option
+                    <option key={index + 'DIR'}
                       value={index + 1}
                     >
                       {el}
@@ -285,7 +261,7 @@ export default function UserCreate() {
                   <select className={styles.selects} value={selected} onChange={handleChange1}>
                     {empleos &&
                       empleos.map((el, id) => (
-                        <option
+                        <option key={id + 'DR'}
                           name="empleo"
                           value={id + 1}
                         >
@@ -297,14 +273,57 @@ export default function UserCreate() {
               </div>
             </div>
 
-            <button className={styles.btn} type="submit">
+            <div className={styles.file_select}>
+              <input
+                disabled={
+                  input.titulo
+                    && input.descripcion
+                    && input.precio
+                    && selected
+                    && city
+                    ? styles.bnt_file_none
+                    : styles.btn_file
+                }
+                onChange={uploadImage}
+                name="file"
+                type="file"
+                placeholder="Cargar Imagen"
+              />
+            </div>
+
+            <button
+              className={styles.btn}
+              type="submit"
+              disabled={
+                input.titulo
+                  && input.descripcion
+                  && input.precio
+                  && selected
+                  && city
+                  ? styles.bnt_file_none
+                  : styles.btn_file
+              }
+            >
               Crear publicación
             </button>
           </div>
         </form>
+      </div >
+      <div className={styles.div2_form}>
+        {
+          image && image.map((e, id) => {
+            return (
+              <div className={styles.divImg}>
+                <button className={styles.Ximg}>X</button>
+                <img className={styles.fotoForm} src={e} alt={`foto ${id}`} />
+              </div>
+            )
+          })
+        }
       </div>
 
-    </section>
+
+    </section >
   );
 }
 
