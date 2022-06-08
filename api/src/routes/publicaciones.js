@@ -11,13 +11,11 @@ router.get("/", async (req, res, next) => {
       req.query;
 
     let tablaPublicacion = await Publicacion.findAll(
-      { include: [Profesion] }
+      { include: [Profesion, Direccion] }
     );
     let obj = [];
 
-    let personas = await Persona.findAll({
-      include: [Direccion]
-    });
+    let personas = await Persona.findAll();
 
     tablaPublicacion?.map(async (posts) => {
       let post = posts?.dataValues
@@ -25,8 +23,6 @@ router.get("/", async (req, res, next) => {
 
       let persona = personas.filter(e => e.dataValues.id === idPersona);
       let user = persona[0]?.dataValues;
-      let direccion = persona[0]?.dataValues?.Direccions[0]?.dataValues;
-      
       obj.push({
         idPublicacion: post.id,
         idPersona: user.id,
@@ -40,7 +36,7 @@ router.get("/", async (req, res, next) => {
         logoProfesion: post.Profesion.dataValues.logo,
         genero: user.genero,
         edad: user.edad,
-        ciudad: direccion.ciudad
+        ciudad: post.Direccion?.dataValues?.ciudad
       })
     });
 
@@ -93,18 +89,6 @@ router.get("/", async (req, res, next) => {
   } catch (error) {
     next(error);
   }
-});
-
-router.post('/crear', async (req, res, next) => {
-  try {
-    const { descripcion, precio, idPersona } = req.body
-
-    await Publicacion.create({ PersonaId: idPersona, precio, descripcion });
-    res.send('Publicación creada.')
-  } catch (error) {
-    next(error)
-  }
-
 });
 
 module.exports = router;

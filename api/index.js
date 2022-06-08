@@ -23,6 +23,15 @@ DB_CONN.sync({ force: true })
             })
         };
 
+        personas.map(async (obj, id) => {
+            id += 1
+            await Direccion.create({
+                direccion: obj.direccion,
+                ciudad: obj.ciudad,
+                pais: obj.pais
+            });
+        })
+
         personas.map(async (person, index) => {
             let promedio = parseInt(person.puntuacion.reduce((a, b) => a + b) / person.puntuacion.length);
             await Persona.create({
@@ -38,6 +47,7 @@ DB_CONN.sync({ force: true })
                 trabajosPagos: [],
                 genero: person.genero,
                 puntuacion: person.puntuacion,
+                baneado: false
             });
 
             await Publicacion.create({
@@ -45,19 +55,8 @@ DB_CONN.sync({ force: true })
                 precio: person.precio,
                 titulo: 'Trabajo profesional finder ' + (index + 1),
                 PersonaId: index + 1,
+                DireccionId: parseInt(Math.random(14, 1) * (14 - 1) + 1),
                 ProfesionId: person.profesion,
             });
         });
-
-        setTimeout(() => {
-            personas.map(async (obj, id) => {
-                id += 1
-                await Direccion.create({
-                    PersonaId: id,
-                    direccion: obj.direccion,
-                    ciudad: obj.ciudad,
-                    pais: obj.pais
-                });
-            })
-        }, 1000);
     })

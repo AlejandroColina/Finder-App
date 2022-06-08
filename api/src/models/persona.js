@@ -43,6 +43,9 @@ module.exports = (sequelize) => {
     acercade: {
       type: DataTypes.TEXT,
     },
+    baneado: {
+      type: DataTypes.BOOLEAN,
+    },
     puntuacion: {
       type: DataTypes.ARRAY(DataTypes.INTEGER),
       validate: {

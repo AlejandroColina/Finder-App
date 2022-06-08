@@ -65,7 +65,7 @@ export default function UserCreate() {
 
   const [image, setImage] = useState("");
   const [selected, setSelected] = useState(null);
-  const [city, setCity] = useState('');
+  const [city, setCity] = useState(0);
   const [loading, setLoading] = useState(false);
   const formik = useFormik({
     initialValues: {
@@ -271,9 +271,9 @@ export default function UserCreate() {
             <div className={styles.div_select}>
               <select className={styles.selects} value={city} onChange={handleChange2}>
                 {ciudades &&
-                  ciudades.map((el, id) => (
+                  ciudades.map((el, index) => (
                     <option
-                      value={el}
+                      value={index + 1}
                     >
                       {el}
                     </option>
