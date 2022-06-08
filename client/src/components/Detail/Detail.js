@@ -65,10 +65,7 @@ export default function Detail({Profesions}) {
       dispatch(getDeleteDetail())  
     }      
   }, [id, dispatch])
-<<<<<<< HEAD
-=======
 
->>>>>>> 5fc1fbef2905f034bbae70a3809c576ddbf1a9cf
   let { promedio } = MyDetail
 
   let precio = 15
@@ -97,13 +94,8 @@ export default function Detail({Profesions}) {
         })
     }
     const [comento, setComento]=useState(false);
-<<<<<<< HEAD
-    const [open,setOpen] =useState(false);/* 
-    dispatch(getCarta(MyDetail.Profesions)) */
-=======
     const [open,setOpen] =useState(false);
     
->>>>>>> 5fc1fbef2905f034bbae70a3809c576ddbf1a9cf
     return (   
       <>
       { (!MyDetail.nombres) ?
@@ -135,7 +127,7 @@ export default function Detail({Profesions}) {
           <hr/>
           <div className={s.subtitulos}>{MyDetail.Profesions}</div>
           <div className={s.titulos}>{MyDetail.titulo}</div>
-          {MyDetail.multimedia? MyDetail.multimedia.map((m,i)=>{<img key={i} src={m} alt={m}/>}) : <img src={MyDetail.logoProfesion} alt={MyDetail.Profesions}/>}
+          {MyDetail.multimedia? MyDetail.multimedia.map((m,i)=>{<img key={i} src={m} alt={m} className={s.multimedia}/>}) : <img src={MyDetail.logoProfesion} alt={MyDetail.Profesions} className={s.multimedia}/>}
           <div className={s.contenido}>{MyDetail.descripcion}</div>
           <div className={s.containerPrice}>
             <div className={s.borderPrice}>
