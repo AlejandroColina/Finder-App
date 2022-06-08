@@ -16,7 +16,7 @@ export const ContactDetail = ({ MyDetail }) => {
         target="_blank"
       >
         {" "}
-        <i className="fa fa-whatsapp whatsapp-icon"></i>
+        {/* <i className="fa fa-whatsapp whatsapp-icon"></i> */}
       </a>
       <p className={styles.dato}>Email: {email}</p>
       <p className={styles.dato}>DNI: {documento}</p>

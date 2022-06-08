@@ -1,37 +1,37 @@
-.title{
-    font-weight: 750;
-    font-size: 2.6rem;
-    color: #0575e6;
-    margin-left: 20px;
-    margin-bottom: 15px;
-    text-decoration:underline;
-    text-decoration-line:underline;
-    background-color: whitesmoke;
-    display: inline-block;
-    
+.title {
+  font-weight: 750;
+  font-size: 2em;
+  color: #0575e6;
+  text-decoration: none;
+  background-color: whitesmoke;
+  display: flex;
+  margin: auto;
+  margin-top: 30px;
+  margin-left: 70px;
+  margin-bottom: 15px;
 }
 
-.dato{
-    font-size: 1.9rem;
-    
-    font-weight: bold;
+.dato {
+  font-size: 1.9rem;
+  font-weight: bold;
+  display: flex;
+  margin: auto;
+  justify-content: center;
 }
-
 
 .whatsapp {
-    width: 60px;
-    height: 60px;
-    bottom: 40px;
-    right: 40px;
-    background-color: #25d366;
-    color: #fff;
-    border-radius: 50px;
-    text-align: center;
-    font-size: 30px;
-  }
-  
-  .dato {
-    font-size: 1.9rem;
-    font-weight: bold;
-  }
-  
+  width: 60px;
+  height: 60px;
+  bottom: 40px;
+  right: 40px;
+  background-color: #25d366;
+  color: #fff;
+  border-radius: 50px;
+  text-align: center;
+  font-size: 30px;
+}
+
+.dato {
+  font-size: 1.9rem;
+  font-weight: bold;
+}
