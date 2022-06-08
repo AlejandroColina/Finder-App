@@ -219,9 +219,11 @@ router.get("/detalle/:idPublicacion", async (req, res, next) => {
       promedio: personaPost[0].dataValues.promedio,
       telefono: personaPost[0].dataValues.telefono,
       titulo: consultaBD.dataValues.titulo,
+      multimedia: consultaBD.dataValues.multimedia,
       descripcion: consultaBD.dataValues.descripcion,
       precio: consultaBD.dataValues.precio,
       Profesions: consultaBD.dataValues.Profesion.dataValues.nombre,
+      logoProfesion: consultaBD.dataValues.Profesion.dataValues.logo,
       direccion: consultaBD.dataValues.Direccion.dataValues.direccion,
       ciudad: consultaBD.dataValues.Direccion.dataValues.ciudad,
       pais: consultaBD.dataValues.Direccion.dataValues.pais,
@@ -233,6 +235,16 @@ router.get("/detalle/:idPublicacion", async (req, res, next) => {
     next(error);
   }
 });
+
+router.get("/prof/:id", (req, res)=>{
+  const id = req.params.id;
+  axios.get("http://localhost:3001/users/detalle/" + id)
+  .then((respuesta)=>{
+    let datos = respuesta.data;
+    let quiero = datos.Profesions;
+    res.send(quiero)
+  })
+})
 
 router.get('/perfil/:email', async (req, res, next) => {
   try {
@@ -251,10 +263,14 @@ router.get('/perfil/:email', async (req, res, next) => {
   }
 });
 
-router.get("/coincidencias/:tipo", async (req, res) => {
-  const tipo = req.params.tipo;
+
+router.get("/coincidencias/:id", async (req, res) =>{
+  const id = req.params.id;
   let respuesta = [];
   try {
+    let todo = await axios.get(`http://localhost:3001/users/prof/${id}`)
+    let tipo = todo.data;
+    console.log(todo)
     let todos = await Persona.findAll({
       include: [
         { model: Publicacion, include: [Direccion, Profesion] }
