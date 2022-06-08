@@ -32,6 +32,7 @@ export default function Detail({Profesions}) {
   if (isAuthenticated) {
     var onlyFirst = user.name.split(' ');
   } 
+
   
   const history = useHistory();
   const dispatch = useDispatch();
@@ -56,7 +57,6 @@ export default function Detail({Profesions}) {
   
   useEffect(() => {
     dispatch(getDetail(id));
-    dispatch(getPublicacionDeUsuario(MyDetail.email));
     dispatch(getOpiniones(id));
     dispatch(getPreguntas(id));
     dispatch(getCarta(id))
@@ -115,8 +115,8 @@ export default function Detail({Profesions}) {
             <img src={gps} alt='ubicacion' className={s.gps}/>
             {MyDetail.ciudad},{MyDetail.pais}
           </div>
-          <div className={s.acerca}>Acerca de</div>
-          <div className={s.descripcion}>"{MyDetail.descripcion}"</div>
+          {MyDetail.acerca? <><div className={s.acerca}>Acerca de</div>
+          <div className={s.descripcion}>"{MyDetail.acercade}"</div></> : null}
           <br/><br/>
         </div>
 
@@ -126,6 +126,8 @@ export default function Detail({Profesions}) {
           <div className={s.titulos}>SERVICIO</div>
           <hr/>
           <div className={s.subtitulos}>{MyDetail.Profesions}</div>
+          <div className={s.titulos}>{MyDetail.titulo}</div>
+          {MyDetail.multimedia? MyDetail.multimedia.map((m,i)=>{<img key={i} src={m} alt={m} className={s.multimedia}/>}) : <img src={MyDetail.logoProfesion} alt={MyDetail.Profesions} className={s.multimedia}/>}
           <div className={s.contenido}>{MyDetail.descripcion}</div>
           <div className={s.containerPrice}>
             <div className={s.borderPrice}>
@@ -155,7 +157,7 @@ export default function Detail({Profesions}) {
           {preguntas? preguntas.map((p)=> <div key={p.id}>
           <div className={s.containerComments}>
             <div className={s.pregunta}>{p.pregunta}</div>
-            <>{p.respuesta? <><div className={s.respuesta}><div className={s.figura}></div>{p.respuesta}</div> </>: 
+            <>{(p.respuesta && isAuthenticated && (user.email===MyDetail.email))? <><div className={s.respuesta}><div className={s.figura}></div>{p.respuesta}</div> </>: 
           <form 
             className={s.form}
             onSubmit={(e)=>{
