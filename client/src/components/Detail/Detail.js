@@ -13,7 +13,12 @@ import { ContactDetail } from "./ContactDetail/ContactDetail";
 import gps from '../../assets/gps.png';
 import Box from '@mui/material/Box';
 import Rating from '@mui/material/Rating';
-import Carta from "./Card/Carta"
+import Typography from '@mui/material/Typography';
+import { Link } from "react-router-dom";
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
+import {CardActionArea} from '@mui/material';
 import { Helmet } from 'react-helmet'
 import Footer from '../Footer/Footer';
 import Help from '../Help/Help';
@@ -29,8 +34,6 @@ export default function Detail({Profesions}) {
     var onlyFirst = user.name.split(' ');
   } 
   
-  
-  
   const history = useHistory();
   const dispatch = useDispatch();
   const { id } = useParams();
@@ -38,6 +41,21 @@ export default function Detail({Profesions}) {
   const publi = useSelector(state => state.info);
   const opiniones = useSelector(state=> state.opiniones);
   const preguntas = useSelector(state=> state.preguntas);
+    
+      //paginado publicaciones similares
+      const [page,setPage] = useState(0);
+      const currentPage = publi.slice(page,page+3); 
+  
+      const handlePrev = (e)=>{
+          if(page>0)
+          setPage(page-3)
+          }
+      const handleNext = (e)=>{
+          if(page<publi.length-3)
+          setPage(page +3)
+      }
+  
+    
   
   useEffect(() => {
     dispatch(getDetail(id));
@@ -78,8 +96,6 @@ export default function Detail({Profesions}) {
     }
     const [comento, setComento]=useState(false);
     const [open,setOpen] =useState(false);
-    const Todaspublicaciones  = useSelector((state)=>state.publicacionesDeUnaPersona);
-    const publicaciones = Todaspublicaciones.filter((p)=>p.id!==MyDetail.id);
     dispatch(getCarta(MyDetail.Profesions))
     return (   
       <>
@@ -185,13 +201,58 @@ export default function Detail({Profesions}) {
           </div>
           <br/><br/><br/><br/><br/><br/>
           
-           <div className={s.titulos}>Publicaciones relacionadas:</div>
+           <div className={s.titulos}>Publicaciones similares</div>
            <hr/>
            <br/><br/>
            <div className={s.cardsContainer}>
            {publi && publi[0] ? (
-                  publi.map((el) => (
-                    <Carta
+                  currentPage.map((el) => (
+                    <Link to={`/trabajo/${el.id}`} className={s.link} >
+                      <Card className={s.cardUi} sx={{ maxWidth: 345 }} 
+                    key={el.id}>
+                    <CardActionArea>
+                    <CardMedia
+                      component="img"
+                      height="140"
+                      image={el.Publicacions[0].multimedia? el.Publicacions[0].multimedia : el.imagen}
+                      alt="emprendedor"
+                     />
+                    <CardContent>
+                      <Typography gutterBottom variant="h5" component="div">
+                      {el.Publicacions[0].titulo}
+                      </Typography>
+                      <Typography gutterBottom variant="h6" component="div">
+                      ${el.Publicacions[0].precio}
+                      </Typography>
+                      <Typography variant="body2" color="text.secondary">
+                      {el.Publicacions[0].descripcion}
+                      </Typography>
+                    </CardContent>
+                    </CardActionArea>
+                    </Card></Link>
+                  ))
+                ) : (
+                  <p>NO SE ENCONTRARON</p>
+                )}
+          <div className={s.paginate}>{page>0?
+            <button
+            className={s.btnPaginate}
+            onClick={handlePrev}>ANTERIOR</button> : null }
+            {page< publi.length-1?
+            <button
+            className={s.btnPaginate}
+            onClick={handleNext}>SIGUIENTE</button> :null }
+          </div>
+          </div>
+        </div>
+      </div>
+      <Footer/>
+      <Help/>
+      </>
+    )}
+
+
+    {/* <Carta
                       key={el.id}
                       precio={el.Publicacions[0].precio}
                       descripcion={el.Publicacions[0].descripcion}
@@ -200,15 +261,4 @@ export default function Detail({Profesions}) {
                       Profesions={el.Publicacions[0].Profesion.nombre}
                       id={el.id}
                       logoProfesion={el.Publicacions[0].Profesion.logo}
-                    />
-                  ))
-                ) : (
-                  <p>NO SE ENCONTRARON</p>
-                )}
-          </div>
-        </div>
-      </div>
-      <Footer/>
-      <Help/>
-      </>
-    )}
+                    /> */}
