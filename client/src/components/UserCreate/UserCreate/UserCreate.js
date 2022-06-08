@@ -10,8 +10,6 @@ import styles from './UserCreate.module.css';
 import { Helmet } from "react-helmet";
 
 
-//Validadores
-
 const validate = (values) => {
   const errors = {};
   if (!values.nombres) {
@@ -105,6 +103,10 @@ export default function UserCreate() {
     });
     setLoading(false);
   };
+
+  const delImgSelection = (urlImg) => {
+    setImage(image.filter(url => url !== urlImg))
+  }
 
   const empleos = useSelector((state) => state.empleosForm);
   const ciudades = useSelector(state => state.ciudades);
@@ -311,11 +313,11 @@ export default function UserCreate() {
       </div >
       <div className={styles.div2_form}>
         {
-          image && image.map((e, id) => {
+          image && image.map((url, id) => {
             return (
               <div className={styles.divImg}>
-                <button className={styles.Ximg}>X</button>
-                <img className={styles.fotoForm} src={e} alt={`foto ${id}`} />
+                <button onClick={() => delImgSelection(url)} className={styles.Ximg}>X</button>
+                <img className={styles.fotoForm} src={url} alt={`foto ${id}`} />
               </div>
             )
           })
