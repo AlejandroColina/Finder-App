@@ -10,7 +10,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import Footer from "../Footer/Footer";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getPefil, ValidarInfo } from "../Redux/actions/index";
+import { getPefil, ValidarInfo, getFavoritos} from "../Redux/actions/index";
 import { Link } from "react-router-dom";
 import Favorito from "./favoritos/Favoritos";
 import { Helmet } from "react-helmet";
@@ -38,6 +38,7 @@ const Perfil = () => {
   useEffect(() => {
     dispatch(getPefil(user?.email));
     dispatch(ValidarInfo(user?.email));
+    dispatch(getFavoritos(user?.email))
   }, [dispatch, user?.email]);
 
   const handleState = () => {

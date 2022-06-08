@@ -336,4 +336,14 @@ export function eliminarPost(id){
     }
   }
 
+  export function getFavoritos(email){
+    return async dispatch => {
+      let favo = await axios.get('http://localhost:3001/favoritos/' + email)
+      return dispatch({
+        type: 'FAVORITO',
+        payload: favo.data
+      })
+    }
+  }
+
 

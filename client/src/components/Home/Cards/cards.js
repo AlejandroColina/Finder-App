@@ -1,6 +1,9 @@
 import React from "react";
 import s from "./cards.module.css";
 import { Link } from "react-router-dom";
+import { useAuth0 } from "@auth0/auth0-react";
+import {addFavoritos} from '../../Redux/actions/index'
+import { useDispatch, useSelector } from "react-redux";
 export default function Cards({
   nombres,
   imagen,
@@ -12,21 +15,22 @@ export default function Cards({
   ciudad,
 
 
-}) {
-
+}) { 
+ 
   let estrellas = []
   
   for (let i = 0; i < promedio; i++) {
     estrellas.push('estrellita')
   }
-
+  const { user } = useAuth0();
+ const dispatch = useDispatch();
   const handleOnClick = () => {
-   
+   dispatch(addFavoritos(user?.email, id))
   }
 
   return (
     <div key={`${id}F`} className={s.container}>
-      <button onClick={handleOnClick }>Favoritos</button>
+      <button onClick={handleOnClick}>Favoritos</button>
       <header>
       
         <div className={s.bio}>
