@@ -20,13 +20,13 @@ export default function Admin(){
     },[dispatch]);
     return(
 
-        isAuthenticated && user.email==='giulianob94@hotmail.com'
-        ||isAuthenticated && user.email==='nicosuasnavar@gmail.com'
-        ||isAuthenticated && user.email==='jheinemberstithjn@ufps.edu.co'
-        ||isAuthenticated && user.email==='gabrielcontegrand10@gmail.com'
-        ||isAuthenticated && user.email==='alejandro.colina@ucp.edu.co' 
-        ||isAuthenticated && user.email==='josecolmenares96@hotmail.com' 
-        || isAuthenticated && user.email==='cami.zupanovich@gmail.com'?
+        isAuthenticated && (user.email==='giulianob94@hotmail.com'
+        ||user.email==='nicosuasnavar@gmail.com'
+        ||user.email==='jheinemberstithjn@ufps.edu.co'
+        ||user.email==='gabrielcontegrand10@gmail.com'
+        || user.email==='alejandro.colina@ucp.edu.co' 
+        || user.email==='josecolmenares96@hotmail.com' 
+        ||user.email==='cami.zupanovich@gmail.com')?
 
         ( <div className={s.container}>
             <Helmet><title>Admin - Finder</title></Helmet>
