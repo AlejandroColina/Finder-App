@@ -14,6 +14,7 @@ import { getPefil, ValidarInfo } from "../Redux/actions/index";
 import { Link } from "react-router-dom";
 import Favorito from "./favoritos/Favoritos";
 import { Helmet } from "react-helmet";
+import publicidad from './assets/publicidad.gif'
 
 
 const Perfil = () => {
@@ -55,16 +56,15 @@ const Perfil = () => {
       
 
       <nav className={s.nav}>
-        <img className={s.logo} src={logo} alt="finder" />
         <Link to="/home">
-          {" "}
-          <button>Ir a home</button>
+        <img className={s.logo} src={logo} alt="finder" />
         </Link>
+          {" "}
       </nav>
       <div className={s.portada}>
         <img
           className={s.img}
-          src={"https://static-cse.canva.com/blob/706582/1600w-dzsSYIjyvws.jpg"}
+          src={publicidad}
           alt="portada"
         />
       </div>
