@@ -17,6 +17,14 @@ export function rederCard(profesion, genero, promedio, ciudad, descripcion) {
   };
 }
 
+export function getCarta(tipo) {
+  return async function (dispatch){
+      var json = await axios.get(`http://localhost:3001/users/coincidencias/${tipo}`)
+      console.log(tipo)
+       return dispatch({type: "CARDST", payload :json.data})
+  }
+}
+
 export function getUsers() {
   return async function (dispatch) {
     try {
@@ -60,7 +68,7 @@ export function getTotalUsersBytype() {
     let usersByType = [];
     for (let i = 0; i < tipos.length; i++) {
       let jsonTipos = await axios.get(
-        `http://localhost:3001/users?profesion=${tipos[i]}`
+        `http://localhost:3001/publicaciones?profesion=${tipos[i]}`
       );
       let cant = jsonTipos.data.length;
       usersByType.push([tipos[i], cant]);

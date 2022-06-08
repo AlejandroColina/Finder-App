@@ -19,7 +19,6 @@ router.delete('/user/:id', async (req, res, next) => {
 
 router.delete('/post/:id', async (req, res, next) => {
     const { id } = req.params;
-    console.log(id)
 
     let consultaBD = await Publicacion.findByPk(id);
     if (consultaBD == null) {

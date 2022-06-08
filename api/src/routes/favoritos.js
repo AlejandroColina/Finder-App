@@ -5,11 +5,11 @@ const { Persona, Publicacion, Direccion, Profesion } = require('../db');
 router.use(express.json());
 router.use(cors());
 
-router.get('/:idPersona', async (req, res, next) => {
+router.get('/:email', async (req, res, next) => {
     try {
-        const { idPersona } = req.params;
+        const { email } = req.params;
 
-        let misFav = await Persona.findOne({ where: { id: idPersona } });
+        let misFav = await Persona.findOne({ where: { email: email } });
 
         if (misFav !== null) {
             misFav = misFav.dataValues.favoritos;
@@ -18,13 +18,13 @@ router.get('/:idPersona', async (req, res, next) => {
             for (let f, j, i = 0; i < misFav.length; i++) {
                 j = await Publicacion.findOne({
                     where: { id: misFav[i] },
-                    include: [Profesion]
+                    include: [Profesion, Direccion]
                 });
                 f = await Persona.findAll(
                     {
                         include: [
-                            Direccion,
-                            { model: Publicacion, include: [Profesion] }
+
+                            { model: Publicacion, include: [Direccion, Profesion] }
                         ], where: { id: j.PersonaId }
                     }
                 );
@@ -42,14 +42,13 @@ router.get('/:idPersona', async (req, res, next) => {
                     logoProfesion: j.dataValues.Profesion.dataValues.logo,
                     genero: f[0].dataValues.genero,
                     edad: f[0].dataValues.edad,
-                    ciudad: f[0].dataValues.Direccions[0].dataValues.ciudad
                 });
                 console.log()
             };
 
             return res.json(TusFavoritos);
         }
-        return res.json('No existe un usuario con este id.')
+        return res.json('No existe un usuario con este email.')
 
     } catch (error) {
         next(error)
@@ -57,11 +56,11 @@ router.get('/:idPersona', async (req, res, next) => {
 
 });
 
-router.patch('/add/:idPersona/:idPublicacion', async (req, res, next) => {
+router.patch('/add/:email/:idPublicacion', async (req, res, next) => {
     try {
-        const { idPublicacion, idPersona } = req.params;
+        const { idPublicacion, email } = req.params;
 
-        let persona = await Persona.findOne({ where: { id: idPersona } });
+        let persona = await Persona.findOne({ where: { email: email } });
 
         let favs = persona.dataValues.favoritos
         console.log(favs)
@@ -69,8 +68,8 @@ router.patch('/add/:idPersona/:idPublicacion', async (req, res, next) => {
 
         await Persona.update({
             favoritos: favs
-        }, { where: { id: idPersona } });
-        let personas = await Persona.findOne({ where: { id: idPersona } });
+        }, { where: { email: email } });
+        let personas = await Persona.findOne({ where: { email: email } });
 
         res.json(personas)
     } catch (error) {
@@ -78,17 +77,17 @@ router.patch('/add/:idPersona/:idPublicacion', async (req, res, next) => {
     }
 });
 
-router.delete('/delete/:idPersona/:idPublicacion', async (req, res, next) => {
+router.delete('/delete/:email/:idPublicacion', async (req, res, next) => {
     try {
-        const { idPublicacion, idPersona } = req.params;
+        const { idPublicacion, email } = req.params;
 
-        let persona = await Persona.findOne({ where: { id: idPersona } });
+        let persona = await Persona.findOne({ where: { email: email } });
         if (persona.dataValues.favoritos !== null) {
             await Persona.update({
-                favoritos: persona.dataValues.favoritos.filter(e => e != idPublicacion)
-            }, { where: { id: idPersona } });
+                favoritos: persona.dataValues.favoritos.filter(e => e !== parseInt(idPublicacion))
+            }, { where: { email: email } });
         }
-        let personas = await Persona.findOne({ where: { id: idPersona } });
+        let personas = await Persona.findOne({ where: { email: email } });
 
         res.json(personas)
     } catch (error) {
