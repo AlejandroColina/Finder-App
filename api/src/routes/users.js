@@ -93,7 +93,7 @@ router.post("/crear", async function (req, res) {
 
   let { ciudad, descripcion, email, multimedia, precio, ProfesionId, titulo } = req.body.toSend;
   if (!ciudad || !descripcion || !email || !precio || !ProfesionId || !titulo) return
-  console.log('TOSEND', req.body.toSend)
+  
   let consulta = await Persona.findOne({
     where: { email: email },
   });
@@ -109,8 +109,8 @@ router.post("/crear", async function (req, res) {
       descripcion,
       precio,
       titulo,
+      multimedia,
       DireccionId: ciudad,
-      multimedia: ['https://www.monempresarial.com/wp-content/uploads/2018/12/LEGAL-738x410.jpg']
     });
 
     return res.send('Publicación creada');
@@ -225,6 +225,7 @@ router.get("/detalle/:idPublicacion", async (req, res, next) => {
       direccion: consultaBD.dataValues.Direccion.dataValues.direccion,
       ciudad: consultaBD.dataValues.Direccion.dataValues.ciudad,
       pais: consultaBD.dataValues.Direccion.dataValues.pais,
+      multimedia: consultaBD?.dataValues?.multimedia
     };
 
     res.send(obj);
