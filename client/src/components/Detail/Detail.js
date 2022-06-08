@@ -25,7 +25,6 @@ import Help from '../Help/Help';
 import Comentar from './Comentar/Comentar';
 import Preguntar from './Preguntar/Preguntar';
 
-
 export default function Detail({Profesions}) {
    const { isAuthenticated, user } = useAuth0();
   const { loginWithRedirect } = useAuth0();
@@ -41,7 +40,7 @@ export default function Detail({Profesions}) {
   const publi = useSelector(state => state.info);
   const opiniones = useSelector(state=> state.opiniones);
   const preguntas = useSelector(state=> state.preguntas);
-    
+ 
       //paginado publicaciones similares
       const [page,setPage] = useState(0);
       const currentPage = publi.slice(page,page+3); 
@@ -55,18 +54,18 @@ export default function Detail({Profesions}) {
           setPage(page +3)
       }
   
-    
-  
   useEffect(() => {
     dispatch(getDetail(id));
     dispatch(getPublicacionDeUsuario(MyDetail.email));
     dispatch(getOpiniones(id));
     dispatch(getPreguntas(id));
+    dispatch(getCarta(id))
+
     return function(){
       dispatch(getDeleteDetail())  
     }      
   }, [id, dispatch])
-  
+
   let { promedio } = MyDetail
 
   let precio = 15
@@ -96,7 +95,7 @@ export default function Detail({Profesions}) {
     }
     const [comento, setComento]=useState(false);
     const [open,setOpen] =useState(false);
-    dispatch(getCarta(MyDetail.Profesions))
+    
     return (   
       <>
       { (!MyDetail.nombres) ?
