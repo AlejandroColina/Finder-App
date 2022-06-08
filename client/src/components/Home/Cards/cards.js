@@ -10,7 +10,7 @@ export default function Cards({
   id,
   logoProfesion,
   ciudad,
-  idPublicacion
+
 
 }) {
 
