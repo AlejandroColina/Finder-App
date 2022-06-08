@@ -87,7 +87,7 @@ function Home({ descripcion, setDescripcion }) {
 
   return (
     <div>
-      <Helmet><title>Finder -  Home</title></Helmet>
+      <Helmet><title>Home -  Finder</title></Helmet>
       <div>
         <SearchBar descripcion={descripcion} setDescripcion={setDescripcion} />
 
@@ -124,7 +124,7 @@ function Home({ descripcion, setDescripcion }) {
                     descripcion={el.descripcion}
                     Profesions={el.Profesions.length ? el.Profesions : 'nada'}
                     logoProfesion={el.logoProfesion}
-                    id={el.idPersona}
+                    id={el.idPublicacion}
                   />
                 </div>
               )) : <NoResult />}

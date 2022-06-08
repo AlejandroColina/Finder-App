@@ -180,30 +180,37 @@ router.get("/trabajo/:id", async (req, res, next) => {
 });
 
 router.post("/crear", async function (req, res) {
-  let profesionId = req.body.selected;
+
+  let { ciudad, descripcion, email, multimedia, precio, ProfesionId, titulo } = req.body.toSend;
+
   let consulta = await Persona.findOne({
-    where: { email: req.body.email },
+    where: { email: email },
   });
 
-  let PersonaId = consulta.dataValues.id;
+  let PersonaId = consulta?.dataValues.id;
 
-  await Publicacion.create({
-    PersonaId: PersonaId,
-    descripcion: req.body.input?.descripcion,
-    precio: 3000,
-    ProfesionId: profesionId,
-    titulo: '',
-    // precio: req.body.input?.precio,
-  });
+  if (PersonaId) {
+    ProfesionId = parseInt(ProfesionId)
 
-  await Direccion.create({
-    PersonaId: PersonaId,
-    ciudad: req.body.input?.direccion,
-    pais: 'Argentina',
-    direccion: 'Calle principal'
-  });
+    await Publicacion.create({
+      PersonaId,
+      ProfesionId,
+      descripcion,
+      precio,
+      titulo,
+      multimedia: ['https://www.monempresarial.com/wp-content/uploads/2018/12/LEGAL-738x410.jpg']
+    });
 
-  return res.send('Publicación creada');
+    await Direccion.create({
+      PersonaId: PersonaId,
+      ciudad: ciudad,
+      pais: 'Argentina',
+      direccion: 'Calle principal'
+    });
+
+    return res.send('Publicación creada');
+  }
+  res.status(404).send('No se pudo publicar')
 
 });
 
@@ -244,9 +251,11 @@ router.get('/validar/:email', async (req, res, next) => {
     });
 
     if (
+
       consulta[0]?.apellidos == null ||
       consulta[0]?.documento == null ||
       consulta[0]?.telefono == null
+
     ) { res.send(true) } else {
       res.send(false);
     }
@@ -311,6 +320,7 @@ router.get("/detalle/:idPublicacion", async (req, res, next) => {
     });
 
     let obj = {
+      idPersona:personaPost[0].dataValues.id,
       nombres: personaPost[0].dataValues.nombres,
       apellidos: personaPost[0].dataValues.apellidos,
       imagen: personaPost[0].dataValues.imagen,
@@ -353,5 +363,30 @@ router.get('/perfil/:email', async (req, res, next) => {
     next(error)
   }
 });
+
+router.get("/coincidencias/:tipo", async (req, res) =>{
+  const tipo = req.params.tipo;
+  let respuesta = [];
+  try {
+    let todos = await Persona.findAll({
+      include: [
+        Direccion,
+        { model: Publicacion, include: [Profesion] }
+      ],
+    });
+    for (let i = 0; i < todos.length; i++) {
+      for (let j = 0; j < todos[i].Publicacions.length; j++) {
+        if(todos[i].Publicacions[j].Profesion.nombre === tipo){
+          respuesta.push(todos[i])
+        }
+        
+      }
+      
+    }
+    res.send(respuesta)
+  } catch (error) {
+    console.log(error)
+  }
+})
 
 module.exports = router;

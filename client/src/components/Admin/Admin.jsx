@@ -9,6 +9,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { useEffect } from 'react';
 import {useDispatch} from 'react-redux';
 import { getTotalUsersBytype,getAdminMsj } from "../Redux/actions";
+import { Helmet } from "react-helmet";
 
 export default function Admin(){
     const { user, isAuthenticated} = useAuth0();
@@ -28,6 +29,7 @@ export default function Admin(){
         || isAuthenticated && user.email==='cami.zupanovich@gmail.com'?
 
         ( <div className={s.container}>
+            <Helmet><title>Admin - Finder</title></Helmet>
         <NavBar/>
         
             <div className={s.seccionLinks}>

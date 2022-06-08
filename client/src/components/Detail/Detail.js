@@ -3,7 +3,7 @@ import { useHistory, useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { getDetail, getDeleteDetail, 
   getPublicacionDeUsuario, getOpiniones, 
-  getPreguntas,responderPregunta } from "../Redux/actions/index";
+  getPreguntas,responderPregunta, getCarta } from "../Redux/actions/index";
 import NavBar from '../NavBar/NavBar';
 import s from './Detail.module.css';
 import { useAuth0} from '@auth0/auth0-react';
@@ -13,16 +13,12 @@ import { ContactDetail } from "./ContactDetail/ContactDetail";
 import gps from '../../assets/gps.png';
 import Box from '@mui/material/Box';
 import Rating from '@mui/material/Rating';
-import Typography from '@mui/material/Typography';
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import {CardActionArea} from '@mui/material';
+import Carta from "./Card/Carta"
+import { Helmet } from 'react-helmet'
 import Footer from '../Footer/Footer';
 import Help from '../Help/Help';
 import Comentar from './Comentar/Comentar';
 import Preguntar from './Preguntar/Preguntar';
-
 
 
 export default function Detail({Profesions}) {
@@ -39,6 +35,7 @@ export default function Detail({Profesions}) {
   const dispatch = useDispatch();
   const { id } = useParams();
   const MyDetail = useSelector(state => state.detail);
+  const publi = useSelector(state => state.info);
   const opiniones = useSelector(state=> state.opiniones);
   const preguntas = useSelector(state=> state.preguntas);
   
@@ -83,9 +80,13 @@ export default function Detail({Profesions}) {
     const [open,setOpen] =useState(false);
     const Todaspublicaciones  = useSelector((state)=>state.publicacionesDeUnaPersona);
     const publicaciones = Todaspublicaciones.filter((p)=>p.id!==MyDetail.id);
+    dispatch(getCarta(MyDetail.Profesions))
     return (   
       <>
-      
+      { (!MyDetail.nombres) ?
+         <Helmet><title>Cargando..</title></Helmet>
+        : <Helmet><title>{`${MyDetail.nombres}`} - Finder </title></Helmet>
+      }
       <NavBar/>
       
       <div className={s.container}>
@@ -134,7 +135,7 @@ export default function Detail({Profesions}) {
           
           <div className={s.titulos}>Tenes dudas?</div>
           <hr/>
-          <Preguntar nombre={user.name}  publicacion={id} />
+          <Preguntar nombre={user? user.name : null }  publicacion={id} />
           <div className={s.commentsBox}>
           {preguntas? preguntas.map((p)=> <div key={p.id}>
           <div className={s.containerComments}>
@@ -184,48 +185,27 @@ export default function Detail({Profesions}) {
           </div>
           <br/><br/><br/><br/><br/><br/>
           
-           <div className={s.titulos}>Mas Publicaciones del emprendedor</div>
+           <div className={s.titulos}>Publicaciones relacionadas:</div>
            <hr/>
            <br/><br/>
            <div className={s.cardsContainer}>
-           {/* {publicaciones? publicaciones.map((p)=> */}
-          <Card className={s.cardUi} sx={{ maxWidth: 345 }} /* key={p.id} */>
-          <CardActionArea>
-          <CardMedia
-            component="img"
-            height="140"
-            image="https://comercioyjusticia.info/elinversorylaconstruccion/wp-content/uploads/sites/9/2015/09/color-pintura.jpg"
-            alt="emprendedor"
-           />
-          <CardContent>
-            <Typography gutterBottom variant="h5" component="div">
-             PINTOR
-            </Typography>
-            <Typography variant="body2" color="text.secondary">
-             Materiales incluidos, trabajo rapido y prolijo. El valor es por metro2.
-            </Typography>
-          </CardContent>
-          </CardActionArea>
-          </Card>
-          <Card className={s.cardUi} sx={{ maxWidth: 345 }} /* key={p.id} */>
-          <CardActionArea>
-          <CardMedia
-            component="img"
-            height="140"
-            image="https://comercioyjusticia.info/elinversorylaconstruccion/wp-content/uploads/sites/9/2015/09/color-pintura.jpg"
-            alt="emprendedor"
-           />
-          <CardContent>
-            <Typography gutterBottom variant="h5" component="div">
-             PINTOR
-            </Typography>
-            <Typography variant="body2" color="text.secondary">
-             Materiales incluidos, trabajo rapido y prolijo. El valor es por metro2.
-            </Typography>
-          </CardContent>
-          </CardActionArea>
-          </Card>
-          </div>{/* ) : null} */}
+           {publi && publi[0] ? (
+                  publi.map((el) => (
+                    <Carta
+                      key={el.id}
+                      precio={el.Publicacions[0].precio}
+                      descripcion={el.Publicacions[0].descripcion}
+                      nombre={el.nombres}
+                      imagen={el.imagen}
+                      Profesions={el.Publicacions[0].Profesion.nombre}
+                      id={el.id}
+                      logoProfesion={el.Publicacions[0].Profesion.logo}
+                    />
+                  ))
+                ) : (
+                  <p>NO SE ENCONTRARON</p>
+                )}
+          </div>
         </div>
       </div>
       <Footer/>

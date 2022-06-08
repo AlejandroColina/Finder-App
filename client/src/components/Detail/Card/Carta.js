@@ -1,9 +1,8 @@
 import React from "react";
-import s from "./Card_perfil.module.css";
+import s from './Card_perfil.module.css'
 import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { useAuth0 } from "@auth0/auth0-react";
-import { eliminarPost, getPefil } from "../../Redux/actions/index";
+import {useDispatch} from 'react-redux'
+// import {eliminarPost} from '../../Redux/actions/index'
 export default function Cards({
   nombres,
   imagen,
@@ -13,16 +12,11 @@ export default function Cards({
   id,
   logoProfesion,
 }) {
-  const dispatch = useDispatch();
-  const { user } = useAuth0();
+ const dispatch = useDispatch();
 
-  const handleonClik = () => {
-    setTimeout(() => {
-      dispatch(getPefil(user?.email));
-    }, 1000)
-    
-    dispatch(eliminarPost(id));
-  };
+//  const handleonClik = () =>{
+//   dispatch(eliminarPost(id))
+//  }
   return (
     <div className={s.container}>
       <header>
@@ -60,10 +54,12 @@ export default function Cards({
 
         <div className={s.follow}>
           <div className={s.icontwitter}></div>
+          
         </div>
+       
       </div>
-      <div className={s.botones}>
-        <button onClick={handleonClik}>eliminar</button>
+      <div className={s.botones}> 
+        <button>eliminar</button>
         <button>editar</button>
       </div>
     </div>

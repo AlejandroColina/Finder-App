@@ -15,7 +15,7 @@ const InitialState = {
   perfil: [],
   opiniones:[],
   preguntas:[],
-
+  info:[],
 };
 
 export default function rootReducer(state = InitialState, action) {
@@ -31,6 +31,12 @@ export default function rootReducer(state = InitialState, action) {
         ...state,
         trabajadores: action.payload,
         loanding: false,
+      };
+
+    case "CARDST":
+      return {
+        ...state,
+        info: action.payload,
       };
 
     case "DETAIL":
@@ -125,6 +131,13 @@ export default function rootReducer(state = InitialState, action) {
       return {
         ...state
       }
+
+
+      case 'DELETE':
+        return {
+          ...state
+        }
+
 
     case 'GET_OPINIONES':
       return{
