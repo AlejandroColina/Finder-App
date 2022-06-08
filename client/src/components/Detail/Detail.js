@@ -31,8 +31,13 @@ import Help from "../Help/Help";
 import Comentar from "./Comentar/Comentar";
 import Preguntar from "./Preguntar/Preguntar";
 
+<<<<<<< HEAD
 export default function Detail({ Profesions }) {
   const { isAuthenticated, user } = useAuth0();
+=======
+export default function Detail({Profesions}) {
+   const { isAuthenticated, user } = useAuth0();
+>>>>>>> 5fc1fbef2905f034bbae70a3809c576ddbf1a9cf
   const { loginWithRedirect } = useAuth0();
   const { logout } = useAuth0();
   if (isAuthenticated) {
@@ -42,6 +47,7 @@ export default function Detail({ Profesions }) {
   const history = useHistory();
   const dispatch = useDispatch();
   const { id } = useParams();
+<<<<<<< HEAD
   const MyDetail = useSelector((state) => state.detail);
   const publi = useSelector((state) => state.info);
   const opiniones = useSelector((state) => state.opiniones);
@@ -58,12 +64,43 @@ export default function Detail({ Profesions }) {
     if (page < publi.length - 3) setPage(page + 3);
   };
 
+=======
+  const MyDetail = useSelector(state => state.detail);
+  const publi = useSelector(state => state.info);
+  const opiniones = useSelector(state=> state.opiniones);
+  const preguntas = useSelector(state=> state.preguntas);
+ 
+      //paginado publicaciones similares
+      const [page,setPage] = useState(0);
+      const currentPage = publi.slice(page,page+3); 
+  
+      const handlePrev = (e)=>{
+          if(page>0)
+          setPage(page-3)
+          }
+      const handleNext = (e)=>{
+          if(page<publi.length-3)
+          setPage(page +3)
+      }
+  
+>>>>>>> 5fc1fbef2905f034bbae70a3809c576ddbf1a9cf
   useEffect(() => {
     dispatch(getCarta(MyDetail.Profesions));
     dispatch(getDetail(id));
     dispatch(getPublicacionDeUsuario(MyDetail.email));
     dispatch(getOpiniones(id));
     dispatch(getPreguntas(id));
+<<<<<<< HEAD
+=======
+    dispatch(getCarta(id))
+
+    return function(){
+      dispatch(getDeleteDetail())  
+    }      
+  }, [id, dispatch])
+
+  let { promedio } = MyDetail
+>>>>>>> 5fc1fbef2905f034bbae70a3809c576ddbf1a9cf
 
     return function () {
       dispatch(getDeleteDetail());
@@ -118,6 +155,26 @@ export default function Detail({ Profesions }) {
       )}
       <NavBar />
 
+<<<<<<< HEAD
+=======
+    const handleChange = (e)=>{
+        setInput({
+            ...input,
+            [e.target.name]: e.target.value
+        })
+    }
+    const [comento, setComento]=useState(false);
+    const [open,setOpen] =useState(false);
+    
+    return (   
+      <>
+      { (!MyDetail.nombres) ?
+         <Helmet><title>Cargando..</title></Helmet>
+        : <Helmet><title>{`${MyDetail.nombres}`} - Finder </title></Helmet>
+      }
+      <NavBar/>
+      
+>>>>>>> 5fc1fbef2905f034bbae70a3809c576ddbf1a9cf
       <div className={s.container}>
         {/* tarjeta de contacto */}
 

@@ -32,7 +32,6 @@ export default function rootReducer(state = InitialState, action) {
         trabajadores: action.payload,
         loanding: false,
       };
-
     case "CARDST":
       return {
         ...state,
