@@ -13,9 +13,9 @@ const InitialState = {
   validar: true,
   publicacionesDeUnaPersona: [],
   perfil: [],
-  opiniones:[],
-  preguntas:[],
-  info:[],
+  opiniones: [],
+  preguntas: [],
+  info: [],
 };
 
 export default function rootReducer(state = InitialState, action) {
@@ -73,103 +73,100 @@ export default function rootReducer(state = InitialState, action) {
         usersByType: action.payload,
       };
 
-    case 'MSJ_USER_AL_ADMIN':
+    case "MSJ_USER_AL_ADMIN":
       return {
         ...state,
-      }
+      };
 
-    case 'GET_MSJ_ADMIN':
+    case "GET_MSJ_ADMIN":
       return {
         ...state,
-        adminMjes: action.payload
-      }
-    case 'LOADER':
+        adminMjes: action.payload,
+      };
+    case "LOADER":
       return {
         ...state,
-        loanding: true
-      }
-    case 'DELETE_POST':
-      return {
-        ...state
-      }
-
-    case 'READ_MSJ_ADMIN':
+        loanding: true,
+      };
+    case "DELETE_POST":
       return {
         ...state,
-        msjDetailAdmin: action.payload
-      }
+      };
 
-    case 'OPEN_MSJ_ADMIN':
+    case "READ_MSJ_ADMIN":
       return {
         ...state,
-      }
+        msjDetailAdmin: action.payload,
+      };
 
-    case 'UBICACION':
+    case "OPEN_MSJ_ADMIN":
       return {
         ...state,
-        ubicacion: action.payload
-      }
-    case 'GET_PERFIL':
+      };
+
+    case "UBICACION":
       return {
         ...state,
-        perfil: action.payload
-      }
-
-
-    case 'INFO_VALI':
+        ubicacion: action.payload,
+      };
+    case "GET_PERFIL":
       return {
         ...state,
-        validar: action.payload
-      }
+        perfil: action.payload,
+      };
 
-    case 'PUBLICACIONES_USUARIO':
+    case "INFO_VALI":
       return {
         ...state,
-        publicacionesDeUnaPersona: action.payload
-      }
-    case 'MODIFICAR':
+        validar: action.payload,
+      };
+
+    case "PUBLICACIONES_USUARIO":
       return {
-        ...state
-      }
+        ...state,
+        publicacionesDeUnaPersona: action.payload,
+      };
+    case "MODIFICAR":
+      return {
+        ...state,
+      };
 
+    case "DELETE":
+      return {
+        ...state,
+      };
 
-      case 'DELETE':
-        return {
-          ...state
-        }
+    case "GET_OPINIONES":
+      return {
+        ...state,
+        opiniones: action.payload,
+      };
+    case "POST_OPINION":
+      return {
+        ...state,
+      };
+    case "DELETE_OPINION":
+      return {
+        ...state,
+      };
 
-
-    case 'GET_OPINIONES':
-      return{
+    case "GET_PREGUNTAS":
+      return {
         ...state,
-        opiniones: action.payload
-      }
-    case 'POST_OPINION':
-      return{
+        preguntas: action.payload,
+      };
+    case "POST_PREGUNTA":
+      return {
         ...state,
-      }
-      case 'DELETE_OPINION':
-        return{
-          ...state,
-        }
-
-    case 'GET_PREGUNTAS':
-      return{
+      };
+    case "DELETE_PREGUNTA":
+      return {
         ...state,
-        preguntas: action.payload
-      }
-    case 'POST_PREGUNTA':
-      return{
+      };
+    case "RESPONDER_PREGUNTA":
+      return {
         ...state,
-      }
-    case 'DELETE_PREGUNTA':
-      return{
-        ...state,
-      }
-    case 'RESPONDER_PREGUNTA':
-      return{
-        ...state,
-      }
+      };
 
     default:
       return state;

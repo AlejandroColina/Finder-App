@@ -59,6 +59,7 @@ export default function Detail({ Profesions }) {
   };
 
   useEffect(() => {
+    dispatch(getCarta(MyDetail.Profesions));
     dispatch(getDetail(id));
     dispatch(getPublicacionDeUsuario(MyDetail.email));
     dispatch(getOpiniones(id));
@@ -67,11 +68,9 @@ export default function Detail({ Profesions }) {
     return function () {
       dispatch(getDeleteDetail());
     };
-  }, [id, dispatch]);
+  }, [id, dispatch],[]);
 
-  useEffect(() => {
-    dispatch(getCarta(MyDetail.Profesions));
-  }, [dispatch]);
+  
 
   let { promedio } = MyDetail;
 
