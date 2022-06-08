@@ -8,6 +8,7 @@ import { useAuth0 } from '@auth0/auth0-react';
 import { Link } from 'react-router-dom';
 import styles from './UserCreate.module.css';
 
+
 //Validadores
 
 const validate = (values) => {
@@ -175,6 +176,7 @@ export default function UserCreate() {
   console.log('ELEGIDO: ', toSend)
 
   return (
+
     <section className={styles.container}>
 
       <div className={styles.div_form} >
@@ -191,6 +193,7 @@ export default function UserCreate() {
           <div className={styles.log3}>
             Inspírate, piensa ,comparte tus habilidades, sé <b>finder</b>!
           </div>
+
         </div>
         <form className={styles.formulario} onSubmit={handleSubmit}>
 

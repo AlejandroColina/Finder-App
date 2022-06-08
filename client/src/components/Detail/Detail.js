@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { getDetail, getDeleteDetail, getPublicacionDeUsuario } from "../Redux/actions/index";
+import { getDetail, getDeleteDetail, 
+  getPublicacionDeUsuario, getOpiniones, 
+  getPreguntas,responderPregunta } from "../Redux/actions/index";
 import NavBar from '../NavBar/NavBar';
 import s from './Detail.module.css';
 import { useAuth0} from '@auth0/auth0-react';
@@ -16,31 +18,35 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import {CardActionArea} from '@mui/material';
+import { Helmet } from 'react-helmet'
 import Footer from '../Footer/Footer';
 import Help from '../Help/Help';
 import Comentar from './Comentar/Comentar';
-
+import Preguntar from './Preguntar/Preguntar';
 
 
 export default function Detail({Profesions}) {
-  const { isAuthenticated, user } = useAuth0();
+   const { isAuthenticated, user } = useAuth0();
   const { loginWithRedirect } = useAuth0();
   const { logout } = useAuth0();
   if (isAuthenticated) {
     var onlyFirst = user.name.split(' ');
-  }
+  } 
   
   
   
-  
+  const history = useHistory();
   const dispatch = useDispatch();
   const { id } = useParams();
-  const MyDetail = useSelector(state => state.detail)
-  console.log(MyDetail)
+  const MyDetail = useSelector(state => state.detail);
+  const opiniones = useSelector(state=> state.opiniones);
+  const preguntas = useSelector(state=> state.preguntas);
   
   useEffect(() => {
     dispatch(getDetail(id));
     dispatch(getPublicacionDeUsuario(MyDetail.email));
+    dispatch(getOpiniones(id));
+    dispatch(getPreguntas(id));
     return function(){
       dispatch(getDeleteDetail())  
     }      
@@ -56,19 +62,33 @@ export default function Detail({Profesions}) {
     price: price
   }
  
-
+  
    const [order, setOrder] = useState(false)
    if(order) {
      console.log(order)
       Swal.fire({ title:'Perfecto!', text:'Has accedido a los contactos del trabajador.¡Contáctalo!', icon:'success' } )
-
     }
+
+    const[input,setInput]= useState({
+      respuesta:''
+    })
+
+    const handleChange = (e)=>{
+        setInput({
+            ...input,
+            [e.target.name]: e.target.value
+        })
+    }
+    const [comento, setComento]=useState(false);
     const [open,setOpen] =useState(false);
     const Todaspublicaciones  = useSelector((state)=>state.publicacionesDeUnaPersona);
     const publicaciones = Todaspublicaciones.filter((p)=>p.id!==MyDetail.id);
     return (   
       <>
-      
+      { (!MyDetail.nombres) ?
+         <Helmet><title>Cargando..</title></Helmet>
+        : <Helmet><title>{`${MyDetail.nombres}`} - Finder </title></Helmet>
+      }
       <NavBar/>
       
       <div className={s.container}>
@@ -115,6 +135,35 @@ export default function Detail({Profesions}) {
           </div>
           <br/><br/><br/><br/>
           
+          <div className={s.titulos}>Tenes dudas?</div>
+          <hr/>
+          <Preguntar nombre={user.name}  publicacion={id} />
+          <div className={s.commentsBox}>
+          {preguntas? preguntas.map((p)=> <div key={p.id}>
+          <div className={s.containerComments}>
+            <div className={s.pregunta}>{p.pregunta}</div>
+            <>{p.respuesta? <><div className={s.respuesta}><div className={s.figura}></div>{p.respuesta}</div> </>: 
+          <form 
+            className={s.form}
+            onSubmit={(e)=>{
+            e.preventDefault();
+            dispatch(responderPregunta(p.id,input));
+            Swal.fire({text:'Tu respuesta fue enviada!', icon:'succes'})
+            setTimeout(history.push('./'), 1000)}}>
+            <textarea 
+            className={s.input}
+            name='respuesta'
+            rows='6'
+            type='text'
+            onChange={(e)=>handleChange(e)}
+            value={input.respuesta} required/>
+            <input type='submit' value='responder' className={s.btn}/>
+              </form> }</>
+          </div>
+          </div>)
+          : null}
+          </div>
+          <br/><br/><br/><br/>
            <div className={s.titulos}>RESEÑAS
           <Box sx={{ '& > legend': { mt: 2 },}}>
           {MyDetail.promedio?
@@ -124,11 +173,18 @@ export default function Detail({Profesions}) {
           }
           </Box> </div>
           <hr/> 
-          {(order) ? 
-          <Comentar nombre={user.name} publicacion={id} />
-            :
-            null
-        }
+          {(order && !comento) ? 
+          <Comentar nombre={user.name}  publicacion={id} setComento={setComento} />
+           :
+            null}
+          <div className={s.commentsBox}>
+          {opiniones? opiniones.map((r)=> 
+          <div className={s.containerComments} key={r.id}>
+            <div className={s.commentPersona}>"{r.comentario}"
+            <Rating  size='25px' value={r.puntaje} readOnly /></div>
+          </div> )
+          : null}
+          </div>
           <br/><br/><br/><br/><br/><br/>
           
            <div className={s.titulos}>Mas Publicaciones del emprendedor</div>

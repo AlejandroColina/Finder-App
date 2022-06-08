@@ -5,7 +5,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    
+    background: inherit;
 }
 @keyframes moveInBottom {
     0% {
@@ -42,7 +42,7 @@
    font-family: 'Bebas Neue', cursive;
    transition: all .2s;
     height: 4.5rem;
-    
+    font-size: 1.4rem;
     font-weight: bold;
     color: whitesmoke;
 }

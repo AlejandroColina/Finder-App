@@ -22,7 +22,7 @@ export default function Destacados({ Profesions, logoProfesion, imagen, nombres,
                         </div>
                         <div className={styles.cardInfoPerson}>
                             <h1 className={styles.cardH1}>{Profesions}</h1>
-                            <p className={styles.cardPI}>{`${nombres} ${apellidos}`}</p>
+                            <p className={styles.cardPI}>{`${nombres}`}</p>
                             <p className={styles.cardP}>{descripcion}</p>
                             <p className={styles.cardPI}>
                                 {
