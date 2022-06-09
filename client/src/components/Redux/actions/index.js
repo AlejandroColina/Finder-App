@@ -18,10 +18,10 @@ export function rederCard(profesion, genero, promedio, ciudad, descripcion) {
 }
 
 export function getCarta(id) {
-  return async function (dispatch){
-      var json = await axios.get(`http://localhost:3001/users/coincidencias/${id}`)
-      console.log(id)
-       return dispatch({type: "CARDST", payload :json.data})
+  return async function (dispatch) {
+    var json = await axios.get(`http://localhost:3001/users/coincidencias/${id}`)
+    console.log(id)
+    return dispatch({ type: "CARDST", payload: json.data })
   }
 }
 
@@ -238,92 +238,142 @@ export function cambiarInfo(email, input) {
   }
 }
 
-export function getOpiniones(id){
-  return async (dispatch)=>{
-    try{
+export function getOpiniones(id) {
+  return async (dispatch) => {
+    try {
       let opiniones = await axios.get(`http://localhost:3001/comentario/${id}`)
       return dispatch({
-        type:'GET_OPINIONES',
+        type: 'GET_OPINIONES',
         payload: opiniones.data
       })
-    }catch(error){ console.log(error)}
+    } catch (error) { console.log(error) }
   }
 }
 
-export function postOpinion(input){
-  return async (dispatch)=>{
-    try{
-      await axios.post('http://localhost:3001/comentario',input)
+export function postOpinion(input) {
+  return async (dispatch) => {
+    try {
+      await axios.post('http://localhost:3001/comentario', input)
       return dispatch({
-        type:'POST_OPINION',
+        type: 'POST_OPINION',
       })
-    }catch(error){ console.log(error)}
+    } catch (error) { console.log(error) }
   }
 }
 
-export function deleteOpinion(id){
-  return async (dispatch)=>{
-    try{
+export function deleteOpinion(id) {
+  return async (dispatch) => {
+    try {
       await axios.delete(`http://localhost:3001/comentario/${id}`)
       return dispatch({
-        type:'DELETE_OPINION',
+        type: 'DELETE_OPINION',
       })
-    }catch(error){ console.log(error)}
+    } catch (error) { console.log(error) }
   }
 }
 
-export function getPreguntas(id){
-  return async (dispatch)=>{
-    try{
+export function getPreguntas(id) {
+  return async (dispatch) => {
+    try {
       let preguntas = await axios.get(`http://localhost:3001/pregunta/${id}`)
       return dispatch({
-        type:'GET_PREGUNTAS',
+        type: 'GET_PREGUNTAS',
         payload: preguntas.data
       })
-    }catch(error){ console.log(error)}
+    } catch (error) { console.log(error) }
   }
 }
 
-export function postPregunta(input){
-  return async (dispatch)=>{
-    try{
-      await axios.post('http://localhost:3001/pregunta',input)
+export function postPregunta(input) {
+  return async (dispatch) => {
+    try {
+      await axios.post('http://localhost:3001/pregunta', input)
       return dispatch({
-        type:'POST_PREGUNTA',
+        type: 'POST_PREGUNTA',
       })
-    }catch(error){ console.log(error)}
+    } catch (error) { console.log(error) }
   }
 }
 
-export function deletePregunta(id){
-  return async (dispatch)=>{
-    try{
+export function deletePregunta(id) {
+  return async (dispatch) => {
+    try {
       await axios.delete(`http://localhost:3001/pregunta/${id}`)
       return dispatch({
-        type:'DELETE_PREGUNTA',
+        type: 'DELETE_PREGUNTA',
       })
-    }catch(error){ console.log(error)}
+    } catch (error) { console.log(error) }
   }
 }
 
-export function responderPregunta(id,input){
-  return async (dispatch)=>{
-    try{
-      await axios.put(`http://localhost:3001/pregunta/${id}`,input)
+export function responderPregunta(id, input) {
+  return async (dispatch) => {
+    try {
+      await axios.put(`http://localhost:3001/pregunta/${id}`, input)
       return dispatch({
-        type:'RESPONDER_PREGUNTA',
+        type: 'RESPONDER_PREGUNTA',
       })
-    }catch(error){ console.log(error)}
+    } catch (error) { console.log(error) }
   }
 }
 
-export function eliminarPost(id){
+export function eliminarPost(id) {
   console.log(id)
   return async dispatch => {
     let borrar = await axios.delete('http://localhost:3001/delete/post/' + id)
     return dispatch({
       type: 'DELETE',
     })
-  }}
+  }
+}
+
+
+export function addFavoritos(email, idPublicacion) {
+  return async dispatch => {
+    let add = await axios.patch(`http://localhost:3001/favoritos/add/${email}/${idPublicacion}`)
+    return dispatch({
+      type: 'ADD_FAVORITOS',
+      payload: add.data
+    })
+  }
+}
+
+export function getFavoritos(email) {
+  return async dispatch => {
+    let favo = await axios.get('http://localhost:3001/favoritos/' + email)
+    return dispatch({
+      type: 'FAVORITO',
+      payload: favo.data
+    })
+  }
+}
+
+export function deleteUser(id) {
+  return async dispatch => {
+    await axios.delete(`http://localhost:3001/delete/user/${id}`)
+    return dispatch({
+      type: 'DELETE_USER'
+    })
+  }
+}
+
+export function baneoUser(id, estado) {
+  return async dispatch => {
+    await axios.patch(`http://localhost:3001/suspender/${id}/${estado}`)
+    return dispatch({
+      type: 'BANEAR'
+    })
+  }
+}
+
+export function getBaneo(email) {
+  return async dispatch => {
+    let res = await axios.get(`http://localhost:3001/suspender/validar/${email}`)
+    return dispatch({
+      type: 'BANEAR',
+      payload: res.data
+    })
+  }
+}
 
 

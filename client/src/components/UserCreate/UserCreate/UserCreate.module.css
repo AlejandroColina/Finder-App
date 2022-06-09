@@ -1,97 +1,3 @@
-/* .formCont {
-  background: linear-gradient(90deg, #1a2980 0%, #26d0ce 100%);
-  width: 100%;
-  min-height: 100vh;
-  display: grid;
-  grid-template-columns: 30% 70%;
-}
-
-.leftCard {
-  border: 1px solid yellow;
-  width: 100%;
-}
-
-.leftCard img {
-
-  margin-top: 200px;
-}
-
-.rigthCard {
-  border: 1px solid red;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: white;
-}
-
-.inputs {
-  width: 70%;
-  padding: 10px;
-  border-radius: 4px;
-  margin-bottom: 16px;
-  border: 1px solid #0576e6a9;
-  font-size: 18px;
-}
-
-.required {
-  display: flex;
-  position: relative;
-  font-size: 18px;
-}
-
-.file_select {
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: auto;
-  margin-bottom: 50px;
-}
-
-.file_select::before {
-  background-color: #0576e6a9;
-  color: white;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 3px;
-  content: "Seleccionar imagen";
-  font-size: 16px;
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
-}
-
-.file_select input[type="file"] {
-  opacity: 0;
-  width: 200px;
-  height: 32px;
-  display: inline-block;
-}
-
-.userPic {
-  border-radius: 600px;
-  border: 2px solid rgb(173, 173, 173);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: auto;
-  margin-bottom: 30px;
-}
-
-.submit {
-  width: 70%;
-  background: #0576e6a9;
-  padding: 12px;
-  color: white;
-  margin: 16px 0;
-  border: none;
-  font-size: 16px;
-} */
-
 .container {
   background: linear-gradient(90deg, #1a2980 0%, #26d0ce 100%);
   min-height: 100vh;
@@ -149,7 +55,7 @@
   width: 120px;
   border-radius: 6px;
   display: flex;
-  
+
   position: relative;
 }
 
@@ -214,11 +120,11 @@
   cursor: pointer;
 }
 
-.btn_file{
+.btn_file {
   background-color: #26d0ce;
 }
 
-.btn_file{
+.btn_file {
   display: none;
 }
 
@@ -254,11 +160,24 @@
 }
 
 .inputs {
+  border: 1px solid green;
   width: 100%;
   height: 8%;
   border-radius: 4px;
   outline: none;
   border: none;
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 16px;
+  border-collapse: separate;
+  border-spacing: 10px 5px;
+}
+
+.inputs_fail {
+  border: 1px solid red;
+  width: 100%;
+  height: 8%;
+  border-radius: 4px;
+  outline: none;
   font-family: 'Times New Roman', Times, serif;
   font-size: 16px;
   border-collapse: separate;
@@ -273,6 +192,15 @@
   font-family: 'Times New Roman', Times, serif;
   font-size: 16px;
   resize: none;
+}
+
+.textarea_fail {
+  border: 1px solid red;
+  width: 100%;
+  height: 16%;
+  border-radius: 4px;
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 16px;
 }
 
 .selects {
