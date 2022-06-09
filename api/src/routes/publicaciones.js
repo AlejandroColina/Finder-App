@@ -13,6 +13,8 @@ router.get("/", async (req, res, next) => {
     let tablaPublicacion = await Publicacion.findAll(
       { include: [Profesion, Direccion] }
     );
+    if (!tablaPublicacion.length) return res.status(404).send('No hay datos.');
+
     let obj = [];
 
     let personas = await Persona.findAll();
@@ -23,20 +25,21 @@ router.get("/", async (req, res, next) => {
 
       let persona = personas.filter(e => e.dataValues.id === idPersona);
       let user = persona[0]?.dataValues;
+      console.log('USER: ', user);
       obj.push({
-        idPublicacion: post.id,
-        idPersona: user.id,
-        nombres: user.nombres,
-        apellido: user.apellidos,
-        promedio: user.promedio,
-        imagen: user.imagen,
-        titulo: post.titulo,
-        descripcion: post.descripcion,
-        Profesions: post.Profesion.dataValues.nombre,
-        logoProfesion: post.Profesion.dataValues.logo,
-        genero: user.genero,
-        edad: user.edad,
-        ciudad: post.Direccion?.dataValues?.ciudad
+        idPublicacion: post?.id,
+        idPersona: user?.id,
+        nombres: user?.nombres,
+        apellido: user?.apellidos,
+        promedio: user?.promedio,
+        imagen: user?.imagen,
+        titulo: post?.titulo,
+        descripcion: post?.descripcion,
+        Profesions: post?.Profesion.dataValues.nombre,
+        logoProfesion: post?.Profesion.dataValues.logo,
+        genero: user?.genero,
+        edad: user?.edad,
+        ciudad: post?.Direccion?.dataValues?.ciudad
       })
     });
 

@@ -43,7 +43,6 @@ router.get('/:email', async (req, res, next) => {
                     genero: f[0].dataValues.genero,
                     edad: f[0].dataValues.edad,
                 });
-                console.log()
             };
 
             return res.json(TusFavoritos);
@@ -61,9 +60,9 @@ router.patch('/add/:email/:idPublicacion', async (req, res, next) => {
         const { idPublicacion, email } = req.params;
 
         let persona = await Persona.findOne({ where: { email: email } });
-          
+        if (persona === null) return res.status(404).send('No existe usuario con este email.')
+
         let favs = persona.dataValues.favoritos
-        console.log(favs)
        if(!favs.includes(parseInt(idPublicacion))){ 
         favs.push(parseInt(idPublicacion));
          }
@@ -84,6 +83,8 @@ router.delete('/delete/:email/:idPublicacion', async (req, res, next) => {
         const { idPublicacion, email } = req.params;
 
         let persona = await Persona.findOne({ where: { email: email } });
+        if (persona === null) return res.status(404).send('No existe usuario con este email.')
+
         if (persona.dataValues.favoritos !== null) {
             await Persona.update({
                 favoritos: persona.dataValues.favoritos.filter(e => e !== parseInt(idPublicacion))

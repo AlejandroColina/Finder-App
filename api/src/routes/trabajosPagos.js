@@ -11,6 +11,7 @@ router.get('/:idPersona', async (req, res, next) => {
         let { idPersona } = req.params;
 
         let persona = await Persona.findOne({ where: { id: idPersona } });
+        if(persona === null) return res.status(404).send('No existe este usuario en BD.');
 
         if (Object.values(persona)) {
             let trabajos = persona.dataValues.trabajosPagos;
@@ -28,6 +29,8 @@ router.delete('/delete/:idPersona/:idPublicacion', async (req, res, next) => {
         const { idPublicacion, idPersona } = req.params;
 
         let persona = await Persona.findOne({ where: { id: idPersona } });
+        if(persona === null) return res.status(404).send('No existe este usuario en BD.');
+
         if (persona.dataValues.trabajosPagos.length > 0) {
             await Persona.update({
                 trabajosPagos: persona.dataValues.trabajosPagos.filter(e => e != idPublicacion)
@@ -46,6 +49,7 @@ router.patch('/add/:idPersona/:idPublicacion', async (req, res, next) => {
         const { idPublicacion, idPersona } = req.params;
 
         let persona = await Persona.findOne({ where: { id: idPersona } });
+        if(persona === null) return res.status(404).send('No existe este usuario en BD.');
 
         let pagos = persona.dataValues.trabajosPagos;
         pagos.push(parseInt(idPublicacion));
