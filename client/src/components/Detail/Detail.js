@@ -25,7 +25,6 @@ import Help from '../Help/Help';
 import Comentar from './Comentar/Comentar';
 import Preguntar from './Preguntar/Preguntar';
 
-
 export default function Detail({Profesions}) {
    const { isAuthenticated, user } = useAuth0();
   const { loginWithRedirect } = useAuth0();
@@ -33,6 +32,7 @@ export default function Detail({Profesions}) {
   if (isAuthenticated) {
     var onlyFirst = user.name.split(' ');
   } 
+
   
   const history = useHistory();
   const dispatch = useDispatch();
@@ -41,7 +41,7 @@ export default function Detail({Profesions}) {
   const publi = useSelector(state => state.info);
   const opiniones = useSelector(state=> state.opiniones);
   const preguntas = useSelector(state=> state.preguntas);
-    
+ 
       //paginado publicaciones similares
       const [page,setPage] = useState(0);
       const currentPage = publi.slice(page,page+3); 
@@ -55,18 +55,17 @@ export default function Detail({Profesions}) {
           setPage(page +3)
       }
   
-    
-  
   useEffect(() => {
     dispatch(getDetail(id));
-    dispatch(getPublicacionDeUsuario(MyDetail.email));
     dispatch(getOpiniones(id));
     dispatch(getPreguntas(id));
+    dispatch(getCarta(id))
+
     return function(){
       dispatch(getDeleteDetail())  
     }      
   }, [id, dispatch])
-  
+
   let { promedio } = MyDetail
 
   let precio = 15
@@ -96,7 +95,7 @@ export default function Detail({Profesions}) {
     }
     const [comento, setComento]=useState(false);
     const [open,setOpen] =useState(false);
-    dispatch(getCarta(MyDetail.Profesions))
+    
     return (   
       <>
       { (!MyDetail.nombres) ?
@@ -116,8 +115,8 @@ export default function Detail({Profesions}) {
             <img src={gps} alt='ubicacion' className={s.gps}/>
             {MyDetail.ciudad},{MyDetail.pais}
           </div>
-          <div className={s.acerca}>Acerca de</div>
-          <div className={s.descripcion}>"{MyDetail.descripcion}"</div>
+          {MyDetail.acerca? <><div className={s.acerca}>Acerca de</div>
+          <div className={s.descripcion}>"{MyDetail.acercade}"</div></> : null}
           <br/><br/>
         </div>
 
@@ -127,6 +126,8 @@ export default function Detail({Profesions}) {
           <div className={s.titulos}>SERVICIO</div>
           <hr/>
           <div className={s.subtitulos}>{MyDetail.Profesions}</div>
+          <div className={s.titulos}>{MyDetail.titulo}</div>
+          {MyDetail.multimedia? MyDetail.multimedia.map((m,i)=>{<img key={i} src={m} alt={m} className={s.multimedia}/>}) : <img src={MyDetail.logoProfesion} alt={MyDetail.Profesions} className={s.multimedia}/>}
           <div className={s.contenido}>{MyDetail.descripcion}</div>
           <div className={s.containerPrice}>
             <div className={s.borderPrice}>
@@ -156,7 +157,7 @@ export default function Detail({Profesions}) {
           {preguntas? preguntas.map((p)=> <div key={p.id}>
           <div className={s.containerComments}>
             <div className={s.pregunta}>{p.pregunta}</div>
-            <>{p.respuesta? <><div className={s.respuesta}><div className={s.figura}></div>{p.respuesta}</div> </>: 
+            <>{(p.respuesta && isAuthenticated && (user.email===MyDetail.email))? <><div className={s.respuesta}><div className={s.figura}></div>{p.respuesta}</div> </>: 
           <form 
             className={s.form}
             onSubmit={(e)=>{

@@ -71,6 +71,12 @@
     display: flex;
     justify-content: flex-end;
 }
+.multimedia{
+    width: 700px;
+    margin-left: 50px;
+    margin-top: 30px;
+    margin-bottom: 20px;
+}
 .contenido{
     font-size: 20px;
     font-weight: bold;
