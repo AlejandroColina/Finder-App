@@ -63,8 +63,10 @@ router.patch('/add/:email/:idPublicacion', async (req, res, next) => {
         if (persona === null) return res.status(404).send('No existe usuario con este email.')
 
         let favs = persona.dataValues.favoritos
+       if(!favs.includes(parseInt(idPublicacion))){ 
         favs.push(parseInt(idPublicacion));
-
+         }
+          
         await Persona.update({
             favoritos: favs
         }, { where: { email: email } });
