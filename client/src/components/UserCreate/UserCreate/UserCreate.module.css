@@ -55,7 +55,7 @@
   width: 120px;
   border-radius: 6px;
   display: flex;
-
+  flex-direction: row-reverse;
   position: relative;
 }
 
@@ -102,8 +102,18 @@
   font-size: 16px;
 }
 
+.btn_fail{
+  width: 70%;
+  background: #575757a9;
+  padding: 12px;
+  color: white;
+  margin: 16px 0;
+  border: none;
+  font-size: 16px;
+}
+
 .btn1 {
-  width: 100px;
+  width: 150px;
   background: #0576e6a9;
   padding: 12px;
   color: white;
@@ -122,10 +132,6 @@
 
 .btn_file {
   background-color: #26d0ce;
-}
-
-.btn_file {
-  display: none;
 }
 
 .log {

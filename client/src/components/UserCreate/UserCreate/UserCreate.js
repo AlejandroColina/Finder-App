@@ -22,12 +22,14 @@ export default function UserCreate() {
   const [city, setCity] = useState(0);
   const empleos = useSelector((state) => state.empleosForm);
   const ciudades = useSelector(state => state.ciudades);
-  const [errors, setError] = useState({});
   const [input, setInput] = useState({
     titulo: "",
     descripcion: "",
     precio: "",
     multimedia: [],
+  });
+  const [errors, setError] = useState({
+    descripcion: ''
   });
 
   const handleChange = (e) => {
@@ -107,7 +109,7 @@ export default function UserCreate() {
     email: user?.email,
     ciudad: city,
   }
-
+  console.log('ERRORS: ', toSend.ProfesionId)
   return (
     <section className={styles.container}>
       <div className={styles.div_form} >
@@ -169,7 +171,7 @@ export default function UserCreate() {
 
             <div className={styles.div_select}>
               <select className={styles.selects} value={city} onChange={handleChange2}>
-                <option>CIUDAD</option>
+
                 {ciudades &&
                   ciudades.map((el, index) => (
                     <option key={index + 'DIR'}
@@ -182,12 +184,12 @@ export default function UserCreate() {
 
               <div>
                 <div>
-                  <select className={styles.selects} value={selected} onChange={handleChange1}>
-                    <option>PROFESION</option>
+                  <select className={styles.selects} value={selected} onChange=
+                    {handleChange1}>
+
                     {empleos &&
                       empleos.map((el, id) => (
                         <option key={id + 'DR'}
-                          name="empleo"
                           value={id + 1}
                         >
                           {el.nombre}
@@ -201,14 +203,11 @@ export default function UserCreate() {
             <div className={styles.file_select}>
               <input
                 disabled={
-                  input.titulo
-                    && input.descripcion
-                    && input.precio
-                    && selected
-                    && city
-                    ? styles.bnt_file_none
-                    : styles.btn_file
+                  !toSend.ProfesionId ||
+                  !toSend.ciudad ||
+                  Object.keys(errors).length
                 }
+                className={styles.btn_file}
                 onChange={uploadImage}
                 name="file"
                 type="file"
@@ -217,16 +216,16 @@ export default function UserCreate() {
             </div>
 
             <button
-              className={styles.btn}
+              className={
+                toSend.ProfesionId || toSend.ciudad || Object.keys(errors).length
+                  ? styles.btn_fail
+                  : styles.btn
+              }
               type="submit"
               disabled={
-                input.titulo
-                  && input.descripcion
-                  && input.precio
-                  && selected
-                  && city
-                  ? styles.bnt_file_none
-                  : styles.btn_file
+                !toSend.ProfesionId ||
+                !toSend.ciudad ||
+                Object.keys(errors).length
               }
             >
               Crear publicación
