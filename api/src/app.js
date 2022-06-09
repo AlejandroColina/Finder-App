@@ -10,6 +10,7 @@ const favoritos = require('./routes/favoritos');
 const comentario = require('./routes/comentario');
 const pregunta = require('./routes/pregunta');
 const baneo = require('./routes/admin');
+const notificaciones = require('./routes/notificaciones')
 const cors = require('cors');
 server.use(cors());
 
@@ -22,6 +23,7 @@ server.use('/pregunta', pregunta);
 server.use('/favoritos', favoritos);
 server.use('/trabajos', trabajos);
 server.use('/suspender', baneo);
+server.use('/notificaciones', notificaciones)
 server.get('*', (req, res) => {
     res.send('<h1>Página NO encontrada en FINDER. 😡🥶</h1>')
 });

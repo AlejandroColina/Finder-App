@@ -51,7 +51,8 @@ DB_CONN.sync({ force: true })
                         trabajosPagos: [],
                         genero: person.genero,
                         puntuacion: person.puntuacion,
-                        baneado: false
+                        baneado: false,
+                        notificaciones:[]
                     });
 
                     await Publicacion.create({
