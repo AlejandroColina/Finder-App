@@ -227,7 +227,7 @@ export default function UserCreate() {
                   && city
                   ? styles.bnt_file_none
                   : styles.btn_file
-              } D
+              }
             >
               Crear publicación
             </button>
