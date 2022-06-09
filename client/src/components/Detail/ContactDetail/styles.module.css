@@ -7,19 +7,11 @@
   background-color: whitesmoke;
   display: flex;
   margin: auto;
-  margin-top: 30px;
-  margin-left: 70px;
-  margin-bottom: 15px;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  justify-content: center;
   overflow-wrap: normal;
 }
-
-/* .dato {
-  font-size: 1.9rem;
-  font-weight: bold;
-  display: flex;
-  margin: auto;
-  justify-content: center;
-} */
 
 .whatsapp {
   width: 60px;
@@ -38,6 +30,7 @@
   font-size: 1.5em;
   display: grid;
   margin: auto;
+  padding: 0;
   justify-content: center;
   text-align: center;
 }

@@ -1,6 +1,7 @@
 .container {
   display: flex;
   min-height: 100vh;
+  
 }
 
 .card {
@@ -60,13 +61,13 @@
   margin-top: 120px;
   width: 800px;
   margin-bottom: 300px;
-  background-color: #3674e6c9;
+  background-color: #ffffffc9;
   border-radius: 5px;
   padding: 40px;
 }
 .titulos {
   font-size: 25px;
-  color: #ffffff;
+  color: #000000;
   font-weight: lighter;
 }
 .subtitulos {
@@ -78,7 +79,7 @@
 .contenido {
   font-size: 30px;
   font-weight: bold;
-  color: #ffffff;
+  color: #000000;
   padding: 30px 10px;
 }
 /* .containerPrice {
@@ -249,4 +250,11 @@
   display: flex;
   margin: auto;
   align-items: center;
+}
+
+.check {
+  display: flex;
+  margin: auto;
+  width: 150px;
+  height: 150px;
 }

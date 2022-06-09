@@ -145,7 +145,11 @@ export default function Detail({ Profesions }) {
                   <PaypalCheckoutBtn product={product} setOrder={setOrder} />
                 </div>
               ) : (
-                <ContactDetail MyDetail={MyDetail} />
+                <img
+                  className={s.check}
+                  src="https://png.pngtree.com/png-vector/20190228/ourmid/pngtree-check-mark-icon-design-template-vector-isolated-png-image_711429.jpg"
+                  alt=""
+                />
               )}
               <div
                 className={s.valor}
@@ -157,6 +161,8 @@ export default function Detail({ Profesions }) {
               </div>
             </div>
           ) : (
+            // Contratar
+
             <div
               className={`${s.borderPrice} ${s.contratar}`}
               onClick={() => {
@@ -178,6 +184,8 @@ export default function Detail({ Profesions }) {
             {MyDetail.ciudad},{MyDetail.pais}
           </div>
           <div className={s.contenido}>{MyDetail.descripcion}</div>
+
+          {!order ? <p></p> : <ContactDetail MyDetail={MyDetail} />}
 
           <br />
           <br />
