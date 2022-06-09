@@ -13,8 +13,6 @@ export default function Cards({
   id,
   logoProfesion,
   ciudad,
-
-
 }) { 
  
   let estrellas = []
