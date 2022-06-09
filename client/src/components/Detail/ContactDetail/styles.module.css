@@ -1,18 +1,49 @@
-.title{
-    font-weight: 750;
-    font-size: 2.6rem;
-    color: #0575e6;
-    margin-left: 20px;
-    margin-bottom: 15px;
-    text-decoration:underline;
-    text-decoration-line:underline;
-    background-color: whitesmoke;
-    display: inline-block;
-    
+.title {
+  font-weight: 750;
+  font-size: 2em;
+  color: #0575e6;
+  text-decoration: none;
+  text-align: center;
+  background-color: whitesmoke;
+  display: flex;
+  margin: auto;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  justify-content: center;
+  overflow-wrap: normal;
 }
 
-.dato{
-    font-size: 1.9rem;
-    
-    font-weight: bold;
+.whatsapp {
+  width: 60px;
+  height: 60px;
+  color: #fff;
+  border-radius: 50px;
+  display: flex;
+  justify-content: center;
+  margin: auto;
+  text-align: justify;
+  font-size: 1.5em;
+}
+
+.dato {
+  font-size: 1.5em;
+  display: grid;
+  margin: auto;
+  padding: 10px;
+  justify-content: center;
+  text-align: center;
+}
+
+.email {
+  font-size: 1.5em;
+  text-align: center;
+  display: grid;
+  justify-content: center;
+  vertical-align: middle;
+}
+
+.icon {
+  width: 40px;
+  height: 40px;
+  margin-top: 20px;
 }
