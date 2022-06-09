@@ -16,6 +16,9 @@ const InitialState = {
   opiniones: [],
   preguntas: [],
   info: [],
+  favorito: [],
+  baneado: false
+
 };
 
 export default function rootReducer(state = InitialState, action) {
@@ -135,37 +138,61 @@ export default function rootReducer(state = InitialState, action) {
         ...state,
       };
 
-    case "GET_OPINIONES":
+    case 'DELETE':
       return {
-        ...state,
-        opiniones: action.payload,
-      };
-    case "POST_OPINION":
-      return {
-        ...state,
-      };
-    case "DELETE_OPINION":
-      return {
-        ...state,
-      };
+        ...state
+      }
 
-    case "GET_PREGUNTAS":
+
+    case 'GET_OPINIONES':
       return {
         ...state,
-        preguntas: action.payload,
-      };
-    case "POST_PREGUNTA":
+        opiniones: action.payload
+      }
+    case 'POST_OPINION':
       return {
         ...state,
-      };
-    case "DELETE_PREGUNTA":
+      }
+    case 'DELETE_OPINION':
       return {
         ...state,
-      };
-    case "RESPONDER_PREGUNTA":
+      }
+
+    case 'GET_PREGUNTAS':
       return {
         ...state,
-      };
+        preguntas: action.payload
+      }
+    case 'POST_PREGUNTA':
+      return {
+        ...state,
+      }
+    case 'DELETE_PREGUNTA':
+      return {
+        ...state,
+      }
+    case 'RESPONDER_PREGUNTA':
+      return {
+        ...state,
+      }
+    case 'FAVORITO':
+      return {
+        ...state,
+        favorito: action.payload
+      }
+    case 'DELETE_USER':
+      return {
+        ...state,
+      }
+    case 'BANEAR':
+      return {
+        ...state,
+      }
+    case 'GET_BANEO':
+      return {
+        ...state,
+        baneado: action.payload
+      }
 
     default:
       return state;

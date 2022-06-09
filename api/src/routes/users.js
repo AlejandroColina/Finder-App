@@ -75,9 +75,9 @@ router.get("/empleosForm", async (req, res, next) => {
   }
 });
 
-router.get("/trabajo/:id", async (req, res, next) => {
-  const id = req.params.id;
+router.get("/trabajo/:id", async (req, res) => {
   try {
+    const id = req.params.id;
     axios.get("http://localhost:3001/users").then((respuesta) => {
       let personas = respuesta.data;
       for (let i = 0; i < respuesta.data.length - 1; i++) {
@@ -85,7 +85,7 @@ router.get("/trabajo/:id", async (req, res, next) => {
       }
     });
   } catch (error) {
-    next.log(error);
+    console.log(error);
   }
 });
 
@@ -93,7 +93,7 @@ router.post("/crear", async function (req, res) {
 
   let { ciudad, descripcion, email, multimedia, precio, ProfesionId, titulo } = req.body.toSend;
   if (!ciudad || !descripcion || !email || !precio || !ProfesionId || !titulo) return
-  
+
   let consulta = await Persona.findOne({
     where: { email: email },
   });
@@ -153,9 +153,9 @@ router.get('/validar/:email', async (req, res, next) => {
     let consulta = await Persona.findAll({
       where: { email: email }
     });
-
+    if (!consulta.length) return res.status(404).send('No existe usuario con ese email.')
     if (
-
+      // consulta[0]?.edad == null ||
       consulta[0]?.apellidos == null ||
       consulta[0]?.documento == null ||
       consulta[0]?.telefono == null
@@ -200,6 +200,7 @@ router.get("/detalle/:idPublicacion", async (req, res, next) => {
     const { idPublicacion } = req.params;
 
     let consultaBD = await Publicacion.findByPk(idPublicacion, { include: [Profesion, Direccion] });
+    if (consultaBD === null) return res.status(404).send('No existe esta publicación.');
 
     let idPersona = consultaBD.dataValues.PersonaId;
     let personaPost = await Persona.findAll({
@@ -231,19 +232,20 @@ router.get("/detalle/:idPublicacion", async (req, res, next) => {
     };
 
     res.send(obj);
+
   } catch (error) {
     next(error);
   }
 });
 
-router.get("/prof/:id", (req, res)=>{
+router.get("/prof/:id", (req, res) => {
   const id = req.params.id;
   axios.get("http://localhost:3001/users/detalle/" + id)
-  .then((respuesta)=>{
-    let datos = respuesta.data;
-    let quiero = datos.Profesions;
-    res.send(quiero)
-  })
+    .then((respuesta) => {
+      let datos = respuesta.data;
+      let quiero = datos.Profesions;
+      res.send(quiero)
+    })
 })
 
 router.get('/perfil/:email', async (req, res, next) => {
@@ -256,7 +258,9 @@ router.get('/perfil/:email', async (req, res, next) => {
       where: { email: email },
     });
 
-    return res.json(consulta);
+    !consulta.length
+      ? res.status(404).send('No existe usuario con este email.')
+      : res.json(consulta);
 
   } catch (error) {
     next(error)
@@ -264,13 +268,12 @@ router.get('/perfil/:email', async (req, res, next) => {
 });
 
 
-router.get("/coincidencias/:id", async (req, res) =>{
+router.get("/coincidencias/:id", async (req, res) => {
   const id = req.params.id;
   let respuesta = [];
   try {
     let todo = await axios.get(`http://localhost:3001/users/prof/${id}`)
     let tipo = todo.data;
-    console.log(todo)
     let todos = await Persona.findAll({
       include: [
         { model: Publicacion, include: [Direccion, Profesion] }
