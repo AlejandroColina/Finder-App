@@ -3,35 +3,49 @@
   font-size: 2em;
   color: #0575e6;
   text-decoration: none;
+  text-align: center;
   background-color: whitesmoke;
   display: flex;
   margin: auto;
   margin-top: 30px;
   margin-left: 70px;
   margin-bottom: 15px;
+  overflow-wrap: normal;
 }
 
-.dato {
+/* .dato {
   font-size: 1.9rem;
   font-weight: bold;
   display: flex;
   margin: auto;
   justify-content: center;
-}
+} */
 
 .whatsapp {
   width: 60px;
   height: 60px;
-  bottom: 40px;
-  right: 40px;
   background-color: #25d366;
   color: #fff;
   border-radius: 50px;
-  text-align: center;
-  font-size: 30px;
+  display: flex;
+  justify-content: center;
+  margin: auto;
+  text-align: justify;
+  font-size: 1.5em;
 }
 
 .dato {
-  font-size: 1.9rem;
-  font-weight: bold;
+  font-size: 1.5em;
+  display: grid;
+  margin: auto;
+  justify-content: center;
+  text-align: center;
+}
+
+.email {
+  font-size: 1.5em;
+  text-align: center;
+  display: grid;
+  justify-content: center;
+  vertical-align: middle;
 }

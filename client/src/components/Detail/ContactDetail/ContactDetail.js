@@ -7,19 +7,19 @@ export const ContactDetail = ({ MyDetail }) => {
 
   return (
     <div className={styles.container}>
-      <h3 className={styles.title}>Datos de contacto:</h3>
+      <h1 className={styles.title}><b>Datos de contacto</b></h1>
 
-      <p className={styles.dato}>Telefono: {telefono}</p>
+      <p className={styles.dato}><b>Teléfono:</b>{telefono}</p>
+     
+      <p className={styles.email}><b>Email:</b> {email}</p>
+      <p className={styles.dato}><b>Documento:</b> {documento}</p>
       <a
         href="https://wa.me/3535082917?text=Me%20gustaría%20saber%20el%20precio%20del%20coche"
-        className="whatsapp"
+        className={styles.whatsapp}
         target="_blank"
       >
-        {" "}
-        {/* <i className="fa fa-whatsapp whatsapp-icon"></i> */}
+        <img src="https://png.pngtree.com/element_our/png_detail/20181011/whatsapp-social-media-icon-design-template-vector-png_126998.jpg" alt="" />
       </a>
-      <p className={styles.dato}>Email: {email}</p>
-      <p className={styles.dato}>DNI: {documento}</p>
     </div>
   );
 };
