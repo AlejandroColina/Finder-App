@@ -1,11 +1,11 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Cards from './Card'
-import s from './Fvorito.module.css'
+import s from './Favorito.module.css'
 
 const Favorito = () => {
   const favorito = useSelector((state) => state.favorito);
- 
+
   return (
     <div className={s.conte}>
       {favorito &&
