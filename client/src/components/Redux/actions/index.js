@@ -369,6 +369,7 @@ export function baneoUser(id, estado) {
 export function getBaneo(email) {
   return async dispatch => {
     let res = await axios.get(`http://localhost:3001/suspender/validar/${email}`)
+    console.log(res.data)
     return dispatch({
       type: 'BANEAR',
       payload: res.data

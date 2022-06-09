@@ -30,6 +30,7 @@ const Perfil = () => {
   const [perfil, setPerfil] = useState(false);
   const StatePerfil = useSelector((state) => state.perfil);
  const baneo = useSelector((state) => state.baneado);
+ console.log(baneo)
   const handlePerfil = () => {
     setPerfil(true);
     setFavorito(false);
@@ -54,6 +55,8 @@ const Perfil = () => {
   };
 
   return (
+    <> 
+    {!baneo? 
     <div>
       {!StatePerfil ? (
         <Helmet>
@@ -162,7 +165,8 @@ const Perfil = () => {
       <footer className={s.footer}>
         <Footer />
       </footer>
-    </div>
+    </div>:<div>estas baneado</div>}
+    </>
   );
 };
 

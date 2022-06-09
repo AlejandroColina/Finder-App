@@ -24,7 +24,7 @@ router.get('/validar/:email', async (req, res, next) => {
 
         persona = persona.baneado
         
-        return res.json(persona)
+        return res.send(persona)
         
     } catch (error) {
         next(error)
