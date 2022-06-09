@@ -16,7 +16,6 @@
 .whatsapp {
   width: 60px;
   height: 60px;
-  background-color: #25d366;
   color: #fff;
   border-radius: 50px;
   display: flex;
@@ -30,7 +29,7 @@
   font-size: 1.5em;
   display: grid;
   margin: auto;
-  padding: 0;
+  padding: 10px;
   justify-content: center;
   text-align: center;
 }
@@ -41,4 +40,10 @@
   display: grid;
   justify-content: center;
   vertical-align: middle;
+}
+
+.icon {
+  width: 40px;
+  height: 40px;
+  margin-top: 20px;
 }
