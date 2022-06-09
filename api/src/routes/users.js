@@ -220,7 +220,6 @@ router.get("/detalle/:idPublicacion", async (req, res, next) => {
       promedio: personaPost[0].dataValues.promedio,
       telefono: personaPost[0].dataValues.telefono,
       titulo: consultaBD.dataValues.titulo,
-      multimedia: consultaBD.dataValues.multimedia,
       descripcion: consultaBD.dataValues.descripcion,
       precio: consultaBD.dataValues.precio,
       Profesions: consultaBD.dataValues.Profesion.dataValues.nombre,
