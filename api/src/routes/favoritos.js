@@ -61,10 +61,13 @@ router.patch('/add/:email/:idPublicacion', async (req, res, next) => {
         const { idPublicacion, email } = req.params;
 
         let persona = await Persona.findOne({ where: { email: email } });
-
+          
         let favs = persona.dataValues.favoritos
+        console.log(favs)
+       if(!favs.includes(parseInt(idPublicacion))){ 
         favs.push(parseInt(idPublicacion));
-
+         }
+          
         await Persona.update({
             favoritos: favs
         }, { where: { email: email } });

@@ -327,3 +327,24 @@ export function eliminarPost(id){
   }}
 
 
+  export function addFavoritos(email, idPublicacion){
+    return async dispatch => {
+      let add = await axios.patch(`http://localhost:3001/favoritos/add/${email}/${idPublicacion}`)
+      return dispatch({
+        type: 'ADD_FAVORITOS',
+        payload: add.data
+      })
+    }
+  }
+
+  export function getFavoritos(email){
+    return async dispatch => {
+      let favo = await axios.get('http://localhost:3001/favoritos/' + email)
+      return dispatch({
+        type: 'FAVORITO',
+        payload: favo.data
+      })
+    }
+  }
+
+

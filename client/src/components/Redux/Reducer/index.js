@@ -16,6 +16,7 @@ const InitialState = {
   opiniones:[],
   preguntas:[],
   info:[],
+  favorito: [],
 };
 
 export default function rootReducer(state = InitialState, action) {
@@ -169,6 +170,12 @@ export default function rootReducer(state = InitialState, action) {
       return{
         ...state,
       }
+      case 'FAVORITO':
+        return{
+          ...state,
+          favorito: action.payload
+
+        }
 
     default:
       return state;
