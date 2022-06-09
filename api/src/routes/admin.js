@@ -23,6 +23,7 @@ router.get('/validar/:email', async (req, res, next) => {
         if (persona === null) return res.status(404).send('No existe.');
 
         persona = persona.baneado
+        
         return res.json(persona)
         
     } catch (error) {

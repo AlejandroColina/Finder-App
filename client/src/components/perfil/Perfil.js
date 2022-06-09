@@ -10,12 +10,16 @@ import { useAuth0 } from "@auth0/auth0-react";
 import Footer from "../Footer/Footer";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getPefil, ValidarInfo, getFavoritos} from "../Redux/actions/index";
+import {
+  getPefil,
+  ValidarInfo,
+  getFavoritos,
+  getBaneo,
+} from "../Redux/actions/index";
 import { Link } from "react-router-dom";
 import Favorito from "./favoritos/Favoritos";
 import { Helmet } from "react-helmet";
-import publicidad from './assets/publicidad.gif'
-
+import publicidad from "./assets/publicidad.gif";
 
 const Perfil = () => {
   const { user } = useAuth0();
@@ -25,7 +29,7 @@ const Perfil = () => {
   const [favorito, setFavorito] = useState(false);
   const [perfil, setPerfil] = useState(false);
   const StatePerfil = useSelector((state) => state.perfil);
-
+ const baneo = useSelector((state) => state.baneado);
   const handlePerfil = () => {
     setPerfil(true);
     setFavorito(false);
@@ -39,7 +43,10 @@ const Perfil = () => {
   useEffect(() => {
     dispatch(getPefil(user?.email));
     dispatch(ValidarInfo(user?.email));
-    dispatch(getFavoritos(user?.email))
+    dispatch(getFavoritos(user?.email));
+    setTimeout(() => {
+      dispatch(getBaneo(user?.email));
+    }, 1000);
   }, [dispatch, user?.email]);
 
   const handleState = () => {
@@ -47,47 +54,44 @@ const Perfil = () => {
   };
 
   return (
-
     <div>
-      {(!StatePerfil) ? 
-      <Helmet><title>Cargando..</title></Helmet>
-      :
-      <Helmet><title>{ `${StatePerfil[0]?.nombres}` } - Perfil</title></Helmet>
-     }
-      
+      {!StatePerfil ? (
+        <Helmet>
+          <title>Cargando..</title>
+        </Helmet>
+      ) : (
+        <Helmet>
+          <title>{`${StatePerfil[0]?.nombres}`} - Perfil</title>
+        </Helmet>
+      )}
 
       <nav className={s.nav}>
         <Link to="/home">
-        <img className={s.logo} src={logo} alt="finder" />
-        </Link>
-          {" "}
+          <img className={s.logo} src={logo} alt="finder" />
+        </Link>{" "}
       </nav>
       <div className={s.portada}>
-        <img
-          className={s.img}
-          src={publicidad}
-          alt="portada"
-        />
+        <img className={s.img} src={publicidad} alt="portada" />
       </div>
       <section className={s.perfil}>
-        
-         
-          <div className={s.nombre}>
+        <div className={s.nombre}>
           <img className={s.imgper} src={user?.picture} alt="perfil" />
-          <div> 
+          <div>
             <h2>PERFIL</h2>
             <h1>{StatePerfil[0]?.nombres}</h1>
-            </div>
           </div>
-          <div className={s.mover}>
-          <button className={s.botones} onClick={handleState}>Favoritos</button>
-          <button  className={s.botones} onClick={handlePerfil}>Editar perfil</button>
-          <button  className={s.botones} onClick={handleVolver} >
+        </div>
+        <div className={s.mover}>
+          <button className={s.botones} onClick={handleState}>
+            Favoritos
+          </button>
+          <button className={s.botones} onClick={handlePerfil}>
+            Editar perfil
+          </button>
+          <button className={s.botones} onClick={handleVolver}>
             perfil
           </button>
         </div>
-        
-       
       </section>
 
       <section className={s.conten}>
@@ -126,7 +130,6 @@ const Perfil = () => {
             <Favorito />
           ) : (
             <div>
-
               {perfil ? (
                 <Form />
               ) : (
@@ -152,7 +155,6 @@ const Perfil = () => {
                   </div>
                 </div>
               )}
-
             </div>
           )}
         </div>
