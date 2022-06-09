@@ -18,6 +18,7 @@ const InitialState = {
   info: [],
   favorito: [],
   baneado: false
+
 };
 
 export default function rootReducer(state = InitialState, action) {
@@ -74,65 +75,68 @@ export default function rootReducer(state = InitialState, action) {
         usersByType: action.payload,
       };
 
-    case 'MSJ_USER_AL_ADMIN':
+    case "MSJ_USER_AL_ADMIN":
       return {
         ...state,
-      }
+      };
 
-    case 'GET_MSJ_ADMIN':
+    case "GET_MSJ_ADMIN":
       return {
         ...state,
-        adminMjes: action.payload
-      }
-    case 'LOADER':
+        adminMjes: action.payload,
+      };
+    case "LOADER":
       return {
         ...state,
-        loanding: true
-      }
-    case 'DELETE_POST':
+        loanding: true,
+      };
+    case "DELETE_POST":
       return {
-        ...state
-      }
+        ...state,
+      };
 
-    case 'READ_MSJ_ADMIN':
+    case "READ_MSJ_ADMIN":
       return {
         ...state,
-        msjDetailAdmin: action.payload
-      }
+        msjDetailAdmin: action.payload,
+      };
 
-    case 'OPEN_MSJ_ADMIN':
+    case "OPEN_MSJ_ADMIN":
       return {
         ...state,
-      }
+      };
 
-    case 'UBICACION':
+    case "UBICACION":
       return {
         ...state,
-        ubicacion: action.payload
-      }
-    case 'GET_PERFIL':
+        ubicacion: action.payload,
+      };
+    case "GET_PERFIL":
       return {
         ...state,
-        perfil: action.payload
-      }
+        perfil: action.payload,
+      };
 
-
-    case 'INFO_VALI':
+    case "INFO_VALI":
       return {
         ...state,
-        validar: action.payload
-      }
+        validar: action.payload,
+      };
 
-    case 'PUBLICACIONES_USUARIO':
+    case "PUBLICACIONES_USUARIO":
       return {
         ...state,
-        publicacionesDeUnaPersona: action.payload
-      }
-    case 'MODIFICAR':
+        publicacionesDeUnaPersona: action.payload,
+      };
+    case "MODIFICAR":
       return {
-        ...state
-      }
+        ...state,
+      };
 
+    case "DELETE":
+      return {
+        ...state,
+      };
 
     case 'DELETE':
       return {

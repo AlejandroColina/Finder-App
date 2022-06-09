@@ -105,23 +105,21 @@ export const getEmpleosForm = () => {
   };
 };
 export const getCiudades = () => {
-
-  let url = 'http://localhost:3001/users/ciudades'
+  let url = "http://localhost:3001/users/ciudades";
 
   return async (dispatch) => {
-    const resp = await axios.get(url)
+    const resp = await axios.get(url);
     return dispatch({
-      type: 'GET_CIUDADES',
-      payload: resp.data
-    })
-  }
-
-}
+      type: "GET_CIUDADES",
+      payload: resp.data,
+    });
+  };
+};
 
 export function loanding() {
   return {
-    type: 'LOADER'
-  }
+    type: "LOADER",
+  };
 }
 
 export function getDeleteDetail() {
@@ -133,109 +131,127 @@ export function getDeleteDetail() {
 //mensaje del usuario al administrador a traves de HELP
 export function mensajeAlAdmin(msj) {
   return async (dispatch) => {
-    const response = await axios.post('http://localhost:3001/mensaje/user', msj)
-    msj.id = response.data.id
+    const response = await axios.post(
+      "http://localhost:3001/mensaje/user",
+      msj
+    );
+    msj.id = response.data.id;
     dispatch({
-      type: 'MSJ_USER_AL_ADMIN',
-      payload: msj
-    })
-    alert(response.data.message)
-  }
+      type: "MSJ_USER_AL_ADMIN",
+      payload: msj,
+    });
+    alert(response.data.message);
+  };
 }
 //traer mensajes para el admin
 export function getAdminMsj() {
   return async (dispatch) => {
-    const responseget = await axios.get('http://localhost:3001/mensaje/user')
+    const responseget = await axios.get("http://localhost:3001/mensaje/user");
     return dispatch({
-      type: 'GET_MSJ_ADMIN',
-      payload: responseget.data
-    })
-  }
+      type: "GET_MSJ_ADMIN",
+      payload: responseget.data,
+    });
+  };
 }
-
 
 //abrir el mensaje
 export function getOneMsj(id) {
   return async (dispatch) => {
-    const detailMsj = await axios.get(`http://localhost:3001/mensaje/user/${id}`, {})
+    const detailMsj = await axios.get(
+      `http://localhost:3001/mensaje/user/${id}`,
+      {}
+    );
     return dispatch({
-      type: 'READ_MSJ_ADMIN',
-      payload: detailMsj.data
-    })
-  }
+      type: "READ_MSJ_ADMIN",
+      payload: detailMsj.data,
+    });
+  };
 }
 //leer
 export function readMsj(id, read) {
   return async (dispatch) => {
-    const updateRead = await axios.put(`http://localhost:3001/mensaje/user/${id}`, read)
+    const updateRead = await axios.put(
+      `http://localhost:3001/mensaje/user/${id}`,
+      read
+    );
     return dispatch({
-      type: 'OPEN_MSJ_ADMIN'
-    })
-  }
+      type: "OPEN_MSJ_ADMIN",
+    });
+  };
 }
 
 export function getUbicacion() {
   return async (dispatch) => {
     try {
-      let api = await axios.get('https://ipapi.co/json/')
+      let api = await axios.get("https://ipapi.co/json/");
       return dispatch({
-        type: 'UBICACION',
-        payload: api.data
-      })
+        type: "UBICACION",
+        payload: api.data,
+      });
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-  }
+  };
 }
 
 export function getPublicacionDeUsuario(email) {
   return async (dispatch) => {
-    let publicaciones = await axios.get(`http://localhost:3001/publicaciones?email=${email}`)
+    let publicaciones = await axios.get(
+      `http://localhost:3001/publicaciones?email=${email}`
+    );
     return dispatch({
-      type: 'PUBLICACIONES_USUARIO',
-      payload: publicaciones.data
-    })
-  }
+      type: "PUBLICACIONES_USUARIO",
+      payload: publicaciones.data,
+    });
+  };
 }
 
 export function getPefil(email) {
-  console.log(email)
+  console.log(email);
   return async (dispatch) => {
     try {
-      let json = await axios.get('http://localhost:3001/users/perfil/' + email)
+      let json = await axios.get("http://localhost:3001/users/perfil/" + email);
       return dispatch({
-        type: 'GET_PERFIL',
-        payload: json.data
-      })
-    } catch (error) { console.log(error) }
-  }
+        type: "GET_PERFIL",
+        payload: json.data,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
 }
 
-
-
 export function ValidarInfo(email) {
-  return async dispatch => {
+  return async (dispatch) => {
     try {
-      let info = await axios.get('http://localhost:3001/users/validar/' + email)
-      console.log(info.data)
+      let info = await axios.get(
+        "http://localhost:3001/users/validar/" + email
+      );
+      console.log(info.data);
       return dispatch({
-        type: 'INFO_VALI',
-        payload: info.data
-      })
-    } catch (error) { console.log(error) }
-  }
+        type: "INFO_VALI",
+        payload: info.data,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
 }
 
 export function cambiarInfo(email, input) {
-  return async dispatch => {
+  return async (dispatch) => {
     try {
-      let info = await axios.patch(`http://localhost:3001/users/modificar/${email}?nombres=${input.nombres}&apellidos=${input.apellidos}&telefono=${input.telefono}&documento=${input.documento}`)
+      let info = await axios.patch(
+        `http://localhost:3001/users/modificar/${email}?nombres=${input.nombres}&apellidos=${input.apellidos}&telefono=${input.telefono}&documento=${input.documento}`
+      );
       return dispatch({
-        type: 'MODIFICAR',
-        payload: info.data
-      })
-    } catch (error) { console.log(error) }
-  }
+        type: "MODIFICAR",
+        payload: info.data,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
 }
 
 export function getOpiniones(id) {
