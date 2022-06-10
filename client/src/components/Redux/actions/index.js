@@ -390,8 +390,7 @@ export function getBaneo(email) {
     })
   }
 }
-
-<<<<<<< HEAD
+ 
 export function sendNoti(email,input){
   return async dispatch =>{
     await axios.put (`http://localhost:3001/notificaciones/add/${email}`,input)
@@ -400,10 +399,8 @@ export function sendNoti(email,input){
     })
   }
 }
-=======
 
 export function deleteFavorito(email, id) {
-  console.log(email, id)
   return async dispatch => {
     let dele = await axios.delete(`http://localhost:3001/favoritos/delete/${email}/${id}`)
     return dispatch({
@@ -411,4 +408,22 @@ export function deleteFavorito(email, id) {
     })
   }
 }
->>>>>>> 8d3dad8f656921bf2576737dbe0d054b329b5c5f
+
+export function sendEmailNewUser(email) {
+  console.log('SEND-USERS')
+  return async dispatch => {
+    await axios.patch(`http://localhost:3001/email/bienvenida/${email}`)
+    return dispatch({
+      type: 'NEW_USER',
+    })
+  }
+}
+
+export function sendEmailNewPost(email) {
+  return async dispatch => {
+    await axios.patch(`http://localhost:3001/email/nuevo_post/${email}`)
+    return dispatch({
+      type: 'NEW_POST',
+    })
+  }
+}
