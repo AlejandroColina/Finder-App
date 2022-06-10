@@ -105,7 +105,9 @@ export default function Detail({ Profesions }) {
     });
   };
 
-  console.log(MyDetail)
+  const { longitud } = MyDetail
+  
+  
 
   const [comento, setComento] = useState(false);
   const [open, setOpen] = useState(false);
@@ -183,7 +185,10 @@ export default function Detail({ Profesions }) {
         </div>
              
         <div className={s.containerInfo}>
-           <Mapa />
+          {
+            (!longitud) ?  null : <Mapa MyDetail={MyDetail} />
+          }
+           
           <div className={s.titulos}>SERVICIO</div>
           <hr />
           <div className={s.subtitulos}>{MyDetail.Profesions}</div>

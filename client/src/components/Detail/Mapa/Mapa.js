@@ -2,15 +2,18 @@ import React, { useEffect, useRef, useState } from 'react'
 import mapboxgl from 'mapbox-gl';
 import './index.css';
 
+
  
 mapboxgl.accessToken = 'pk.eyJ1IjoiZ2FicmllbC1jb250ZWdyYW5kIiwiYSI6ImNsM2s5ZDk3ODA2bHIzamxrcHkwenpoOGwifQ.1722tTpO4XZC5db0YfwDdA';
-export const Mapa = () => {
+export const Mapa = ({ MyDetail }) => {
   
+  const { longitud, latitud, nombres, ciudad  } = MyDetail
+
   const mapContainer = useRef(null)
   
-
-  const [lng, setLng] = useState(-75.697)
-  const [lat, setLat] = useState(4.8093)
+  
+  const [lng, setLng] = useState(longitud)
+  const [lat, setLat] = useState(latitud)
   
   const [zoom, setZoom] = useState(15)
   
@@ -22,23 +25,13 @@ export const Mapa = () => {
       type: 'Feature',
       geometry: {
         type: 'Point',
-        coordinates: [-75.697, 4.8093]
+        coordinates: [longitud, latitud]
       },
       properties: {
         title: 'Mapbox',
-        description: 'Washington, D.C.'
+        description: 'Direccion'
       }
-    },
-    {
-      type: 'Feature',
-      geometry: {
-        type: 'Point',
-        coordinates: [-122.414, 37.776]
-      },
-      properties: {
-        title: 'Mapbox',
-        description: 'San Francisco, California'
-      }
+    
      }
     ]
   };
@@ -69,13 +62,15 @@ export const Mapa = () => {
     return () => map.remove();
   }, []);
   
-
-    return (
+    // eslint-disable-next-line no-lone-blocks
+    
+    return(
     <div>
     <div className="sidebar">
-      Ciudad: Buenos Aires | Trabajador: Jose
+      Ciudad: {ciudad} | Trabajador: {nombres}
     </div>
     <div ref={mapContainer} className="map-container" />
     </div>
     );
+       
 }
