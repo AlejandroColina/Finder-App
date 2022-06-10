@@ -228,7 +228,8 @@ export default function UserCreate() {
 
             <button
               className={
-                !toSend.ProfesionId ||
+                formatoImg ||
+                  !toSend.ProfesionId ||
                   !toSend.ciudad ||
                   Object.keys(errors).length
                   ? styles.btn_fail
@@ -236,6 +237,7 @@ export default function UserCreate() {
               }
               type="submit"
               disabled={
+                formatoImg ||
                 !toSend.ProfesionId ||
                 !toSend.ciudad ||
                 Object.values(errors).length
