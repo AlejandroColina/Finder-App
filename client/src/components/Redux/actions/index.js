@@ -385,12 +385,13 @@ export function getBaneo(email) {
   return async dispatch => {
     let res = await axios.get(`http://localhost:3001/suspender/validar/${email}`)
     return dispatch({
-      type: 'BANEAR',
+      type: 'GET_BANEO',
       payload: res.data
     })
   }
 }
 
+<<<<<<< HEAD
 export function sendNoti(email,input){
   return async dispatch =>{
     await axios.put (`http://localhost:3001/notificaciones/add/${email}`,input)
@@ -399,3 +400,15 @@ export function sendNoti(email,input){
     })
   }
 }
+=======
+
+export function deleteFavorito(email, id) {
+  console.log(email, id)
+  return async dispatch => {
+    let dele = await axios.delete(`http://localhost:3001/favoritos/delete/${email}/${id}`)
+    return dispatch({
+      type: 'DELETE_FAVORITO',
+    })
+  }
+}
+>>>>>>> 8d3dad8f656921bf2576737dbe0d054b329b5c5f

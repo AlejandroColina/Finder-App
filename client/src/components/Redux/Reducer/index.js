@@ -198,6 +198,10 @@ export default function rootReducer(state = InitialState, action) {
       return{
         ...state
       }
+      case' DELETE_FAVORITO':
+      return{
+        ...state,
+      }
 
     default:
       return state;

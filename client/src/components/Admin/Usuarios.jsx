@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import s from './styles.module.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { deleteUser, getUsers } from "../Redux/actions";
+import { deleteUser, getUsers, baneoUser } from "../Redux/actions";
 
 export default function Usuarios() {
     const dispatch = useDispatch();
@@ -16,6 +16,10 @@ export default function Usuarios() {
             dispatch(getUsers())
         }, 200)
     };
+   const estado = true;
+    const hadleBaneo = (id) => {
+        dispatch(baneoUser(id, estado))
+    }
 
     return (
         <div className={s.containerDash} >
@@ -49,6 +53,7 @@ export default function Usuarios() {
                                     <td className={s.celdas}>{user.direccion}</td>
                                     <td className={s.celdas}>{user.ciudad}</td>
                                     <button onClick={() => handleDelete(user.id)} >🗑</button>
+                                    <button onClick={() => hadleBaneo(user.id)}>banear</button>
                                 </tr>)
                         })}
                     </tbody>
