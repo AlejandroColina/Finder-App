@@ -220,7 +220,7 @@ export default function Detail({ Profesions }) {
                     <div className={s.containerComments}>
                       <div className={s.pregunta}>{p.pregunta}</div>
                       <>
-                        {p.respuesta && (isAuthenticated && user.email === MyDetail.email) ? (
+                        {p.respuesta ? (
                           <>
                             <div className={s.respuesta}>
                               <div className={s.figura}></div>
