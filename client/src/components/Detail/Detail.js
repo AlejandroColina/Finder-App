@@ -216,12 +216,11 @@ export default function Detail({ Profesions }) {
           <div className={s.commentsBox}>
             {preguntas
               ? preguntas.map((p) => (
-
                 <div key={p.id}>
                   <div className={s.containerComments}>
                     <div className={s.pregunta}>{p.pregunta}</div>
                     <>
-                      {p.respuesta ? (
+                      {p.respuesta && (isAuthenticated && user.email === MyDetail.email) ? (
                         <>
                           <div className={s.respuesta}>
                             <div className={s.figura}></div>
@@ -234,6 +233,7 @@ export default function Detail({ Profesions }) {
                           onSubmit={(e) => {
                             e.preventDefault();
                             dispatch(responderPregunta(p.id, input));
+                            dispatch(sendNoti(email, input));
                             Swal.fire({
                               text: "Tu respuesta fue enviada!",
                               icon: "succes",
@@ -258,7 +258,6 @@ export default function Detail({ Profesions }) {
                         </form>
                       )}
                     </>
-
                   </div>
                 </div>
               ))
