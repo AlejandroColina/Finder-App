@@ -98,7 +98,6 @@ DB_CONN.sync({ force: true })
                         PersonaId: index + 1,
                         DireccionId: DireccionId,
                         ProfesionId: person.profesion,
-                        multimedia: []
                     });
                 });
             }

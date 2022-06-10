@@ -5,12 +5,13 @@ import { useAuth0 } from '@auth0/auth0-react';
 import logoutImg from '../../../assets/logout_white.png';
 import logo from '../../../assets/logo_finder_white.png'
 import notification from '../../../assets/notification_white.png';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { getPefil } from '../../Redux/actions';
 
 
 export const SearchBar = ( {setDescripcion, descripcion }) => {
-
+    const dispatch = useDispatch();
     //autenticacion
     
     const { isAuthenticated, user } = useAuth0();
@@ -20,6 +21,9 @@ export const SearchBar = ( {setDescripcion, descripcion }) => {
       var onlyFirst = user.name.split(' ');
     }
   
+  useEffect(()=>{
+    if(isAuthenticated){dispatch(getPefil(user.email))};
+  }, [dispatch])
   const searchRef = useRef(null);
 
   const handleSubmit = (e) => {
@@ -27,6 +31,8 @@ export const SearchBar = ( {setDescripcion, descripcion }) => {
       setDescripcion(searchRef.current.value)
       searchRef.current.value=''
   }
+
+  const perfil = useSelector((state)=> state.perfil);
   
     return (
      <header className={styles.header}>
@@ -47,7 +53,7 @@ export const SearchBar = ( {setDescripcion, descripcion }) => {
 
                     <div className={styles.iconBox}>
                         <img src={notification} alt='notifications' height='30px'/>
-                        <div className={styles.notification}>13</div>
+                        {perfil.notificaciones? <div className={styles.notification}>{perfil.notificaciones.length}</div> : null}
                     </div>
 
               <div className={styles.userNav}>

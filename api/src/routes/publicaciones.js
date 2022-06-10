@@ -7,7 +7,7 @@ router.use(express.json());
 router.get("/", async (req, res, next) => {
   try {
 
-    let { profesion, nombres, promedio, genero, edad, ciudad, descripcion } =
+    let { profesion, nombres, promedio, genero, edad, ciudad, descripcion,precio,titulo } =
       req.query;
 
     let tablaPublicacion = await Publicacion.findAll(
@@ -33,6 +33,7 @@ router.get("/", async (req, res, next) => {
         promedio: user?.promedio,
         imagen: user?.imagen,
         titulo: post?.titulo,
+        precio: post?.precio,
         descripcion: post?.descripcion,
         Profesions: post?.Profesion.dataValues.nombre,
         logoProfesion: post?.Profesion.dataValues.logo,

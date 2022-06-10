@@ -1,28 +1,32 @@
 import React,{useState} from 'react';
 import s from './Preguntar.module.css';
-import { postPregunta } from '../../Redux/actions';
+import { postPregunta, sendNoti } from '../../Redux/actions';
 import Swal from "sweetalert2";
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
-export default function Preguntar({nombre,publicacion}){
+export default function Preguntar({user,profesional,publicacion}){
     const dispatch = useDispatch();
     const history = useHistory();
     const [input, setInput]= useState({
-        persona:nombre,
+        user:user,
         pregunta:'',
-        PublicacionId:parseInt(publicacion)
+        PublicacionId:parseInt(publicacion),
+        profesional: profesional
     })
-
+    var email = profesional
     const handleChange = (e)=>{
         setInput({
             ...input,
             [e.target.name]: e.target.value
         })
     }
+    console.log(profesional)
     const handleSubmit = (input,e)=>{
         e.preventDefault();
         dispatch(postPregunta(input));
+        console.log(input);
+        dispatch(sendNoti(email,input));
         Swal.fire({ text:'Tu pregunta fue enviada con exito', icon:'success' } )
         setTimeout(history.push(`./${publicacion}`), 1000)
     }

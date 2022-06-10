@@ -31,7 +31,7 @@ router.get("/", async (req, res, next) => {
         genero: person.genero,
         publicaciones: person.Publicacions,
         favoritos: person.favoritos,
-        baneado: person.baneado
+        baneado: person.baneado,
       };
     });
 
@@ -134,7 +134,8 @@ router.post('/nuevo', async (req, res, next) => {
         email,
         imagen,
         favoritos: [],
-        trabajosPagos: []
+        trabajosPagos: [],
+        notificaciones:[]
       });
       return res.json(persona)
     } else {
