@@ -378,3 +378,12 @@ export function getBaneo(email) {
 }
 
 
+export function deleteFavorito(email, id){
+  console.log(email, id)
+  return async dispatch => {
+    let dele = await axios.delete(`http://localhost:3001/favoritos/delete/${email}/${id}`)
+    return dispatch({
+       type: 'DELETE_FAVORITO',
+    })
+  }
+}
