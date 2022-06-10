@@ -394,11 +394,29 @@ export function getBaneo(email) {
 
 
 export function deleteFavorito(email, id) {
-  console.log(email, id)
   return async dispatch => {
     let dele = await axios.delete(`http://localhost:3001/favoritos/delete/${email}/${id}`)
     return dispatch({
       type: 'DELETE_FAVORITO',
+    })
+  }
+}
+
+export function sendEmailNewUser(email) {
+  console.log('SEND-USERS')
+  return async dispatch => {
+    await axios.patch(`http://localhost:3001/email/bienvenida/${email}`)
+    return dispatch({
+      type: 'NEW_USER',
+    })
+  }
+}
+
+export function sendEmailNewPost(email) {
+  return async dispatch => {
+    await axios.patch(`http://localhost:3001/email/nuevo_post/${email}`)
+    return dispatch({
+      type: 'NEW_POST',
     })
   }
 }
