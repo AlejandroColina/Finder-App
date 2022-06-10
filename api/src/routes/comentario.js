@@ -25,14 +25,14 @@ router.post('/', async(req,res)=>{
     try{
         const {puntaje, comentario, persona,PublicacionId} =req.body;
         
-        if(!puntaje || !comentario || !persona){
+        if(!puntaje || !comentario || !profesional){
             return res.send({message:"No se pudo comentar la publicacion, intente mas tarde"})
         }else{
             await Comentario.create({
                 PublicacionId,
                 puntaje: parseInt(puntaje),
                 comentario,
-                persona
+                profesional
             })
         }
         return res.status(200).json({message:"Gracias por tu comentario !"})

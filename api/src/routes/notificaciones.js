@@ -6,7 +6,7 @@ router.use(cors());
 router.use(express.json());
 
 router.put('/add/:email', async (req, res) => {
-    const { email } = req.params
+    const { email } = req.params;
 
     let persona = await Persona.findOne({ where: { email: email } })
     if (persona === null) return res.status(404).send('No existe el usuario.');

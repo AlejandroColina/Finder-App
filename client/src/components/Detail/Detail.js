@@ -9,6 +9,7 @@ import {
   getPreguntas,
   responderPregunta,
   getCarta,
+  sendNoti,
 } from "../Redux/actions/index";
 import NavBar from "../NavBar/NavBar";
 import s from "./Detail.module.css";
@@ -37,6 +38,7 @@ export default function Detail({ Profesions }) {
   const { logout } = useAuth0();
   if (isAuthenticated) {
     var onlyFirst = user.name.split(" ");
+    var email = user.email
   }
 
   const history = useHistory();
@@ -134,7 +136,7 @@ export default function Detail({ Profesions }) {
           <br />
 
           {/* Botones  */}
-          <div className="cardBox">
+          <div className={s.containerPrice}>
             <span className={s.valor}>Tarifa:</span>
             <span className={s.precio}>${MyDetail.precio}</span>
           </div>
@@ -164,12 +166,12 @@ export default function Detail({ Profesions }) {
             // Contratar
 
             <div
-              className={`${s.borderPrice} ${s.contratar}`}
+              className={s.borderPrice}
               onClick={() => {
                 setOpen(true);
               }}
             >
-              <span className={s.precio}>Contratar</span>
+              <span className={s.contratar}>Contratar</span>
             </div>
           )}
           <br />
@@ -191,18 +193,20 @@ export default function Detail({ Profesions }) {
           <br />
           <br />
           <br />
-
+           
           <div className={s.titulos}>Tenes dudas?</div>
           <hr />
-          <Preguntar nombre={user ? user.name : null} publicacion={id} />
+           {isAuthenticated?
+          <Preguntar user={user.email} publicacion={id} profesional={MyDetail.email} /> : 
+          <div className={s.width} ><button className={s.btndebe} onClick={() => { loginWithRedirect() }}>INGRESA o REGISTRATE para poder consultar</button></div>}
           <div className={s.commentsBox}>
-            {preguntas
+            {preguntas 
               ? preguntas.map((p) => (
                   <div key={p.id}>
                     <div className={s.containerComments}>
                       <div className={s.pregunta}>{p.pregunta}</div>
                       <>
-                        {p.respuesta ? (
+                        {p.respuesta && (isAuthenticated && user.email === MyDetail.email) ? (
                           <>
                             <div className={s.respuesta}>
                               <div className={s.figura}></div>
@@ -215,6 +219,7 @@ export default function Detail({ Profesions }) {
                             onSubmit={(e) => {
                               e.preventDefault();
                               dispatch(responderPregunta(p.id, input));
+                              dispatch(sendNoti(email,input));
                               Swal.fire({
                                 text: "Tu respuesta fue enviada!",
                                 icon: "succes",
@@ -246,8 +251,6 @@ export default function Detail({ Profesions }) {
           </div>
           <br />
           <br />
-          <br />
-          <br />
           <div className={s.titulos}>
             RESEÑAS
             <Box sx={{ "& > legend": { mt: 2 } }}>
@@ -261,9 +264,9 @@ export default function Detail({ Profesions }) {
           <hr />
           {order && !comento ? (
             <Comentar
-              // nombre={user.name}
               publicacion={id}
               setComento={setComento}
+              profesional={MyDetail.email}
             />
           ) : null}
           <div className={s.commentsBox}>

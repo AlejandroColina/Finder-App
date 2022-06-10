@@ -392,4 +392,11 @@ export function getBaneo(email) {
   }
 }
 
-
+export function sendNoti(email,input){
+  return async dispatch =>{
+    await axios.put (`http://localhost:3001/notificaciones/add/${email}`,input)
+    return dispatch({
+      type: 'SEND_NOTI'
+    })
+  }
+}
