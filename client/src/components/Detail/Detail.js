@@ -30,6 +30,8 @@ import Footer from "../Footer/Footer";
 import Help from "../Help/Help";
 import Comentar from "./Comentar/Comentar";
 import Preguntar from "./Preguntar/Preguntar";
+import { Mapa } from "./Mapa/Mapa";
+import 'mapbox-gl/dist/mapbox-gl.css';
 
 export default function Detail({ Profesions }) {
   const { isAuthenticated, user } = useAuth0();
@@ -60,18 +62,18 @@ export default function Detail({ Profesions }) {
 
   useEffect(() => {
     dispatch(getDetail(id));
-    dispatch(getPublicacionDeUsuario(MyDetail.email));
+    
     dispatch(getOpiniones(id));
     dispatch(getPreguntas(id));
     dispatch(getCarta(id));
-
+    
     let { promedio } = MyDetail;
 
     return function () {
       dispatch(getDeleteDetail());
     };
   }, [id, dispatch]);
-
+  
   let { promedio } = MyDetail;
 
   let precio = 15;
@@ -102,6 +104,11 @@ export default function Detail({ Profesions }) {
       [e.target.name]: e.target.value,
     });
   };
+
+  const { longitud } = MyDetail
+  
+  
+
   const [comento, setComento] = useState(false);
   const [open, setOpen] = useState(false);
 
@@ -120,7 +127,7 @@ export default function Detail({ Profesions }) {
 
       <div className={s.container}>
         {/* tarjeta de contacto */}
-
+        
         <div className={s.card}>
           <div className={s.nombres}>
             <span className={s.espacio}>Hola Soy</span>
@@ -173,9 +180,15 @@ export default function Detail({ Profesions }) {
             </div>
           )}
           <br />
-        </div>
 
+          
+        </div>
+             
         <div className={s.containerInfo}>
+          {
+            (!longitud) ?  null : <Mapa MyDetail={MyDetail} />
+          }
+           
           <div className={s.titulos}>SERVICIO</div>
           <hr />
           <div className={s.subtitulos}>{MyDetail.Profesions}</div>
