@@ -11,7 +11,13 @@ module.exports = (sequelize) => {
         },
         pais: {
             type: DataTypes.STRING,
-        }
+        },
+        longitud: {
+            type: DataTypes.FLOAT,
+        },
+        latitud: {
+            type: DataTypes.FLOAT,
+        },
     });
 
 }

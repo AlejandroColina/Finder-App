@@ -20,6 +20,7 @@ export default function UserCreate() {
   const [image, setImage] = useState([]);
   const [selected, setSelected] = useState('');
   const [city, setCity] = useState(0);
+  const [formatoImg, setFormatoImg] = useState(false)
   const empleos = useSelector((state) => state.empleosForm);
   const ciudades = useSelector(state => state.ciudades);
   const [input, setInput] = useState({
@@ -62,18 +63,21 @@ export default function UserCreate() {
     setCity(0)
     setError({})
 
-    axios.post("http://localhost:3001/users/crear", { toSend })
-      .then(() => {
-        Swal.fire("Perfecto!",
-          'Ya puedes ver tu postulación en nuestra app. Para más acciones búscala en tu perfil',
-          'success');
-      })
-      .catch((error) => {
-        Swal.fire("No se pudo crear la publicación",
-          'Hubo un problema al publicar tu solicitud. Por favor contacta a administración',
-          'error');
-        console.log(error);
-      });
+    if (!Object.values(errors).length) {
+      axios.post("http://localhost:3001/users/crear", { toSend })
+        .then(() => {
+          Swal.fire("Perfecto!",
+            'Ya puedes ver tu publicación en nuestra app. Para más acciones búscala en tu perfil',
+            'success');
+        })
+        .catch((error) => {
+          Swal.fire("No se pudo crear la publicación",
+            'Hubo un problema al publicar tu solicitud. Por favor contacta a administración',
+            'error');
+          console.log(error);
+        });
+    }
+
   };
 
   const uploadImage = async (e) => {
@@ -81,19 +85,25 @@ export default function UserCreate() {
     const data = new FormData();
     data.append("file", files[0]);
     data.append("upload_preset", "preset");
+    let formatos = ['jpeg', 'jpg', 'png', 'gif'];
 
-    const res = await fetch(
-      "https://api.cloudinary.com/v1_1/userfiles/image/upload",
-      {
-        method: "POST",
-        body: data,
-      }
-    );
-    const file = await res.json();
-    setImage(() => {
-      if (file.secure_url.length) return [...image, file.secure_url]
-      return image
-    });
+    if (formatos.includes(files[0].type.split('/')[1])) {
+      setFormatoImg(false)
+      const res = await fetch(
+        "https://api.cloudinary.com/v1_1/userfiles/image/upload",
+        {
+          method: "POST",
+          body: data,
+        }
+      );
+      const file = await res.json();
+      setImage(() => {
+        if (file.secure_url.length) return [...image, file.secure_url]
+        return image
+      });
+    } else {
+      setFormatoImg(true)
+    }
   };
 
   const delImgSelection = (urlImg) => {
@@ -109,7 +119,7 @@ export default function UserCreate() {
     email: user?.email,
     ciudad: city,
   }
-  console.log('ERRORS: ', toSend.ProfesionId)
+
   return (
     <section className={styles.container}>
       <div className={styles.div_form} >
@@ -147,7 +157,7 @@ export default function UserCreate() {
 
             <label htmlFor="descripcion"></label>
             <textarea
-              className={errors.descripcion ? styles.textarea_fail : styles.textarea}
+              className={errors?.descripcion?.length ? styles.textarea_fail : styles.textarea}
               id="descripcion"
               placeholder="Descripcion..."
               name="descripcion"
@@ -214,18 +224,23 @@ export default function UserCreate() {
                 placeholder="Cargar Imagen"
               />
             </div>
+            <p>{formatoImg ? 'Formato inválido' : ''}</p>
 
             <button
               className={
-                toSend.ProfesionId || toSend.ciudad || Object.keys(errors).length
+                formatoImg ||
+                  !toSend.ProfesionId ||
+                  !toSend.ciudad ||
+                  Object.keys(errors).length
                   ? styles.btn_fail
                   : styles.btn
               }
               type="submit"
               disabled={
+                formatoImg ||
                 !toSend.ProfesionId ||
                 !toSend.ciudad ||
-                Object.keys(errors).length
+                Object.values(errors).length
               }
             >
               Crear publicación
@@ -237,7 +252,7 @@ export default function UserCreate() {
         {
           image && image.map((url, id) => {
             return (
-              <div className={styles.divImg}>
+              <div key={`as${id}`} className={styles.divImg}>
                 <button onClick={() => delImgSelection(url)} className={styles.Ximg}>X</button>
                 <img className={styles.fotoForm} src={url} alt={`foto ${id}`} />
               </div>

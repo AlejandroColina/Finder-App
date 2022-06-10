@@ -14,8 +14,10 @@ let personas = [
         genero: "hombre",
         pais: "Argentina",
         ciudad: "Buenos Aires",
-        precio:2500,
-        favoritos:[
+        latitud: -34.6037389,
+        longitud: -58.3815704,
+        precio: 2500,
+        favoritos: [
             11,
             32,
             43
@@ -42,8 +44,10 @@ let personas = [
         genero: "hombre",
         pais: "Argentina",
         ciudad: "Buenos Aires",
-        precio:1750,
-        favoritos:[
+        latitud: -34.6037389,
+        longitud: -58.3815704,
+        precio: 1750,
+        favoritos: [
             5,
             29,
             38
@@ -70,8 +74,10 @@ let personas = [
         genero: "hombre",
         pais: "Argentina",
         ciudad: "Corrientes",
-        precio:2900,
-        favoritos:[
+        latitud: -27.46784,
+        longitud: -58.8344,
+        precio: 2900,
+        favoritos: [
             13,
             23,
             35
@@ -98,8 +104,10 @@ let personas = [
         genero: "mujer",
         pais: "Argentina",
         ciudad: "Corrientes",
-        precio:2000,
-        favoritos:[],
+        latitud: -27.46784,
+        longitud: -58.8344,
+        precio: 2000,
+        favoritos: [],
         puntuacion: [
             2,
             2,
@@ -122,8 +130,10 @@ let personas = [
         genero: "mujer",
         pais: "Argentina",
         ciudad: "Corrientes",
-        precio:3400,
-        favoritos:[
+        latitud: -27.46784,
+        longitud: -58.8344,
+        precio: 3400,
+        favoritos: [
             3,
             7,
             44
@@ -150,8 +160,10 @@ let personas = [
         genero: "hombre",
         pais: "Argentina",
         ciudad: "Corrientes",
-        precio:3300,
-        favoritos:[
+        latitud: -27.46784,
+        longitud: -58.8344,
+        precio: 3300,
+        favoritos: [
             4,
             11,
             21
@@ -178,8 +190,10 @@ let personas = [
         genero: "mujer",
         pais: "Argentina",
         ciudad: "Rosario",
-        precio:1900,
-        favoritos:[],
+        latitud: -32.94682,
+        longitud: -60.63932,
+        precio: 1900,
+        favoritos: [],
         puntuacion: [
             4,
             5,
@@ -202,8 +216,10 @@ let personas = [
         genero: "hombre",
         pais: "Argentina",
         ciudad: "Rosario",
-        precio:1000,
-        favoritos:[
+        latitud: -32.94682,
+        longitud: -60.63932,
+        precio: 1000,
+        favoritos: [
             1,
             2,
             3
@@ -230,8 +246,10 @@ let personas = [
         genero: "hombre",
         pais: "Argentina",
         ciudad: "Mar del Plata",
-        precio:1750,
-        favoritos:[
+        latitud: -38.00042,
+        longitud: -57.5562,
+        precio: 1750,
+        favoritos: [
             50,
             1,
             3
@@ -258,8 +276,10 @@ let personas = [
         genero: "hombre",
         pais: "Argentina",
         ciudad: "Mar del Plata",
-        precio:2100,
-        favoritos:[
+        latitud: -38.00042,
+        longitud: -57.5562,
+        precio: 2100,
+        favoritos: [
             45,
             47,
             43
@@ -286,8 +306,10 @@ let personas = [
         genero: "hombre",
         pais: "Argentina",
         ciudad: "Mar del Plata",
-        precio:2500,
-        favoritos:[
+        latitud: -38.00042,
+        longitud: -57.5562,
+        precio: 2500,
+        favoritos: [
             15,
             27,
             33
@@ -314,8 +336,10 @@ let personas = [
         genero: "mujer",
         pais: "Argentina",
         ciudad: "Mar del Plata",
-        precio:1900,
-        favoritos:[
+        latitud: -38.00042,
+        longitud: -57.5562,
+        precio: 1900,
+        favoritos: [
             17,
             27,
             39
@@ -342,8 +366,10 @@ let personas = [
         genero: "hombre",
         pais: "Argentina",
         ciudad: "Mar del Plata",
-        precio:3100,
-        favoritos:[
+        latitud: -38.00042,
+        longitud: -57.5562,
+        precio: 3100,
+        favoritos: [
             15,
             21,
             33
@@ -370,8 +396,10 @@ let personas = [
         genero: "hombre",
         pais: "Argentina",
         ciudad: "Mar del Plata",
-        precio:3350,
-        favoritos:[],
+        latitud: -38.00042,
+        longitud: -57.5562,
+        precio: 3350,
+        favoritos: [],
         puntuacion: [
             4,
             3,
@@ -394,8 +422,10 @@ let personas = [
         genero: "mujer",
         pais: "Argentina",
         ciudad: "Godoy Cruz",
-        precio:2200,
-        favoritos:[
+        latitud: -32.91667,
+        longitud: -68.83333,
+        precio: 2200,
+        favoritos: [
             34,
             22,
             31
@@ -422,8 +452,10 @@ let personas = [
         genero: "mujer",
         pais: "Argentina",
         ciudad: "Godoy Cruz",
-        precio:3400,
-        favoritos:[
+        latitud: -32.91667,
+        longitud: -68.83333,
+        precio: 3400,
+        favoritos: [
             16,
             23,
             32
@@ -450,8 +482,10 @@ let personas = [
         genero: "mujer",
         pais: "Argentina",
         ciudad: "Godoy Cruz",
-        precio:3000,
-        favoritos:[
+        latitud: -32.91667,
+        longitud: -68.83333,
+        precio: 3000,
+        favoritos: [
             12,
             2,
             33
@@ -478,8 +512,10 @@ let personas = [
         genero: "mujer",
         pais: "Argentina",
         ciudad: "Godoy Cruz",
-        precio:1000,
-        favoritos:[],
+        latitud: -32.91667,
+        longitud: -68.83333,
+        precio: 1000,
+        favoritos: [],
         puntuacion: [
             2,
             1,
@@ -502,8 +538,10 @@ let personas = [
         genero: "hombre",
         pais: "Argentina",
         ciudad: "Banfield",
-        precio:4000,
-        favoritos:[
+        latitud: -34.7437455,
+        longitud: -58.3960811,
+        precio: 4000,
+        favoritos: [
             37,
             28,
             23
@@ -530,8 +568,10 @@ let personas = [
         genero: "mujer",
         pais: "Argentina",
         ciudad: "Banfield",
-        precio:2100,
-        favoritos:[
+        latitud: -34.7437455,
+        longitud: -58.3960811,
+        precio: 2100,
+        favoritos: [
             35,
             23,
             31
@@ -558,8 +598,10 @@ let personas = [
         genero: "mujer",
         pais: "Argentina",
         ciudad: "Banfield",
-        precio:1400,
-        favoritos:[
+        latitud: -34.7437455,
+        longitud: -58.3960811,
+        precio: 1400,
+        favoritos: [
             10,
             20,
             30
@@ -586,8 +628,10 @@ let personas = [
         genero: "hombre",
         pais: "Argentina",
         ciudad: "Banfield",
-        precio:2000,
-        favoritos:[
+        latitud: -34.7437455,
+        longitud: -58.3960811,
+        precio: 2000,
+        favoritos: [
             40,
             22,
             3
@@ -614,8 +658,10 @@ let personas = [
         genero: "mujer",
         pais: "Argentina",
         ciudad: "Banfield",
-        precio:2050,
-        favoritos:[
+        latitud: -34.7437455,
+        longitud: -58.3960811,
+        precio: 2050,
+        favoritos: [
             4,
             23,
             37
@@ -642,8 +688,10 @@ let personas = [
         genero: "hombre",
         pais: "Argentina",
         ciudad: "La Plata",
-        precio:1750,
-        favoritos:[
+        latitud: -34.92145,
+        longitud: -57.95453,
+        precio: 1750,
+        favoritos: [
             1,
             50,
             46
@@ -670,8 +718,10 @@ let personas = [
         genero: "hombre",
         pais: "Argentina",
         ciudad: "La Plata",
-        precio:3900,
-        favoritos:[
+        latitud: -34.92145,
+        longitud: -57.95453,
+        precio: 3900,
+        favoritos: [
             45,
             26,
             38
@@ -698,8 +748,10 @@ let personas = [
         genero: "mujer",
         pais: "Argentina",
         ciudad: "La Plata",
-        precio:2900,
-        favoritos:[
+        latitud: -34.92145,
+        longitud: -57.95453,
+        precio: 2900,
+        favoritos: [
             12,
             7,
             41
@@ -726,8 +778,10 @@ let personas = [
         genero: "mujer",
         pais: "Argentina",
         ciudad: "La Plata",
-        precio:3100,
-        favoritos:[
+        latitud: -34.92145,
+        longitud: -57.95453,
+        precio: 3100,
+        favoritos: [
             14,
             29,
             33
@@ -754,8 +808,10 @@ let personas = [
         genero: "mujer",
         pais: "Argentina",
         ciudad: "Resistencia",
-        precio:3300,
-        favoritos:[
+        latitud: -27.46056,
+        longitud: -58.98389,
+        precio: 3300,
+        favoritos: [
             4,
             7,
             2
@@ -782,9 +838,11 @@ let personas = [
         genero: "hombre",
         pais: "Argentina",
         ciudad: "Resistencia",
-        precio:2500,
-        favoritos:[
-           31,
+        latitud: -27.46056,
+        longitud: -58.98389,
+        precio: 2500,
+        favoritos: [
+            31,
             42,
             13
         ],
@@ -810,8 +868,10 @@ let personas = [
         genero: "hombre",
         pais: "Argentina",
         ciudad: "Resistencia",
-        precio:2100,
-        favoritos:[
+        latitud: -27.46056,
+        longitud: -58.98389,
+        precio: 2100,
+        favoritos: [
             11,
             22,
             34
@@ -838,8 +898,10 @@ let personas = [
         genero: "hombre",
         pais: "Argentina",
         ciudad: "Lanus",
-        precio:2890,
-        favoritos:[
+        latitud: -34.71528,
+        longitud: -58.40778,
+        precio: 2890,
+        favoritos: [
             1,
             5,
             33
@@ -866,8 +928,10 @@ let personas = [
         genero: "mujer",
         pais: "Argentina",
         ciudad: "Lanus",
-        precio:1700,
-        favoritos:[
+        latitud: -34.71528,
+        longitud: -58.40778,
+        precio: 1700,
+        favoritos: [
             43,
             25,
             19
@@ -894,8 +958,10 @@ let personas = [
         genero: "hombre",
         pais: "Argentina",
         ciudad: "Lanus",
-        precio:2100,
-        favoritos:[
+        latitud: -34.71528,
+        longitud: -58.40778,
+        precio: 2100,
+        favoritos: [
             26,
             18,
             43
@@ -922,8 +988,10 @@ let personas = [
         genero: "mujer",
         pais: "Argentina",
         ciudad: "Salta",
-        precio:3700,
-        favoritos:[
+        latitud: -24.7859,
+        longitud: -65.41166,
+        precio: 3700,
+        favoritos: [
             50,
             46,
             37
@@ -950,8 +1018,10 @@ let personas = [
         genero: "hombre",
         pais: "Argentina",
         ciudad: "Salta",
-        precio:3300,
-        favoritos:[
+        latitud: -24.7859,
+        longitud: -65.41166,
+        precio: 3300,
+        favoritos: [
             18,
             35,
             47
@@ -978,8 +1048,10 @@ let personas = [
         genero: "hombre",
         pais: "Argentina",
         ciudad: "Salta",
-        precio:5100,
-        favoritos:[
+        latitud: -24.7859,
+        longitud: -65.41166,
+        precio: 5100,
+        favoritos: [
             30,
             20,
             10
@@ -1006,8 +1078,10 @@ let personas = [
         genero: "mujer",
         pais: "Argentina",
         ciudad: "Quilmes",
-        precio:4700,
-        favoritos:[
+        latitud: -34.72904,
+        longitud: -58.26374,
+        precio: 4700,
+        favoritos: [
             35,
             26,
             17
@@ -1034,8 +1108,10 @@ let personas = [
         genero: "mujer",
         pais: "Argentina",
         ciudad: "Quilmes",
-        precio:2000,
-        favoritos:[
+        latitud: -34.72904,
+        longitud: -58.26374,
+        precio: 2000,
+        favoritos: [
             13,
             22,
             31
@@ -1062,8 +1138,10 @@ let personas = [
         genero: "mujer",
         pais: "Argentina",
         ciudad: "Quilmes",
-        precio:4200,
-        favoritos:[
+        latitud: -34.72904,
+        longitud: -58.26374,
+        precio: 4200,
+        favoritos: [
             34,
             23,
             9
@@ -1090,8 +1168,10 @@ let personas = [
         genero: "hombre",
         pais: "Argentina",
         ciudad: "Quilmes",
-        precio:2300,
-        favoritos:[
+        latitud: -34.72904,
+        longitud: -58.26374,
+        precio: 2300,
+        favoritos: [
             17,
             26,
             39
@@ -1118,8 +1198,10 @@ let personas = [
         genero: "hombre",
         pais: "Argentina",
         ciudad: "Godoy Cruz",
-        precio:5000,
-        favoritos:[
+        latitud: -32.91667,
+        longitud: -68.83333,
+        precio: 5000,
+        favoritos: [
             41,
             14,
             3
@@ -1146,8 +1228,10 @@ let personas = [
         genero: "hombre",
         pais: "Argentina",
         ciudad: "Lanus",
-        precio:7000,
-        favoritos:[
+        latitud: -34.71528,
+        longitud: -58.40778,
+        precio: 7000,
+        favoritos: [
             6,
             23,
             36
@@ -1174,8 +1258,10 @@ let personas = [
         genero: "hombre",
         pais: "Argentina",
         ciudad: "Santa Fe",
-        precio:4500,
-        favoritos:[
+        latitud: -31.64881,
+        longitud: -60.70868,
+        precio: 4500,
+        favoritos: [
             17,
             27,
             33
@@ -1202,8 +1288,10 @@ let personas = [
         genero: "hombre",
         pais: "Argentina",
         ciudad: "Salta",
-        precio:11000,
-        favoritos:[
+        latitud: -24.7859,
+        longitud: -65.41166,
+        precio: 11000,
+        favoritos: [
             47,
             48,
             49
@@ -1230,8 +1318,10 @@ let personas = [
         genero: "mujer",
         pais: "Argentina",
         ciudad: "Rosario",
-        precio:15000,
-        favoritos:[
+        latitud: -32.94682,
+        longitud: -60.63932,
+        precio: 15000,
+        favoritos: [
             13,
             12,
             11
@@ -1258,8 +1348,10 @@ let personas = [
         genero: "mujer",
         pais: "Argentina",
         ciudad: "Rosario",
-        precio:2000,
-        favoritos:[
+        latitud: -32.94682,
+        longitud: -60.63932,
+        precio: 2000,
+        favoritos: [
             7,
             8,
             9
@@ -1286,8 +1378,10 @@ let personas = [
         genero: "mujer",
         pais: "Argentina",
         ciudad: "Córdoba",
-        precio:9000,
-        favoritos:[
+        latitud: -31.4135,
+        longitud: -64.18105,
+        precio: 9000,
+        favoritos: [
             4,
             5,
             6
@@ -1314,8 +1408,10 @@ let personas = [
         genero: "mujer",
         pais: "Argentina",
         ciudad: "Córdoba",
-        precio:2000,
-        favoritos:[
+        latitud: -31.4135,
+        longitud: -64.18105,
+        precio: 2000,
+        favoritos: [
             16,
             19,
             50
@@ -1342,8 +1438,10 @@ let personas = [
         genero: "hombre",
         pais: "Argentina",
         ciudad: "Buenos Aires",
-        precio:1000,
-        favoritos:[
+        latitud: -34.6037389,
+        longitud: -58.3815704,
+        precio: 1000,
+        favoritos: [
             45,
             25,
             31
@@ -1370,8 +1468,10 @@ let personas = [
         genero: "hombre",
         pais: "Argentina",
         ciudad: "Buenos Aires",
-        precio:8000,
-        favoritos:[
+        latitud: -34.6037389,
+        longitud: -58.3815704,
+        precio: 8000,
+        favoritos: [
             11,
             22,
             33
