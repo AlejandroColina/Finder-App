@@ -9,6 +9,7 @@ import {
   getPreguntas,
   responderPregunta,
   getCarta,
+  sendNoti,
 } from "../Redux/actions/index";
 import NavBar from "../NavBar/NavBar";
 import s from "./Detail.module.css";
@@ -39,6 +40,7 @@ export default function Detail({ Profesions }) {
   const { logout } = useAuth0();
   if (isAuthenticated) {
     var onlyFirst = user.name.split(" ");
+    var email = user.email
   }
 
   const history = useHistory();
@@ -141,7 +143,7 @@ export default function Detail({ Profesions }) {
           <br />
 
           {/* Botones  */}
-          <div className="cardBox">
+          <div className={s.containerPrice}>
             <span className={s.valor}>Tarifa:</span>
             <span className={s.precio}>${MyDetail.precio}</span>
           </div>
@@ -171,12 +173,12 @@ export default function Detail({ Profesions }) {
             // Contratar
 
             <div
-              className={`${s.borderPrice} ${s.contratar}`}
+              className={s.borderPrice}
               onClick={() => {
                 setOpen(true);
               }}
             >
-              <span className={s.precio}>Contratar</span>
+              <span className={s.contratar}>Contratar</span>
             </div>
           )}
           <br />
@@ -194,6 +196,7 @@ export default function Detail({ Profesions }) {
           <div className={s.subtitulos}>{MyDetail.Profesions}</div>
 
           <div className={s.titulos}>{MyDetail.titulo}</div>
+
           {MyDetail.multimedia ? MyDetail.multimedia.map((m, i) => <img key={i} src={m} alt={m} className={s.multimedia} />) : <img src={MyDetail.logoProfesion} alt={MyDetail.Profesions} className={s.multimedia} />}
 
           <div className={s.contenido}>{MyDetail.descripcion}</div>
@@ -207,10 +210,13 @@ export default function Detail({ Profesions }) {
 
           <div className={s.titulos}>Tenes dudas?</div>
           <hr />
-          <Preguntar nombre={user ? user.name : null} publicacion={id} />
+          {isAuthenticated ?
+            <Preguntar user={user.email} publicacion={id} profesional={MyDetail.email} /> :
+            <div className={s.width} ><button className={s.btndebe} onClick={() => { loginWithRedirect() }}>INGRESA o REGISTRATE para poder consultar</button></div>}
           <div className={s.commentsBox}>
             {preguntas
               ? preguntas.map((p) => (
+
                 <div key={p.id}>
                   <div className={s.containerComments}>
                     <div className={s.pregunta}>{p.pregunta}</div>
@@ -252,13 +258,12 @@ export default function Detail({ Profesions }) {
                         </form>
                       )}
                     </>
+
                   </div>
                 </div>
               ))
               : null}
           </div>
-          <br />
-          <br />
           <br />
           <br />
           <div className={s.titulos}>
@@ -274,9 +279,9 @@ export default function Detail({ Profesions }) {
           <hr />
           {order && !comento ? (
             <Comentar
-              // nombre={user.name}
               publicacion={id}
               setComento={setComento}
+              profesional={MyDetail.email}
             />
           ) : null}
           <div className={s.commentsBox}>
@@ -313,7 +318,7 @@ export default function Detail({ Profesions }) {
                         height="140"
                         image={
                           el.Publicacions[0].multimedia
-                            ? el.Publicacions[0].multimedia 
+                            ? el.Publicacions[0].multimedia
                             : el.imagen
                         }
                         alt="emprendedor"

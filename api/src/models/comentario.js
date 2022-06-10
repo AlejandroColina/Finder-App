@@ -11,8 +11,8 @@ module.exports = (sequelize) => {
             type: DataTypes.TEXT,
             allowNull:false
         },
-        persona:{
-            type: DataTypes.STRING, //persona que hace el comentario
+        profesional:{
+            type: DataTypes.STRING,
             allowNull: false
         }
     });

@@ -20,7 +20,6 @@ export function rederCard(profesion, genero, promedio, ciudad, descripcion) {
 export function getCarta(id) {
   return async function (dispatch) {
     var json = await axios.get(`http://localhost:3001/users/coincidencias/${id}`)
-    console.log(id)
     return dispatch({ type: "CARDST", payload: json.data })
   }
 }
@@ -391,7 +390,15 @@ export function getBaneo(email) {
     })
   }
 }
-
+ 
+export function sendNoti(email,input){
+  return async dispatch =>{
+    await axios.put (`http://localhost:3001/notificaciones/add/${email}`,input)
+    return dispatch({
+      type: 'SEND_NOTI'
+    })
+  }
+}
 
 export function deleteFavorito(email, id) {
   return async dispatch => {

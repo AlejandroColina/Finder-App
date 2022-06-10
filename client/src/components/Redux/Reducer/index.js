@@ -193,9 +193,12 @@ export default function rootReducer(state = InitialState, action) {
         ...state,
         baneado: action.payload
       }
-
-    case ' DELETE_FAVORITO':
-      return {
+    case 'SEND_NOTI':
+      return{
+        ...state
+      }
+      case' DELETE_FAVORITO':
+      return{
         ...state,
       }
     case 'NEW_POST':

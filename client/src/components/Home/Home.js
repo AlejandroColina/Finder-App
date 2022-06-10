@@ -113,7 +113,8 @@ function Home({ descripcion, setDescripcion }) {
             </div>
             {currentUsuarios.length ?
               currentUsuarios.map((el) => (
-                <div className="box">
+                <div 
+                key={el.idPublicacion} className="box">
                   <Cards
                     key={el.idPublicacion}
                     promedio={el.promedio}
