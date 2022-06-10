@@ -25,7 +25,7 @@ export default function Admin(){
         ||user.email==='jheinemberstithjn@ufps.edu.co'
         ||user.email==='gabrielcontegrand10@gmail.com'
         || user.email==='alejandro.colina@ucp.edu.co' 
-        || user.email==='josecolmenares96@hotmail.com' 
+        || user.email==='joseandrescolmenares02@gmail.com' 
         ||user.email==='cami.zupanovich@gmail.com')?
 
         ( <div className={s.container}>
