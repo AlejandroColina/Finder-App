@@ -8,6 +8,7 @@
   align-items: center;
   background-color: #0575e6;
   height: 60px;
+  z-index: 99;
 }
 .logo {
   height: 40px;
