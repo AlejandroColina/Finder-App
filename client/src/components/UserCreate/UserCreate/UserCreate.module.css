@@ -180,6 +180,7 @@
 
 .inputs_fail {
   border: 1px solid red;
+  outline-color: red;
   width: 100%;
   height: 8%;
   border-radius: 4px;
@@ -201,6 +202,7 @@
 
 .textarea_fail {
   border: 1px solid red;
+  outline-color: red;
   width: 100%;
   height: 16%;
   border-radius: 4px;
