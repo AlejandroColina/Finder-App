@@ -132,3 +132,12 @@ margin-right: 40px;;
   color: #f8feff;
   background-color:rgb(30, 118, 252);
 }
+.editar{
+    margin-top:15px;
+    width: 100px;
+    padding: 5px;
+    color: #f8feff;
+    background-color:rgb(30, 118, 252);
+    border: none;
+
+}
