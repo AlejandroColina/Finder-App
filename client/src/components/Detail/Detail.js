@@ -187,10 +187,10 @@ export default function Detail({ Profesions }) {
           <div className={s.titulos}>SERVICIO</div>
           <hr />
           <div className={s.subtitulos}>{MyDetail.Profesions}</div>
-          <div className={s.ciudad}>
-            <img src={gps} alt="ubicacion" className={s.gps} />
-            {MyDetail.ciudad},{MyDetail.pais}
-          </div>
+
+          <div className={s.titulos}>{MyDetail.titulo}</div>
+          {MyDetail.multimedia? MyDetail.multimedia.map((m,i)=><img key={i} src={m} alt={m} className={s.multimedia}/>) : <img src={MyDetail.logoProfesion} alt={MyDetail.Profesions} className={s.multimedia}/>}
+
           <div className={s.contenido}>{MyDetail.descripcion}</div>
 
           {!order ? <p></p> : <ContactDetail MyDetail={MyDetail} />}

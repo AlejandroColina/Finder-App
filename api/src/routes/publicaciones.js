@@ -25,7 +25,6 @@ router.get("/", async (req, res, next) => {
 
       let persona = personas.filter(e => e.dataValues.id === idPersona);
       let user = persona[0]?.dataValues;
-      console.log('USER: ', user);
       obj.push({
         idPublicacion: post?.id,
         idPersona: user?.id,

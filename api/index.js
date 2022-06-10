@@ -32,7 +32,9 @@ DB_CONN.sync({ force: true })
                     await Direccion.create({
                         direccion: obj.direccion,
                         ciudad: obj.ciudad,
-                        pais: obj.pais
+                        pais: obj.pais,
+                        longitud: obj.longitud,
+                        latitud: obj.latitud,
                     });
                 })
 
@@ -51,7 +53,8 @@ DB_CONN.sync({ force: true })
                         trabajosPagos: [],
                         genero: person.genero,
                         puntuacion: person.puntuacion,
-                        baneado: false
+                        baneado: false,
+                        notificaciones: []
                     });
 
                     await Publicacion.create({
@@ -61,6 +64,7 @@ DB_CONN.sync({ force: true })
                         PersonaId: index + 1,
                         DireccionId: parseInt(Math.random(14, 1) * (14 - 1) + 1),
                         ProfesionId: person.profesion,
+                        multimedia: []
                     });
                 });
             }

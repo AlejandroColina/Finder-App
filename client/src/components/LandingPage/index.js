@@ -23,8 +23,8 @@ function LandingPage({ descripcion, setDescripcion }) {
   (async () => {
     if (isAuthenticated) {
       await axios.post('http://localhost:3001/users/nuevo', {
-        nombres: user.given_name,
-        apellidos: user.family_name,
+        nombres: user.name,
+        apellidos: user.lastName,
         imagen: user.picture,
         email: user.email
       })
