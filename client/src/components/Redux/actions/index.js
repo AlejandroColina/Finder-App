@@ -385,6 +385,7 @@ export function baneoUser(id, estado) {
 export function getBaneo(email) {
   return async dispatch => {
     let res = await axios.get(`http://localhost:3001/suspender/validar/${email}`)
+    console.log(res.data)
     return dispatch({
       type: 'BANEAR',
       payload: res.data
@@ -393,3 +394,12 @@ export function getBaneo(email) {
 }
 
 
+export function deleteFavorito(email, id){
+  console.log(email, id)
+  return async dispatch => {
+    let dele = await axios.delete(`http://localhost:3001/favoritos/delete/${email}/${id}`)
+    return dispatch({
+       type: 'DELETE_FAVORITO',
+    })
+  }
+}

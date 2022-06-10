@@ -12,9 +12,8 @@ const Form = () => {
   // const Perfil = useSelector((state) => state.perfil);
   const dispatch = useDispatch();
   const [input, setInput] = useState({
-    nombres: '',
-    apellidos: "",
-
+    nombres: user?.name,
+    apellidos: user?.lasname,
     telefono: "",
     documento: "",
   });
