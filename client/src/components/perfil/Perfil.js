@@ -29,8 +29,7 @@ const Perfil = () => {
   const [favorito, setFavorito] = useState(false);
   const [perfil, setPerfil] = useState(false);
   const StatePerfil = useSelector((state) => state.perfil);
- const baneo = useSelector((state) => state.baneado);
- console.log(baneo)
+  const baneo = useSelector((state) => state.baneado);
   const handlePerfil = () => {
     setPerfil(true);
     setFavorito(false);
@@ -45,127 +44,124 @@ const Perfil = () => {
     dispatch(getPefil(user?.email));
     dispatch(ValidarInfo(user?.email));
     dispatch(getFavoritos(user?.email));
-    setTimeout(() => {
-      dispatch(getBaneo(user?.email));
-    }, 1000);
+    dispatch(getBaneo(user?.email));
   }, [dispatch, user?.email]);
 
   const handleState = () => {
     setFavorito(true);
   };
-
   return (
-    <> 
-    {!baneo? 
-    <div>
-      {!StatePerfil ? (
-        <Helmet>
-          <title>Cargando..</title>
-        </Helmet>
-      ) : (
-        <Helmet>
-          <title>{`${StatePerfil[0]?.nombres}`} - Perfil</title>
-        </Helmet>
-      )}
-
-      <nav className={s.nav}>
-        <Link to="/home">
-          <img className={s.logo} src={logo} alt="finder" />
-        </Link>{" "}
-      </nav>
-      <div className={s.portada}>
-        <img className={s.img} src={publicidad} alt="portada" />
-      </div>
-      <section className={s.perfil}>
-        <div className={s.nombre}>
-          <img className={s.imgper} src={user?.picture} alt="perfil" />
-          <div>
-            <h2>PERFIL</h2>
-            <h1>{StatePerfil[0]?.nombres}</h1>
-          </div>
-        </div>
-        <div className={s.mover}>
-          <button className={s.botones} onClick={handleState}>
-            Favoritos
-          </button>
-          <button className={s.botones} onClick={handlePerfil}>
-            Editar perfil
-          </button>
-          <button className={s.botones} onClick={handleVolver}>
-            perfil
-          </button>
-        </div>
-      </section>
-
-      <section className={s.conten}>
-        <div className={s.datos}>
-          <Link to="/userLog">
-            {" "}
-            <button className={s.boton} disabled={validar}>
-              Crear publicacion
-            </button>
-          </Link>
-          {validar ? (
-            <p className={s.rojo}>
-              {" "}
-              complete su perfil para poder hacer una apublicacion
-            </p>
+    <>
+      {!baneo ?
+        <div>
+          {!StatePerfil ? (
+            <Helmet>
+              <title>Cargando..</title>
+            </Helmet>
           ) : (
-            ""
+            <Helmet>
+              <title>{`${StatePerfil[0]?.nombres}`} - Perfil</title>
+            </Helmet>
           )}
-          <h1 className={s.personal}>informacion personal</h1>
-          <div className={s.info}>
-            <h2>nombre completo :</h2>
-            <h2>{StatePerfil[0]?.nombres}</h2>
-            <h2>apellido :</h2>
-            <h2>{StatePerfil[0]?.apellidos}</h2>
 
-            <h2>telefono :</h2>
-            <h2>{StatePerfil[0]?.telefono}</h2>
-            <h2>email :</h2>
-            <h2>{StatePerfil[0]?.email}</h2>
-            <h2>edad :</h2>
-            <h2>{StatePerfil[0]?.edad ? StatePerfil[0]?.edad : "20"}</h2>
+          <nav className={s.nav}>
+            <Link to="/home">
+              <img className={s.logo} src={logo} alt="finder" />
+            </Link>{" "}
+          </nav>
+          <div className={s.portada}>
+            <img className={s.img} src={publicidad} alt="portada" />
           </div>
-        </div>
-        <div className={s.publi}>
-          {favorito ? (
-            <Favorito />
-          ) : (
-            <div>
-              {perfil ? (
-                <Form />
+          <section className={s.perfil}>
+            <div className={s.nombre}>
+              <img className={s.imgper} src={user?.picture} alt="perfil" />
+              <div>
+                <h2>PERFIL</h2>
+                <h1>{StatePerfil[0]?.nombres}</h1>
+              </div>
+            </div>
+            <div className={s.mover}>
+              <button className={s.botones} onClick={handleState}>
+                Favoritos
+              </button>
+              <button className={s.botones} onClick={handlePerfil}>
+                Editar perfil
+              </button>
+              <button className={s.botones} onClick={handleVolver}>
+                perfil
+              </button>
+            </div>
+          </section>
+
+          <section className={s.conten}>
+            <div className={s.datos}>
+              <Link to="/userLog">
+                {" "}
+                <button className={s.boton} disabled={validar}>
+                  Crear publicacion
+                </button>
+              </Link>
+              {validar ? (
+                <p className={s.rojo}>
+                  {" "}
+                  complete su perfil para poder hacer una apublicacion
+                </p>
+              ) : (
+                ""
+              )}
+              <h1 className={s.personal}>informacion personal</h1>
+              <div className={s.info}>
+                <h2>nombre completo :</h2>
+                <h2>{StatePerfil[0]?.nombres}</h2>
+                <h2>apellido :</h2>
+                <h2>{StatePerfil[0]?.apellidos}</h2>
+
+                <h2>telefono :</h2>
+                <h2>{StatePerfil[0]?.telefono}</h2>
+                <h2>email :</h2>
+                <h2>{StatePerfil[0]?.email}</h2>
+                <h2>edad :</h2>
+                <h2>{StatePerfil[0]?.edad ? StatePerfil[0]?.edad : "20"}</h2>
+              </div>
+            </div>
+            <div className={s.publi}>
+              {favorito ? (
+                <Favorito />
               ) : (
                 <div>
-                  <h2 className={s.h2}>Publicaciones</h2>
-                  <div className={s.centrar_publi}>
-                    {StatePerfil && StatePerfil[0]?.Publicacions ? (
-                      StatePerfil[0].Publicacions.map((el) => (
-                        <Card_perfil
-                          key={el.id}
-                          precio={el.precio}
-                          descripcion={el.descripcion}
-                          nombre={StatePerfil[0]?.nombres}
-                          imagen={StatePerfil[0]?.imagen}
-                          Profesions={el.Profesion.nombre}
-                          id={el.id}
-                          logoProfesion={el.Profesion.logo}
-                        />
-                      ))
-                    ) : (
-                      <p>NO TIENE</p>
-                    )}
-                  </div>
+                  {perfil ? (
+                    <Form />
+                  ) : (
+                    <div>
+                      <h2 className={s.h2}>Publicaciones</h2>
+                      <div className={s.centrar_publi}>
+                        {StatePerfil && StatePerfil[0]?.Publicacions ? (
+                          StatePerfil[0].Publicacions.map((el) => (
+                            <Card_perfil
+                              key={el.id}
+                              precio={el.precio}
+                              descripcion={el.descripcion}
+                              nombre={StatePerfil[0]?.nombres}
+                              imagen={StatePerfil[0]?.imagen}
+                              Profesions={el.Profesion.nombre}
+                              id={el.id}
+                              logoProfesion={el.Profesion.logo}
+                            />
+                          ))
+                        ) : (
+                          <p>NO TIENE</p>
+                        )}
+                      </div>
+                    </div>
+                  )}
                 </div>
               )}
             </div>
-          )}
-        </div>
-      </section>
-      <footer className={s.footer}>
-        <Footer />
-      </footer>
-    </div>:<div>estas baneado</div>}
+          </section>
+          <footer className={s.footer}>
+            <Footer />
+          </footer>
+        </div> : <div>estas baneado</div>}
     </>
   );
 };
