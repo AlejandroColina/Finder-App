@@ -226,8 +226,11 @@ router.get("/detalle/:idPublicacion", async (req, res, next) => {
       logoProfesion: consultaBD.dataValues.Profesion.dataValues.logo,
       direccion: consultaBD.dataValues.Direccion.dataValues.direccion,
       ciudad: consultaBD.dataValues.Direccion.dataValues.ciudad,
+      latitud: consultaBD.dataValues.Direccion.dataValues.latitud,
+      longitud: consultaBD.dataValues.Direccion.dataValues.longitud,
       pais: consultaBD.dataValues.Direccion.dataValues.pais,
       multimedia: consultaBD?.dataValues?.multimedia
+
     };
 
     res.send(obj);
