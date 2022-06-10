@@ -64,7 +64,6 @@ DB_CONN.sync({ force: true })
                         PersonaId: index + 1,
                         DireccionId: parseInt(Math.random(14, 1) * (14 - 1) + 1),
                         ProfesionId: person.profesion,
-                        multimedia: []
                     });
                 });
             }

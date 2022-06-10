@@ -1,5 +1,7 @@
 import React from 'react';
-import styles from './styles.module.css'
+import styles from './styles.module.css';
+import Box from "@mui/material/Box";
+import Rating from "@mui/material/Rating";
 
 import { Link } from "react-router-dom";
 
@@ -24,11 +26,10 @@ export default function Destacados({ Profesions, logoProfesion, imagen, nombres,
                             <h1 className={styles.cardH1}>{Profesions}</h1>
                             <p className={styles.cardPI}>{`${nombres}`}</p>
                             <p className={styles.cardP}>{descripcion}</p>
-                            <p className={styles.cardPI}>
-                                {
-                                    stars.map(() => '⭐')
-                                }
-                            </p>
+
+<Box sx={{ "& > legend": { mt: 2 } }}>
+<Rating size="small" value={promedio} readOnly />
+</Box>
                         </div>
                     </section>
                 </Link>
