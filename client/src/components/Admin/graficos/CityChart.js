@@ -27,15 +27,15 @@ ChartJS.register(
 );
 
 export default function CityChart() {
-  const ciudades = axios
-    .get("http://localhost:3001/users/ciudades")
-    .then((res) => {
-      return res.data;
-    });
+  // const ciudades = axios
+  //   .get("http://localhost:3001/users/ciudades")
+  //   .then((res) => {
+  //     return res.data;
+  //   });
 
   let cantidad = [];
 
-  // const ciudadesTotal = useSelector((state) => state.ciudades);
+  const ciudades = useSelector((state) => state.ciudades);
   console.log(ciudades);
 
   for (let i = 0; i < ciudades; i++) {
