@@ -1,7 +1,8 @@
 .container {
   display: flex;
   min-height: 100vh;
-  
+  background-color: #fdfcff;
+  background-image: url("data:image/svg+xml,%3Csvg width='6' height='6' viewBox='0 0 6 6' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23b6d2d4' fill-opacity='0.4' fill-rule='evenodd'%3E%3Cpath d='M5 0h1L0 6V5zM6 5v1H5z'/%3E%3C/g%3E%3C/svg%3E");
 }
 
 .card {
@@ -9,9 +10,9 @@
   top: 120px;
   left: 50px;
   width: 320px;
-  height: 600px;
   box-shadow: 1px 2px 20px #001b38;
   overflow: hidden;
+  background-color: #fdfcff;
 }
 .nombres {
   font-size: 20px;
@@ -67,7 +68,7 @@
 }
 .titulos {
   font-size: 25px;
-  color: #000000;
+  color: #001b38;
   font-weight: lighter;
 }
 .subtitulos {
@@ -77,17 +78,23 @@
   justify-content: flex-end;
 }
 .contenido {
-  font-size: 30px;
+  font-size: 20px;
   font-weight: bold;
-  color: #000000;
+  color: #001b38;
   padding: 30px 10px;
 }
-/* .containerPrice {
-  color: #000000;
-  font-size: 50px;
-  display: block;
-  width: 180px;
-} */
+.containerPrice {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
+} 
+.width{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
 .paypal {
   width: 200px;
   display: flex;
@@ -100,25 +107,21 @@
   margin: 5px;
   display: flex;
   justify-content: center;
-  margin: auto;
   font-size: 2em;
   cursor: pointer;
 }
 .precio {
   font-weight: bolder;
   margin: 5px;
-  display: flex;
-  justify-content: center;
-  margin: auto;
   font-size: 2em;
 }
 .borderPrice {
   padding: 10px;
-  box-shadow: 1px 2px 10px #001b3895;
   display: flex;
-  margin: auto;
+  justify-content: center;
+  align-items: center;
   margin-top: 10px;
-  border-radius: 10px;
+  width: 100%;
 }
 .contratar {
   color: white;
@@ -127,7 +130,9 @@
   width: 150px;
   display: flex;
   justify-content: center;
-  font-size: 1em;
+  font-size: 20px;
+  padding: 10px 5px ;
+  border-radius: 10px;
 }
 .contratar:hover {
   background-color: white;
@@ -257,4 +262,27 @@
   margin: auto;
   width: 150px;
   height: 150px;
+}
+
+.btndebe {
+  font-weight: lighter;
+  margin: 0px 20px;
+  background: none;
+  padding: 8px 15px;
+  font-size: 15px;
+  transition: 1s;
+  border: 1px solid white;
+  background-color: #0575e6;
+  color: white;
+}
+.btndebe:hover {
+  color: #001b38;
+  border: 1px solid #001b3848;
+  background-color: white;
+}
+.multimedia{
+  width: 700px;
+  margin-left: 50px;
+  margin-top: 30px;
+  margin-bottom: 20px;
 }

@@ -2,6 +2,7 @@ import React from "react";
 import s from "./Cards.module.css";
 import { useDispatch } from "react-redux";
 import { useAuth0 } from "@auth0/auth0-react";
+import {deleteFavorito, getFavoritos} from '../../Redux/actions/index'
 
 export default function Cards({
   nombres,
@@ -12,7 +13,17 @@ export default function Cards({
   id,
   logoProfesion,
 }) {
-    const dispatch = useDispatch();
+
+  const { user } = useAuth0();
+  const dispatch = useDispatch();
+
+const  handleDelete = () =>{
+  dispatch(deleteFavorito(user?.email,id))
+  setTimeout(() =>{ 
+    dispatch(getFavoritos(user?.email))
+  }, 500)
+}
+
   return (
     <div className={s.container}>
       <header>
@@ -53,7 +64,7 @@ export default function Cards({
         </div>
       </div>
       <div className={s.botones}>
-        <button >eliminar</button>
+        <button onClick={handleDelete} >eliminar</button>
         
       </div>
     </div>

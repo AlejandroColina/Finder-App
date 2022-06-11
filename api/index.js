@@ -16,6 +16,7 @@ DB_CONN.sync({ force: true })
 
     .then(async () => {
         try {
+            let ids = 1;
             let consultaBD = await Profesion.findAll();
 
             if (!consultaBD.length) {
@@ -27,12 +28,43 @@ DB_CONN.sync({ force: true })
                     })
                 };
 
-                personas.map(async (obj, id) => {
-                    id += 1
+                let arrayDireccion = [];
+                let arrayCiudad = [];
+                let arrayPais = [];
+                let arrayLongitud = [];
+                let arrayLatitud = [];
+
+                personas.map(e => {
+                    arrayDireccion.push(e.direccion)
+                    arrayCiudad.push(e.ciudad)
+                    arrayPais.push(e.pais)
+                    arrayLongitud.push(e.longitud)
+                    arrayLatitud.push(e.latitud)
+                })
+
+                arrayDireccion = new Set(arrayDireccion)
+                arrayDireccion = Array.from(arrayDireccion)
+
+                arrayCiudad = new Set(arrayCiudad)
+                arrayCiudad = Array.from(arrayCiudad)
+
+                arrayLongitud = new Set(arrayLongitud)
+                arrayLongitud = Array.from(arrayLongitud)
+
+                arrayLatitud = new Set(arrayLatitud)
+                arrayLatitud = Array.from(arrayLatitud)
+
+                personas.map(async () => {                    
+                    if (ids === 14) ids = 1;
+                    let index = ids;
+                    ids++;
+
                     await Direccion.create({
-                        direccion: obj.direccion,
-                        ciudad: obj.ciudad,
-                        pais: obj.pais
+                        direccion: arrayDireccion[index - 1],
+                        ciudad: arrayCiudad[index - 1],
+                        pais: 'Argentina',
+                        longitud: arrayLongitud[index - 1],
+                        latitud: arrayLatitud[index - 1]
                     });
                 })
 
@@ -51,15 +83,20 @@ DB_CONN.sync({ force: true })
                         trabajosPagos: [],
                         genero: person.genero,
                         puntuacion: person.puntuacion,
-                        baneado: false
+                        baneado: false,
+                        notificaciones: []
                     });
+
+                    if (ids === 14) ids = 1;
+                    let DireccionId = ids;
+                    ids++;
 
                     await Publicacion.create({
                         descripcion: person.descripcion,
                         precio: person.precio,
                         titulo: 'Trabajo profesional finder ' + (index + 1),
                         PersonaId: index + 1,
-                        DireccionId: parseInt(Math.random(14, 1) * (14 - 1) + 1),
+                        DireccionId: DireccionId,
                         ProfesionId: person.profesion,
                     });
                 });

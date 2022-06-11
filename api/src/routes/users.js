@@ -1,24 +1,20 @@
 const express = require("express");
 const router = express.Router();
 const axios = require("axios");
+const transporter = require("./transporter");
 const { Persona, Profesion, Direccion, Publicacion } = require("../db");
 const nodemailer = require("nodemailer");
 router.use(express.json());
 
 router.get("/", async (req, res, next) => {
   try {
-
-
     let personasDB = await Persona.findAll({
-      include: [
-        { model: Publicacion, include: [Direccion, Profesion] }
-      ],
+      include: [{ model: Publicacion, include: [Direccion, Profesion] }],
     });
     if (personasDB.length == 0)
       return res.send("LA BASE DE DATOS NO TIENE INFORMACION");
 
     let objPersonas = personasDB.map((person) => {
-
       return {
         id: person.id,
         nombres: person.nombres,
@@ -32,7 +28,7 @@ router.get("/", async (req, res, next) => {
         genero: person.genero,
         publicaciones: person.Publicacions,
         favoritos: person.favoritos,
-        baneado: person.baneado
+        baneado: person.baneado,
       };
     });
 
@@ -44,10 +40,9 @@ router.get("/", async (req, res, next) => {
 
 router.get("/ciudades", async (req, res) => {
   let direcciones = await Direccion.findAll();
-  let ciudades = direcciones.map(e => e.ciudad)
+  let ciudades = direcciones.map((e) => e.ciudad);
   ciudades = new Set(ciudades);
   return res.json(Array.from(ciudades));
-
 });
 
 router.get("/empleos", async (req, res, next) => {
@@ -91,9 +86,10 @@ router.get("/trabajo/:id", async (req, res) => {
 });
 
 router.post("/crear", async function (req, res) {
-
-  let { ciudad, descripcion, email, multimedia, precio, ProfesionId, titulo } = req.body.toSend;
-  if (!ciudad || !descripcion || !email || !precio || !ProfesionId || !titulo) return
+  let { ciudad, descripcion, email, multimedia, precio, ProfesionId, titulo } =
+    req.body.toSend;
+  if (!ciudad || !descripcion || !email || !precio || !ProfesionId || !titulo)
+    return;
 
   let consulta = await Persona.findOne({
     where: { email: email },
@@ -102,8 +98,8 @@ router.post("/crear", async function (req, res) {
   let PersonaId = consulta?.dataValues.id;
 
   if (PersonaId) {
-    ProfesionId = parseInt(ProfesionId)
-    ciudad = parseInt(ciudad)
+    ProfesionId = parseInt(ProfesionId);
+    ciudad = parseInt(ciudad);
     await Publicacion.create({
       PersonaId,
       ProfesionId,
@@ -114,18 +110,18 @@ router.post("/crear", async function (req, res) {
       DireccionId: ciudad,
     });
 
-    return res.send('Publicación creada');
+    return res.send("Publicación creada");
   }
-  res.status(404).send('No se pudo publicar');
+  res.status(404).send("No se pudo publicar");
 });
 
-router.post('/nuevo', async (req, res, next) => {
+router.post("/nuevo", async (req, res, next) => {
   try {
     const { nombres, email, imagen, apellidos } = req.body;
     let consulta = await Persona.findOne({
       where: {
-        email: email
-      }
+        email: email,
+      },
     });
 
     if (consulta == null) {
@@ -135,7 +131,8 @@ router.post('/nuevo', async (req, res, next) => {
         email,
         imagen,
         favoritos: [],
-        trabajosPagos: []
+        trabajosPagos: [],
+        notificaciones: [],
       });
 
       const transporter = nodemailer.createTransport({
@@ -147,50 +144,55 @@ router.post('/nuevo', async (req, res, next) => {
           pass: "Bz2gM3wDPk6xFZxS7r",
         },
       });
-  
-      const mailOptions = {
-        from: '"Finder" <finder@gmail.com>',
+
+      let message = {
+        from: "Finder Community <finder.app.henry@hotmail.com>",
         to: email,
-        subject: "Enviado desde Finder ✔",
-        html: `<h1> QUE ONDA ${nombres} </h1>`,
+        subject: "Ahora eres FINDER ✔",
+        html: `<p>
+    <b>${nombres}</b>. Bienvenido/a al mundo finder!<br>
+    Ahora podrás interactuar con una plataforma versátil que te permite ofrecer tus habilidades
+    y buscar a quien te ayude a solucionar un apuro.        
+    </p>`,
       };
-  
-      transporter.sendMail(mailOptions, function (error, info) {
-        error
-          ? res.status(500).send(error.message)
-          : console.log('Enviado con exito'); //cambiar .status por .redirect('/rutaDeInicio')
+
+      transporter.sendMail(message, (err, info) => {
+        if (err) {
+          console.log("Error occurred. " + err.message);
+          return process.exit(1);
+        }
       });
 
-
-      return res.json(persona)
+      return res.json(persona);
     } else {
-      return res.json(consulta)
+      return res.json(consulta);
     }
-
   } catch (error) {
-    next(error)
+    next(error);
   }
 });
 
-router.get('/validar/:email', async (req, res, next) => {
+router.get("/validar/:email", async (req, res, next) => {
   try {
     const { email } = req.params;
 
     let consulta = await Persona.findAll({
-      where: { email: email }
+      where: { email: email },
     });
-    if (!consulta.length) return res.status(404).send('No existe usuario con ese email.')
+    if (!consulta.length)
+      return res.status(404).send("No existe usuario con ese email.");
     if (
       // consulta[0]?.edad == null ||
       consulta[0]?.apellidos == null ||
       consulta[0]?.documento == null ||
       consulta[0]?.telefono == null
-
-    ) { res.send(true) } else {
+    ) {
+      res.send(true);
+    } else {
       res.send(false);
     }
   } catch (error) {
-    next(error)
+    next(error);
   }
 });
 
@@ -199,13 +201,22 @@ router.patch("/modificar/:email", async (req, res) => {
   let { nombres, apellidos, telefono, genero, edad, documento } = req.query;
 
   if (documento) {
-    Persona.update({ documento: req.query.documento }, { where: { email: email } })
+    Persona.update(
+      { documento: req.query.documento },
+      { where: { email: email } }
+    );
   }
   if (apellidos) {
-    Persona.update({ apellidos: req.query.apellidos }, { where: { email: email } })
+    Persona.update(
+      { apellidos: req.query.apellidos },
+      { where: { email: email } }
+    );
   }
   if (telefono) {
-    Persona.update({ telefono: req.query.telefono }, { where: { email: email } })
+    Persona.update(
+      { telefono: req.query.telefono },
+      { where: { email: email } }
+    );
   }
   if (nombres) {
     Persona.update({ nombres: req.query.nombres }, { where: { email: email } });
@@ -225,12 +236,15 @@ router.get("/detalle/:idPublicacion", async (req, res, next) => {
   try {
     const { idPublicacion } = req.params;
 
-    let consultaBD = await Publicacion.findByPk(idPublicacion, { include: [Profesion, Direccion] });
-    if (consultaBD === null) return res.status(404).send('No existe esta publicación.');
+    let consultaBD = await Publicacion.findByPk(idPublicacion, {
+      include: [Profesion, Direccion],
+    });
+    if (consultaBD === null)
+      return res.status(404).send("No existe esta publicación.");
 
     let idPersona = consultaBD.dataValues.PersonaId;
     let personaPost = await Persona.findAll({
-      where: { id: idPersona }
+      where: { id: idPersona },
     });
 
     let obj = {
@@ -246,19 +260,19 @@ router.get("/detalle/:idPublicacion", async (req, res, next) => {
       promedio: personaPost[0].dataValues.promedio,
       telefono: personaPost[0].dataValues.telefono,
       titulo: consultaBD.dataValues.titulo,
-      multimedia: consultaBD.dataValues.multimedia,
       descripcion: consultaBD.dataValues.descripcion,
       precio: consultaBD.dataValues.precio,
       Profesions: consultaBD.dataValues.Profesion.dataValues.nombre,
       logoProfesion: consultaBD.dataValues.Profesion.dataValues.logo,
       direccion: consultaBD.dataValues.Direccion.dataValues.direccion,
       ciudad: consultaBD.dataValues.Direccion.dataValues.ciudad,
+      latitud: consultaBD.dataValues.Direccion.dataValues.latitud,
+      longitud: consultaBD.dataValues.Direccion.dataValues.longitud,
       pais: consultaBD.dataValues.Direccion.dataValues.pais,
-      multimedia: consultaBD?.dataValues?.multimedia
+      multimedia: consultaBD?.dataValues?.multimedia,
     };
 
     res.send(obj);
-
   } catch (error) {
     next(error);
   }
@@ -266,56 +280,49 @@ router.get("/detalle/:idPublicacion", async (req, res, next) => {
 
 router.get("/prof/:id", (req, res) => {
   const id = req.params.id;
-  axios.get("http://localhost:3001/users/detalle/" + id)
-    .then((respuesta) => {
-      let datos = respuesta.data;
-      let quiero = datos.Profesions;
-      res.send(quiero)
-    })
-})
+  axios.get("http://localhost:3001/users/detalle/" + id).then((respuesta) => {
+    let datos = respuesta.data;
+    let quiero = datos.Profesions;
+    res.send(quiero);
+  });
+});
 
-router.get('/perfil/:email', async (req, res, next) => {
+router.get("/perfil/:email", async (req, res, next) => {
   try {
     const { email } = req.params;
     let consulta = await Persona.findAll({
-      include: [
-        { model: Publicacion, include: [Direccion, Profesion] }
-      ],
+      include: [{ model: Publicacion, include: [Direccion, Profesion] }],
       where: { email: email },
     });
 
     !consulta.length
-      ? res.status(404).send('No existe usuario con este email.')
+      ? res.status(404).send("No existe usuario con este email.")
       : res.json(consulta);
-
   } catch (error) {
-    next(error)
+    next(error);
   }
 });
-
 
 router.get("/coincidencias/:id", async (req, res) => {
   const id = req.params.id;
   let respuesta = [];
   try {
-    let todo = await axios.get(`http://localhost:3001/users/prof/${id}`)
+    let todo = await axios.get(`http://localhost:3001/users/prof/${id}`);
     let tipo = todo.data;
     let todos = await Persona.findAll({
-      include: [
-        { model: Publicacion, include: [Direccion, Profesion] }
-      ],
+      include: [{ model: Publicacion, include: [Direccion, Profesion] }],
     });
     for (let i = 0; i < todos.length; i++) {
       for (let j = 0; j < todos[i].Publicacions.length; j++) {
         if (todos[i].Publicacions[j].Profesion.nombre === tipo) {
-          respuesta.push(todos[i])
+          respuesta.push(todos[i]);
         }
       }
     }
-    res.send(respuesta)
+    res.send(respuesta);
   } catch (error) {
-    console.log(error)
+    console.log(error);
   }
-})
+});
 
 module.exports = router;
