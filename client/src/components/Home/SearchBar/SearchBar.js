@@ -26,9 +26,9 @@ export const SearchBar = ( {setDescripcion, descripcion }) => {
   const searchRef = useRef(null);
 
   const handleSubmit = (e) => {
-      e.preventDefault()
-      setDescripcion(searchRef.current.value)
-      searchRef.current.value=''
+    e.preventDefault()
+    setDescripcion(searchRef.current.value)
+    searchRef.current.value = ''
   }
   const notificaciones = useSelector((state)=>state.notificaciones)
   
@@ -40,53 +40,52 @@ export const SearchBar = ( {setDescripcion, descripcion }) => {
                 <form onSubmit={handleSubmit}  className={styles.search}>
                     <input type="text" className={styles.input} name='job' placeholder="Busca un talento" ref={searchRef} />
                     {/* <button className="search__button">
+
+
+  const perfil = useSelector((state) => state.perfil);
+
+  return (
+    <header className={styles.header}>
+
+      <Link to={'/'} ><img className={styles.logo} src={logo} alt='finder' /> </Link>
+
+      <form onSubmit={handleSubmit} className={styles.search}>
+        <input type="text" className={styles.input} name='job' placeholder="Busca un talento" ref={searchRef} />
+        {/* <button className="search__button">
+
                         <svg className="search__icon">
                           
                         </svg>
                     </button> */}
-                </form>
+      </form>
 
-                {isAuthenticated ?
-          <nav  className={styles.userNav}>
+      {isAuthenticated ?
+        <nav className={styles.userNav}>
 
                     <div className={styles.iconBox}>
                         <img src={notification} alt='notifications' height='30px'/>
                         {notificaciones? <button className={styles.notification} onClick={()=>setOpen(true)}>{notificaciones}</button> : null}
                     </div>
 
-              <div className={styles.userNav}>
+          <div className={styles.userNav}>
 
-                 <img  className={styles.userPhoto} src={user.picture} alt='avatar' />
+            <img className={styles.userPhoto} src={user.picture} alt='avatar' />
 
-               </div>
+          </div>
 
-              <div className={styles.userNav}>
+          <div className={styles.userNav}>
 
-              <Link to={`/perfil/${user.email}`}className={styles.userName}><div title='Mi Perfil' >{onlyFirst[0].toUpperCase()}</div></Link>
-                <button title='Salir' className={styles.salir} onClick={() => logout({ returnTo: window.location.origin })}>
-                <img src={logoutImg} alt='logout' height='25px' /></button>
+            <Link to={`/perfil/${user.email}`} className={styles.userName}><div title='Mi Perfil' >{onlyFirst[0].toUpperCase()}</div></Link>
+            <button title='Salir' className={styles.salir} onClick={() => logout({ returnTo: window.location.origin })}>
+              <img src={logoutImg} alt='logout' height='25px' /></button>
 
-              </div>
+          </div>
 
-          </nav> :
-          <nav className={styles.userNav}>
-            <div onClick={() => { loginWithRedirect() }}  className={styles.userName}>INGRESA</div>
-          </nav>
-        }{/* 
-                <nav className={styles.userNav}>
-                        
-
-                    <div className={styles.iconBox}>
-                        <svg className={styles.icon}>
-                        </svg>
-                        
-                    </div>
-                    
-                    <div className={styles.userNav}>
-                        <img src={perfil} alt="User" className={styles.userPhoto}></img>
-                        <span className={styles.userName}>Gabriel</span>
-                    </div>
-                </nav> */}
+        </nav> :
+        <nav className={styles.userNav}>
+          <div onClick={() => { loginWithRedirect() }} className={styles.userName}>INGRESA</div>
+        </nav>
+      }
             {isAuthenticated && notificaciones? <div className={styles.notiCard}><Notificaciones setOpen={setOpen} email={user.email}/></div> : null}
             </div>
   )

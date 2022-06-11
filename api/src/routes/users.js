@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const axios = require("axios");
+const transporter = require('./transporter');
 const { Persona, Profesion, Direccion, Publicacion } = require("../db");
 router.use(express.json());
 
@@ -138,6 +139,25 @@ router.post('/nuevo', async (req, res, next) => {
         trabajosPagos: [],
         notificaciones:[]
       });
+
+      let message = {
+        from: 'Finder Community <finder.app.henry@hotmail.com>',
+        to: email,
+        subject: 'Ahora eres FINDER ✔',
+        html: `<p>
+    <b>${nombres}</b>. Bienvenido/a al mundo finder!<br>
+    Ahora podrás interactuar con una plataforma versátil que te permite ofrecer tus habilidades
+    y buscar a quien te ayude a solucionar un apuro.        
+    </p>`
+      };
+
+      transporter.sendMail(message, (err, info) => {
+        if (err) {
+          console.log('Error occurred. ' + err.message);
+          return process.exit(1);
+        }
+      });
+
       return res.json(persona)
     } else {
       return res.json(consulta)
