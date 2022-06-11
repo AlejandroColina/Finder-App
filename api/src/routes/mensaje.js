@@ -1,6 +1,8 @@
 const express = require('express');
 const router = express.Router();
-const {MensajeAdmin} = require('../db')
+const {MensajeAdmin} = require('../db');
+const cors = require('cors');
+router.use(cors());
 router.use(express.json());
 
 router.post(('/user'), async(req,res)=>{

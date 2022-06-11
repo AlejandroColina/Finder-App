@@ -1,8 +1,9 @@
 const express = require("express");
 const router = express.Router();
 const { Persona, Profesion, Direccion, Publicacion } = require("../db");
+const cors = require('cors');
+router.use(cors());
 router.use(express.json());
-
 
 router.get("/", async (req, res, next) => {
   try {
