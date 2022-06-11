@@ -17,7 +17,8 @@ const InitialState = {
   preguntas: [],
   info: [],
   favorito: [],
-  baneado: false
+  baneado: false,
+  notificaciones:[],
 
 };
 
@@ -201,6 +202,12 @@ export default function rootReducer(state = InitialState, action) {
       case' DELETE_FAVORITO':
       return{
         ...state,
+      }
+
+    case 'GET_NOTI':
+      return{
+        ...state,
+        notificaciones: action.payload
       }
 
     default:

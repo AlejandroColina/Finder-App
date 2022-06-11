@@ -14,7 +14,7 @@ export default function Preguntar({user,profesional,publicacion}){
         PublicacionId:parseInt(publicacion),
         profesional: profesional
     })
-    var email = profesional
+    var email = profesional[0]
     const handleChange = (e)=>{
         setInput({
             ...input,
@@ -24,6 +24,7 @@ export default function Preguntar({user,profesional,publicacion}){
     const handleSubmit = (input,e)=>{
         e.preventDefault();
         dispatch(postPregunta(input));
+        console.log(input);
         dispatch(sendNoti(email,input));
         Swal.fire({ text:'Tu pregunta fue enviada con exito', icon:'success' } )
         setTimeout(history.push(`./${publicacion}`), 1000)

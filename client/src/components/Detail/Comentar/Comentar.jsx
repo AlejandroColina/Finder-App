@@ -14,7 +14,7 @@ export default function Comentar({profesional,publicacion, setComento}){
         comentario:'',
         PublicacionId:parseInt(publicacion)
     })
-    let email = profesional;
+    let email = profesional[0];
     const handleChange = (e)=>{
         setInput({
             ...input,

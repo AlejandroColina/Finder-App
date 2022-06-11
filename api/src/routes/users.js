@@ -32,6 +32,7 @@ router.get("/", async (req, res, next) => {
         publicaciones: person.Publicacions,
         favoritos: person.favoritos,
         baneado: person.baneado,
+        notificaciones:person.notificaciones
       };
     });
 

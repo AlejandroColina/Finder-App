@@ -1,13 +1,13 @@
 import React, { useEffect, useRef, useState } from 'react'
 import styles from './styles.module.css';
-import perfil from '../../../images/perfil.png'
 import { useAuth0 } from '@auth0/auth0-react';
 import logoutImg from '../../../assets/logout_white.png';
 import logo from '../../../assets/logo_finder_white.png'
 import notification from '../../../assets/notification_white.png';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { getPefil } from '../../Redux/actions';
+import Notificaciones from './notificaciones/notificaciones';
+import { getNoti } from '../../Redux/actions';
 
 
 export const SearchBar = ( {setDescripcion, descripcion }) => {
@@ -19,11 +19,10 @@ export const SearchBar = ( {setDescripcion, descripcion }) => {
     const { logout } = useAuth0();
     if (isAuthenticated) {
       var onlyFirst = user.name.split(' ');
+      dispatch(getNoti(user.email));
     }
+    const [open,setOpen]=useState(false);
   
-  useEffect(()=>{
-    if(isAuthenticated){dispatch(getPefil(user.email))};
-  }, [dispatch])
   const searchRef = useRef(null);
 
   const handleSubmit = (e) => {
@@ -31,11 +30,10 @@ export const SearchBar = ( {setDescripcion, descripcion }) => {
       setDescripcion(searchRef.current.value)
       searchRef.current.value=''
   }
-
-  const perfil = useSelector((state)=> state.perfil);
+  const notificaciones = useSelector((state)=>state.notificaciones)
   
     return (
-     <header className={styles.header}>
+     <div className={styles.header}>
                 
                 <img className={styles.logo} src={logo} alt='finder' /> 
            
@@ -53,7 +51,7 @@ export const SearchBar = ( {setDescripcion, descripcion }) => {
 
                     <div className={styles.iconBox}>
                         <img src={notification} alt='notifications' height='30px'/>
-                        {perfil.notificaciones? <div className={styles.notification}>{perfil.notificaciones.length}</div> : null}
+                        {notificaciones? <button className={styles.notification} onClick={()=>setOpen(true)}>{notificaciones}</button> : null}
                     </div>
 
               <div className={styles.userNav}>
@@ -89,7 +87,7 @@ export const SearchBar = ( {setDescripcion, descripcion }) => {
                         <span className={styles.userName}>Gabriel</span>
                     </div>
                 </nav> */}
-           
-            </header>
+            {isAuthenticated && notificaciones? <div className={styles.notiCard}><Notificaciones setOpen={setOpen} email={user.email}/></div> : null}
+            </div>
   )
 }
