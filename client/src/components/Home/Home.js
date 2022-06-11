@@ -14,7 +14,9 @@ import Footer from './../Footer/Footer';
 import Loanding from "./loading/Loanding";
 import NoResult from './noResult/NoResult'
 import Destacados from "./Destacados";
+
 import { useAuth0 } from '@auth0/auth0-react';
+
 
 
 function Home({ descripcion, setDescripcion }) {
@@ -76,7 +78,7 @@ function Home({ descripcion, setDescripcion }) {
     setDescripcion('')
   }
   //Skeleton
-  if (loanding) {
+  if (loanding || !loanding) {
     return (
       <div>
         <Helmet><title>Cargando..</title></Helmet>

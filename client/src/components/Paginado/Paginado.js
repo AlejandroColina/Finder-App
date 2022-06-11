@@ -10,7 +10,7 @@ export default function Paginado({personasPerPage, allPersonas, paginado}) {
 
     const [page, setPage] = useState(1); //estado
 
-    const stylesFocus = { backgroundColor:' #0576e67a', color: 'black', textShadow: '0px 1px black'}
+    const stylesFocus = { backgroundColor:' #0576e67a', color: '#000', textShadow: '-2px 1px goldenrod'}
 
     const stylesNext = {
         color: 'whitesmoke',
