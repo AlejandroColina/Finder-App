@@ -19,8 +19,8 @@ export default function Admin() {
     dispatch(getAdminMsj());
   }, [dispatch]);
   return isAuthenticated &&
-    // (user.email === "giulianob94@hotmail.com" ||
     (user.email === "valariajbcarranza@gmail.com" ||
+      user.email === "giulianob94@hotmail.com" ||
       user.email === "nicosuasnavar@gmail.com" ||
       user.email === "jheinemberstithjn@ufps.edu.co" ||
       user.email === "gabrielcontegrand10@gmail.com" ||
