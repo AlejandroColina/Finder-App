@@ -241,7 +241,7 @@ export function cambiarInfo(email, input) {
   return async (dispatch) => {
     try {
       let info = await axios.patch(
-        `http://localhost:3001/users/modificar/${email}?nombres=${input.nombres}&apellidos=${input.apellidos}&telefono=${input.telefono}&documento=${input.documento}`
+        `http://localhost:3001/users/modificar/${email}?nombres=${input.nombres}&apellidos=${input.apellidos}&telefono=${input.telefono}&documento=${input.documento}&edad=${input.edad}`
       );
       return dispatch({
         type: "MODIFICAR",
@@ -409,6 +409,16 @@ export function deleteFavorito(email, id) {
   }
 }
 
+
+export function desbanear(id, estado){
+  return async dispatch => {
+    let desba = await axios.patch(`http://localhost:3001/suspender/${id}/${estado}`)
+    return dispatch({
+      type: 'DESBANEAR'
+    })
+  }
+}
+
 export function sendEmailNewUser(email) {
   console.log('SEND-USERS')
   return async dispatch => {
@@ -454,3 +464,4 @@ export function sendEliminado(id) {
     })
   }
 }
+
