@@ -194,18 +194,31 @@ export default function rootReducer(state = InitialState, action) {
         baneado: action.payload
       }
     case 'SEND_NOTI':
-      return{
+      return {
         ...state
       }
-      case' DELETE_FAVORITO':
-      return{
-        ...state,
-      }
-    case 'NEW_POST':
+    case ' DELETE_FAVORITO':
       return {
         ...state,
       }
-    case 'NEW_USER':
+    case 'EMAIL_NEW_POST':
+      return {
+        ...state,
+      }
+    case 'EMAIL_NEW_USER':
+      return {
+        ...state,
+      }
+    case 'EMAIL_BANEO':
+      return {
+        ...state,
+      }
+    
+    case 'EMAIL_DESBANEO':
+      return {
+        ...state,
+      }
+    case 'EMAIL_DELETE_USER':
       return {
         ...state,
       }
