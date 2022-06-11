@@ -15,6 +15,8 @@ import Footer from './../Footer/Footer';
 import Loanding from "./loading/Loanding";
 import NoResult from './noResult/NoResult'
 import Destacados from "./Destacados";
+import HomeLoader from "./loading/Skeleton";
+import ProfileCard from "./loading/CardLoader";
 
 
 function Home({ descripcion, setDescripcion }) {
@@ -74,11 +76,12 @@ function Home({ descripcion, setDescripcion }) {
     setDescripcion('')
   }
   //Skeleton
-  if (loanding) {
+  if (loanding || !loanding) {
     return (
       <div>
         <Helmet><title>Cargando..</title></Helmet>
-        <Loanding />
+        <HomeLoader />
+        <ProfileCard />
       </div>
     )
   }
