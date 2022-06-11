@@ -20,7 +20,6 @@ export function rederCard(profesion, genero, promedio, ciudad, descripcion) {
 export function getCarta(id) {
   return async function (dispatch) {
     var json = await axios.get(`http://localhost:3001/users/coincidencias/${id}`)
-    console.log(id)
     return dispatch({ type: "CARDST", payload: json.data })
   }
 }
@@ -392,9 +391,16 @@ export function getBaneo(email) {
   }
 }
 
+export function sendNoti(email, input) {
+  return async dispatch => {
+    await axios.put(`http://localhost:3001/notificaciones/add/${email}`, input)
+    return dispatch({
+      type: 'SEND_NOTI'
+    })
+  }
+}
 
 export function deleteFavorito(email, id) {
-  console.log(email, id)
   return async dispatch => {
     let dele = await axios.delete(`http://localhost:3001/favoritos/delete/${email}/${id}`)
     return dispatch({
@@ -402,6 +408,7 @@ export function deleteFavorito(email, id) {
     })
   }
 }
+
 
 export function desbanear(id, estado){
   return async dispatch => {
@@ -411,3 +418,50 @@ export function desbanear(id, estado){
     })
   }
 }
+
+export function sendEmailNewUser(email) {
+  console.log('SEND-USERS')
+  return async dispatch => {
+    await axios.patch(`http://localhost:3001/email/bienvenida/${email}`)
+    return dispatch({
+      type: 'EMAIL_NEW_USER',
+    })
+  }
+}
+
+export function sendEmailNewPost(email) {
+  return async dispatch => {
+    await axios.patch(`http://localhost:3001/email/nuevo_post/${email}`)
+    return dispatch({
+      type: 'EMAIL_NEW_POST',
+    })
+  }
+}
+
+export function sendBaneo(id) {
+  return async dispatch => {
+    await axios.patch(`http://localhost:3001/email/baneo/${id}`)
+    return dispatch({
+      type: 'EMAIL_BANEO',
+    })
+  }
+}
+
+export function sendDesBaneo(id) {
+  return async dispatch => {
+    await axios.patch(`http://localhost:3001/email/desbaneo/${id}`)
+    return dispatch({
+      type: 'EMAIL_DESBANEO',
+    })
+  }
+}
+
+export function sendEliminado(id) {
+  return async dispatch => {
+    await axios.patch(`http://localhost:3001/email/eliminarUser/${id}`)
+    return dispatch({
+      type: 'EMAIL_DELETE_USER',
+    })
+  }
+}
+

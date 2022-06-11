@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import FirstCap from './firstcap/FirstCap';
 import SecondCap from './secondcap/SecondCap';
 import ThirdCap from './thirdcap';
@@ -10,6 +10,7 @@ import logoutImg from '../../assets/logout_white.png';
 import Help from '../Help/Help';
 import { Helmet } from 'react-helmet';
 import axios from 'axios';
+
 
 function LandingPage({ descripcion, setDescripcion }) {
   const history = useHistory();

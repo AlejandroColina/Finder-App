@@ -7,13 +7,17 @@ module.exports = (sequelize) => {
             type: DataTypes.TEXT,
             allowNull:false
         },
-        persona:{
+        user:{
             type: DataTypes.STRING, //persona que hace el comentario
             allowNull: false
         },
         respuesta:{
             type: DataTypes.TEXT,
             allowNull:true
+        },
+        profesional:{
+            type:DataTypes.STRING,
+            allowNull: false
         }
     });
 

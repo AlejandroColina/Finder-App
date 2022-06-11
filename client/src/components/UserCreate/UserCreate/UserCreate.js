@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { getEmpleosForm, getCiudades } from "../../Redux/actions";
+import { getEmpleosForm, getCiudades, sendEmailNewPost } from "../../Redux/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { useAuth0 } from '@auth0/auth0-react';
 import { Link } from 'react-router-dom';
@@ -49,7 +49,11 @@ export default function UserCreate() {
 
   const handleChange1 = (e) => { setSelected(e.target.value) }
   const handleChange2 = (e) => { setCity(e.target.value) }
-
+  const handleSend = () => {
+    setTimeout(() => {
+      dispatch(sendEmailNewPost(user?.email))
+    }, 1000);
+  }
   const handleSubmit = (e) => {
     e.preventDefault();
     setInput({
@@ -236,6 +240,7 @@ export default function UserCreate() {
                   : styles.btn
               }
               type="submit"
+              onClick={handleSend}
               disabled={
                 formatoImg ||
                 !toSend.ProfesionId ||

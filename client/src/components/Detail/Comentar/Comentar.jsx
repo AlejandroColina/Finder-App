@@ -1,21 +1,20 @@
 import React,{useState} from 'react';
 import Box from '@mui/material/Box';
 import Rating from '@mui/material/Rating';
-import Typography from '@mui/material/Typography';
 import s from './Comentar.module.css';
-import { postOpinion } from '../../Redux/actions';
+import { postOpinion, sendNoti } from '../../Redux/actions';
 import { useDispatch } from 'react-redux';
 import Swal from "sweetalert2";
 
-export default function Comentar({nombre,publicacion, setComento}){
+export default function Comentar({profesional,publicacion, setComento}){
     const dispatch=useDispatch();
     const [input, setInput]= useState({
-        persona:nombre,
+        profesional:profesional,
         puntaje:'',
         comentario:'',
         PublicacionId:parseInt(publicacion)
     })
-
+    let email = profesional;
     const handleChange = (e)=>{
         setInput({
             ...input,
@@ -25,6 +24,7 @@ export default function Comentar({nombre,publicacion, setComento}){
     const handleSubmit = (input,e)=>{
         e.preventDefault();
         dispatch(postOpinion(input));
+        dispatch(sendNoti(email,input));
         Swal.fire({ text:'Gracias por tu recomendacion!', icon:'success' } );
         setComento(true);
     }

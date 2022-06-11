@@ -9,7 +9,13 @@ const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}
     native: false,
     define: {
         timestamps: false
-    }
+    },
+    // dialectOptions: {
+    //     ssl: {
+    //         require: true,
+    //         rejectUnauthorized: false
+    //     }
+    // }
 });
 
 const basename = path.basename(__filename);
