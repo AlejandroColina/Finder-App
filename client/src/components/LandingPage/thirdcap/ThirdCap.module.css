@@ -58,6 +58,7 @@
     align-items: center;
     text-align: center;
     grid-template-columns: 40% 10% 40% 10%;
+    font-family: 'Poppins', sans-serif;
 }
 
 .r1 {
@@ -66,6 +67,7 @@
     display: grid;
     align-items: center;
     justify-content: center;
+    
 }
 
 .imgs {

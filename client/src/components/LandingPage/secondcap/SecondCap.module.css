@@ -4,6 +4,8 @@
     padding-top: 10%;
     display: flex;
     flex-direction: row;
+    font-family: 'Poppins';
+    
 }
 .stepsContainer{
     display: flex;
@@ -25,12 +27,15 @@
     font-size: 20px;
     max-width: 280px;
     text-align: center;
+    font-family: 'Montserrat';
 }
 .stepsNumber{
     font-size: 70px;
     font-weight: bolder;
     color:#0576e6a9;
     padding: 20px;
+    font-family: 'Paytone One';
+    
 }
 .column{
     display: flex;
