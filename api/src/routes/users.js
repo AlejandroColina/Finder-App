@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const axios = require("axios");
 const { Persona, Profesion, Direccion, Publicacion } = require("../db");
+const nodemailer = require("nodemailer");
 router.use(express.json());
 
 router.get("/", async (req, res, next) => {
@@ -136,6 +137,31 @@ router.post('/nuevo', async (req, res, next) => {
         favoritos: [],
         trabajosPagos: []
       });
+
+      const transporter = nodemailer.createTransport({
+        host: "smtp.ethereal.email",
+        port: 587,
+        secure: false,
+        auth: {
+          user: "isai.donnelly76@ethereal.email",
+          pass: "Bz2gM3wDPk6xFZxS7r",
+        },
+      });
+  
+      const mailOptions = {
+        from: '"Finder" <finder@gmail.com>',
+        to: email,
+        subject: "Enviado desde Finder ✔",
+        html: `<h1> QUE ONDA ${nombres} </h1>`,
+      };
+  
+      transporter.sendMail(mailOptions, function (error, info) {
+        error
+          ? res.status(500).send(error.message)
+          : console.log('Enviado con exito'); //cambiar .status por .redirect('/rutaDeInicio')
+      });
+
+
       return res.json(persona)
     } else {
       return res.json(consulta)

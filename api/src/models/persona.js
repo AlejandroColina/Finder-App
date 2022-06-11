@@ -53,9 +53,9 @@ module.exports = (sequelize) => {
         min: 1,
       },
     },
-    notificaciones:{
+    notificaciones: {
       type: DataTypes.ARRAY(DataTypes.JSON),
-      allowNull: true
-    }
+      allowNull: true,
+    },
   });
 };
