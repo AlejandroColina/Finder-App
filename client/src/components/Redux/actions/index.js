@@ -241,7 +241,7 @@ export function cambiarInfo(email, input) {
   return async (dispatch) => {
     try {
       let info = await axios.patch(
-        `http://localhost:3001/users/modificar/${email}?nombres=${input.nombres}&apellidos=${input.apellidos}&telefono=${input.telefono}&documento=${input.documento}`
+        `http://localhost:3001/users/modificar/${email}?nombres=${input.nombres}&apellidos=${input.apellidos}&telefono=${input.telefono}&documento=${input.documento}&edad=${input.edad}`
       );
       return dispatch({
         type: "MODIFICAR",
@@ -415,6 +415,15 @@ export function getNoti(email){
     return dispatch({
       type: 'GET_NOTI',
       payload: response.data
+  })
+}
+}
+
+export function desbanear(id, estado){
+  return async dispatch => {
+    let desba = await axios.patch(`http://localhost:3001/suspender/${id}/${estado}`)
+    return dispatch({
+      type: 'DESBANEAR'
     })
   }
 }
@@ -464,3 +473,4 @@ export function sendEliminado(id) {
     })
   }
 }
+

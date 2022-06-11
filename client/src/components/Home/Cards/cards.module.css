@@ -31,6 +31,8 @@ header {
     -moz-box-shadow: #bdc3c7 0 5px 5px;
     box-shadow: #bdc3c7 0 5px 5px;
     animation: moveInRight .85s ease-out;
+    background-color: #ffffff;
+
   }
 
   @keyframes moveInRight {
