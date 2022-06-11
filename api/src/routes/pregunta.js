@@ -23,14 +23,15 @@ router.get('/:idPublicacion', async(req,res)=>{
 
 router.post('/', async(req,res)=>{
     try{
-        const { pregunta, persona,PublicacionId} =req.body;
-        if(!pregunta || !persona){
+        const { pregunta, user, profesional,PublicacionId} =req.body;
+        if(!pregunta || !user || !profesional){
             return res.send({message:"No se pudo realizar la consulta, intente mas tarde"})
         }else{
             await Pregunta.create({
                 PublicacionId,
                 pregunta,
-                persona
+                user,
+                profesional
             })
         }
         return res.status(200).json({message:"tu consulta fue enviada con exito"})

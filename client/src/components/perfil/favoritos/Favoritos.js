@@ -15,7 +15,7 @@ const Favorito = () => {
             imagen={el.imagen}
             descripcion={el.descripcion}
             Profesions={el.Profesions}
-            id={el.id}
+            id={el.idPublicacion}
             logoProfesion={el.logoProfesion}
           />
         ))}

@@ -2,23 +2,24 @@ import React from "react";
 import s from "./Form.module.css";
 import { useDispatch, useSelector } from "react-redux";
 
-import { cambiarInfo, ValidarInfo } from '../../Redux/actions/index';
+import { cambiarInfo, ValidarInfo,getPefil } from '../../Redux/actions/index';
 import { useState } from "react";
 import { useAuth0 } from '@auth0/auth0-react';
 
 
 const Form = () => {
   const { user } = useAuth0();
-  // const Perfil = useSelector((state) => state.perfil);
+
+  
   const dispatch = useDispatch();
   const [input, setInput] = useState({
-    nombres: '',
-    apellidos: "",
-
+    nombres: user?.name,
+    apellidos: user?.lastName,
     telefono: "",
     documento: "",
+    edad: ""
   });
-
+  const  {validar}  = useSelector((state) => state);
   const handleOnchange = (e) => {
     setInput({
       ...input,
@@ -31,6 +32,7 @@ const Form = () => {
     dispatch(cambiarInfo(user?.email, input))
     setTimeout(() => {
       dispatch(ValidarInfo(user?.email))
+      dispatch(getPefil(user?.email))
     }, 1000)
 
   }
@@ -38,7 +40,9 @@ const Form = () => {
   return (
     <div className={s.form}>
       <div>
+        {validar? 
         <h1 className={s.h1}>Completar perfil</h1>
+       : <h1 className={s.h1}>Editar perfil</h1> }
         <div className={s.div}>
           <input
             name="nombres"
@@ -78,6 +82,16 @@ const Form = () => {
             placeholder="telefono"
             onChange={(e) => handleOnchange(e)}
           ></input>
+        </div>
+        <div  className={s.div}>
+          <input
+          name={'edad'}
+          value={input.edad}
+          className={s.input}
+          type='text'
+          placeholder='coloca tu edad'
+          onChange={(e) => handleOnchange(e)}>
+          </input>
         </div>
         <div className={s.div_boton}>
 
