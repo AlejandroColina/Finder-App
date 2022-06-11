@@ -1,0 +1,100 @@
+
+.containerDash{
+    padding-top: 60px;
+    min-height: 100vh;
+    background-color: white;
+}
+.gridContainer {
+    display: grid;
+    justify-content: space-around;
+    grid-template-columns: 30% 30% 30%;
+  }
+.gridCol{
+    background-color: rgba(128, 128, 128, 0.047);
+}
+.ColDanger{
+    background-color: rgba(0, 0, 0, 0.747);
+}
+.gridItem{
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    font-size: 10px;
+    font-weight: bolder;
+    align-items: center;
+    height: 30px;
+    margin: 10px;
+    border: 1px solid white;
+}
+.gridDivs{
+    padding:5px;
+    font-size: 10px;
+    font-weight: normal;
+}
+.gridDan{
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    font-size: 10px;
+    font-weight: bolder;
+    align-items: center;
+    height: 30px;
+    margin: 10px;
+    color: white;
+}
+.gridDivs{
+    padding:5px;
+    font-size: 10px;
+    font-weight: normal;
+}
+.btn{
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: none;
+    color: transparent;
+    transition: 1s;
+}
+.btn:hover{
+    font-size: 23px;
+    font-weight: bolder;
+    background-color: rgba(255, 0, 0, 0.695);
+    color: white;
+}
+.btnAc{
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: none;
+    color: transparent;
+    transition: 1s;
+}
+.btnAc:hover{
+    font-size: 23px;
+    font-weight: bolder;
+    background-color: rgba(13, 134, 0, 0.763);
+    color: white;
+}
+
+.btnDan{
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: none;
+    color: transparent;
+    transition: 1s;
+}
+.btnDan:hover{
+    font-size: 23px;
+    font-weight: bolder;
+    background-color: rgba(0, 0, 0, 0.763);
+    color: white;
+}

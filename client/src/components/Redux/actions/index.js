@@ -474,3 +474,8 @@ export function sendEliminado(id) {
   }
 }
 
+export function getUserStatus(){
+  return({
+    type:'USER_STATUS'
+  })
+}
