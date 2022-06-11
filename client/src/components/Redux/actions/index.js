@@ -409,6 +409,15 @@ export function deleteFavorito(email, id) {
   }
 }
 
+export function getNoti(email){
+  return async dispatch =>{
+    let response = await axios.get(`http://localhost:3001/notificaciones/${email}`)
+    return dispatch({
+      type: 'GET_NOTI',
+      payload: response.data
+  })
+}
+}
 
 export function desbanear(id, estado){
   return async dispatch => {

@@ -1,6 +1,6 @@
 
 import React, { useState } from "react";
-import { getCiudades, getEmpleos, rederCard } from "../Redux/actions/index";
+import { getCiudades, getEmpleos, rederCard, getNoti } from "../Redux/actions/index";
 import { useEffect } from "react";
 import Cards from "./Cards/cards";
 import { useDispatch, useSelector } from "react-redux";
@@ -10,14 +10,17 @@ import { Filtros } from "./Filtros/Filtros";
 import Paginado from '../Paginado/Paginado'
 import Help from "../Help/Help";
 import { Helmet } from 'react-helmet';
-
 import Footer from './../Footer/Footer';
 import Loanding from "./loading/Loanding";
 import NoResult from './noResult/NoResult'
 import Destacados from "./Destacados";
+import { useAuth0 } from '@auth0/auth0-react';
 
 
 function Home({ descripcion, setDescripcion }) {
+  
+  const dispatch = useDispatch();
+  const { isAuthenticated, user } = useAuth0();
 
   const EMPTY_FILTERS = {
 
@@ -30,7 +33,7 @@ function Home({ descripcion, setDescripcion }) {
     empleo: ''
 
   }
-
+  
 
   const loanding = useSelector((state) => state.loanding);
 
@@ -47,7 +50,6 @@ function Home({ descripcion, setDescripcion }) {
       [e.target.name]: e.target.value
     })
   };
-  const dispatch = useDispatch();
 
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPorPag] = useState(9);
