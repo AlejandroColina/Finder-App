@@ -30,15 +30,22 @@ const Perfil = () => {
   const [perfil, setPerfil] = useState(false);
   const StatePerfil = useSelector((state) => state.perfil);
   const baneo = useSelector((state) => state.baneado);
+  const [editar, setEditar] = useState(false);
   const handlePerfil = () => {
     setPerfil(true);
     setFavorito(false);
+    setEditar(false)
   };
 
   const handleVolver = () => {
     setPerfil(false);
     setFavorito(false);
+    setEditar(false)
   };
+  const handleEditar = () => {
+    setEditar(true)
+    setFavorito(false)
+  }
 
   useEffect(() => {
     dispatch(getPefil(user?.email));
@@ -49,6 +56,7 @@ const Perfil = () => {
 
   const handleState = () => {
     setFavorito(true);
+    setEditar(false)
   };
   return (
     <>
@@ -84,9 +92,11 @@ const Perfil = () => {
               <button className={s.botones} onClick={handleState}>
                 Favoritos
               </button>
+              {validar?
               <button className={s.botones} onClick={handlePerfil}>
-                Editar perfil
+                Completar perfil
               </button>
+              :<></>}
               <button className={s.botones} onClick={handleVolver}>
                 perfil
               </button>
@@ -104,7 +114,7 @@ const Perfil = () => {
               {validar ? (
                 <p className={s.rojo}>
                   {" "}
-                  complete su perfil para poder hacer una apublicacion
+                  complete su perfil para poder hacer una publicacion
                 </p>
               ) : (
                 ""
@@ -121,10 +131,15 @@ const Perfil = () => {
                 <h2>email :</h2>
                 <h2>{StatePerfil[0]?.email}</h2>
                 <h2>edad :</h2>
-                <h2>{StatePerfil[0]?.edad ? StatePerfil[0]?.edad : "20"}</h2>
+                <h2>{StatePerfil[0]?.edad}</h2>
               </div>
+              {!validar ?
+              <button className={s.editar} onClick={handleEditar}>Editar perfil</button>
+             : <></>}
             </div>
             <div className={s.publi}>
+              {editar ? <Form/>
+                : <>
               {favorito ? (
                 <Favorito />
               ) : (
@@ -156,7 +171,9 @@ const Perfil = () => {
                   )}
                 </div>
               )}
+              </>}
             </div>
+            
           </section>
           <footer className={s.footer}>
             <Footer />

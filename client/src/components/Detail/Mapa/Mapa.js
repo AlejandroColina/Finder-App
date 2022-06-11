@@ -2,8 +2,16 @@ import React, { useEffect, useRef, useState } from "react";
 import * as mapboxgl from "mapbox-gl";
 import "./index.css";
 
+<<<<<<< HEAD
 mapboxgl.accessToken =
   "pk.eyJ1IjoiZ2FicmllbC1jb250ZWdyYW5kIiwiYSI6ImNsM2s5ZDk3ODA2bHIzamxrcHkwenpoOGwifQ.1722tTpO4XZC5db0YfwDdA";
+=======
+// eslint-disable-next-line import/no-webpack-loader-syntax
+mapboxgl.workerClass = require('worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker').default;
+
+ 
+mapboxgl.accessToken = 'pk.eyJ1IjoiZ2FicmllbC1jb250ZWdyYW5kIiwiYSI6ImNsM2s5ZDk3ODA2bHIzamxrcHkwenpoOGwifQ.1722tTpO4XZC5db0YfwDdA';
+>>>>>>> 7729205f6ad368d56ca6b4662897fbab8d1dde34
 export const Mapa = ({ MyDetail }) => {
   const { longitud, latitud, nombres, ciudad } = MyDetail;
 

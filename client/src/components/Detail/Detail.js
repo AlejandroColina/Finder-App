@@ -40,7 +40,6 @@ export default function Detail({ Profesions }) {
   const { logout } = useAuth0();
   if (isAuthenticated) {
     var onlyFirst = user.name.split(" ");
-    var email = user.email
   }
 
   const history = useHistory();
@@ -210,56 +209,55 @@ export default function Detail({ Profesions }) {
 
           <div className={s.titulos}>Tenes dudas?</div>
           <hr />
-          {isAuthenticated ?
-            <Preguntar user={user.email} publicacion={id} profesional={MyDetail.email} /> :
-            <div className={s.width} ><button className={s.btndebe} onClick={() => { loginWithRedirect() }}>INGRESA o REGISTRATE para poder consultar</button></div>}
+           {isAuthenticated?
+          <Preguntar user={[user.email,user.picture]} publicacion={id} profesional={[MyDetail.email,MyDetail.imagen]} /> : 
+          <div className={s.width} ><button className={s.btndebe} onClick={() => { loginWithRedirect() }}>INGRESA o REGISTRATE para poder consultar</button></div>}
           <div className={s.commentsBox}>
             {preguntas
               ? preguntas.map((p) => (
-                <div key={p.id}>
-                  <div className={s.containerComments}>
-                    <div className={s.pregunta}>{p.pregunta}</div>
-                    <>
-                      {p.respuesta && (isAuthenticated && user.email === MyDetail.email) ? (
-                        <>
-                          <div className={s.respuesta}>
-                            <div className={s.figura}></div>
-                            {p.respuesta}
-                          </div>{" "}
-                        </>
-                      ) : (
-                        <form
-                          className={s.form}
-                          onSubmit={(e) => {
-                            e.preventDefault();
-                            dispatch(responderPregunta(p.id, input));
-                            dispatch(sendNoti(email, input));
-                            Swal.fire({
-                              text: "Tu respuesta fue enviada!",
-                              icon: "succes",
-                            });
-                            setTimeout(history.push("./"), 1000);
-                          }}
-                        >
-                          <textarea
-                            className={s.input}
-                            name="respuesta"
-                            rows="6"
-                            type="text"
-                            onChange={(e) => handleChange(e)}
-                            value={input.respuesta}
-                            required
-                          />
-                          <input
-                            type="submit"
-                            value="responder"
-                            className={s.btn}
-                          />
-                        </form>
-                      )}
-                    </>
+                  <div key={p.id}>
+                    <div className={s.containerComments}>
+                      <div className={s.pregunta}>{p.pregunta}</div>
+                      <>
+                        {p.respuesta && (isAuthenticated && user.email === MyDetail.email) ? (
+                          <>
+                            <div className={s.respuesta}>
+                              <div className={s.figura}></div>
+                              {p.respuesta}
+                            </div>{" "}
+                          </>
+                        ) : (
+                          <form
+                            className={s.form}
+                            onSubmit={(e) => {
+                              e.preventDefault();
+                              dispatch(responderPregunta(p.id, input));
+                              dispatch(sendNoti(p.user[0],input));
+                              Swal.fire({
+                                text: "Tu respuesta fue enviada!",
+                                icon: "succes",
+                              });
+                            }}
+                          >
+                            <textarea
+                              className={s.input}
+                              name="respuesta"
+                              rows="6"
+                              type="text"
+                              onChange={(e) => handleChange(e)}
+                              value={input.respuesta}
+                              required
+                            />
+                            <input
+                              type="submit"
+                              value="responder"
+                              className={s.btn}
+                            />
+                          </form>
+                        )}
+                      </>
+                    </div>
                   </div>
-                </div>
               ))
               : null}
           </div>
@@ -280,7 +278,7 @@ export default function Detail({ Profesions }) {
             <Comentar
               publicacion={id}
               setComento={setComento}
-              profesional={MyDetail.email}
+              profesional={[MyDetail.email,MyDetail.imagen]}
             />
           ) : null}
           <div className={s.commentsBox}>
