@@ -19,6 +19,8 @@ const InitialState = {
   favorito: [],
   baneado: false,
   notificaciones:[],
+  usuariosBaneados:[],
+  noBaneados:[],
 
 };
 
@@ -235,6 +237,13 @@ export default function rootReducer(state = InitialState, action) {
       return{
         ...state,
         notificaciones: action.payload
+      }
+
+    case 'USER_STATUS':
+      return{
+        ...state,
+        noBaneados: state.users.filter(u=>u.baneado===false),
+        usuariosBaneados: state.users.filter(u=>u.baneado===true),
       }
 
     default:
