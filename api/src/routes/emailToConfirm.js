@@ -6,7 +6,7 @@ const router = express.Router();
 router.use(express.json());
 router.use(cors());
 
-router.get('/baneo/:id', async (req, res, next) => {
+router.patch('/baneo/:id', async (req, res, next) => {
     try {
         const { id } = req.params;
 
@@ -18,7 +18,7 @@ router.get('/baneo/:id', async (req, res, next) => {
             to: persona?.dataValues.email,
             subject: 'Tu cuenta acaba de ser restringida.',
             html: `<p>
-        <b>${persona?.dataValues.nombres}</b>. Por políticas Finder, tu perfil acaba de ser restringido.
+            <b>Hola ${persona?.dataValues.nombres},</b> <br/><br/>Por políticas Finder, tu perfil acaba de ser restringido.
         Para más información contacta a la administración.
         </p>`
         };
@@ -36,7 +36,7 @@ router.get('/baneo/:id', async (req, res, next) => {
     }
 });
 
-router.get('/desbaneo/:id', async (req, res, next) => {
+router.patch('/desbaneo/:id', async (req, res, next) => {
     try {
         const { id } = req.params;
 
@@ -48,7 +48,7 @@ router.get('/desbaneo/:id', async (req, res, next) => {
             to: persona?.dataValues.email,
             subject: 'Tu cuenta acaba de liberarse.',
             html: `<p>
-        <b>${persona?.dataValues.nombres}</b>. En este momento se libera nuevamente tu cuenta Finder. 
+            <b>Hola ${persona?.dataValues.nombres},</b> <br/><br/>En este momento se libera nuevamente tu cuenta Finder. 
         Sácale el máximo provecho sin ir más allá de las políticas establecidas en nuestra plataforma.
         </p>`
         };
@@ -66,7 +66,7 @@ router.get('/desbaneo/:id', async (req, res, next) => {
     }
 });
 
-router.get('/eliminar/:id', async (req, res, next) => {
+router.patch('/eliminarUser/:id', async (req, res, next) => {
     try {
         const { id } = req.params;
 
@@ -76,9 +76,9 @@ router.get('/eliminar/:id', async (req, res, next) => {
         let message = {
             from: 'Finder Community <finder.app.henry@hotmail.com>',
             to: persona?.dataValues.email,
-            subject: 'Tu cuenta acaba de eliminarse.',
+            subject: 'Tu cuenta finder acaba de ser eliminada.',
             html: `<p>
-            <b>${persona?.dataValues.nombres}</b>. Por políticas Finder, tu perfil acaba de ser eliminado.
+            <b>Hola ${persona?.dataValues.nombres},</b> <br/><br/>Por políticas Finder, tu perfil acaba de ser eliminado.
             Para más información contacta a la administración.
             </p>`
         };
@@ -108,7 +108,7 @@ router.patch('/nuevo_post/:email', async (req, res, next) => {
             to: persona?.dataValues.email,
             subject: 'Tu publicación acaba de ser creada.',
             html: `<p>
-            <b>${persona?.dataValues.nombres}</b>Acabas de crear una publicación.
+            <b>Hola ${persona?.dataValues.nombres},</b> <br/><br/>Acabas de crear una publicación.
             Finder te desea los mejores resultados.
             </p>`
         };
