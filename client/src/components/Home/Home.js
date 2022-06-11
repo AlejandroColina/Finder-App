@@ -20,7 +20,7 @@ import { useAuth0 } from '@auth0/auth0-react';
 
 
 function Home({ descripcion, setDescripcion }) {
-  
+
   const dispatch = useDispatch();
   const { isAuthenticated, user } = useAuth0();
 
@@ -35,7 +35,7 @@ function Home({ descripcion, setDescripcion }) {
     empleo: ''
 
   }
-  
+
 
   const loanding = useSelector((state) => state.loanding);
 
@@ -78,7 +78,7 @@ function Home({ descripcion, setDescripcion }) {
     setDescripcion('')
   }
   //Skeleton
-  if (loanding || !loanding) {
+  if (loanding) {
     return (
       <div>
         <Helmet><title>Cargando..</title></Helmet>
@@ -117,8 +117,8 @@ function Home({ descripcion, setDescripcion }) {
             </div>
             {currentUsuarios.length ?
               currentUsuarios.map((el) => (
-                <div 
-                key={el.idPublicacion} className="box">
+                <div
+                  key={el.idPublicacion} className="box">
                   <Cards
                     key={el.idPublicacion}
                     promedio={el.promedio}
@@ -136,7 +136,7 @@ function Home({ descripcion, setDescripcion }) {
           </section>
 
           <section className={styles.destacados}>
-            <div className={styles.textDestacados} ><h1>Destacados <i style={{color: 'yellow' , margin: '10px', textShadow: '3px 4px black'}} class="fa-solid fa-bolt-lightning"></i></h1></div>
+            <div className={styles.textDestacados} ><h1>Destacados <i style={{ color: 'yellow', margin: '10px', textShadow: '3px 4px black' }} class="fa-solid fa-bolt-lightning"></i></h1></div>
             <div className={styles.div__destacados}>
               {
                 destacados.map(el => {

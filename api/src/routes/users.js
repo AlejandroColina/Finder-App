@@ -4,6 +4,8 @@ const axios = require("axios");
 const transporter = require("./transporter");
 const { Persona, Profesion, Direccion, Publicacion } = require("../db");
 const nodemailer = require("nodemailer");
+const cors = require("cors");
+router.use(cors());
 router.use(express.json());
 
 router.get("/", async (req, res, next) => {
@@ -29,7 +31,7 @@ router.get("/", async (req, res, next) => {
         publicaciones: person.Publicacions,
         favoritos: person.favoritos,
         baneado: person.baneado,
-        notificaciones:person.notificaciones
+        notificaciones: person.notificaciones,
       };
     });
 
@@ -183,7 +185,7 @@ router.get("/validar/:email", async (req, res, next) => {
     if (!consulta.length)
       return res.status(404).send("No existe usuario con ese email.");
     if (
-      // consulta[0]?.edad == null ||
+      consulta[0]?.edad == null ||
       consulta[0]?.apellidos == null ||
       consulta[0]?.documento == null ||
       consulta[0]?.telefono == null

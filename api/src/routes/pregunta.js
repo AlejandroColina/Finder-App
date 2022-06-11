@@ -2,6 +2,8 @@ const express = require("express");
 const router = express.Router();
 const axios = require("axios");
 const {Pregunta,Publicacion} = require('../db');
+const cors = require('cors');
+router.use(cors());
 router.use(express.json());
 
 router.get('/:idPublicacion', async(req,res)=>{
