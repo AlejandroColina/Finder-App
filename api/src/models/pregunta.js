@@ -8,7 +8,7 @@ module.exports = (sequelize) => {
             allowNull:false
         },
         user:{
-            type: DataTypes.STRING, //persona que hace el comentario
+            type: DataTypes.ARRAY(DataTypes.STRING),
             allowNull: false
         },
         respuesta:{
@@ -16,7 +16,7 @@ module.exports = (sequelize) => {
             allowNull:true
         },
         profesional:{
-            type:DataTypes.STRING,
+            type:DataTypes.ARRAY(DataTypes.STRING),
             allowNull: false
         }
     });
