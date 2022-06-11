@@ -80,8 +80,7 @@ function Home({ descripcion, setDescripcion }) {
     return (
       <div>
         <Helmet><title>Cargando..</title></Helmet>
-        <HomeLoader />
-        <ProfileCard />
+        <Loanding />
       </div>
     )
   }
