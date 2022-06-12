@@ -35,7 +35,7 @@ export const SearchBar = ( {setDescripcion, descripcion }) => {
     return (
      <div className={styles.header}>
                 
-                <img className={styles.logo} src={logo} alt='finder' /> 
+              <Link to='/'>  <img className={styles.logo} src={logo} alt='finder' /> </Link>
            
                 <form onSubmit={handleSubmit}  className={styles.search}>
                     <input type="text" className={styles.input} name='job' placeholder="Busca un talento" ref={searchRef} />
