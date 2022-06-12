@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import s from './styles.module.css';
 import NavBar from '../../components/NavBar/NavBar';
-import AdminMsj from "./AdminMsj";
+import AdminMsj from "./soporte/AdminMsj";
 import Dashboard from "./Dashboard";
 import Usuarios from './usuarios/Usuarios';
 import Error from '../Error'
