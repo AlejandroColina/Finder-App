@@ -1,6 +1,6 @@
 import React from "react";
 import {useDispatch} from "react-redux";
-import { deleteUser} from "../../Redux/actions";
+import { deleteUser, sendEliminado} from "../../Redux/actions";
 import as from './Config.module.css';
 
 export default function DangerZone({users}){
@@ -11,6 +11,7 @@ export default function DangerZone({users}){
 
     const  handleDelete = (id) =>{
         dispatch(deleteUser(id));
+        dispatch(sendEliminado(id));
       }
 
     return(
