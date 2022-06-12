@@ -20,7 +20,7 @@ import { useAuth0 } from '@auth0/auth0-react';
 
 
 function Home({ descripcion, setDescripcion }) {
-
+  
   const dispatch = useDispatch();
   const { isAuthenticated, user } = useAuth0();
 
@@ -35,7 +35,7 @@ function Home({ descripcion, setDescripcion }) {
     empleo: ''
 
   }
-
+  
 
   const loanding = useSelector((state) => state.loanding);
 

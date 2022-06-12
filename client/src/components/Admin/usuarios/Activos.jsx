@@ -1,6 +1,6 @@
 import React from "react";
 import {useDispatch} from "react-redux";
-import { baneoUser} from "../../Redux/actions";
+import { baneoUser, sendBaneo} from "../../Redux/actions";
 import s from './Config.module.css';
 
 export default function Activos({activos}){
@@ -12,6 +12,7 @@ export default function Activos({activos}){
   const estado = true;
   const hadleBaneo = (id) => {
     dispatch(baneoUser(id, estado));
+    dispatch(sendBaneo(id));
   };
 
     return(
