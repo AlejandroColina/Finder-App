@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import s from './styles.module.css';
+import s from '../styles.module.css';
 import { useDispatch, useSelector } from "react-redux";
-import {getOneMsj,readMsj} from '../Redux/actions';
+import {getOneMsj,readMsj} from '../../Redux/actions';
 import DetatilMsj from "./DetailMsj";
 
 export default function AdminMsj (){
