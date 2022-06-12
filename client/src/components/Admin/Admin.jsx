@@ -3,21 +3,29 @@ import s from './styles.module.css';
 import NavBar from '../../components/NavBar/NavBar';
 import AdminMsj from "./AdminMsj";
 import Dashboard from "./Dashboard";
-import Usuarios from './Usuarios';
+import Usuarios from './usuarios/Usuarios';
 import Error from '../Error'
 import { useAuth0 } from "@auth0/auth0-react";
 import { useEffect } from 'react';
 import {useDispatch} from 'react-redux';
-import { getTotalUsersBytype,getAdminMsj } from "../Redux/actions";
+import { getTotalUsersBytype,getAdminMsj, getUserStatus, getUsers } from "../Redux/actions";
 import { Helmet } from "react-helmet";
+import { useSelector } from "react-redux";
 
 export default function Admin(){
     const { user, isAuthenticated} = useAuth0();
     const dispatch = useDispatch();
     useEffect(()=>{
+        dispatch(getUsers());
         dispatch(getTotalUsersBytype());
         dispatch(getAdminMsj());
+        dispatch(getUserStatus());
     },[dispatch]);
+
+    //ESTADOS DE REDUX
+    const users = useSelector(state=>state.users)
+    const activos = useSelector(state=>state.noBaneados);
+    const suspendidos = useSelector(state=>state.usuariosBaneados);
     return(
 
         isAuthenticated && (user.email==='giulianob94@hotmail.com'
@@ -41,7 +49,7 @@ export default function Admin(){
         <div className={s.containerComp}>
           <section id='1'><AdminMsj/></section>
           <section id='2'><Dashboard/></section>
-          <section id='3'><Usuarios/></section>
+          <section id='3'><Usuarios users={users} activos={activos} suspendidos={suspendidos}/></section>
         </div>
 
         </div> ) : (<Error/>)
