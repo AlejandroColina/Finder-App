@@ -7,7 +7,7 @@ const InitialState = {
   empleosForm: [],
   ciudades: [],
   adminMjes: [],
-  loanding: false,
+  loanding: true,
   msjDetailAdmin: {},
   ubicacion: {},
   validar: true,
@@ -19,6 +19,8 @@ const InitialState = {
   favorito: [],
   baneado: false,
   notificaciones:[],
+  usuariosBaneados:[],
+  noBaneados:[],
 
 };
 
@@ -31,11 +33,21 @@ export default function rootReducer(state = InitialState, action) {
       };
 
     case "CARDS":
-      return {
-        ...state,
-        trabajadores: action.payload,
-        loanding: false,
-      };
+      if(state.loanding === false){
+        console.log('Loanding Ya esta false')
+        return{
+          ...state,
+          trabajadores: action.payload
+        }
+      }else{
+        console.log('seteado a FALSE')
+        return {
+          ...state,
+          trabajadores: action.payload,
+          loanding: false,
+        };
+      }
+
     case "CARDST":
       return {
         ...state,
@@ -235,6 +247,13 @@ export default function rootReducer(state = InitialState, action) {
       return{
         ...state,
         notificaciones: action.payload
+      }
+
+    case 'USER_STATUS':
+      return{
+        ...state,
+        noBaneados: state.users.filter(u=>u.baneado===false),
+        usuariosBaneados: state.users.filter(u=>u.baneado===true),
       }
 
     default:

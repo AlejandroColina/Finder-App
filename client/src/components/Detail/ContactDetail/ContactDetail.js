@@ -12,7 +12,7 @@ export const ContactDetail = ({ MyDetail }) => {
       </h1>
 
       <p className={styles.dato}>
-        <b>Teléfono:</b>
+        <b><i class="fa-solid fa-phone-rotary" style={{BackgroundColor: 'blue'}}></i></b>
         {telefono}
       </p>
 

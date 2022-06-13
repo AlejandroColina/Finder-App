@@ -11,16 +11,17 @@ import Paginado from '../Paginado/Paginado'
 import Help from "../Help/Help";
 import { Helmet } from 'react-helmet';
 import Footer from './../Footer/Footer';
-import Loanding from "./loading/Loanding";
+
 import NoResult from './noResult/NoResult'
 import Destacados from "./Destacados";
 
 import { useAuth0 } from '@auth0/auth0-react';
+import HomeLoader from "./loading/Skeleton";
 
 
 
 function Home({ descripcion, setDescripcion }) {
-
+  
   const dispatch = useDispatch();
   const { isAuthenticated, user } = useAuth0();
 
@@ -35,7 +36,7 @@ function Home({ descripcion, setDescripcion }) {
     empleo: ''
 
   }
-
+  
 
   const loanding = useSelector((state) => state.loanding);
 
@@ -82,8 +83,15 @@ function Home({ descripcion, setDescripcion }) {
     return (
       <div>
         <Helmet><title>Cargando..</title></Helmet>
-        <Loanding />
+        <SearchBar descripcion={descripcion} setDescripcion={setDescripcion} />
+        <section className={styles.filtros}>
+            <Filtros resetValues={resetValues} filters={filters} handleFilterChanges={handleFilterChanges} />
+        </section>
+        <div className={styles.loaders}>
+        <HomeLoader />
+        </div>
       </div>
+
     )
   }
 
