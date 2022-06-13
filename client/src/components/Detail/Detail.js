@@ -32,6 +32,7 @@ import Comentar from "./Comentar/Comentar";
 import Preguntar from "./Preguntar/Preguntar";
 import { Mapa } from "./Mapa/Mapa";
 import 'mapbox-gl/dist/mapbox-gl.css';
+import ThreeDots from "./Loading";
 
 export default function Detail({ Profesions }) {
   const { isAuthenticated, user } = useAuth0();
@@ -75,8 +76,12 @@ export default function Detail({ Profesions }) {
   }, [id, dispatch]);
 
   let { promedio } = MyDetail;
-
-  let precio = 15;
+  
+  let precio = 10;
+  if(promedio === 2) precio = 15
+  if(promedio === 3) precio = 25
+  if(promedio === 4) precio = 35
+  if(promedio === 5) precio = 50
   let price = precio;
 
   const product = {
@@ -112,17 +117,24 @@ export default function Detail({ Profesions }) {
   const [comento, setComento] = useState(false);
   const [open, setOpen] = useState(false);
 
-  return (
-    <>
-      {!MyDetail.nombres ? (
-        <Helmet>
+  if(!MyDetail.nombres){
+    return(
+      <>
+      <NavBar />
+      <Helmet>
           <title>Cargando..</title>
-        </Helmet>
-      ) : (
+      </Helmet>
+      <ThreeDots />
+      </>
+    )
+  }
+
+  return (
+    <>     
         <Helmet>
           <title>{`${MyDetail.nombres}`} - Finder </title>
         </Helmet>
-      )}
+     
       <NavBar />
 
       <div className={s.container}>
@@ -158,14 +170,7 @@ export default function Detail({ Profesions }) {
                   alt=""
                 />
               )}
-              <div
-                className={s.valor}
-                onClick={() => {
-                  setOpen(false);
-                }}
-              >
-                Cancelar
-              </div>
+              
             </div>
           ) : (
             // Contratar
