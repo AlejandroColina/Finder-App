@@ -4,7 +4,6 @@ import { useSelector, useDispatch } from "react-redux";
 import {
   getDetail,
   getDeleteDetail,
-  getPublicacionDeUsuario,
   getOpiniones,
   getPreguntas,
   responderPregunta,
