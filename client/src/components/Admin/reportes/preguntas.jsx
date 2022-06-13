@@ -1,33 +1,40 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { deletePregunta, ignorarReportarPregunta } from "../../Redux/actions";
+import s from './styles.module.css';
+import {Link} from 'react-router-dom'
 
 export default function Preguntas() {
   const dispatch = useDispatch();
   const preguntas = useSelector((state) => state.preguntasReportadas);
   return (
-    <div>
+    <div className={s.gridCol}>
+    <div className={s.sub}>PREGUNTAS</div>
       {preguntas
         ? preguntas.map((p) => (
-            <div key={p.id}>
-              <div>{p.pregunta}</div>
-              <div>de {p.user}</div>
-              <button
-                onClick={(e) => {
-                  e.preventDefault();
-                  dispatch(deletePregunta(p.id));
-                }}
-              >
-                ELIMINAR PREGUNTA
-              </button>
-              <button
+              <div className={s.column} key={p.id}>
+                <div className={s.gridItem}>
+                  <button className={s.btnDelete}
+                   onClick={(e) => {
+                    e.preventDefault();
+                    dispatch(deletePregunta(p.id));
+                    }}>
+                    ELIMINAR
+                  </button>
+                  <div className={s.usuario}> {p.user[0]}</div>
+                  <div>➠ </div>
+                  <div className={s.usuario}> {p.profesional[0]}</div>
+              <button className={s.btnOmitir}
                 onClick={(e) => {
                   e.preventDefault();
                   dispatch(ignorarReportarPregunta(p.id));
-                }}
-              >
-                IGNORAR
+                }}>
+                OMITIR
               </button>
+              </div>
+                  <Link to={`/trabajo/${p.PublicacionId}`} className={s.link}>
+                    <div className={s.mensaje}>"{p.pregunta}"</div>
+                  </Link>
             </div>
           ))
         : null}
