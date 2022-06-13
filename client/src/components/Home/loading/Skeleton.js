@@ -7,7 +7,7 @@ const HomeLoader = props => (
     height={850}
     viewBox="0 0 800 575"
     backgroundColor="gray"
-    foregroundColor="#ecebeb"
+    foregroundColor="#1583f1fd"
     {...props}
   > 
      
