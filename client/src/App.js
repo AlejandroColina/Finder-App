@@ -1,6 +1,6 @@
 
 import React, { useState } from "react";
-import { Switch, Route } from "react-router-dom";
+import { BrowserRouter as Switch, Route } from "react-router-dom";
 import LandingPage from "./components/LandingPage/index";
 import Home from "./components/Home/Home";
 import Detail from "./components/Detail/Detail";
@@ -11,12 +11,28 @@ import { PayPalScriptProvider } from "@paypal/react-paypal-js";
 import CustomerCreate from "./components/UserCreate/CustomerCreate/CustomerCreate";
 import Perfil from './components/perfil/Perfil'
 import SecondCap from './components/LandingPage/secondcap/SecondCap';
+import Chat from "./components/Chat/Chat";
+import firebase from 'firebase/compat/app';
+import "firebase/database";
+import "firebase/auth";
+import Prueba from "./components/Chat/Prueba";
 
+const firebaseConfig = {
+  apiKey: "AIzaSyD0gA7bouQascjjCbbWBN57QNE1vAwx6Mg",
+  authDomain: "chat-app97.firebaseapp.com",
+  projectId: "chat-app97",
+  storageBucket: "chat-app97.appspot.com",
+  messagingSenderId: "1073937472",
+  appId: "1:1073937472:web:4ccb3dc42f6a496081b3a5"
+};
 
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
 
 function App() {
   const [descripcion, setDescripcion] = useState("");
 
+  
   return (
     <div className="App">
         <PayPalScriptProvider
@@ -41,7 +57,10 @@ function App() {
           <Route path='/quieroseremprendedor' component={SecondCap}/>
           <Route exact path="/trabajo/:id" component={Detail} />
           <Route path="/perfil/:email" component={Perfil}/>
+          <Route path="/chat/:name" component={Chat} />
           <Route path="/*" component={Error} />
+         
+          
         </Switch>
     </PayPalScriptProvider>
       </div>

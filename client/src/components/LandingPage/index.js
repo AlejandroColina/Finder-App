@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import FirstCap from './firstcap/FirstCap';
 import SecondCap from './secondcap/SecondCap';
 import ThirdCap from './thirdcap';
@@ -10,6 +10,9 @@ import logoutImg from '../../assets/logout_white.png';
 import Help from '../Help/Help';
 import { Helmet } from 'react-helmet';
 import axios from 'axios';
+import firebase from 'firebase/compat/app';
+import "firebase/compat/database";
+import "firebase/compat/auth";
 
 
 function LandingPage({ descripcion, setDescripcion }) {
@@ -17,6 +20,16 @@ function LandingPage({ descripcion, setDescripcion }) {
   const { isAuthenticated, user } = useAuth0();
   const { loginWithRedirect } = useAuth0();
   const { logout } = useAuth0();
+  const { currentUser } = firebase.auth();
+  console.log(currentUser)
+
+  useEffect(()=>{
+    if(isAuthenticated){
+    firebase.auth().signInWithEmailAndPassword(user.email, user.nickname)
+  }
+  }, [])
+ 
+
   if (isAuthenticated) {
     var onlyFirst = user.name.split(' ');
   }
@@ -25,10 +38,14 @@ function LandingPage({ descripcion, setDescripcion }) {
     if (isAuthenticated) {
       await axios.post('http://localhost:3001/users/nuevo', {
         nombres: user.name,
-        apellidos: user.lastName,
+        apellidos: user.family_name,
         imagen: user.picture,
         email: user.email
-      })
+      }) 
+        firebase.auth().createUserWithEmailAndPassword(user.email, user.nickname)
+        .then((res)=>{
+          firebase.database().ref(`/users/${res.user.uid}`).set(user)
+        })
     }
   })()
 

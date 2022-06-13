@@ -14,7 +14,9 @@ import Footer from './../Footer/Footer';
 
 import NoResult from './noResult/NoResult'
 import Destacados from "./Destacados";
-
+import firebase from 'firebase/compat/app';
+import "firebase/compat/database";
+import "firebase/compat/auth";
 import { useAuth0 } from '@auth0/auth0-react';
 import HomeLoader from "./loading/Skeleton";
 
@@ -33,8 +35,8 @@ function Home({ descripcion, setDescripcion }) {
     genero: '',
     edad: '',
     ciudad: '',
-    empleo: ''
-
+    empleo: '',
+    edad: ''
   }
   
 
@@ -66,11 +68,16 @@ function Home({ descripcion, setDescripcion }) {
   dispatch(getEmpleos())
   dispatch(getCiudades())
 
-  let { genero, promedio, ciudad, profesion } = filters
+  let { genero, promedio, ciudad, profesion, edad } = filters
   useEffect(() => {
-    dispatch(rederCard(profesion, genero, promedio, ciudad, descripcion));
+    dispatch(rederCard(profesion, genero, promedio, ciudad, descripcion, edad));
     setCurrentPage(1)
-  }, [dispatch, profesion, genero, promedio, ciudad, descripcion]);
+
+    if(isAuthenticated){
+      firebase.auth().signInWithEmailAndPassword(user.email, user.nickname)
+    }
+  }, [dispatch, profesion, genero, promedio, ciudad, descripcion, edad]);
+
 
   let destacados = trabajadores?.filter(el => el.promedio >= 4);
 

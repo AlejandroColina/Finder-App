@@ -32,12 +32,16 @@ export const SearchBar = ( {setDescripcion, descripcion }) => {
   }
   const notificaciones = useSelector((state)=>state.notificaciones)
   
+  const styleLupa = { position: 'absolute', marginRight: '-550px', color: 'darkcyan', fontSize: '17px' }
+
+
     return (
      <div className={styles.header}>
                 
               <Link to='/'>  <img className={styles.logo} src={logo} alt='finder' /> </Link>
            
                 <form onSubmit={handleSubmit}  className={styles.search}>
+                 <i style={ styleLupa } class="fa-solid fa-magnifying-glass"></i>
                     <input type="text" className={styles.input} name='job' placeholder="Busca un talento" ref={searchRef} />
                     {/* <button className="search__button">
 

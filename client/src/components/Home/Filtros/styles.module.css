@@ -20,18 +20,23 @@
 }
 
 .label{
-    color: wheat;
+    color: whitesmoke;
     font-size: 2rem;
     margin-bottom: 4px;
+    font-weight: 500;
 }
 
 .select{
     height: 25px;
-    width: 265px;
+    width: 200px;
     text-align: center;
     font-weight: bold;
     border-radius: 5px;
     outline: none; 
+    background: #cbe7ff;
+    color: rgb(105, 105, 105);
+    min-height: 32px;
+    cursor: pointer;
 }
 
 
@@ -49,9 +54,18 @@
     border-radius: 5px;
     margin-left: 5px;
     cursor: pointer;
-    border-color: blue;
+    border-color: 1px 1px gray;
+    width: 80px;
+    text-align: center;
+    padding-left: 15px;
+    font-weight: 800;
 }
 
-
+.reset{
+    position: absolute;
+    margin-top: 10rem;
+    width: 120px;
+    padding-left: 100px;
+}
 
 
