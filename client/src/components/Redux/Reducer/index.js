@@ -7,17 +7,21 @@ const InitialState = {
   empleosForm: [],
   ciudades: [],
   adminMjes: [],
-  loanding: false,
+  loanding: true,
   msjDetailAdmin: {},
   ubicacion: {},
   validar: true,
-  publicacionesDeUnaPersona: [],
   perfil: [],
   opiniones: [],
   preguntas: [],
   info: [],
   favorito: [],
-  baneado: false
+  baneado: false,
+  notificaciones:[],
+  usuariosBaneados:[],
+  noBaneados:[],
+  preguntasReportadas:[],
+  opinionesReportadas:[],
 
 };
 
@@ -30,11 +34,21 @@ export default function rootReducer(state = InitialState, action) {
       };
 
     case "CARDS":
-      return {
-        ...state,
-        trabajadores: action.payload,
-        loanding: false,
-      };
+      if(state.loanding === false){
+        console.log('Loanding Ya esta false')
+        return{
+          ...state,
+          trabajadores: action.payload
+        }
+      }else{
+        console.log('seteado a FALSE')
+        return {
+          ...state,
+          trabajadores: action.payload,
+          loanding: false,
+        };
+      }
+
     case "CARDST":
       return {
         ...state,
@@ -123,11 +137,6 @@ export default function rootReducer(state = InitialState, action) {
         validar: action.payload,
       };
 
-    case "PUBLICACIONES_USUARIO":
-      return {
-        ...state,
-        publicacionesDeUnaPersona: action.payload,
-      };
     case "MODIFICAR":
       return {
         ...state,
@@ -137,11 +146,6 @@ export default function rootReducer(state = InitialState, action) {
       return {
         ...state,
       };
-
-    case 'DELETE':
-      return {
-        ...state
-      }
 
 
     case 'GET_OPINIONES':
@@ -230,6 +234,50 @@ export default function rootReducer(state = InitialState, action) {
       }
 
 
+    case 'GET_NOTI':
+      return{
+        ...state,
+        notificaciones: action.payload
+      }
+
+    case 'USER_STATUS':
+      return{
+        ...state,
+        noBaneados: state.users.filter(u=>u.baneado===false),
+        usuariosBaneados: state.users.filter(u=>u.baneado===true),
+      }
+
+      case 'REPORTAR_PREGUNTA':
+        return{
+          ...state
+        }
+  
+      case 'IGNORAR_REPORTAR_PREGUNTA':
+        return{
+          ...state
+        }
+      
+      case 'PREGUNTAS_REPORTADAS':
+        return{
+          ...state,
+          preguntasReportadas:action.payload
+        }
+
+        case 'REPORTAR_OPINION':
+          return{
+            ...state
+          }
+    
+        case 'IGNORAR_REPORTAR_OPINION':
+          return{
+            ...state
+          }
+        
+        case 'OPINIONES_REPORTADAS':
+          return{
+            ...state,
+            opinionesReportadas:action.payload
+          } 
 
     default:
       return state;

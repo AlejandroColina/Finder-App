@@ -1,0 +1,166 @@
+
+.containerDash{
+    padding-top: 60px;
+    min-height: 100vh;
+    background-color: white;
+}
+.gridContainer {
+    display: grid;
+    justify-content: space-around;
+    grid-template-columns: 32% 32% 30%;
+  }
+.gridCol{
+    background-color: rgba(128, 128, 128, 0.047);
+}
+.ColDanger{
+    background-color: rgba(0, 0, 0, 0.747);
+}
+.titleDanger{
+    background-color: red;
+    display: flex;
+    justify-content: center;
+    color: white;
+    font-size: 15px;
+    padding: 5px 0px;
+}
+.title{
+    background-color:rgb(0, 51, 99);
+    display: flex;
+    justify-content: center;
+    color: white;
+    font-size: 15px;
+    padding: 5px 0px;
+}
+.subtitleDanger{
+    background-color: black;
+    color: white;
+    padding: 5px 0px;
+    font-size: 13px;
+    display: flex;
+    justify-content: center;
+}
+.subtitle{
+    background-color: rgba(0, 0, 0, 0.093);
+    color: rgb(0, 0, 0);
+    padding: 5px 0px;
+    font-size: 13px;
+    display: flex;
+    justify-content: center;
+}
+.gridItem{
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    font-size: 10px;
+    font-weight: bolder;
+    align-items: center;
+    height: 30px;
+    margin: 5px;
+    border: 1px solid white;
+}
+.gridDivs{
+    padding:5px;
+    font-size: 10px;
+    font-weight: normal;
+}
+.gridDan{
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    font-size: 10px;
+    font-weight: bolder;
+    align-items: center;
+    height: 30px;
+    margin: 10px;
+    color: white;
+}
+.gridDivs{
+    padding:5px;
+    font-size: 10px;
+    font-weight: normal;
+}
+.btn{
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: none;
+    color: transparent;
+    transition: 1s;
+}
+.btn:hover{
+    font-size: 23px;
+    font-weight: bolder;
+    background-color: rgba(255, 0, 0, 0.695);
+    color: white;
+}
+.btnAc{
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: none;
+    color: transparent;
+    transition: 1s;
+}
+.btnAc:hover{
+    font-size: 23px;
+    font-weight: bolder;
+    background-color: rgba(13, 134, 0, 0.763);
+    color: white;
+}
+
+.btnDan{
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: none;
+    color: transparent;
+    transition: 1s;
+}
+.btnDan:hover{
+    font-size: 23px;
+    font-weight: bolder;
+    background-color: rgba(0, 0, 0, 0.763);
+    color: white;
+}
+.containerBar{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    padding: 5px 0px;
+    background-color: #001b38;
+}
+.btnPag{
+    font-size: 10px;
+    color: white;
+    padding: 0px 10px;
+    background: none;
+    border: 1px solid #001b38;
+    transition: 1s;
+}
+.btnPag:hover{
+    border: 1px solid white;
+}
+.form{
+    border-bottom: 1px solid white;
+}
+.input{
+    color: white;
+    background: none;
+    outline: none;
+    border: none;
+}
+.inputBtn{
+    color: white;
+    background: none;
+    outline: none;
+    border: none;
+    font-size: 20px;
+}

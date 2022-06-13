@@ -8,6 +8,7 @@ export default function Dashboard(){
         <div className={s.containerDash}>
             <div className={s.title}>USUARIOS POR CATEGORIA</div>
             <BarChart/>
+            <div className={s.title}>USUARIOS POR UBICACION</div>
             <CityChart/>
         </div>
     )

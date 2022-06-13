@@ -14,14 +14,13 @@ export default function Preguntar({user,profesional,publicacion}){
         PublicacionId:parseInt(publicacion),
         profesional: profesional
     })
-    var email = profesional
+    var email = profesional[0]
     const handleChange = (e)=>{
         setInput({
             ...input,
             [e.target.name]: e.target.value
         })
     }
-    console.log(profesional)
     const handleSubmit = (input,e)=>{
         e.preventDefault();
         dispatch(postPregunta(input));

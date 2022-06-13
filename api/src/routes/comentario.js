@@ -2,6 +2,8 @@ const express = require("express");
 const router = express.Router();
 const axios = require("axios");
 const {Comentario,Publicacion} = require('../db');
+const cors = require('cors');
+router.use(cors());
 router.use(express.json());
 
 router.get('/:idPublicacion', async(req,res)=>{
@@ -32,7 +34,8 @@ router.post('/', async(req,res)=>{
                 PublicacionId,
                 puntaje: parseInt(puntaje),
                 comentario,
-                profesional
+                profesional,
+                reportado:false
             })
         }
         return res.status(200).json({message:"Gracias por tu comentario !"})
@@ -52,6 +55,48 @@ router.delete('/:id',async(req,res)=>{
         res.status(200).json({message:"Comentario borrado con exito!"})
     }catch{
         res.status(400).json({message:"Algo salio mal !"})
+    }
+})
+
+
+router.put('reportar/:id', async(req,res)=>{
+    try{
+        let {id} = req.params;
+        await Comentario.update({reportado:true,},{
+            where:{
+                id
+            }
+        })
+        res.status(200).send('se reporto')
+    }catch{
+        res.status(400).send('no se pudo reportar')
+    }
+})
+
+router.put('ignorar/:id', async(req,res)=>{
+    try{
+        let {id} = req.params;
+        await Comentario.update({reportado:false,},{
+            where:{
+                id
+            }
+        })
+        res.status(200).send('se ignoro el reporte')
+    }catch{
+        res.status(400).send('no se pudo ignorar el reporte')
+    }
+})
+
+router.get('reportadas', async(req,res)=>{
+    try{ 
+        const comentariosRepo =await Comentario.findAll({
+                where: {
+                    reportado: true
+                }
+        });
+        res.status(200).send(comentariosRepo)
+    }catch{
+        res.status(400).send('no funciona')
     }
 })
 module.exports=router;
