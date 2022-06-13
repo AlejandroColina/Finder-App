@@ -1,11 +1,11 @@
 import axios from "axios";
 
-export function rederCard(profesion, genero, promedio, ciudad, descripcion) {
+export function rederCard(profesion, genero, promedio, ciudad, descripcion, edad) {
   return async function (dispatch) {
     dispatch(loanding());
     try {
       let data = await axios.get(
-        `http://localhost:3001/publicaciones?profesion=${profesion}&genero=${genero}&promedio=${promedio}&ciudad=${ciudad}&descripcion=${descripcion}`
+        `http://localhost:3001/publicaciones?profesion=${profesion}&genero=${genero}&promedio=${promedio}&ciudad=${ciudad}&descripcion=${descripcion}&edad=${edad}`
       );
       return dispatch({
         type: "CARDS",
@@ -478,4 +478,60 @@ export function getUserStatus(){
   return({
     type:'USER_STATUS'
   })
+}
+
+export function reportarPregunta(id){
+  return async (dispatch)=>{
+    await axios.put(`http://localhost:3001/pregunta/reportar/${id}`)
+    return dispatch({
+      type: 'REPORTAR_PREGUNTA'
+    })
+  }
+}
+
+export function ignorarReportarPregunta(id){
+  return async (dispatch)=>{
+    await axios.put(`http://localhost:3001/pregunta/ignorar/${id}`)
+    return dispatch({
+      type: 'IGNORAR_REPORTAR_PREGUNTA'
+    })
+  }
+}
+
+export function getPreguntasReportadas(){
+  return async (dispatch)=>{
+    const reportadas = await axios.get("http://localhost:3001/pregunta/reportadas");
+     return dispatch({
+      type: 'PREGUNTAS_REPORTADAS',
+      payload: reportadas.data
+  })
+  }
+}
+
+export function reportarOpinion(id){
+  return async (dispatch)=>{
+    await axios.put(`http://localhost:3001/comentario/reportar/${id}`)
+    return dispatch({
+      type: 'REPORTAR_OPINION'
+    })
+  }
+}
+
+export function ignorarReportarComentario(id){
+  return async (dispatch)=>{
+    await axios.put(`http://localhost:3001/comentario/ignorar/${id}`)
+    return dispatch({
+      type: 'IGNORAR_REPORTAR_OPINION'
+    })
+  }
+}
+
+export function getComentariosReportados(){
+  return async (dispatch)=>{
+    const opinionesReportadas = await axios.get("http://localhost:3001/comentario/reportadas");
+     return dispatch({
+      type: 'OPINIONES_REPORTADAS',
+      payload: opinionesReportadas.data
+  })
+  }
 }
