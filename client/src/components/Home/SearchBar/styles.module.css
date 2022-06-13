@@ -1,7 +1,7 @@
 
 .header{
     
-    height: 6rem;
+    height: 7.2rem;
     background-color: #255aed;
 
     display: flex;
@@ -33,7 +33,7 @@
         color: inherit;
         background-color: #fff;
         border: none;
-        padding: .7rem 2rem;
+        padding: .9rem 2rem;
         border-radius: 100px;
         width: 90%;
         transition: all .2s;    
@@ -43,6 +43,17 @@
             outline: none;
             width: 100%;
             
+}
+
+.input:focus::placeholder{
+    display: none;
+}
+
+.input::placeholder{
+    display: flex;
+    text-align: center;
+    font-size: 1.7rem;
+    padding-right: 15px;
 }
 
 .button{

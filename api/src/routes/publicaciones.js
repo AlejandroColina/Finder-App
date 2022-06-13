@@ -72,8 +72,11 @@ router.get("/", async (req, res, next) => {
       });
     }
 
-    if (edad) {
-      obj = obj.filter((persona) => persona.edad == edad);
+    if (edad === 30 || edad === 40) {
+      obj = obj.filter((persona) => persona.edad <= edad);
+    }
+    if(edad == "mayor"){
+       obj = obj.filter((persona) => persona.edad >= 40);
     }
 
     if (promedio) {
