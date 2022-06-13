@@ -57,7 +57,7 @@ export default function Admin(){
           <section id='1'><AdminMsj/></section>
           <section id='2'><Dashboard/></section>
           <section id='3'><Usuarios users={users} activos={activos} suspendidos={suspendidos}/></section>
-        {preguntas&&opiniones? <section id="4"><Reportes /></section> : null}
+        <section id="4"><Reportes preguntas={preguntas} opiniones={opiniones} /></section>
         </div>
 
         </div> ) : (<Error/>)
