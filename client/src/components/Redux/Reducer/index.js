@@ -11,7 +11,6 @@ const InitialState = {
   msjDetailAdmin: {},
   ubicacion: {},
   validar: true,
-  publicacionesDeUnaPersona: [],
   perfil: [],
   opiniones: [],
   preguntas: [],
@@ -138,11 +137,6 @@ export default function rootReducer(state = InitialState, action) {
         validar: action.payload,
       };
 
-    case "PUBLICACIONES_USUARIO":
-      return {
-        ...state,
-        publicacionesDeUnaPersona: action.payload,
-      };
     case "MODIFICAR":
       return {
         ...state,
@@ -152,11 +146,6 @@ export default function rootReducer(state = InitialState, action) {
       return {
         ...state,
       };
-
-    case 'DELETE':
-      return {
-        ...state
-      }
 
 
     case 'GET_OPINIONES':
