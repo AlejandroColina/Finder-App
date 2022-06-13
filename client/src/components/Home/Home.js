@@ -33,8 +33,8 @@ function Home({ descripcion, setDescripcion }) {
     genero: '',
     edad: '',
     ciudad: '',
-    empleo: ''
-
+    empleo: '',
+    edad: ''
   }
   
 
@@ -66,11 +66,11 @@ function Home({ descripcion, setDescripcion }) {
   dispatch(getEmpleos())
   dispatch(getCiudades())
 
-  let { genero, promedio, ciudad, profesion } = filters
+  let { genero, promedio, ciudad, profesion, edad } = filters
   useEffect(() => {
-    dispatch(rederCard(profesion, genero, promedio, ciudad, descripcion));
+    dispatch(rederCard(profesion, genero, promedio, ciudad, descripcion, edad));
     setCurrentPage(1)
-  }, [dispatch, profesion, genero, promedio, ciudad, descripcion]);
+  }, [dispatch, profesion, genero, promedio, ciudad, descripcion, edad]);
 
   let destacados = trabajadores?.filter(el => el.promedio >= 4);
 

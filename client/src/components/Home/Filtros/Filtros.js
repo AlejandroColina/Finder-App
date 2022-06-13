@@ -9,10 +9,10 @@ export const Filtros = ({ handleFilterChanges, resetValues , filters}) => {
   const empleos = useSelector(state => state.empleos)
   const ciudades = useSelector(state => state.ciudades)
 
-  const { profesion, promedio, genero, ciudad} = filters
+  const { profesion, promedio, genero, ciudad, edad } = filters
 
   const styleBtn = {
-    color: 'grey',
+    color: 'black',
     textShadow: '0px 1px white',
     width: '5rem',
     height: '2rem',
@@ -58,8 +58,17 @@ export const Filtros = ({ handleFilterChanges, resetValues , filters}) => {
         <option value={'mujer'}>Mujer</option>
       </select>
     </div>
-    
     <div className={styles.filtro}>
+      <label className={styles.label}>Edad</label>
+      <select className={styles.select} name='edad' onChange={handleFilterChanges} value={edad}>
+        <option value=''>Todas</option>
+        <option value={30}>Hasta 30 años</option>
+        <option value={40}>Hasta 40 años</option>
+        <option value={'mayor'}>Mayor de 40 años</option>
+      </select>
+    </div>
+    
+    <div className={styles.reset}>
       <button 
       className={styles.btn}
       onClick={resetValues}
