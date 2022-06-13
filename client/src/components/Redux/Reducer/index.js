@@ -21,6 +21,8 @@ const InitialState = {
   notificaciones:[],
   usuariosBaneados:[],
   noBaneados:[],
+  preguntasReportadas:[],
+  opinionesReportadas:[],
 
 };
 
@@ -255,6 +257,38 @@ export default function rootReducer(state = InitialState, action) {
         noBaneados: state.users.filter(u=>u.baneado===false),
         usuariosBaneados: state.users.filter(u=>u.baneado===true),
       }
+
+      case 'REPORTAR_PREGUNTA':
+        return{
+          ...state
+        }
+  
+      case 'IGNORAR_REPORTAR_PREGUNTA':
+        return{
+          ...state
+        }
+      
+      case 'PREGUNTAS_REPORTADAS':
+        return{
+          ...state,
+          preguntasReportadas:action.payload
+        }
+
+        case 'REPORTAR_OPINION':
+          return{
+            ...state
+          }
+    
+        case 'IGNORAR_REPORTAR_OPINION':
+          return{
+            ...state
+          }
+        
+        case 'OPINIONES_REPORTADAS':
+          return{
+            ...state,
+            opinionesReportadas:action.payload
+          } 
 
     default:
       return state;
