@@ -1,6 +1,6 @@
 import { PayPalButtons } from "@paypal/react-paypal-js"
 import { useState } from "react"
-import  Swal  from 'sweetalert2'
+
 export const PaypalCheckoutBtn = ( props ) => {
   
     let { product, setOrder } = props
@@ -29,14 +29,15 @@ export const PaypalCheckoutBtn = ( props ) => {
 
     return (
     <PayPalButtons style={{
-        // color: 'blue',
-        // size: "small",
-        // shape: "pill",
-        // label: 'pay',
-        layout: 'horizontal',
-        shape: 'pill',
         
-        label: 'pay'
+        size: "large",
+        shape: "pill",
+        label: 'pay',
+        
+       
+        // shape: 'pill',
+        // size: 'responsive',
+        // label: 'paypal'
     }}
     onClick={(data, actions) => {
         const hasAlreadyPurchased = false
