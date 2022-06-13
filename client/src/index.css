@@ -15,6 +15,9 @@ html{
     box-sizing: border-box;
     font-size: 62.5%; 
 }
+.swal2-popup{
+  font-size: 16px !important;
+}
 *{
   margin: 0;
   padding: 0;

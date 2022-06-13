@@ -1,13 +1,13 @@
 
 .header{
     
-    height: 7rem;
+    height: 6rem;
     background-color: #255aed;
 
     display: flex;
     justify-content: space-between;
     align-items: center;
-
+    z-index: 10;
 }
 .search{
     font-size: 1.4rem;
