@@ -1,102 +1,124 @@
 import React from "react";
 import s from "./Form.module.css";
 import { useDispatch, useSelector } from "react-redux";
-
-import { cambiarInfo, ValidarInfo,getPefil } from '../../Redux/actions/index';
-import { useState } from "react";
-import { useAuth0 } from '@auth0/auth0-react';
-
+import { cambiarInfo, ValidarInfo, getPefil } from "../../Redux/actions/index";
+import { useState, useEffect } from "react";
+import { useAuth0 } from "@auth0/auth0-react";
+import Validate from './Validate'
 
 const Form = () => {
   const { user } = useAuth0();
-
-  
+ const [disibled, setDisabled] = useState(true)
+  const [error, setError] = useState({});
   const dispatch = useDispatch();
   const [input, setInput] = useState({
-    nombres: user?.name,
-    apellidos: user?.lastName,
+    nombres: "",
+    apellidos: "",
     telefono: "",
     documento: "",
-    edad: ""
+    edad: "",
   });
-  const  {validar}  = useSelector((state) => state);
+
+  const { validar } = useSelector((state) => state);
+
   const handleOnchange = (e) => {
     setInput({
       ...input,
       [e.target.name]: e.target.value,
     });
+    setError(
+      Validate(input)
+    )
   };
 
+  const validateInput = (form, error) => {
+    return (
+      form.nombres &&
+      form.apellidos&&
+      form.telefono &&
+      form.documento &&
+      form.edad  &&
+     !Object.values(error).length
+    );
+  };
+  useEffect(() => {
+   setDisabled(!validateInput(input, error))
+  }, [input, error]);
 
   const handleOnClick = () => {
-    dispatch(cambiarInfo(user?.email, input))
+    dispatch(cambiarInfo(user?.email, input));
     setTimeout(() => {
-      dispatch(ValidarInfo(user?.email))
-      dispatch(getPefil(user?.email))
-    }, 1000)
-
-  }
+      dispatch(ValidarInfo(user?.email));
+      dispatch(getPefil(user?.email));
+    }, 1000);
+  };
 
   return (
     <div className={s.form}>
       <div>
-        {validar? 
-        <h1 className={s.h1}>Completar perfil</h1>
-       : <h1 className={s.h1}>Editar perfil</h1> }
+        {validar ? (
+          <h1 className={s.h1}>Completar perfil</h1>
+        ) : (
+          <h1 className={s.h1}>Editar perfil</h1>
+        )}
         <div className={s.div}>
           <input
-            name="nombres"
             value={input.nombres}
             className={s.input}
             type="text"
             placeholder="name"
+            name="nombres"
             onChange={(e) => handleOnchange(e)}
-          ></input>
+          />
+           <p>{error?.nombres}</p> 
         </div>
+       
         <div className={s.div}>
           <input
-            name='apellidos'
+            name="apellidos"
             value={input.apellidos}
             className={s.input}
             type="text"
             placeholder="apellidos"
             onChange={(e) => handleOnchange(e)}
-          ></input>
+          />
+           <p>{error?.apellidos}</p> 
         </div>
         <div className={s.div}>
           <input
             name="documento"
             value={input.documento}
             className={s.input}
-            type="text"
+            type="number"
             placeholder="documento"
             onChange={(e) => handleOnchange(e)}
-          ></input>
+          />
+           <p>{error?.documento}</p> 
         </div>
         <div className={s.div}>
           <input
             name="telefono"
             value={input.telefono}
             className={s.input}
-            type="text"
+            type="number"
             placeholder="telefono"
             onChange={(e) => handleOnchange(e)}
-          ></input>
+          />
+           <p>{error?.telefono}</p> 
         </div>
-        <div  className={s.div}>
+        <div className={s.div}>
           <input
-          name={'edad'}
-          value={input.edad}
-          className={s.input}
-          type='text'
-          placeholder='coloca tu edad'
-          onChange={(e) => handleOnchange(e)}>
-          </input>
+            name={"edad"}
+            value={input.edad}
+            className={s.input}
+            type="number"
+            placeholder="coloca tu edad"
+            onChange={(e) => handleOnchange(e)}
+          />
+           <p>{error?.edad}</p> 
         </div>
         <div className={s.div_boton}>
-
-          <button onClick={handleOnClick} >Guardar</button>
-
+          <button onClick={handleOnClick} disabled={disibled}>Guardar</button>
         </div>
       </div>
     </div>
