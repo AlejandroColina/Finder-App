@@ -14,7 +14,9 @@ import Footer from './../Footer/Footer';
 import Loanding from "./loading/Loanding";
 import NoResult from './noResult/NoResult'
 import Destacados from "./Destacados";
-
+import firebase from 'firebase/compat/app';
+import "firebase/compat/database";
+import "firebase/compat/auth";
 import { useAuth0 } from '@auth0/auth0-react';
 
 
@@ -69,6 +71,9 @@ function Home({ descripcion, setDescripcion }) {
   useEffect(() => {
     dispatch(rederCard(profesion, genero, promedio, ciudad, descripcion));
     setCurrentPage(1)
+    if(isAuthenticated){
+      firebase.auth().signInWithEmailAndPassword(user.email, user.nickname)
+    }
   }, [dispatch, profesion, genero, promedio, ciudad, descripcion]);
 
   let destacados = trabajadores?.filter(el => el.promedio >= 4);

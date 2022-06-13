@@ -33,6 +33,9 @@ import Comentar from "./Comentar/Comentar";
 import Preguntar from "./Preguntar/Preguntar";
 import { Mapa } from "./Mapa/Mapa";
 import 'mapbox-gl/dist/mapbox-gl.css';
+import firebase from 'firebase/compat/app';
+import "firebase/compat/database";
+import "firebase/compat/auth";
 
 export default function Detail({ Profesions }) {
   const { isAuthenticated, user } = useAuth0();
@@ -46,10 +49,13 @@ export default function Detail({ Profesions }) {
   const dispatch = useDispatch();
   const { id } = useParams();
   const MyDetail = useSelector((state) => state.detail);
+  console.log(MyDetail)
   const publi = useSelector((state) => state.info);
   const opiniones = useSelector((state) => state.opiniones);
   const preguntas = useSelector((state) => state.preguntas);
-  console.log('PUBLI', publi)
+  const { currentUser } = firebase.auth();
+  const uid  = currentUser? currentUser.uid : null
+  console.log(uid)
   //paginado publicaciones similares
   const [page, setPage] = useState(0);
   const currentPage = publi.slice(page, page + 3);
@@ -63,7 +69,6 @@ export default function Detail({ Profesions }) {
 
   useEffect(() => {
     dispatch(getDetail(id));
-
     dispatch(getOpiniones(id));
     dispatch(getPreguntas(id));
     dispatch(getCarta(id));
@@ -181,6 +186,7 @@ export default function Detail({ Profesions }) {
             </div>
           )}
           <br />
+          <Link to={`/chat/${uid}_${MyDetail.documento}`}><button className="boton-home">CONTACTAR</button></Link>
 
 
         </div>
