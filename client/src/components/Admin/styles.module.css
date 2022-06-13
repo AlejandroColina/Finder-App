@@ -24,6 +24,7 @@
     color: white;
     font-weight: bolder;
     width: 100%;
+    transition: 1s;
 }
 .navItems:hover{
     background-color: white;
