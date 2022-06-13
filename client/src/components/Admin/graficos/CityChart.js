@@ -13,7 +13,6 @@ import {
 } from "chart.js";
 
 import { Bar } from "react-chartjs-2";
-import axios from "axios";
 
 ChartJS.register(
   LinearScale,
@@ -44,7 +43,7 @@ export default function CityChart() {
   };
 
   // !!!Acceder a la propiedad USUARIOS => PUBLICACIONES[0] => DIRECCION => CIUDAD
-
+  //siii jaj
   //Array de usuarios y ciudades
   let usuarios = usuariosJson().then((val) => console.log(val));
   let ciudades = ciudadesJson().then((val) => console.log(val));
@@ -60,7 +59,7 @@ export default function CityChart() {
         borderWidth: 1,
       },
     ],
-    ciudades,
+    usuarios,
   };
 
   const options = {

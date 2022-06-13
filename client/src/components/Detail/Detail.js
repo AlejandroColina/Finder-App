@@ -9,6 +9,7 @@ import {
   responderPregunta,
   getCarta,
   sendNoti,
+  reportarPregunta
 } from "../Redux/actions/index";
 import NavBar from "../NavBar/NavBar";
 import s from "./Detail.module.css";
@@ -222,6 +223,13 @@ export default function Detail({ Profesions }) {
                   <div key={p.id}>
                     <div className={s.containerComments}>
                       <div className={s.pregunta}>{p.pregunta}</div>
+                        <>{/*boton para reportar */}
+                        {p.respuesta && (isAuthenticated && user.email === MyDetail.email) ? 
+                          <div className={s.btn} onClick={(e)=>{ 
+                            e.preventDefault();
+                            dispatch(reportarPregunta(p.id))}}></div> 
+                         : null}
+                        </>
                       <>
                         {p.respuesta && (isAuthenticated && user.email === MyDetail.email) ? (
                           <>

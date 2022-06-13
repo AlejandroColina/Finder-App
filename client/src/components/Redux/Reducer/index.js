@@ -3,6 +3,7 @@ const InitialState = {
   users: [], //va a tener todos los usuarios
   detail: [],
   usersByType: [],
+  usersByCity: [],
   empleos: [],
   empleosForm: [],
   ciudades: [],
@@ -18,10 +19,11 @@ const InitialState = {
   info: [],
   favorito: [],
   baneado: false,
-  notificaciones:[],
-  usuariosBaneados:[],
-  noBaneados:[],
-
+  notificaciones: [],
+  usuariosBaneados: [],
+  noBaneados: [],
+  preguntasReportadas: [],
+  opinionesReportadas: [],
 };
 
 export default function rootReducer(state = InitialState, action) {
@@ -33,14 +35,14 @@ export default function rootReducer(state = InitialState, action) {
       };
 
     case "CARDS":
-      if(state.loanding === false){
-        console.log('Loanding Ya esta false')
-        return{
+      if (state.loanding === false) {
+        console.log("Loanding Ya esta false");
+        return {
           ...state,
-          trabajadores: action.payload
-        }
-      }else{
-        console.log('seteado a FALSE')
+          trabajadores: action.payload,
+        };
+      } else {
+        console.log("seteado a FALSE");
         return {
           ...state,
           trabajadores: action.payload,
@@ -86,6 +88,12 @@ export default function rootReducer(state = InitialState, action) {
       return {
         ...state,
         usersByType: action.payload,
+      };
+
+    case "USER_BY_CITY":
+      return {
+        ...state,
+        usersByCity: action.payload,
       };
 
     case "MSJ_USER_AL_ADMIN":
@@ -151,110 +159,124 @@ export default function rootReducer(state = InitialState, action) {
         ...state,
       };
 
-    case 'DELETE':
+    case "DELETE":
       return {
-        ...state
-      }
+        ...state,
+      };
 
+    case "GET_OPINIONES":
+      return {
+        ...state,
+        opiniones: action.payload,
+      };
+    case "POST_OPINION":
+      return {
+        ...state,
+      };
+    case "DELETE_OPINION":
+      return {
+        ...state,
+      };
 
-    case 'GET_OPINIONES':
+    case "GET_PREGUNTAS":
       return {
         ...state,
-        opiniones: action.payload
-      }
-    case 'POST_OPINION':
+        preguntas: action.payload,
+      };
+    case "POST_PREGUNTA":
       return {
         ...state,
-      }
-    case 'DELETE_OPINION':
+      };
+    case "DELETE_PREGUNTA":
       return {
         ...state,
-      }
+      };
+    case "RESPONDER_PREGUNTA":
+      return {
+        ...state,
+      };
+    case "FAVORITO":
+      return {
+        ...state,
+        favorito: action.payload,
+      };
+    case "DELETE_USER":
+      return {
+        ...state,
+      };
+    case "BANEAR":
+      return {
+        ...state,
+      };
+    case "GET_BANEO":
+      return {
+        ...state,
+        baneado: action.payload,
+      };
 
-    case 'GET_PREGUNTAS':
+    case "DESBANEAR":
       return {
         ...state,
-        preguntas: action.payload
-      }
-    case 'POST_PREGUNTA':
-      return {
-        ...state,
-      }
-    case 'DELETE_PREGUNTA':
-      return {
-        ...state,
-      }
-    case 'RESPONDER_PREGUNTA':
-      return {
-        ...state,
-      }
-    case 'FAVORITO':
-      return {
-        ...state,
-        favorito: action.payload
-      }
-    case 'DELETE_USER':
-      return {
-        ...state,
-      }
-    case 'BANEAR':
-      return {
-        ...state,
-      }
-    case 'GET_BANEO':
-      return {
-        ...state,
-        baneado: action.payload
-      }
+      };
 
-      case 'DESBANEAR':
-        return {
-          ...state
-        }
+    case "SEND_NOTI":
+      return {
+        ...state,
+      };
+    case " DELETE_FAVORITO":
+      return {
+        ...state,
+      };
+    case "EMAIL_NEW_POST":
+      return {
+        ...state,
+      };
+    case "EMAIL_NEW_USER":
+      return {
+        ...state,
+      };
+    case "EMAIL_BANEO":
+      return {
+        ...state,
+      };
 
-    case 'SEND_NOTI':
-      return {
-        ...state
-      }
-    case ' DELETE_FAVORITO':
+    case "EMAIL_DESBANEO":
       return {
         ...state,
-      }
-    case 'EMAIL_NEW_POST':
+      };
+    case "EMAIL_DELETE_USER":
       return {
         ...state,
-      }
-    case 'EMAIL_NEW_USER':
-      return {
-        ...state,
-      }
-    case 'EMAIL_BANEO':
-      return {
-        ...state,
-      }
-    
-    case 'EMAIL_DESBANEO':
-      return {
-        ...state,
-      }
-    case 'EMAIL_DELETE_USER':
-      return {
-        ...state,
-      }
+      };
 
-
-    case 'GET_NOTI':
-      return{
+    case "GET_NOTI":
+      return {
         ...state,
-        notificaciones: action.payload
-      }
+        notificaciones: action.payload,
+      };
 
-    case 'USER_STATUS':
-      return{
+    case "USER_STATUS":
+      return {
         ...state,
-        noBaneados: state.users.filter(u=>u.baneado===false),
-        usuariosBaneados: state.users.filter(u=>u.baneado===true),
-      }
+        noBaneados: state.users.filter((u) => u.baneado === false),
+        usuariosBaneados: state.users.filter((u) => u.baneado === true),
+      };
+
+    case "REPORTAR_PREGUNTA":
+      return {
+        ...state,
+      };
+
+    case "IGNORAR_REPORTAR_PREGUNTA":
+      return {
+        ...state,
+      };
+
+    case "PREGUNTAS_REPORTADAS":
+      return {
+        ...state,
+        preguntasReportadas: action.payload,
+      };
 
     default:
       return state;

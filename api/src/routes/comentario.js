@@ -21,8 +21,6 @@ router.get('/:idPublicacion', async(req,res)=>{
 })
 
 
-
-
 router.post('/', async(req,res)=>{
     try{
         const {puntaje, comentario, persona,PublicacionId} =req.body;
@@ -34,7 +32,8 @@ router.post('/', async(req,res)=>{
                 PublicacionId,
                 puntaje: parseInt(puntaje),
                 comentario,
-                profesional
+                profesional,
+                reportado: false
             })
         }
         return res.status(200).json({message:"Gracias por tu comentario !"})

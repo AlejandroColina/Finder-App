@@ -4,6 +4,7 @@ import NavBar from "../../components/NavBar/NavBar";
 import AdminMsj from "./soporte/AdminMsj";
 import Dashboard from "./Dashboard";
 import Usuarios from "./usuarios/Usuarios";
+import Reportes from "./reportes/Reportes";
 import Error from "../Error";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useEffect } from "react";
@@ -13,6 +14,7 @@ import {
   getAdminMsj,
   getUserStatus,
   getUsers,
+  getPreguntasReportadas
 } from "../Redux/actions";
 import { Helmet } from "react-helmet";
 import { useSelector } from "react-redux";
@@ -25,6 +27,7 @@ export default function Admin() {
     dispatch(getTotalUsersBytype());
     dispatch(getAdminMsj());
     dispatch(getUserStatus());
+    dispatch(getPreguntasReportadas());
   }, [dispatch]);
 
   //ESTADOS DE REDUX
@@ -33,6 +36,7 @@ export default function Admin() {
   const suspendidos = useSelector((state) => state.usuariosBaneados);
   return isAuthenticated &&
     (user.email === "giulianob94@hotmail.com" ||
+      user.email === "valariajbcarranza@gmail.com" ||
       user.email === "nicosuasnavar@gmail.com" ||
       user.email === "jheinemberstithjn@ufps.edu.co" ||
       user.email === "gabrielcontegrand10@gmail.com" ||
@@ -55,6 +59,9 @@ export default function Admin() {
         <a className={s.navItems} href="#3">
           Usuarios
         </a>
+        <a className={s.navItems} href="#4">
+          Reportes
+        </a>
       </div>
 
       <div className={s.containerComp}>
@@ -66,6 +73,9 @@ export default function Admin() {
         </section>
         <section id="3">
           <Usuarios users={users} activos={activos} suspendidos={suspendidos} />
+        </section>
+        <section id="4">
+          <Reportes />
         </section>
       </div>
     </div>
