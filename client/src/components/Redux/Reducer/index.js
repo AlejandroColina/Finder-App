@@ -7,7 +7,7 @@ const InitialState = {
   empleosForm: [],
   ciudades: [],
   adminMjes: [],
-  loanding: false,
+  loanding: true,
   msjDetailAdmin: {},
   ubicacion: {},
   validar: true,
@@ -33,11 +33,21 @@ export default function rootReducer(state = InitialState, action) {
       };
 
     case "CARDS":
-      return {
-        ...state,
-        trabajadores: action.payload,
-        loanding: false,
-      };
+      if(state.loanding === false){
+        console.log('Loanding Ya esta false')
+        return{
+          ...state,
+          trabajadores: action.payload
+        }
+      }else{
+        console.log('seteado a FALSE')
+        return {
+          ...state,
+          trabajadores: action.payload,
+          loanding: false,
+        };
+      }
+
     case "CARDST":
       return {
         ...state,
