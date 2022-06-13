@@ -61,11 +61,11 @@ export default function Activos({activos}){
             </div>
             
               {/*RENDERIZADO DE BUSCADOS*/}
-                {buscados? buscados.map(a=>
-                <div className={s.gridItem} key={a.id}>
-                    <div className={s.gridDivs}>{a.id}</div>
-                    <div className={s.gridDivs}>{a.email}</div>
-                    <div className={s.gridDivs}>{a.telefono}</div>
+                {buscados? buscados.map(b=>
+                <div className={s.gridItem} key={b.id}>
+                    <div className={s.gridDivs}>{b.id}</div>
+                    <div className={s.gridDivs}>{b.email}</div>
+                    <div className={s.gridDivs}>{b.telefono}</div>
                 </div>)
 
                 ://SI NO SE ESTA BUSCANDO NADA SE VA A RENDERIZAR LOS USUARIOS ACTUALES ACTIVOS

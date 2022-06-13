@@ -11,7 +11,6 @@ const InitialState = {
   msjDetailAdmin: {},
   ubicacion: {},
   validar: true,
-  publicacionesDeUnaPersona: [],
   perfil: [],
   opiniones: [],
   preguntas: [],
@@ -21,6 +20,8 @@ const InitialState = {
   notificaciones:[],
   usuariosBaneados:[],
   noBaneados:[],
+  preguntasReportadas:[],
+  opinionesReportadas:[],
 
 };
 
@@ -136,11 +137,6 @@ export default function rootReducer(state = InitialState, action) {
         validar: action.payload,
       };
 
-    case "PUBLICACIONES_USUARIO":
-      return {
-        ...state,
-        publicacionesDeUnaPersona: action.payload,
-      };
     case "MODIFICAR":
       return {
         ...state,
@@ -150,11 +146,6 @@ export default function rootReducer(state = InitialState, action) {
       return {
         ...state,
       };
-
-    case 'DELETE':
-      return {
-        ...state
-      }
 
 
     case 'GET_OPINIONES':
@@ -255,6 +246,38 @@ export default function rootReducer(state = InitialState, action) {
         noBaneados: state.users.filter(u=>u.baneado===false),
         usuariosBaneados: state.users.filter(u=>u.baneado===true),
       }
+
+      case 'REPORTAR_PREGUNTA':
+        return{
+          ...state
+        }
+  
+      case 'IGNORAR_REPORTAR_PREGUNTA':
+        return{
+          ...state
+        }
+      
+      case 'PREGUNTAS_REPORTADAS':
+        return{
+          ...state,
+          preguntasReportadas:action.payload
+        }
+
+        case 'REPORTAR_OPINION':
+          return{
+            ...state
+          }
+    
+        case 'IGNORAR_REPORTAR_OPINION':
+          return{
+            ...state
+          }
+        
+        case 'OPINIONES_REPORTADAS':
+          return{
+            ...state,
+            opinionesReportadas:action.payload
+          } 
 
     default:
       return state;

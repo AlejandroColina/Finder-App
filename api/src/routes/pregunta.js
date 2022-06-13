@@ -33,7 +33,8 @@ router.post('/', async(req,res)=>{
                 PublicacionId,
                 pregunta,
                 user,
-                profesional
+                profesional,
+                reportado:false
             })
         }
         return res.status(200).json({message:"tu consulta fue enviada con exito"})
@@ -68,6 +69,48 @@ router.put('/:id', async(req,res)=>{
         res.status(200).send('se respondio')
     }catch{
         res.status(400).send('no se pudo responder')
+    }
+})
+
+
+router.put('reportar/:id', async(req,res)=>{
+    try{
+        let {id} = req.params;
+        await Pregunta.update({reportado:true,},{
+            where:{
+                id
+            }
+        })
+        res.status(200).send('se reporto')
+    }catch{
+        res.status(400).send('no se pudo reportar')
+    }
+})
+
+router.put('ignorar/:id', async(req,res)=>{
+    try{
+        let {id} = req.params;
+        await Pregunta.update({reportado:false,},{
+            where:{
+                id
+            }
+        })
+        res.status(200).send('se ignoro el reporte')
+    }catch{
+        res.status(400).send('no se pudo ignorar el reporte')
+    }
+})
+
+router.get('reportadas', async(req,res)=>{
+    try{ 
+        const preguntasRepo =await Pregunta.findAll({
+                where: {
+                    reportado: true
+                }
+        });
+        res.status(200).send(preguntasRepo)
+    }catch{
+        res.status(400).send('no funciona')
     }
 })
 module.exports=router;
