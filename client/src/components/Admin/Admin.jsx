@@ -10,7 +10,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { useEffect } from 'react';
 import {useDispatch} from 'react-redux';
 import { getTotalUsersBytype,getAdminMsj, getUserStatus, getUsers, 
-    getPreguntasReportadas,getComentariosReportados} from "../Redux/actions";
+    getPreguntasReportadas,getComentariosReportados,getTotalUsersByCity } from "../Redux/actions";
 import { Helmet } from "react-helmet";
 import { useSelector } from "react-redux";
 
@@ -20,6 +20,7 @@ export default function Admin(){
     useEffect(()=>{
         dispatch(getUsers());
         dispatch(getTotalUsersBytype());
+        dispatch(getTotalUsersByCity());
         dispatch(getAdminMsj());
         dispatch(getUserStatus());
         dispatch(getPreguntasReportadas());

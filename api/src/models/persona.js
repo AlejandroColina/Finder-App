@@ -56,6 +56,10 @@ module.exports = (sequelize) => {
     notificaciones:{
       type: DataTypes.ARRAY(DataTypes.JSON),
       allowNull: true
-    }
+    },
+    chats:{
+      type: DataTypes.ARRAY(DataTypes.JSON),
+    },
+    
   });
 };

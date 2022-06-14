@@ -10,6 +10,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import Footer from "../Footer/Footer";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import MisChats from "./ChatPerfil"
 import {
   getPefil,
   ValidarInfo,
@@ -22,32 +23,49 @@ import { Helmet } from "react-helmet"
 import png from './assets/Mask group.png';
 import publicidad from "./assets/publicidad.gif";
 import bane from './assets/baneado.jpeg'
+import {Modal, } from '@material-ui/core'
 
 
 const Perfil = () => {
+ 
+  const [modal, setModal] = useState(false)
+
+  const abrirCerrarModal = () =>{
+    setModal(!modal)
+  }
+
+
+  const body=(
+    <div className={s.modal}>
+    <Form abrirCerrarModal={abrirCerrarModal}/>
+    </div>
+  )
   const { user } = useAuth0();
   const dispatch = useDispatch();
-
+  const [ MiChat, setMiChat] = useState(false);
   const { validar } = useSelector((state) => state);
   const [favorito, setFavorito] = useState(false);
-  const [perfil, setPerfil] = useState(false);
   const StatePerfil = useSelector((state) => state.perfil);
   const baneo = useSelector((state) => state.baneado);
   const [editar, setEditar] = useState(false);
-  const handlePerfil = () => {
-    setPerfil(true);
-    setFavorito(false);
-    setEditar(false)
-  };
+
 
   const handleVolver = () => {
-    setPerfil(false);
     setFavorito(false);
     setEditar(false)
+    setMiChat(false)
   };
   const handleEditar = () => {
     setEditar(true)
     setFavorito(false)
+    setMiChat(false)
+  }
+
+  const handleChat = () => {
+    setMiChat(true)
+    setPerfil(false);
+    setFavorito(false);
+    setEditar(false)
   }
 
   useEffect(() => {
@@ -60,6 +78,7 @@ const Perfil = () => {
   const handleState = () => {
     setFavorito(true);
     setEditar(false)
+    setMiChat(false)
   };
   return (
     <>
@@ -74,6 +93,12 @@ const Perfil = () => {
               <title>{`${StatePerfil[0]?.nombres}`} - Perfil</title>
             </Helmet>
           )}
+
+          <Modal open={modal}
+          onClose={abrirCerrarModal}>
+            {body}
+
+          </Modal>
 
           <nav className={s.nav}>
             <Link to="/home">
@@ -92,11 +117,12 @@ const Perfil = () => {
               </div>
             </div>
             <div className={s.mover}>
+              <button className={s.botones} onClick={handleChat} >Mis Chats</button>
               <button className={s.botones} onClick={handleState}>
                 Favoritos
               </button>
               {validar?
-              <button className={s.botones} onClick={handlePerfil}>
+              <button className={s.botones} onClick={()=>abrirCerrarModal()}>
                 Completar perfil
               </button>
               :<></>}
@@ -141,17 +167,14 @@ const Perfil = () => {
              : <></>}
             </div>
             <div className={s.publi}>
+              {MiChat ? <MisChats/> : <>   
               {editar ? <Form/>
                 : <>
               {favorito ? (
                 <Favorito />
               ) : (
                 <div>
-                  {perfil ? (
-                    <Form />
-                  ) : (
-                    <div>
-                      <h2 className={s.h2}>Publicaciones</h2>
+                   <h2 className={s.h2}>Publicaciones</h2>
                       <div className={s.centrar_publi}>
                         {StatePerfil && StatePerfil[0]?.Publicacions.length ?
                           StatePerfil[0].Publicacions.map((el) => (
@@ -173,10 +196,11 @@ const Perfil = () => {
                           
                         }
                       </div>
-                    </div>
-                  )}
+                   
                 </div>
               )}
+              
+              </>}
               </>}
             </div>
             
