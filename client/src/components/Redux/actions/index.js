@@ -567,10 +567,10 @@ export function getDestacados() {
   };
 }
 
-export function getTrabajosPagos(id) {
+export function getTrabajosPagos(email, idPublicacion) {
   return async function (dispatch) {
     try {
-      let data = await axios.get(`http://localhost:3001/trabajos/${id}`);
+      let data = await axios.get(`http://localhost:3001/trabajos?email=${email}&idPublicacion=${idPublicacion}`);
       return dispatch({ type: "GET_TRABAJOS_PAGOS", payload: data.data });
     } catch (error) {
       console.log(error);
@@ -578,10 +578,10 @@ export function getTrabajosPagos(id) {
   };
 }
 
-export function addTrabajosPagos(id, idPublicacion) {
+export function addTrabajosPagos(email, idPublicacion) {
   return async function (dispatch) {
     try {
-      let data = await axios.patch(`http://localhost:3001/trabajos/add/${id}/${idPublicacion}`);
+      let data = await axios.patch(`http://localhost:3001/trabajos/add/${email}/${idPublicacion}`);
       return dispatch({ type: "ADD_TRABAJO_PAGO" });
     } catch (error) {
       console.log(error);
