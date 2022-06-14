@@ -8,7 +8,7 @@ router.use(express.json());
 router.get("/", async (req, res, next) => {
   try {
 
-    let { profesion, nombres, promedio, genero, edad, ciudad, descripcion,precio,titulo } =
+    let { profesion, nombres, promedio, genero, edad, ciudad, descripcion, precio, titulo } =
       req.query;
 
     let tablaPublicacion = await Publicacion.findAll(
@@ -72,8 +72,11 @@ router.get("/", async (req, res, next) => {
       });
     }
 
-    if (edad) {
-      obj = obj.filter((persona) => persona.edad == edad);
+    if (edad === 30 || edad === 40) {
+      obj = obj.filter((persona) => persona.edad <= edad);
+    }
+    if (edad == "mayor") {
+      obj = obj.filter((persona) => persona.edad >= 40);
     }
 
     if (promedio) {
@@ -88,6 +91,51 @@ router.get("/", async (req, res, next) => {
       );
     }
 
+    res.json(obj);
+
+  } catch (error) {
+    next(error);
+  }
+});
+
+
+router.get("/destacados", async (req, res, next) => {
+  try {
+
+    let tablaPublicacion = await Publicacion.findAll(
+      { include: [Profesion, Direccion] }
+    );
+    if (!tablaPublicacion.length) return res.status(404).send('No hay datos.');
+
+    let obj = [];
+
+    let personas = await Persona.findAll();
+
+    tablaPublicacion?.map(async (posts) => {
+      let post = posts?.dataValues
+      let idPersona = post?.PersonaId;
+
+      let persona = personas.filter(e => e.dataValues.id === idPersona);
+      let user = persona[0]?.dataValues;
+      obj.push({
+        idPublicacion: post?.id,
+        idPersona: user?.id,
+        nombres: user?.nombres,
+        apellido: user?.apellidos,
+        promedio: user?.promedio,
+        imagen: user?.imagen,
+        titulo: post?.titulo,
+        precio: post?.precio,
+        descripcion: post?.descripcion,
+        Profesions: post?.Profesion.dataValues.nombre,
+        logoProfesion: post?.Profesion.dataValues.logo,
+        genero: user?.genero,
+        edad: user?.edad,
+        ciudad: post?.Direccion?.dataValues?.ciudad
+      })
+    });
+
+    obj = obj.filter((persona) => persona.promedio >= 4)
     res.json(obj);
 
   } catch (error) {

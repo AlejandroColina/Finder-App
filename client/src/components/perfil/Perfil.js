@@ -19,8 +19,11 @@ import {
 } from "../Redux/actions/index";
 import { Link } from "react-router-dom";
 import Favorito from "./favoritos/Favoritos";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet"
+import png from './assets/Mask group.png';
 import publicidad from "./assets/publicidad.gif";
+import bane from './assets/baneado.jpeg'
+
 
 const Perfil = () => {
   const { user } = useAuth0();
@@ -164,7 +167,7 @@ const Perfil = () => {
                     <div>
                       <h2 className={s.h2}>Publicaciones</h2>
                       <div className={s.centrar_publi}>
-                        {StatePerfil && StatePerfil[0]?.Publicacions ? (
+                        {StatePerfil && StatePerfil[0]?.Publicacions.length ?
                           StatePerfil[0].Publicacions.map((el) => (
                             <Card_perfil
                               key={el.id}
@@ -177,9 +180,12 @@ const Perfil = () => {
                               logoProfesion={el.Profesion.logo}
                             />
                           ))
-                        ) : (
-                          <p>NO TIENE</p>
-                        )}
+                         : <div><img className={s.nologo} src={png} alt='logo'/>
+                           <h1 className={s.h1}>no tiene publicaciones </h1>
+                         </div>
+                           
+                          
+                        }
                       </div>
                     </div>
                   )}
@@ -194,7 +200,7 @@ const Perfil = () => {
           <footer className={s.footer}>
             <Footer />
           </footer>
-        </div> : <div>estas baneado</div>}
+        </div> : <div className={s.baneo}><img src={bane} alt="baneado" /></div>}
     </>
   );
 };

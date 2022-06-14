@@ -1,6 +1,6 @@
 
 import React, { useState } from "react";
-import { getCiudades, getEmpleos, rederCard, getNoti } from "../Redux/actions/index";
+import { getCiudades, getEmpleos, rederCard, getDestacados, getNoti } from "../Redux/actions/index";
 import { useEffect } from "react";
 import Cards from "./Cards/cards";
 import { useDispatch, useSelector } from "react-redux";
@@ -11,18 +11,19 @@ import Paginado from '../Paginado/Paginado'
 import Help from "../Help/Help";
 import { Helmet } from 'react-helmet';
 import Footer from './../Footer/Footer';
-import Loanding from "./loading/Loanding";
+
 import NoResult from './noResult/NoResult'
 import Destacados from "./Destacados";
 import firebase from 'firebase/compat/app';
 import "firebase/compat/database";
 import "firebase/compat/auth";
 import { useAuth0 } from '@auth0/auth0-react';
+import HomeLoader from "./loading/Skeleton";
 
 
 
 function Home({ descripcion, setDescripcion }) {
-  
+
   const dispatch = useDispatch();
   const { isAuthenticated, user } = useAuth0();
 
@@ -34,13 +35,13 @@ function Home({ descripcion, setDescripcion }) {
     genero: '',
     edad: '',
     ciudad: '',
-    empleo: ''
-
+    empleo: '',
+    edad: ''
   }
-  
+
 
   const loanding = useSelector((state) => state.loanding);
-
+  const destacados = useSelector((state) => state.destacados);
 
   const [filters, setFilters] = useState(EMPTY_FILTERS)
 
@@ -67,16 +68,16 @@ function Home({ descripcion, setDescripcion }) {
   dispatch(getEmpleos())
   dispatch(getCiudades())
 
-  let { genero, promedio, ciudad, profesion } = filters
+  let { genero, promedio, ciudad, profesion, edad } = filters
   useEffect(() => {
-    dispatch(rederCard(profesion, genero, promedio, ciudad, descripcion));
+    dispatch(getDestacados());
+    dispatch(rederCard(profesion, genero, promedio, ciudad, descripcion, edad));
     setCurrentPage(1)
-    if(isAuthenticated){
+
+    if (isAuthenticated) {
       firebase.auth().signInWithEmailAndPassword(user.email, user.nickname)
     }
-  }, [dispatch, profesion, genero, promedio, ciudad, descripcion]);
-
-  let destacados = trabajadores?.filter(el => el.promedio >= 4);
+  }, [dispatch, profesion, genero, promedio, ciudad, descripcion, edad]);
 
   const resetValues = () => {
     setFilters(EMPTY_FILTERS)
@@ -87,8 +88,15 @@ function Home({ descripcion, setDescripcion }) {
     return (
       <div>
         <Helmet><title>Cargando..</title></Helmet>
-        <Loanding />
+        <SearchBar descripcion={descripcion} setDescripcion={setDescripcion} />
+        <section className={styles.filtros}>
+          <Filtros resetValues={resetValues} filters={filters} handleFilterChanges={handleFilterChanges} />
+        </section>
+        <div className={styles.loaders}>
+          <HomeLoader />
+        </div>
       </div>
+
     )
   }
 
@@ -150,7 +158,7 @@ function Home({ descripcion, setDescripcion }) {
 
                       <Destacados
                         key={`${el.id}A`}
-                        id={el.id}
+                        id={el.idPublicacion}
                         Profesions={el.Profesions}
                         apellidos={el.apellidos}
                         imagen={el.imagen}

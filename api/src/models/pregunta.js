@@ -18,6 +18,9 @@ module.exports = (sequelize) => {
         profesional:{
             type:DataTypes.ARRAY(DataTypes.STRING),
             allowNull: false
+        },
+        reportado:{
+            type: DataTypes.BOOLEAN,
         }
     });
 

@@ -61,7 +61,7 @@ let personas = [
         ]
     },
     {
-        nombres: "Joaquin",
+        nombres: "Joaquín",
         apellidos: "Villanueva",
         edad: 36,
         documento: 511475,
@@ -117,7 +117,7 @@ let personas = [
         ]
     },
     {
-        nombres: "Jose Maria",
+        nombres: "Jose María",
         apellidos: "Adorno",
         edad: 20,
         documento: 944608,
@@ -439,7 +439,7 @@ let personas = [
         ]
     },
     {
-        nombres: "Jose Maria",
+        nombres: "Jose María",
         apellidos: "Tamez",
         edad: 51,
         documento: 879161,
@@ -500,7 +500,7 @@ let personas = [
     },
     {
         nombres: "Maria Soledad",
-        apellidos: "Solis",
+        apellidos: "Solís",
         edad: 27,
         documento: 457930,
         email: "Carla.Alcntar44@yahoo.com",
@@ -975,7 +975,7 @@ let personas = [
         ]
     },
     {
-        nombres: "Concepcion",
+        nombres: "Concepción",
         apellidos: "Villanueva",
         edad: 46,
         documento: 548560,
@@ -1035,8 +1035,8 @@ let personas = [
         ]
     },
     {
-        nombres: "German",
-        apellidos: "Echevarria",
+        nombres: "Germán",
+        apellidos: "Echevarría",
         edad: 37,
         documento: 923844,
         email: "Ramona.Portillo49@hotmail.com",
@@ -1185,13 +1185,13 @@ let personas = [
         ]
     },
     {
-        nombres: "Cristobal",
+        nombres: "Cristóbal",
         apellidos: "Meraz",
         edad: 41,
         documento: 800948,
         email: "Gabriel56@hotmail.com",
         telefono: 409936,
-        direccion: "530 Gaitan Senda",
+        direccion: "530 Gaitán Senda",
         imagen: "https://cdn-co.comparabien.com/field/image/depositphotos_35265383-stock-photo-man-sitting-in-office.jpg",
         descripcion: "Dolorem est magnam numquam et tempore id debitis qui.",
         profesion: 10,
@@ -1365,7 +1365,7 @@ let personas = [
         ]
     },
     {
-        nombres: "Rosalia",
+        nombres: "Rosalía",
         apellidos: "Acevedo",
         edad: 41,
         documento: 167545,
@@ -1395,13 +1395,13 @@ let personas = [
         ]
     },
     {
-        nombres: "Carmen",
+        nombres: "Cármen",
         apellidos: "Cordero",
         edad: 31,
         documento: 921886,
         email: "Marcela.Cuellar31@yahoo.com",
         telefono: 823349,
-        direccion: "0265 Eloisa Colonia",
+        direccion: "0265 Eloísa Colonia",
         imagen: "https://estaticos-cdn.elperiodico.com/clip/15b04d06-b12e-4e0c-a6b3-64c99f064b2e_baja-libre-aspect-ratio_default_0.jpg",
         descripcion: "Enim quam quos reiciendis quos.",
         profesion: 3,
@@ -1455,13 +1455,13 @@ let personas = [
         ]
     },
     {
-        nombres: "Hernan",
+        nombres: "Hernán",
         apellidos: "Carvajal",
         edad: 20,
         documento: 444447,
         email: "Pablo.Gmez74@hotmail.com",
         telefono: 511835,
-        direccion: "20397 Sofia Conjunto",
+        direccion: "20397 Sofía Conjunto",
         imagen: "https://cr00.epimg.net/radio/imagenes/2020/05/11/bogota/1589197978_736287_1589198077_noticia_normal.jpg",
         descripcion: "Exercitationem esse est velit voluptas animi esse.",
         profesion: 1,
