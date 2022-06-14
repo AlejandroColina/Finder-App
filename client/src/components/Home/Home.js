@@ -32,7 +32,7 @@ function Home({ descripcion, setDescripcion }) {
     profesion: '',
     nombres: '',
     promedio: '',
-    genero: '',
+    precio: '',
     edad: '',
     ciudad: '',
     empleo: '',
@@ -68,16 +68,16 @@ function Home({ descripcion, setDescripcion }) {
   dispatch(getEmpleos())
   dispatch(getCiudades())
 
-  let { genero, promedio, ciudad, profesion, edad } = filters
+  let { precio, promedio, ciudad, profesion, edad } = filters
   useEffect(() => {
     dispatch(getDestacados());
-    dispatch(rederCard(profesion, genero, promedio, ciudad, descripcion, edad));
+    dispatch(rederCard(profesion, precio, promedio, ciudad, descripcion, edad));
     setCurrentPage(1)
 
     if (isAuthenticated) {
       firebase.auth().signInWithEmailAndPassword(user.email, user.nickname)
     }
-  }, [dispatch, profesion, genero, promedio, ciudad, descripcion, edad]);
+  }, [dispatch, profesion, precio, promedio, ciudad, descripcion, edad]);
 
   const resetValues = () => {
     setFilters(EMPTY_FILTERS)

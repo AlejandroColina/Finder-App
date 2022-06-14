@@ -12,7 +12,7 @@ export const Filtros = ({ handleFilterChanges, resetValues , filters}) => {
   const empleos = useSelector(state => state.empleos)
   const ciudades = useSelector(state => state.ciudades)
 
-  const { profesion, promedio, genero, ciudad, edad } = filters
+  const { profesion, promedio, precio, ciudad, edad } = filters
 
   const styleBtn = {
     color: 'black',
@@ -56,7 +56,7 @@ export const Filtros = ({ handleFilterChanges, resetValues , filters}) => {
       </select>
     </div>
     <div className={styles.filtro}>
-      <select  className={styles.select} name='precio' onChange={handleFilterChanges} value={edad}>
+      <select  className={styles.select} name='precio' onChange={handleFilterChanges} value={precio}>
         <option value=''>Precio</option>
         <option value='precioAlto'>Mas Alto</option>
         <option value='precioBajo'>Mas Bajo</option>
