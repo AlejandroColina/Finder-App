@@ -5,6 +5,7 @@ import {
   getDetail,
   getDeleteDetail,
   getPublicacionDeUsuario,
+  getPefil,
   getOpiniones,
   getPreguntas,
   responderPregunta,
@@ -33,6 +34,7 @@ import Comentar from "./Comentar/Comentar";
 import Preguntar from "./Preguntar/Preguntar";
 import { Mapa } from "./Mapa/Mapa";
 import 'mapbox-gl/dist/mapbox-gl.css';
+import axios from "axios";
 import firebase from 'firebase/compat/app';
 import "firebase/compat/database";
 import "firebase/compat/auth";
@@ -50,6 +52,7 @@ export default function Detail({ Profesions }) {
   const { id } = useParams();
   const MyDetail = useSelector((state) => state.detail);
   console.log(MyDetail)
+  const MyPerfil = useSelector((state) => state.perfil);
   const publi = useSelector((state) => state.info);
   const opiniones = useSelector((state) => state.opiniones);
   const preguntas = useSelector((state) => state.preguntas);
@@ -68,6 +71,7 @@ export default function Detail({ Profesions }) {
   };
 
   useEffect(() => {
+    dispatch(getPefil(user?.email));
     dispatch(getDetail(id));
     dispatch(getOpiniones(id));
     dispatch(getPreguntas(id));
@@ -117,6 +121,11 @@ export default function Detail({ Profesions }) {
 
   const [comento, setComento] = useState(false);
   const [open, setOpen] = useState(false);
+
+  const teHablo = (e) =>{
+    axios.patch(`http://localhost:3001/users/add/${MyDetail.documento}?chat=${uid}_${MyDetail.documento}&name=${MyPerfil[0].nombres}`)
+    axios.patch(`http://localhost:3001/users/agg/${MyPerfil[0].id}?chat=${uid}_${MyDetail.documento}&name=${MyDetail.nombres}`)
+  }
 
   return (
     <>
@@ -186,7 +195,7 @@ export default function Detail({ Profesions }) {
             </div>
           )}
           <br />
-          <Link to={`/chat/${uid}_${MyDetail.documento}`}><button className="boton-home">CONTACTAR</button></Link>
+          <Link to={`/chat/${uid}_${MyDetail.documento}`}><button onClick={teHablo} className="boton-home">CONTACTAR</button></Link>
 
 
         </div>
