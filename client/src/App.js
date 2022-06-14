@@ -58,7 +58,7 @@ function App() {
           <Route exact path="/trabajo/:id" component={Detail} />
           <Route path="/perfil/:email" component={Perfil}/>
           <Route path="/chat/:name" component={Chat} />
-          <Route path="/*" component={Error} />
+          {/* <Route path="/*" component={Error} /> */}
          
           
         </Switch>

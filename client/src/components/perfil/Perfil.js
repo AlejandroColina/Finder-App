@@ -22,26 +22,34 @@ import { Helmet } from "react-helmet"
 import png from './assets/Mask group.png';
 import publicidad from "./assets/publicidad.gif";
 import bane from './assets/baneado.jpeg'
+import {Modal, } from '@material-ui/core'
 
 
 const Perfil = () => {
+ 
+  const [modal, setModal] = useState(false)
+
+  const abrirCerrarModal = () =>{
+    setModal(!modal)
+  }
+
+
+  const body=(
+    <div className={s.modal}>
+    <Form abrirCerrarModal={abrirCerrarModal}/>
+    </div>
+  )
   const { user } = useAuth0();
   const dispatch = useDispatch();
 
   const { validar } = useSelector((state) => state);
   const [favorito, setFavorito] = useState(false);
-  const [perfil, setPerfil] = useState(false);
   const StatePerfil = useSelector((state) => state.perfil);
   const baneo = useSelector((state) => state.baneado);
   const [editar, setEditar] = useState(false);
-  const handlePerfil = () => {
-    setPerfil(true);
-    setFavorito(false);
-    setEditar(false)
-  };
+ 
 
   const handleVolver = () => {
-    setPerfil(false);
     setFavorito(false);
     setEditar(false)
   };
@@ -75,6 +83,12 @@ const Perfil = () => {
             </Helmet>
           )}
 
+          <Modal open={modal}
+          onClose={abrirCerrarModal}>
+            {body}
+
+          </Modal>
+
           <nav className={s.nav}>
             <Link to="/home">
               <img className={s.logo} src={logo} alt="finder" />
@@ -96,7 +110,7 @@ const Perfil = () => {
                 Favoritos
               </button>
               {validar?
-              <button className={s.botones} onClick={handlePerfil}>
+              <button className={s.botones} onClick={()=>abrirCerrarModal()}>
                 Completar perfil
               </button>
               :<></>}
@@ -147,11 +161,7 @@ const Perfil = () => {
                 <Favorito />
               ) : (
                 <div>
-                  {perfil ? (
-                    <Form />
-                  ) : (
-                    <div>
-                      <h2 className={s.h2}>Publicaciones</h2>
+                   <h2 className={s.h2}>Publicaciones</h2>
                       <div className={s.centrar_publi}>
                         {StatePerfil && StatePerfil[0]?.Publicacions.length ?
                           StatePerfil[0].Publicacions.map((el) => (
@@ -173,8 +183,7 @@ const Perfil = () => {
                           
                         }
                       </div>
-                    </div>
-                  )}
+                   
                 </div>
               )}
               </>}

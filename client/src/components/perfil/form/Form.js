@@ -6,7 +6,7 @@ import { useState, useEffect } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import Validate from './Validate'
 
-const Form = () => {
+const Form = ({abrirCerrarModal}) => {
   const { user } = useAuth0();
  const [disibled, setDisabled] = useState(true)
   const [error, setError] = useState({});
@@ -119,6 +119,7 @@ const Form = () => {
         </div>
         <div className={s.div_boton}>
           <button onClick={handleOnClick} disabled={disibled}>Guardar</button>
+          <button onClick={() => abrirCerrarModal()}>cerrar</button>
         </div>
       </div>
     </div>
