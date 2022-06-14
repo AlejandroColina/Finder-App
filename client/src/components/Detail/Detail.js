@@ -9,7 +9,8 @@ import {
   responderPregunta,
   getCarta,
   sendNoti,
-  reportarPregunta
+  reportarPregunta,
+  getTrabajosPagos
 } from "../Redux/actions/index";
 import NavBar from "../NavBar/NavBar";
 import s from "./Detail.module.css";
@@ -57,9 +58,11 @@ export default function Detail({ Profesions }) {
   const publi = useSelector((state) => state.info);
   const opiniones = useSelector((state) => state.opiniones);
   const preguntas = useSelector((state) => state.preguntas);
+  const trabajosPagos = useSelector((state) => state.trabajosPagos);
   const { currentUser } = firebase.auth();
-  const uid  = currentUser? currentUser.uid : null
-  console.log(uid)
+  const uid = currentUser ? currentUser.uid : null
+  console.log('TRABAJOS PAGOS', trabajosPagos)
+
   //paginado publicaciones similares
   const [page, setPage] = useState(0);
   const currentPage = publi.slice(page, page + 3);
@@ -76,21 +79,20 @@ export default function Detail({ Profesions }) {
     dispatch(getOpiniones(id));
     dispatch(getPreguntas(id));
     dispatch(getCarta(id));
-
-    let { promedio } = MyDetail;
+    dispatch(getTrabajosPagos(user?.email, id))
 
     return function () {
       dispatch(getDeleteDetail());
     };
-  }, [id, dispatch]);
+  }, [id, dispatch, user?.email]);
 
   let { promedio } = MyDetail;
-  
+
   let precio = 10;
-  if(promedio === 2) precio = 15
-  if(promedio === 3) precio = 25
-  if(promedio === 4) precio = 35
-  if(promedio === 5) precio = 50
+  if (promedio === 2) precio = 15
+  if (promedio === 3) precio = 25
+  if (promedio === 4) precio = 35
+  if (promedio === 5) precio = 50
   let price = precio;
 
   const product = {
@@ -106,6 +108,8 @@ export default function Detail({ Profesions }) {
       text: "Has accedido a los contactos del trabajador.¡Contáctalo!",
       icon: "success",
     });
+
+    trabajosPagos = true
   }
 
   const [input, setInput] = useState({
@@ -126,24 +130,24 @@ export default function Detail({ Profesions }) {
   const [comento, setComento] = useState(false);
   const [open, setOpen] = useState(false);
 
-  if(!MyDetail.nombres){
-    return(
+  if (!MyDetail.nombres) {
+    return (
       <>
-      <NavBar />
-      <Helmet>
+        <NavBar />
+        <Helmet>
           <title>Cargando..</title>
-      </Helmet>
-      <ThreeDots />
+        </Helmet>
+        <ThreeDots />
       </>
     )
   }
 
   return (
-    <>     
-        <Helmet>
-          <title>{`${MyDetail.nombres}`} - Finder </title>
-        </Helmet>
-     
+    <>
+      <Helmet>
+        <title>{`${MyDetail.nombres}`} - Finder </title>
+      </Helmet>
+
       <NavBar />
 
       <div className={s.container}>
@@ -167,10 +171,10 @@ export default function Detail({ Profesions }) {
             {/* <span className={s.precio}>${MyDetail.precio}</span> */}
             <span className={s.valor}>Tarifa Finder: ${price}</span>
           </div>
-            <p className={s.aclaracion}>Tarifa varía acorde valoración del usuario</p>
+          <p className={s.aclaracion}>Tarifa varía acorde valoración del usuario</p>
           {open ? (
             <div>
-              {!order ? (
+              {(!trabajosPagos) ? (
                 <div className={s.paypal}>
                   <PaypalCheckoutBtn product={product} setOrder={setOrder} />
                 </div>
@@ -181,7 +185,7 @@ export default function Detail({ Profesions }) {
                   alt=""
                 />
               )}
-              
+
             </div>
           ) : (
             // Contratar
@@ -216,7 +220,7 @@ export default function Detail({ Profesions }) {
 
           <div className={s.contenido}>{MyDetail.descripcion}</div>
 
-          {!order ? <p></p> : <ContactDetail MyDetail={MyDetail} />}
+          {(!trabajosPagos) ? <p></p> : <ContactDetail MyDetail={MyDetail} />}
 
           <br />
           <br />
@@ -225,62 +229,63 @@ export default function Detail({ Profesions }) {
 
           <div className={s.titulos}>Tenes dudas?</div>
           <hr />
-           {isAuthenticated?
-          <Preguntar user={[user.email,user.picture]} publicacion={id} profesional={[MyDetail.email,MyDetail.imagen]} /> : 
-          <div className={s.width} ><button className={s.btndebe} onClick={() => { loginWithRedirect() }}>INGRESA o REGISTRATE para poder consultar</button></div>}
+          {isAuthenticated ?
+            <Preguntar user={[user.email, user.picture]} publicacion={id} profesional={[MyDetail.email, MyDetail.imagen]} /> :
+            <div className={s.width} ><button className={s.btndebe} onClick={() => { loginWithRedirect() }}>INGRESA o REGISTRATE para poder consultar</button></div>}
           <div className={s.commentsBox}>
             {preguntas
               ? preguntas.map((p) => (
-                  <div key={p.id}>
-                    <div className={s.containerComments}>
-                      <div className={s.pregunta}>{p.pregunta}</div>
-                        <>{/*boton para reportar */}
-                        {p.respuesta && (isAuthenticated && user.email === MyDetail.email) ? 
-                          <div className={s.btn} onClick={(e)=>{ 
-                            e.preventDefault();
-                            dispatch(reportarPregunta(p.id))}}></div> 
-                         : null}
+                <div key={p.id}>
+                  <div className={s.containerComments}>
+                    <div className={s.pregunta}>{p.pregunta}</div>
+                    <>{/*boton para reportar */}
+                      {p.respuesta && (isAuthenticated && user.email === MyDetail.email) ?
+                        <div className={s.btn} onClick={(e) => {
+                          e.preventDefault();
+                          dispatch(reportarPregunta(p.id))
+                        }}></div>
+                        : null}
+                    </>
+                    <>
+                      {p.respuesta && (isAuthenticated && user.email === MyDetail.email) ? (
+                        <>
+                          <div className={s.respuesta}>
+                            <div className={s.figura}></div>
+                            {p.respuesta}
+                          </div>{" "}
                         </>
-                      <>
-                        {p.respuesta && (isAuthenticated && user.email === MyDetail.email) ? (
-                          <>
-                            <div className={s.respuesta}>
-                              <div className={s.figura}></div>
-                              {p.respuesta}
-                            </div>{" "}
-                          </>
-                        ) : (
-                          <form
-                            className={s.form}
-                            onSubmit={(e) => {
-                              e.preventDefault();
-                              dispatch(responderPregunta(p.id, input));
-                              dispatch(sendNoti(p.user[0],input));
-                              Swal.fire({
-                                text: "Tu respuesta fue enviada!",
-                                icon: "succes",
-                              });
-                            }}
-                          >
-                            <textarea
-                              className={s.input}
-                              name="respuesta"
-                              rows="6"
-                              type="text"
-                              onChange={(e) => handleChange(e)}
-                              value={input.respuesta}
-                              required
-                            />
-                            <input
-                              type="submit"
-                              value="responder"
-                              className={s.btn}
-                            />
-                          </form>
-                        )}
-                      </>
-                    </div>
+                      ) : (
+                        <form
+                          className={s.form}
+                          onSubmit={(e) => {
+                            e.preventDefault();
+                            dispatch(responderPregunta(p.id, input));
+                            dispatch(sendNoti(p.user[0], input));
+                            Swal.fire({
+                              text: "Tu respuesta fue enviada!",
+                              icon: "succes",
+                            });
+                          }}
+                        >
+                          <textarea
+                            className={s.input}
+                            name="respuesta"
+                            rows="6"
+                            type="text"
+                            onChange={(e) => handleChange(e)}
+                            value={input.respuesta}
+                            required
+                          />
+                          <input
+                            type="submit"
+                            value="responder"
+                            className={s.btn}
+                          />
+                        </form>
+                      )}
+                    </>
                   </div>
+                </div>
               ))
               : null}
           </div>
@@ -301,7 +306,7 @@ export default function Detail({ Profesions }) {
             <Comentar
               publicacion={id}
               setComento={setComento}
-              profesional={[MyDetail.email,MyDetail.imagen]}
+              profesional={[MyDetail.email, MyDetail.imagen]}
             />
           ) : null}
           <div className={s.commentsBox}>
