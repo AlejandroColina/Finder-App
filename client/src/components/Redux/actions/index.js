@@ -1,4 +1,5 @@
 import axios from "axios";
+import Swal from 'sweetalert2'
 
 export function rederCard(profesion, genero, promedio, ciudad, descripcion, edad) {
   return async function (dispatch) {
@@ -139,7 +140,7 @@ export function mensajeAlAdmin(msj) {
       type: "MSJ_USER_AL_ADMIN",
       payload: msj,
     });
-    alert(response.data.message);
+    Swal.fire('Listo!',response.data.message, 'success');
   };
 }
 //traer mensajes para el admin
