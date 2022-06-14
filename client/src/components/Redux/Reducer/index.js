@@ -290,9 +290,6 @@ export default function rootReducer(state = InitialState, action) {
         ...state,
         usersByCity: action.payload
       }
-<<<<<<< HEAD
-      
-=======
     case 'GET_TRABAJOS_PAGOS':
       return {
         ...state,
@@ -308,7 +305,6 @@ export default function rootReducer(state = InitialState, action) {
       }
 
 
->>>>>>> e8cb0c40bfd876b163b27e7a0391afb4ffeced8e
     default:
       return state;
   }
