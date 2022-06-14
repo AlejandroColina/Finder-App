@@ -1,7 +1,8 @@
 import React,{useState} from "react";
 import {useDispatch} from "react-redux";
-import { baneoUser, sendBaneo} from "../../Redux/actions";
+import { baneoUser, sendBaneo, getUserStatus} from "../../Redux/actions";
 import s from './Config.module.css';
+import { useEffect } from "react";
 
 export default function Activos({activos}){
 
@@ -47,7 +48,8 @@ export default function Activos({activos}){
                   const filtrados = activos.filter(a=>{
                   a.email.toLowerCase().includes(input.toLowerCase())});
                   console.log(filtrados);
-                  setBuscados(filtrados);}}>
+                  setBuscados(filtrados);
+                  dispatch(getUserStatus());}}>
                 <input className={s.input} type='text' value={input} onChange={(e)=>setInput(e.target.value)}/>
                 <input className={s.inputBtn} type='submit' value="⌕"/>
             </form>

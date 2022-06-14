@@ -193,13 +193,12 @@ export function getUbicacion() {
   };
 }
 
-export function getPublicacionDeUsuario(email) {
+export function getDestacados() {
   return async (dispatch) => {
-    let publicaciones = await axios.get(
-      `http://localhost:3001/publicaciones?email=${email}`
+    let publicaciones = await axios.get('http://localhost:3001/publicaciones'
     );
     return dispatch({
-      type: "PUBLICACIONES_USUARIO",
+      type: "PUBLICACIONES_DESTACADAS",
       payload: publicaciones.data,
     });
   };

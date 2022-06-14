@@ -1,71 +1,71 @@
 .container{
-    
+    position: relative;
     height: 100%;
-    width: 80%;
-    top: 50%;
-    bottom: 50%;
+    width: 90%;
     display: flex;
-    justify-content:center;
+    justify-content:flex-start;
+    padding-left: 40px;
     align-items:center;
     gap: 90px;
-    margin-left: 1.3rem;
+    box-shadow: 1px 1px 10px rgba(0, 16, 41, 0.373);
 }
 
 .filtro{
     display: flex;
     flex-direction: column;
+    align-items: center;
     text-align: center;
-    flex:1;
-    margin: 0px auto;
 }
 
 .label{
-    color: whitesmoke;
-    font-size: 2rem;
-    margin-bottom: 4px;
-    font-weight: 500;
+    color: #0575e6;
+    font-size: 18px;
+    margin-bottom: 10px;
+    font-weight: lighter;
 }
 
 .select{
-    height: 25px;
-    width: 200px;
+    min-width: 150px;
     text-align: center;
-    font-weight: bold;
     border-radius: 5px;
     outline: none; 
-    background: #cbe7ff;
-    color: rgb(105, 105, 105);
+    background:none;
+    border: 1px solid #0575e6;
+    color: #0575e6;
     min-height: 32px;
     cursor: pointer;
 }
-
-
-
-
-
-.btn{
-    font-size: 1.4rem;
-    display: flex;
-    transform: translate(-50%, 50%);
-    margin: auto;
-    padding: 4px;
-    padding-left: 3px;
-    padding-right: 3px;
-    border-radius: 5px;
-    margin-left: 5px;
-    cursor: pointer;
-    border-color: 1px 1px gray;
-    width: 80px;
-    text-align: center;
-    padding-left: 15px;
-    font-weight: 800;
+.select:focus{
+    background-color: #0575e6;
+    color: white;
+    border: 1px solid white;
 }
+
 
 .reset{
     position: absolute;
-    margin-top: 10rem;
-    width: 120px;
-    padding-left: 100px;
+    right: 20px;
+    padding: 10px;
+    color: rgb(18, 3, 3);
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
 }
-
-
+.remove{
+    font-size: 30px;
+    font-weight: bold;
+    background: none;
+    border: none;
+    color: #0575e6;
+    transition: 1s;
+}
+.remove:hover{
+    font-size: 40px;
+    color: black;
+}
+.elim{
+    font-size: 11px;
+    color: #0575e6;
+    font-weight: lighter;
+    text-align: center;
+}

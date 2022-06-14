@@ -22,6 +22,7 @@ const InitialState = {
   noBaneados:[],
   preguntasReportadas:[],
   opinionesReportadas:[],
+  publicacionesDestacadas:[]
 
 };
 
@@ -278,6 +279,12 @@ export default function rootReducer(state = InitialState, action) {
             ...state,
             opinionesReportadas:action.payload
           } 
+
+        case 'PUBLICACIONES_DESTACADAS':
+          return{
+            ...state,
+            publicacionesDestacadas: action.payload.filter(el => el.promedio >= 4)
+          }
 
     default:
       return state;

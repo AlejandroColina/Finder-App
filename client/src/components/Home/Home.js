@@ -1,6 +1,6 @@
 
 import React, { useState } from "react";
-import { getCiudades, getEmpleos, rederCard, getNoti } from "../Redux/actions/index";
+import { getCiudades, getEmpleos, rederCard, getNoti,getDestacados } from "../Redux/actions/index";
 import { useEffect } from "react";
 import Cards from "./Cards/cards";
 import { useDispatch, useSelector } from "react-redux";
@@ -79,8 +79,10 @@ function Home({ descripcion, setDescripcion }) {
   }, [dispatch, profesion, genero, promedio, ciudad, descripcion, edad]);
 
 
-  let destacados = trabajadores?.filter(el => el.promedio >= 4);
-
+  useEffect(()=>{
+   dispatch(getDestacados())
+  },[dispatch]);
+const destacados = useSelector((state)=>state.publicacionesDestacadas);
   const resetValues = () => {
     setFilters(EMPTY_FILTERS)
     setDescripcion('')
@@ -151,7 +153,7 @@ function Home({ descripcion, setDescripcion }) {
           </section>
 
           <section className={styles.destacados}>
-            <div className={styles.textDestacados} ><h1>Destacados <i style={{ color: 'yellow', margin: '10px', textShadow: '3px 4px black' }} class="fa-solid fa-bolt-lightning"></i></h1></div>
+            <div className={styles.textDestacados} ><h1>DESTACADOS <i style={{ color: 'yellow', marginRight: '2px', textShadow: '3px 4px black' }} class="fa-solid fa-bolt-lightning"></i></h1></div>
             <div className={styles.div__destacados}>
               {
                 destacados.map(el => {
