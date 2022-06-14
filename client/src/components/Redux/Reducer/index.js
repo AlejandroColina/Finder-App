@@ -3,6 +3,7 @@ const InitialState = {
   users: [], //va a tener todos los usuarios
   detail: [],
   usersByType: [],
+  usersByCity:[],
   empleos: [],
   empleosForm: [],
   ciudades: [],
@@ -282,6 +283,11 @@ export default function rootReducer(state = InitialState, action) {
       return {
         ...state,
         destacados: action.payload
+      }
+      case 'USER_BY_CITY':
+      return {
+        ...state,
+        usersByCity: action.payload
       }
 
     default:

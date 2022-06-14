@@ -80,6 +80,29 @@ export function getTotalUsersBytype() {
   };
 }
 
+export function getTotalUsersByCity() {
+  return async function (dispatch) {
+    var tipos = [
+      "Buenos Aires", "Corrientes", "Rosario",
+      "Mar del Plata", "Godoy Cruz", "Banfield",
+      "La Plata", "Resistencia", "Lanus",
+      "Salta", "Quilmes", "Santa Fe", "Córdoba"
+    ];
+    let usersByCity = [];
+    for (let i = 0; i < tipos.length; i++) {
+      let jsonTipos = await axios.get(
+        `http://localhost:3001/publicaciones?ciudad=${tipos[i]}`
+      );
+      let cant = jsonTipos.data.length;
+      usersByCity.push([tipos[i], cant]);
+    }
+    return dispatch({
+      type: "USER_BY_CITY",
+      payload: usersByCity,
+    });
+  };
+}
+
 export const getEmpleos = () => {
   let url = "http://localhost:3001/users/empleos";
 

@@ -11,9 +11,7 @@ import {
   Legend,
   Filler,
 } from "chart.js";
-
 import { Bar } from "react-chartjs-2";
-import axios from "axios";
 
 ChartJS.register(
   LinearScale,
@@ -27,20 +25,31 @@ ChartJS.register(
 );
 
 export default function CityChart() {
-  const ciudades = axios
-    .get("http://localhost:3001/users/ciudades")
-    .then((res) => {
-      return res.data;
-    });
-
+  const usersByCity = useSelector((state) => state.usersByCity);
   let cantidad = [];
+  let labels = [];
 
   // const ciudadesTotal = useSelector((state) => state.ciudades);
-  console.log(ciudades);
 
-  for (let i = 0; i < ciudades; i++) {
-    cantidad.push(ciudades[i][1]);
+  for (let i = 0; i < usersByCity.length; i++) {
+    labels.push(usersByCity[i][0]);
+    cantidad.push(usersByCity[i][1]);
   }
+
+  const options = {
+    fill: true,
+    scales: {
+      y: {
+        min: 0,
+      },
+    },
+    resposive: true,
+    plugins: {
+      legend: {
+        display: false,
+      },
+    },
+  };
 
   const data = {
     datasets: [
@@ -53,22 +62,7 @@ export default function CityChart() {
         borderWidth: 1,
       },
     ],
-    cantidad,
-  };
-
-  const options = {
-    responsive: true,
-    plugins: {
-      legend: {
-        display: false,
-      },
-    },
-    fill: true,
-    scales: {
-      y: {
-        min: 0,
-      },
-    },
+    labels,
   };
 
   return (
