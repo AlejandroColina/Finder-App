@@ -10,6 +10,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import Footer from "../Footer/Footer";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import MisChats from "./ChatPerfil"
 import {
   getPefil,
   ValidarInfo,
@@ -27,7 +28,7 @@ import bane from './assets/baneado.jpeg'
 const Perfil = () => {
   const { user } = useAuth0();
   const dispatch = useDispatch();
-
+  const [ MiChat, setMiChat] = useState(false);
   const { validar } = useSelector((state) => state);
   const [favorito, setFavorito] = useState(false);
   const [perfil, setPerfil] = useState(false);
@@ -38,16 +39,26 @@ const Perfil = () => {
     setPerfil(true);
     setFavorito(false);
     setEditar(false)
+    setMiChat(false)
   };
 
   const handleVolver = () => {
     setPerfil(false);
     setFavorito(false);
     setEditar(false)
+    setMiChat(false)
   };
   const handleEditar = () => {
     setEditar(true)
     setFavorito(false)
+    setMiChat(false)
+  }
+
+  const handleChat = () => {
+    setMiChat(true)
+    setPerfil(false);
+    setFavorito(false);
+    setEditar(false)
   }
 
   useEffect(() => {
@@ -60,6 +71,7 @@ const Perfil = () => {
   const handleState = () => {
     setFavorito(true);
     setEditar(false)
+    setMiChat(false)
   };
   return (
     <>
@@ -92,6 +104,7 @@ const Perfil = () => {
               </div>
             </div>
             <div className={s.mover}>
+              <button className={s.botones} onClick={handleChat} >Mis Chats</button>
               <button className={s.botones} onClick={handleState}>
                 Favoritos
               </button>
@@ -141,6 +154,7 @@ const Perfil = () => {
              : <></>}
             </div>
             <div className={s.publi}>
+              {MiChat ? <MisChats/> : <>   
               {editar ? <Form/>
                 : <>
               {favorito ? (
@@ -177,6 +191,8 @@ const Perfil = () => {
                   )}
                 </div>
               )}
+              
+              </>}
               </>}
             </div>
             
