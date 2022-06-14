@@ -33,7 +33,7 @@ modelDefiners.forEach(model => model(sequelize));
 const { Persona, Profesion, Direccion, Publicacion, Comentario, Pregunta } = sequelize.models;
 
 
-Persona.hasMany(Publicacion);
+Persona.hasMany(Publicacion, { onDelete: 'CASCADE' });
 Publicacion.belongsTo(Persona);
 
 Profesion.hasMany(Publicacion);
