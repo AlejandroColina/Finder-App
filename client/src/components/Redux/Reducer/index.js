@@ -3,6 +3,7 @@ const InitialState = {
   users: [], //va a tener todos los usuarios
   detail: [],
   usersByType: [],
+  usersByCity:[],
   empleos: [],
   empleosForm: [],
   ciudades: [],
@@ -17,13 +18,12 @@ const InitialState = {
   info: [],
   favorito: [],
   baneado: false,
-  notificaciones:[],
-  usuariosBaneados:[],
-  noBaneados:[],
-  preguntasReportadas:[],
-  opinionesReportadas:[],
-  publicacionesDestacadas:[]
-
+  notificaciones: [],
+  usuariosBaneados: [],
+  noBaneados: [],
+  preguntasReportadas: [],
+  opinionesReportadas: [],
+  destacados:[]
 };
 
 export default function rootReducer(state = InitialState, action) {
@@ -35,13 +35,13 @@ export default function rootReducer(state = InitialState, action) {
       };
 
     case "CARDS":
-      if(state.loanding === false){
+      if (state.loanding === false) {
         console.log('Loanding Ya esta false')
-        return{
+        return {
           ...state,
           trabajadores: action.payload
         }
-      }else{
+      } else {
         console.log('seteado a FALSE')
         return {
           ...state,
@@ -199,10 +199,10 @@ export default function rootReducer(state = InitialState, action) {
         baneado: action.payload
       }
 
-      case 'DESBANEAR':
-        return {
-          ...state
-        }
+    case 'DESBANEAR':
+      return {
+        ...state
+      }
 
     case 'SEND_NOTI':
       return {
@@ -224,7 +224,7 @@ export default function rootReducer(state = InitialState, action) {
       return {
         ...state,
       }
-    
+
     case 'EMAIL_DESBANEO':
       return {
         ...state,
@@ -236,56 +236,60 @@ export default function rootReducer(state = InitialState, action) {
 
 
     case 'GET_NOTI':
-      return{
+      return {
         ...state,
         notificaciones: action.payload
       }
 
     case 'USER_STATUS':
-      return{
+      return {
         ...state,
-        noBaneados: state.users.filter(u=>u.baneado===false),
-        usuariosBaneados: state.users.filter(u=>u.baneado===true),
+        noBaneados: state.users.filter(u => u.baneado === false),
+        usuariosBaneados: state.users.filter(u => u.baneado === true),
       }
 
-      case 'REPORTAR_PREGUNTA':
-        return{
-          ...state
-        }
-  
-      case 'IGNORAR_REPORTAR_PREGUNTA':
-        return{
-          ...state
-        }
+    case 'REPORTAR_PREGUNTA':
+      return {
+        ...state
+      }
+
+    case 'IGNORAR_REPORTAR_PREGUNTA':
+      return {
+        ...state
+      }
+
+    case 'PREGUNTAS_REPORTADAS':
+      return {
+        ...state,
+        preguntasReportadas: action.payload
+      }
+
+    case 'REPORTAR_OPINION':
+      return {
+        ...state
+      }
+
+    case 'IGNORAR_REPORTAR_OPINION':
+      return {
+        ...state
+      }
+
+    case 'OPINIONES_REPORTADAS':
+      return {
+        ...state,
+        opinionesReportadas: action.payload
+      }
+      case 'GET_DESTACADOS':
+      return {
+        ...state,
+        destacados: action.payload
+      }
+      case 'USER_BY_CITY':
+      return {
+        ...state,
+        usersByCity: action.payload
+      }
       
-      case 'PREGUNTAS_REPORTADAS':
-        return{
-          ...state,
-          preguntasReportadas:action.payload
-        }
-
-        case 'REPORTAR_OPINION':
-          return{
-            ...state
-          }
-    
-        case 'IGNORAR_REPORTAR_OPINION':
-          return{
-            ...state
-          }
-        
-        case 'OPINIONES_REPORTADAS':
-          return{
-            ...state,
-            opinionesReportadas:action.payload
-          } 
-
-        case 'PUBLICACIONES_DESTACADAS':
-          return{
-            ...state,
-            publicacionesDestacadas: action.payload.filter(el => el.promedio >= 4)
-          }
-
     default:
       return state;
   }
