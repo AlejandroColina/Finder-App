@@ -27,9 +27,9 @@ export default function Destacados({ Profesions, logoProfesion, imagen, nombres,
                             <p className={styles.cardPI}>{`${nombres}`}</p>
                             <p className={styles.cardP}>{descripcion}</p>
 
-<Box sx={{ "& > legend": { mt: 2 } }}>
-<Rating size="small" value={promedio} readOnly />
-</Box>
+                            <Box sx={{ "& > legend": { mt: 2 } }}>
+                                <Rating size="small" value={promedio} readOnly />
+                            </Box>
                         </div>
                     </section>
                 </Link>

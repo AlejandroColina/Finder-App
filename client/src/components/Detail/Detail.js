@@ -163,9 +163,11 @@ export default function Detail({ Profesions }) {
 
           {/* Botones  */}
           <div className={s.containerPrice}>
-            <span className={s.valor}>Tarifa:</span>
-            <span className={s.precio}>${MyDetail.precio}</span>
+            <span className={s.valor}>Servicio: ${MyDetail.precio}</span>
+            {/* <span className={s.precio}>${MyDetail.precio}</span> */}
+            <span className={s.valor}>Tarifa Finder: ${price}</span>
           </div>
+            <p className={s.aclaracion}>Tarifa varía acorde valoración del usuario</p>
           {open ? (
             <div>
               {!order ? (
