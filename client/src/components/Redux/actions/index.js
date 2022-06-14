@@ -216,17 +216,6 @@ export function getUbicacion() {
   };
 }
 
-export function getDestacados() {
-  return async (dispatch) => {
-    let publicaciones = await axios.get('http://localhost:3001/publicaciones'
-    );
-    return dispatch({
-      type: "PUBLICACIONES_DESTACADAS",
-      payload: publicaciones.data,
-    });
-  };
-}
-
 export function getPefil(email) {
   return async (dispatch) => {
     try {
