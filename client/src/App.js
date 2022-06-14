@@ -57,9 +57,11 @@ function App() {
           <Route path='/quieroseremprendedor' component={SecondCap}/>
           <Route exact path="/trabajo/:id" component={Detail} />
           <Route path="/perfil/:email" component={Perfil}/>
+
           <Route exact path="/chat/:name" component={Chat} />
          
           {/* <Route path='*' component={Error} /> */}
+
          
           
         </Switch>
