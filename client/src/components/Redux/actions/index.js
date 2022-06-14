@@ -50,20 +50,20 @@ export function getDetail(id) {
 export function getTotalUsersBytype() {
   return async function (dispatch) {
     var tipos = [
-      "Abastecimiento y Logistica",
-      "Administracion,Contabilidad y Finanzas",
-      "Atencion al Cliente",
-      "Comercial, Ventas y Negocios",
+      "Abastecimiento y Logística",
+      "Administración Contabilidad y Finanzas",
+      "Atención al Cliente",
+      "Comercial Ventas y Negocios",
       "Diseño",
-      "Educacion y Docencia",
-      "Enfermeria",
-      "Gastronomia y Turismo",
-      "Ingenieria civil y Construccion",
-      "Ingenierias",
+      "Educación y Docencia",
+      "Enfermería",
+      "Gastronomía",
+      "Ingeniería civil y Construcción",
+      "Ingenierías",
       "Legales",
       "Marqueting y Publicidad",
       "Oficios y otros",
-      "Tecnologia, sistemas y Telecomunicaciones",
+      "Tecnología sistemas y Telecomunicaciones",
     ];
     let usersByType = [];
     for (let i = 0; i < tipos.length; i++) {
@@ -206,7 +206,6 @@ export function getPublicacionDeUsuario(email) {
 }
 
 export function getPefil(email) {
-  console.log(email);
   return async (dispatch) => {
     try {
       let json = await axios.get("http://localhost:3001/users/perfil/" + email);
@@ -226,7 +225,6 @@ export function ValidarInfo(email) {
       let info = await axios.get(
         "http://localhost:3001/users/validar/" + email
       );
-      console.log(info.data);
       return dispatch({
         type: "INFO_VALI",
         payload: info.data,
@@ -333,7 +331,6 @@ export function responderPregunta(id, input) {
 }
 
 export function eliminarPost(id) {
-  console.log(id)
   return async dispatch => {
     let borrar = await axios.delete('http://localhost:3001/delete/post/' + id)
     return dispatch({
@@ -429,7 +426,6 @@ export function desbanear(id, estado) {
 }
 
 export function sendEmailNewUser(email) {
-  console.log('SEND-USERS')
   return async dispatch => {
     await axios.patch(`http://localhost:3001/email/bienvenida/${email}`)
     return dispatch({
