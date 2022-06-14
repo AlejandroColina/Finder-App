@@ -1,4 +1,4 @@
-process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = 0;
+process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = 1;
 const express = require("express");
 const router = express.Router();
 const axios = require("axios");
@@ -625,8 +625,8 @@ router.get("/detalle/:idPublicacion", async (req, res, next) => {
       latitud: consultaBD.dataValues.Direccion.dataValues.latitud,
       longitud: consultaBD.dataValues.Direccion.dataValues.longitud,
       pais: consultaBD.dataValues.Direccion.dataValues.pais,
-      multimedia: consultaBD?.dataValues?.multimedia
-
+      multimedia: consultaBD?.dataValues?.multimedia,
+      trabajosPagos: personaPost[0].dataValues.trabajosPagos
     };
 
     res.send(obj);
