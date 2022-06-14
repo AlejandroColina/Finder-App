@@ -30,6 +30,7 @@ export default function BarChart() {
     let labels = [];
 
     for (let i = 0; i < totalByTypes.length; i++) {
+        
         labels.push(totalByTypes[i][0]);
         cantidad.push(totalByTypes[i][1]);
     }

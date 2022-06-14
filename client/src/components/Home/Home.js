@@ -158,7 +158,7 @@ function Home({ descripcion, setDescripcion }) {
 
                       <Destacados
                         key={`${el.id}A`}
-                        id={el.id}
+                        id={el.idPublicacion}
                         Profesions={el.Profesions}
                         apellidos={el.apellidos}
                         imagen={el.imagen}
