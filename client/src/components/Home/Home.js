@@ -1,6 +1,6 @@
 
 import React, { useState } from "react";
-import { getCiudades, getEmpleos, rederCard, getNoti } from "../Redux/actions/index";
+import { getCiudades, getEmpleos, rederCard, getDestacados, getNoti } from "../Redux/actions/index";
 import { useEffect } from "react";
 import Cards from "./Cards/cards";
 import { useDispatch, useSelector } from "react-redux";
@@ -23,7 +23,7 @@ import HomeLoader from "./loading/Skeleton";
 
 
 function Home({ descripcion, setDescripcion }) {
-  
+
   const dispatch = useDispatch();
   const { isAuthenticated, user } = useAuth0();
 
@@ -38,10 +38,10 @@ function Home({ descripcion, setDescripcion }) {
     empleo: '',
     edad: ''
   }
-  
+
 
   const loanding = useSelector((state) => state.loanding);
-
+  const destacados = useSelector((state) => state.destacados);
 
   const [filters, setFilters] = useState(EMPTY_FILTERS)
 
@@ -70,16 +70,14 @@ function Home({ descripcion, setDescripcion }) {
 
   let { genero, promedio, ciudad, profesion, edad } = filters
   useEffect(() => {
+    dispatch(getDestacados());
     dispatch(rederCard(profesion, genero, promedio, ciudad, descripcion, edad));
     setCurrentPage(1)
 
-    if(isAuthenticated){
+    if (isAuthenticated) {
       firebase.auth().signInWithEmailAndPassword(user.email, user.nickname)
     }
   }, [dispatch, profesion, genero, promedio, ciudad, descripcion, edad]);
-
-
-  let destacados = trabajadores?.filter(el => el.promedio >= 4);
 
   const resetValues = () => {
     setFilters(EMPTY_FILTERS)
@@ -92,10 +90,10 @@ function Home({ descripcion, setDescripcion }) {
         <Helmet><title>Cargando..</title></Helmet>
         <SearchBar descripcion={descripcion} setDescripcion={setDescripcion} />
         <section className={styles.filtros}>
-            <Filtros resetValues={resetValues} filters={filters} handleFilterChanges={handleFilterChanges} />
+          <Filtros resetValues={resetValues} filters={filters} handleFilterChanges={handleFilterChanges} />
         </section>
         <div className={styles.loaders}>
-        <HomeLoader />
+          <HomeLoader />
         </div>
       </div>
 
@@ -160,7 +158,7 @@ function Home({ descripcion, setDescripcion }) {
 
                       <Destacados
                         key={`${el.id}A`}
-                        id={el.id}
+                        id={el.idPublicacion}
                         Profesions={el.Profesions}
                         apellidos={el.apellidos}
                         imagen={el.imagen}

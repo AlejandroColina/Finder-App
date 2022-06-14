@@ -1,4 +1,4 @@
-process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = 0;
+process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = 1;
 const express = require("express");
 const router = express.Router();
 const axios = require("axios");
@@ -36,7 +36,8 @@ router.get("/", async (req, res, next) => {
         publicaciones: person.Publicacions,
         favoritos: person.favoritos,
         baneado: person.baneado,
-        notificaciones:person.notificaciones
+        notificaciones:person.notificaciones,
+        chats: person.chats,
       };
     });
 
@@ -140,7 +141,8 @@ router.post('/nuevo', async (req, res, next) => {
         imagen,
         favoritos: [],
         trabajosPagos: [],
-        notificaciones:[]
+        notificaciones:[],
+        chats: [],
       });
 
       let message = {
@@ -566,7 +568,7 @@ router.get('/validar/:email', async (req, res, next) => {
 
 router.patch("/modificar/:email", async (req, res) => {
   const email = req.params.email;
-  let { nombres, apellidos, telefono, genero, edad, documento } = req.query;
+  let { nombres, apellidos, telefono, genero, edad, documento, chats } = req.query;
 
   if (documento) {
     Persona.update({ documento: req.query.documento }, { where: { email: email } })
@@ -586,10 +588,74 @@ router.patch("/modificar/:email", async (req, res) => {
   if (edad) {
     Persona.update({ edad: req.query.edad }, { where: { email: email } });
   }
+  if (chats){
+    Persona.update({ chats: req.query.chats}, {where:{email : email}});
+  }
 
   const objetivo = await Persona.findOne({ where: { email: email } });
   res.send(objetivo);
 });
+
+router.patch('/add/:documento', async (req, res, next) => {
+  try {
+      const { documento } = req.params
+      const { chat, name } = req.query
+      const objeto = {
+        chat: chat,
+        name: name
+      }
+      const algo = [];
+      
+
+      let persona = await Persona.findOne({ where: { documento: documento } })
+      if (persona === null) return res.status(404).send('No existe el usuario.');
+
+      let chats = persona.dataValues.chats
+      if(chats !== null){
+        chats.push(objeto)
+        await Persona.update({ chats: chats }, { where: { documento: documento } });
+        let p = await Persona.findOne({ where: { documento: documento } })
+        return res.json(p)
+      }
+      algo.push(objeto)
+      await Persona.update({ chats: algo }, { where: { documento: documento } });
+      let p = await Persona.findOne({ where: { documento: documento } })
+      return res.json(p)
+  } catch (error) {
+      next(error)
+  }
+});
+
+router.patch('/agg/:id', async (req, res, next) => {
+  try {
+      const { id } = req.params
+      const { chat, name } = req.query
+      const algo = [];
+      const objeto = {
+        chat:chat,
+        name:name
+      }
+      
+
+      let persona = await Persona.findOne({ where: { id: id } })
+      if (persona === null) return res.status(404).send('No existe el usuario.');
+
+      let chats = persona.dataValues.chats
+      if(chats !== null){
+        chats.push(objeto)
+        await Persona.update({ chats: chats }, { where: { id: id } });
+        let p = await Persona.findOne({ where: { id: id } })
+        return res.json(p)
+      }
+      algo.push(objeto)
+      await Persona.update({ chats: algo }, { where: { id: id } });
+      let p = await Persona.findOne({ where: { id: id } })
+      return res.json(p)
+  } catch (error) {
+      next(error)
+  }
+});
+
 
 router.get("/detalle/:idPublicacion", async (req, res, next) => {
   try {
@@ -625,8 +691,9 @@ router.get("/detalle/:idPublicacion", async (req, res, next) => {
       latitud: consultaBD.dataValues.Direccion.dataValues.latitud,
       longitud: consultaBD.dataValues.Direccion.dataValues.longitud,
       pais: consultaBD.dataValues.Direccion.dataValues.pais,
-      multimedia: consultaBD?.dataValues?.multimedia
-
+      multimedia: consultaBD?.dataValues?.multimedia,
+      chats: personaPost[0].dataValues.chats,
+      trabajosPagos: personaPost[0].dataValues.trabajosPagos
     };
 
     res.send(obj);
@@ -689,5 +756,9 @@ router.get("/coincidencias/:id", async (req, res) => {
     console.log(error)
   }
 })
+
+
+
+
 
 module.exports = router;

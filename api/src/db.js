@@ -1,4 +1,4 @@
-process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = 0;
+process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = 1;
 require('dotenv').config();
 const { Sequelize } = require('sequelize');
 const { DB_USER, DB_PASSWORD, DB_HOST } = process.env;
@@ -33,7 +33,7 @@ modelDefiners.forEach(model => model(sequelize));
 const { Persona, Profesion, Direccion, Publicacion, Comentario, Pregunta } = sequelize.models;
 
 
-Persona.hasMany(Publicacion);
+Persona.hasMany(Publicacion, { onDelete: 'CASCADE' });
 Publicacion.belongsTo(Persona);
 
 Profesion.hasMany(Publicacion);

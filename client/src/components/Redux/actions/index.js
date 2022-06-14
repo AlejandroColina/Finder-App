@@ -50,20 +50,20 @@ export function getDetail(id) {
 export function getTotalUsersBytype() {
   return async function (dispatch) {
     var tipos = [
-      "Abastecimiento y Logistica",
-      "Administracion,Contabilidad y Finanzas",
-      "Atencion al Cliente",
-      "Comercial, Ventas y Negocios",
+      "Abastecimiento y Logística",
+      "Administración Contabilidad y Finanzas",
+      "Atención al Cliente",
+      "Comercial Ventas y Negocios",
       "Diseño",
-      "Educacion y Docencia",
-      "Enfermeria",
-      "Gastronomia y Turismo",
-      "Ingenieria civil y Construccion",
-      "Ingenierias",
+      "Educación y Docencia",
+      "Enfermería",
+      "Gastronomía",
+      "Ingeniería civil y Construcción",
+      "Ingenierías",
       "Legales",
       "Marqueting y Publicidad",
       "Oficios y otros",
-      "Tecnologia, sistemas y Telecomunicaciones",
+      "Tecnología sistemas y Telecomunicaciones",
     ];
     let usersByType = [];
     for (let i = 0; i < tipos.length; i++) {
@@ -76,6 +76,29 @@ export function getTotalUsersBytype() {
     return dispatch({
       type: "USER_BY_TYPES",
       payload: usersByType,
+    });
+  };
+}
+
+export function getTotalUsersByCity() {
+  return async function (dispatch) {
+    var tipos = [
+      "Buenos Aires", "Corrientes", "Rosario",
+      "Mar del Plata", "Godoy Cruz", "Banfield",
+      "La Plata", "Resistencia", "Lanus",
+      "Salta", "Quilmes", "Santa Fe", "Córdoba"
+    ];
+    let usersByCity = [];
+    for (let i = 0; i < tipos.length; i++) {
+      let jsonTipos = await axios.get(
+        `http://localhost:3001/publicaciones?ciudad=${tipos[i]}`
+      );
+      let cant = jsonTipos.data.length;
+      usersByCity.push([tipos[i], cant]);
+    }
+    return dispatch({
+      type: "USER_BY_CITY",
+      payload: usersByCity,
     });
   };
 }
@@ -206,7 +229,6 @@ export function getPublicacionDeUsuario(email) {
 }
 
 export function getPefil(email) {
-  console.log(email);
   return async (dispatch) => {
     try {
       let json = await axios.get("http://localhost:3001/users/perfil/" + email);
@@ -226,7 +248,6 @@ export function ValidarInfo(email) {
       let info = await axios.get(
         "http://localhost:3001/users/validar/" + email
       );
-      console.log(info.data);
       return dispatch({
         type: "INFO_VALI",
         payload: info.data,
@@ -333,7 +354,6 @@ export function responderPregunta(id, input) {
 }
 
 export function eliminarPost(id) {
-  console.log(id)
   return async dispatch => {
     let borrar = await axios.delete('http://localhost:3001/delete/post/' + id)
     return dispatch({
@@ -409,17 +429,17 @@ export function deleteFavorito(email, id) {
   }
 }
 
-export function getNoti(email){
-  return async dispatch =>{
+export function getNoti(email) {
+  return async dispatch => {
     let response = await axios.get(`http://localhost:3001/notificaciones/${email}`)
     return dispatch({
       type: 'GET_NOTI',
       payload: response.data
-  })
-}
+    })
+  }
 }
 
-export function desbanear(id, estado){
+export function desbanear(id, estado) {
   return async dispatch => {
     let desba = await axios.patch(`http://localhost:3001/suspender/${id}/${estado}`)
     return dispatch({
@@ -429,7 +449,6 @@ export function desbanear(id, estado){
 }
 
 export function sendEmailNewUser(email) {
-  console.log('SEND-USERS')
   return async dispatch => {
     await axios.patch(`http://localhost:3001/email/bienvenida/${email}`)
     return dispatch({
@@ -474,14 +493,14 @@ export function sendEliminado(id) {
   }
 }
 
-export function getUserStatus(){
-  return({
-    type:'USER_STATUS'
+export function getUserStatus() {
+  return ({
+    type: 'USER_STATUS'
   })
 }
 
-export function reportarPregunta(id){
-  return async (dispatch)=>{
+export function reportarPregunta(id) {
+  return async (dispatch) => {
     await axios.put(`http://localhost:3001/pregunta/reportar/${id}`)
     return dispatch({
       type: 'REPORTAR_PREGUNTA'
@@ -489,8 +508,8 @@ export function reportarPregunta(id){
   }
 }
 
-export function ignorarReportarPregunta(id){
-  return async (dispatch)=>{
+export function ignorarReportarPregunta(id) {
+  return async (dispatch) => {
     await axios.put(`http://localhost:3001/pregunta/ignorar/${id}`)
     return dispatch({
       type: 'IGNORAR_REPORTAR_PREGUNTA'
@@ -498,18 +517,18 @@ export function ignorarReportarPregunta(id){
   }
 }
 
-export function getPreguntasReportadas(){
-  return async (dispatch)=>{
+export function getPreguntasReportadas() {
+  return async (dispatch) => {
     const reportadas = await axios.get("http://localhost:3001/pregunta/reportadas");
-     return dispatch({
+    return dispatch({
       type: 'PREGUNTAS_REPORTADAS',
       payload: reportadas.data
-  })
+    })
   }
 }
 
-export function reportarOpinion(id){
-  return async (dispatch)=>{
+export function reportarOpinion(id) {
+  return async (dispatch) => {
     await axios.put(`http://localhost:3001/comentario/reportar/${id}`)
     return dispatch({
       type: 'REPORTAR_OPINION'
@@ -517,8 +536,8 @@ export function reportarOpinion(id){
   }
 }
 
-export function ignorarReportarComentario(id){
-  return async (dispatch)=>{
+export function ignorarReportarComentario(id) {
+  return async (dispatch) => {
     await axios.put(`http://localhost:3001/comentario/ignorar/${id}`)
     return dispatch({
       type: 'IGNORAR_REPORTAR_OPINION'
@@ -526,12 +545,57 @@ export function ignorarReportarComentario(id){
   }
 }
 
-export function getComentariosReportados(){
-  return async (dispatch)=>{
+export function getComentariosReportados() {
+  return async (dispatch) => {
     const opinionesReportadas = await axios.get("http://localhost:3001/comentario/reportadas");
-     return dispatch({
+    return dispatch({
       type: 'OPINIONES_REPORTADAS',
       payload: opinionesReportadas.data
-  })
+    })
   }
+}
+
+export function getDestacados() {
+  return async function (dispatch) {
+    dispatch(loanding());
+    try {
+      let data = await axios.get(`http://localhost:3001/publicaciones/destacados`);
+      return dispatch({ type: "GET_DESTACADOS", payload: data.data });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+}
+
+export function getTrabajosPagos(email, idPublicacion) {
+  return async function (dispatch) {
+    try {
+      let data = await axios.get(`http://localhost:3001/trabajos?email=${email}&idPublicacion=${idPublicacion}`);
+      return dispatch({ type: "GET_TRABAJOS_PAGOS", payload: data.data });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+}
+
+export function addTrabajosPagos(email, idPublicacion) {
+  return async function (dispatch) {
+    try {
+      let data = await axios.patch(`http://localhost:3001/trabajos/add/${email}/${idPublicacion}`);
+      return dispatch({ type: "ADD_TRABAJO_PAGO" });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+}
+
+export function delTrabajosPagos(id, idPublicacion) {
+  return async function (dispatch) {
+    try {
+      let data = await axios.delete(`http://localhost:3001/trabajos/delete/${id}/${idPublicacion}`);
+      return dispatch({ type: "DEL_TRABAJO_PAGO" });
+    } catch (error) {
+      console.log(error);
+    }
+  };
 }

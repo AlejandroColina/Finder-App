@@ -1,6 +1,6 @@
 
 import React, { useState } from "react";
-import { BrowserRouter as Switch, Route } from "react-router-dom";
+import { BrowserRouter as Switch, Redirect, Route } from "react-router-dom";
 import LandingPage from "./components/LandingPage/index";
 import Home from "./components/Home/Home";
 import Detail from "./components/Detail/Detail";
@@ -57,8 +57,11 @@ function App() {
           <Route path='/quieroseremprendedor' component={SecondCap}/>
           <Route exact path="/trabajo/:id" component={Detail} />
           <Route path="/perfil/:email" component={Perfil}/>
-          <Route path="/chat/:name" component={Chat} />
-          {/* <Route path="/*" component={Error} /> */}
+
+          <Route exact path="/chat/:name" component={Chat} />
+         
+          {/* <Route path='*' component={Error} /> */}
+
          
           
         </Switch>
