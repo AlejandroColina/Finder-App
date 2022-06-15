@@ -5,6 +5,11 @@ import { cambiarInfo, ValidarInfo, getPefil } from "../../Redux/actions/index";
 import { useState, useEffect } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import Validate from './Validate'
+import Swal from "sweetalert2";
+import { TextField } from '@material-ui/core'
+
+
+
 
 const Form = ({abrirCerrarModal}) => {
   const { user } = useAuth0();
@@ -48,78 +53,99 @@ const Form = ({abrirCerrarModal}) => {
   const handleOnClick = () => {
     dispatch(cambiarInfo(user?.email, input));
     setTimeout(() => {
-      dispatch(ValidarInfo(user?.email));
+      dispatch(ValidarInfo(user?.email));  
       dispatch(getPefil(user?.email));
+      abrirCerrarModal()
+      Swal.fire('Listo!', 'Ahora podes crear publicaciones!', 'success')
     }, 1000);
   };
 
   return (
     <div className={s.form}>
-      <div>
+      <div className={s.container}>
         {validar ? (
           <h1 className={s.h1}>Completar perfil</h1>
         ) : (
           <h1 className={s.h1}>Editar perfil</h1>
         )}
+        <div className={s.formulario}> 
         <div className={s.div}>
-          <input
+          <TextField 
             value={input.nombres}
             className={s.input}
             type="text"
             placeholder="name"
             name="nombres"
             onChange={(e) => handleOnchange(e)}
+            variant="outlined"
+            label="nombre"
+           
+            
           />
-           <p>{error?.nombres}</p> 
+           
         </div>
+        <p className={s.p}>{error?.nombres}</p> 
        
         <div className={s.div}>
-          <input
+          < TextField 
             name="apellidos"
             value={input.apellidos}
             className={s.input}
             type="text"
             placeholder="apellidos"
             onChange={(e) => handleOnchange(e)}
+            variant="outlined"
+            label="Apellido"
           />
-           <p>{error?.apellidos}</p> 
+           
         </div>
+        <p className={s.p}>{error?.apellidos}</p> 
         <div className={s.div}>
-          <input
+          < TextField 
             name="documento"
             value={input.documento}
             className={s.input}
             type="number"
             placeholder="documento"
             onChange={(e) => handleOnchange(e)}
+            variant="outlined"
+            label="documento"
           />
-           <p>{error?.documento}</p> 
+           
         </div>
+        <p className={s.p}>{error?.documento}</p> 
         <div className={s.div}>
-          <input
+          < TextField 
             name="telefono"
             value={input.telefono}
             className={s.input}
             type="number"
             placeholder="telefono"
             onChange={(e) => handleOnchange(e)}
+            variant="outlined"
+            label="Telefono"
           />
-           <p>{error?.telefono}</p> 
+           
         </div>
+        <p className={s.p}>{error?.telefono}</p> 
         <div className={s.div}>
-          <input
+          < TextField 
             name={"edad"}
             value={input.edad}
             className={s.input}
             type="number"
             placeholder="coloca tu edad"
             onChange={(e) => handleOnchange(e)}
+            variant="outlined"
+            label="Edad"
           />
-           <p>{error?.edad}</p> 
+          
+        </div>
+        <p className={s.p}>{error?.edad}</p> 
         </div>
         <div className={s.div_boton}>
-          <button onClick={handleOnClick} disabled={disibled}>Guardar</button>
-          <button onClick={() => abrirCerrarModal()}>cerrar</button>
+          <button className={s.formBoton} onClick={handleOnClick} disabled={disibled}>Guardar</button>
+          <button className={s.formBoton} onClick={() => abrirCerrarModal()}>cerrar</button>
         </div>
       </div>
     </div>
