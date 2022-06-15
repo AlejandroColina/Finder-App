@@ -1,19 +1,17 @@
 .position{
-    position: fixed;
-    bottom: 30vh;
-    left: 2%;
+    position: relative;
+    right: 2%;
 }
 .iconBox{
-    width: 50px;
-    height: 50px;
-    background-color:#255aed ;
+    width: 30px;
+    height: 30px;
     border-radius: 50%;
 }
 
 .notification{
     position: absolute;
+    right: 1px;
     top: 0px;
-    right: 3px;
     color: white;
     font-size: 12px;
     font-weight: bold;
@@ -31,12 +29,14 @@
 @keyframes noti{
     0%{width:2rem; height: 2rem;font-size: 12px;
         border: 1px solid black;}
-    50%{width:2.5rem; height: 2.5rem;font-size: 13.5px;
+    50%{width:1.5rem; height: 1.5rem;font-size: 11px;
         border: 2px solid black;}
     100%{width:2rem; height: 2rem;font-size: 12px;
         border: 1px solid black;}
 }
 .ventana{
+    position: absolute;
+    top: 30px;
     padding: 8px;
     background-color:#0576e679 ;
     border-radius: 15px;
@@ -62,4 +62,9 @@
 }
 .link{
     text-decoration: none;
+}
+.img{
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
