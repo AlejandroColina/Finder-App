@@ -2,16 +2,13 @@ import React, { useEffect, useRef, useState } from 'react'
 import styles from './styles.module.css';
 import { useAuth0 } from '@auth0/auth0-react';
 import logoutImg from '../../../assets/logout_white.png';
-import logo from '../../../assets/logo_finder_white.png'
-import notification from '../../../assets/notification_white.png';
+import logo from '../../../assets/logo_finder_white.png';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import Notificaciones from './notificaciones/notificaciones';
-import { getNoti } from '../../Redux/actions';
+import Notificaciones from '../notificaciones/notificaciones';
 
 
 export const SearchBar = ( {setDescripcion, descripcion }) => {
-    const dispatch = useDispatch();
     //autenticacion
     
     const { isAuthenticated, user } = useAuth0();
@@ -19,9 +16,7 @@ export const SearchBar = ( {setDescripcion, descripcion }) => {
     const { logout } = useAuth0();
     if (isAuthenticated) {
       var onlyFirst = user.name.split(' ');
-      dispatch(getNoti(user.email));
     }
-    const [open,setOpen]=useState(false);
   
   const searchRef = useRef(null);
 
@@ -30,9 +25,8 @@ export const SearchBar = ( {setDescripcion, descripcion }) => {
     setDescripcion(searchRef.current.value)
     searchRef.current.value = ''
   }
-  const notificaciones = useSelector((state)=>state.notificaciones)
   
-  const styleLupa = { position: 'absolute', marginRight: '-550px', color: 'darkcyan', fontSize: '17px' }
+  const styleLupa = { position: 'absolute', marginRight: '-550px', color: '#0575E6', fontSize: '17px' }
 
 
     return (
@@ -64,15 +58,16 @@ export const SearchBar = ( {setDescripcion, descripcion }) => {
       </form>
 
       {isAuthenticated ?
-        <nav className={styles.userNav}>
+        <nav className={styles.userNav}>{/* 
 
                     <div className={styles.iconBox}>
                         <img src={notification} alt='notifications' height='30px'/>
-                        {notificaciones? <button className={styles.notification} onClick={()=>setOpen(true)}>{notificaciones}</button> : null}
-                    </div>
+                        {notificaciones.length>0 ? <button className={styles.notification} onClick={()=>setOpen(true)}>{notificaciones.length}</button> : null}
+                    </div> */}
 
           <div className={styles.userNav}>
 
+          {isAuthenticated && <Notificaciones/>}
             <img className={styles.userPhoto} src={user.picture} alt='avatar' />
 
           </div>
@@ -90,7 +85,6 @@ export const SearchBar = ( {setDescripcion, descripcion }) => {
           <div onClick={() => { loginWithRedirect() }} className={styles.userName}>INGRESA</div>
         </nav>
       }
-            {isAuthenticated && notificaciones? <div className={styles.notiCard}><Notificaciones setOpen={setOpen} email={user.email}/></div> : null}
             </div>
   )
 }

@@ -7,6 +7,8 @@
 }
 
 .card {
+  overflow: hidden;
+  border-radius: 15px;
   position: absolute;
   top: 100px;
   left: 20px;
@@ -15,7 +17,9 @@
   overflow: hidden;
   background-color: #fdfcff;
   border-radius: 10px;
+  height: auto;
 }
+
 .nombres {
   font-size: 20px;
   color: #001b38;
@@ -24,6 +28,7 @@
   font-weight: lighter;
   padding-top: 15px;
 }
+
 .espacio {
   margin-right: 5px;
   font-family: "Nunito", sans-serif;
@@ -34,16 +39,19 @@
   font-family: "Nunito", sans-serif;
   font-weight: 300;
 }
+
 .img {
   width: 150px;
   height: 150px;
   border-radius: 50%;
   margin: 20px 85px;
 }
+
 .gps {
   width: 20px;
   height: auto;
 }
+
 .ciudad {
   font-size: 15px;
   color: #001b38;
@@ -52,6 +60,7 @@
   justify-content: center;
   margin-bottom: 20px;
 }
+
 .acerca {
   font-size: 20px;
   color: #001b38;
@@ -59,12 +68,14 @@
   font-weight: lighter;
   font-style: italic;
 }
+
 .descripcion {
   padding: 5px 25px;
   font-size: 15px;
   color: #0575e6;
   font-style: oblique;
 }
+
 .containerInfo {
   position: relative;
   width: 60vw;
@@ -76,6 +87,7 @@
   border-radius: 10px;
   padding: 40px;
 }
+
 .titulos {
   font-size: 35px;
   color: #001b38;
@@ -95,6 +107,7 @@
   text-align: center;
   justify-content: center;
 }
+
 .subtitulos {
   font-size: 25px;
   color: rgba(0, 0, 0, 0.623);
@@ -103,6 +116,7 @@
   font-family: "Nunito", sans-serif;
   font-weight: 500;
 }
+
 .contenido {
   font-size: 23px;
   font-weight: bold;
@@ -111,6 +125,7 @@
   font-family: "Nunito", sans-serif;
   font-weight: 300;
 }
+
 .containerPrice {
   display: flex;
   flex-direction: column;
@@ -131,6 +146,7 @@
   margin-top: 15px;
   font-size: 4em;
 }
+
 .valor {
   font-weight: lighter;
   margin: 5px;
@@ -156,6 +172,7 @@
   margin: 5px;
   font-size: 2em;
 }
+
 .borderPrice {
   padding: 10px;
   display: flex;
@@ -164,6 +181,7 @@
   margin-top: 10px;
   width: 100%;
 }
+
 .contratar {
   color: white;
   background-color: #0575e6;
@@ -175,6 +193,7 @@
   padding: 10px 5px;
   border-radius: 10px;
 }
+
 .contratar:hover {
   background-color: white;
   color: #001b38;
@@ -200,17 +219,20 @@
   font-weight: 700;
   font-family: "Nunito", sans-serif;
   margin-top: 40px;
+  height: auto;
 }
 
 .commentsBox {
   padding: 0px 75px;
 }
+
 .containerComments {
   display: flex;
   flex-direction: column;
   margin: 30px 0px;
   padding: 15px;
 }
+
 .commentPersona {
   display: flex;
   justify-content: space-between;
@@ -219,15 +241,18 @@
   font-style: italic;
   font-weight: lighter;
 }
+
 .cardsContainer {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
 }
+
 .cardUi {
   margin: 25px;
   width: 200px;
 }
+
 .link {
   text-decoration: none;
 }
@@ -248,6 +273,7 @@
   font-family: inherit;
   font-size: 1.6rem !important;
 }
+
 .form {
   width: 500%;
   padding: 15px 20px;
@@ -256,6 +282,7 @@
   flex-direction: column;
   background-color: #001b38;
 }
+
 .input {
   outline: 0px;
   resize: none;
@@ -273,15 +300,18 @@
   padding: 10px 5px;
   border-radius: 10px;
 }
+
 .btn:hover {
   text-decoration: underline;
 }
+
 .paginate {
   position: relative;
   width: 100%;
   display: flex;
   justify-content: space-between;
 }
+
 .btnPaginate {
   margin: 0px 20px;
   background-color: #0575e6;
@@ -296,10 +326,12 @@
   display: flex;
   margin: auto;
 }
+
 .btnPaginate:hover {
   background-color: #001b38;
   color: white;
 }
+
 .respuesta {
   display: flex;
   justify-content: flex-start;
@@ -308,6 +340,7 @@
   font-weight: lighter;
   margin-top: 10px;
 }
+
 .figura {
   width: 25px;
   height: 15px;
@@ -316,6 +349,7 @@
   margin-right: 10px;
   margin-left: 10px;
 }
+
 .pregunta {
   font-size: 15px;
   font-weight: bold;
@@ -338,6 +372,8 @@
 }
 
 .btndebe {
+  overflow: hidden;
+  border-radius: 15px;
   font-weight: lighter;
   display: flex;
   margin: auto;
@@ -351,6 +387,7 @@
   background-color: #0575e6;
   color: white;
 }
+
 .btndebe:hover {
   color: #001b38;
   border: 1px solid #001b3848;

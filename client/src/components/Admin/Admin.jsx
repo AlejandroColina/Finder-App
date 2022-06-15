@@ -9,7 +9,7 @@ import Error from '../Error'
 import { useAuth0 } from "@auth0/auth0-react";
 import { useEffect } from 'react';
 import {useDispatch} from 'react-redux';
-import { getTotalUsersBytype,getAdminMsj, getUserStatus, getUsers, 
+import { getTotalUsersBytype,getAdminMsj,getUsersNoBaneados, getUsersBaneados, getUsers, 
     getPreguntasReportadas,getComentariosReportados,getTotalUsersByCity } from "../Redux/actions";
 import { Helmet } from "react-helmet";
 import { useSelector } from "react-redux";
@@ -22,7 +22,8 @@ export default function Admin(){
         dispatch(getTotalUsersBytype());
         dispatch(getTotalUsersByCity());
         dispatch(getAdminMsj());
-        dispatch(getUserStatus());
+        dispatch(getUsersBaneados());
+        dispatch(getUsersNoBaneados());
         dispatch(getPreguntasReportadas());
         dispatch(getComentariosReportados());
     },[dispatch]);
@@ -33,6 +34,7 @@ export default function Admin(){
     const suspendidos = useSelector(state=>state.usuariosBaneados);
     const opiniones = useSelector((state) => state.opinionesReportadas);
     const preguntas = useSelector((state) => state.preguntasReportadas);
+
     return(
 
         isAuthenticated && (user.email==='giulianob94@hotmail.com'

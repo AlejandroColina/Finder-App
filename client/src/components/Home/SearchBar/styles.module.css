@@ -38,13 +38,13 @@
         width: 90%;
         transition: all .2s;    
         margin-right: -3.25rem;
+        color: #0575E6;
 }
 .input:focus{
             outline: none;
             width: 100%;
             
 }
-
 .input:focus::placeholder{
     display: none;
 }
@@ -54,6 +54,7 @@
     text-align: center;
     font-size: 1.7rem;
     padding-right: 15px;
+    color: #0575E6;
 }
 
 .button{
@@ -100,28 +101,6 @@
         color: white;
         text-decoration: none;
 }
-
-.iconBox{
-    position: relative;
-    height:30px;
-    width: 30px;
-   } 
-
-.notification{
-    position: absolute;
-    top: 0px;
-    right: 0px;
-    color: white;
-    font-size: 10px;
-    width: 1.8rem;
-    height: 1.8rem;
-    background-color: red;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
 
 .userPhoto{
     height: 3.75rem;

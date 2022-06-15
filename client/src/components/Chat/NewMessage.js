@@ -13,12 +13,12 @@ import "firebase/compat/auth";
 
 const StyledFab = makeStyles(theme =>({
     paper:{
-        paddingBotton: 20
+        paddingBotton: 20,
+        borderRadius: '15px',
+        overflow: 'hidden',
     },
     message:{
-        border: "1px solid #ccc",
-        borderRadius: 8,
-        padding: "0 20px",
+        padding: "10px 10px",
     }
 }));
 
@@ -29,20 +29,18 @@ const NewMessage = () =>{
 
   
 
-  const handleKeyDown = ({keyCode}) =>{
-    console.log(keyCode)
+  const handleKeyDown = ({keyCode}, e) =>{
     if(keyCode !== 13){
       return null
     }
     const { currentUser } = firebase.auth();
-    console.log(currentUser)
     if(!currentUser)return;
     const newMessage ={
         user: currentUser.uid,
         message,
         date:firebase.database.ServerValue.TIMESTAMP
     };
-    firebase.database().ref(`/${name}`).push(newMessage)
+    firebase.database().ref(`/chat/${name}`).push(newMessage)
     .then((res)=>{
         setMessage("");
     })
@@ -55,7 +53,6 @@ const NewMessage = () =>{
   const handleSubmit = (e) =>{
     e.preventDefault();
     const { currentUser } = firebase.auth();
-    console.log(currentUser)
     if(!currentUser)return;
     const newMessage ={
         user: currentUser.uid,
@@ -93,12 +90,11 @@ const NewMessage = () =>{
                 <Box>
                   <Button variant="contained" 
                            color="primary"
-                          endIcon={<Icon>send</Icon>}
+                          endIcon={<Icon></Icon>}
                           fullWidth
                           disabled={!message.length}
                           onClick={handleSubmit}
-                          >
-                Enviar
+                          >Enviar
                 </Button>
                 </Box>
               </Grid>

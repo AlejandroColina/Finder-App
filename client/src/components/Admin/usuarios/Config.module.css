@@ -10,9 +10,13 @@
     grid-template-columns: 32% 32% 30%;
   }
 .gridCol{
+    overflow: hidden;
+    border-radius: 15px;
     background-color: rgba(128, 128, 128, 0.047);
 }
 .ColDanger{
+    overflow: hidden;
+    border-radius: 15px;
     background-color: rgba(0, 0, 0, 0.747);
 }
 .titleDanger{
@@ -90,6 +94,7 @@
     background: none;
     color: transparent;
     transition: 1s;
+    cursor:pointer;
 }
 .btn:hover{
     font-size: 23px;
@@ -106,6 +111,7 @@
     background: none;
     color: transparent;
     transition: 1s;
+    cursor: pointer;
 }
 .btnAc:hover{
     font-size: 23px;
@@ -123,6 +129,7 @@
     background: none;
     color: transparent;
     transition: 1s;
+    cursor: pointer;
 }
 .btnDan:hover{
     font-size: 23px;

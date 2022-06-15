@@ -7,9 +7,12 @@ import { Link } from 'react-router-dom';
 import styles from './UserCreate.module.css';
 import validate from './validate';
 import Swal from "sweetalert2";
+import Footer from '../../Footer/Footer';
+import NavBar from '../../NavBar/NavBar';
+import Error from '../../Error/index';
 
 export default function UserCreate() {
-  const { user } = useAuth0();
+  const {isAuthenticated, user } = useAuth0();
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -124,7 +127,9 @@ export default function UserCreate() {
     ciudad: city,
   }
 
-  return (
+  return (<>
+    {isAuthenticated? <>
+  <NavBar/>
     <section className={styles.container}>
       <div className={styles.div_form} >
 
@@ -147,7 +152,7 @@ export default function UserCreate() {
           <div className={styles.formulario2}>
             <h1 className={styles.log4}> Crea tu publicación</h1>
 
-            <label htmlFor="Título de la publicación"></label>
+            <label htmlFor="titulo"></label>
             <input
               className={errors?.titulo ? styles.inputs_fail : styles.inputs}
               id="titulo"
@@ -185,6 +190,7 @@ export default function UserCreate() {
 
             <div className={styles.div_select}>
               <select className={styles.selects} value={city} onChange={handleChange2}>
+                    <option value=''>Ciudad</option>
 
                 {ciudades &&
                   ciudades.map((el, index) => (
@@ -200,7 +206,7 @@ export default function UserCreate() {
                 <div>
                   <select className={styles.selects} value={selected} onChange=
                     {handleChange1}>
-
+                    <option value=''>Sector</option>
                     {empleos &&
                       empleos.map((el, id) => (
                         <option key={id + 'DR'}
@@ -252,7 +258,6 @@ export default function UserCreate() {
             </button>
           </div>
         </form>
-      </div >
       <div className={styles.div2_form}>
         {
           image && image.map((url, id) => {
@@ -265,6 +270,9 @@ export default function UserCreate() {
           })
         }
       </div>
+      </div >
+      <Footer/>
     </section >
+    </> : <Error/>}</>
   );
 }

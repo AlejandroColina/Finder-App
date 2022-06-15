@@ -11,6 +11,7 @@ import { PayPalScriptProvider } from "@paypal/react-paypal-js";
 import CustomerCreate from "./components/UserCreate/CustomerCreate/CustomerCreate";
 import Perfil from './components/perfil/Perfil'
 import SecondCap from './components/LandingPage/secondcap/SecondCap';
+import ContainerChat from "./components/Chat/ContainerChat";
 import Chat from "./components/Chat/Chat";
 import firebase from 'firebase/compat/app';
 import "firebase/database";
@@ -57,9 +58,11 @@ function App() {
           <Route path='/quieroseremprendedor' component={SecondCap}/>
           <Route exact path="/trabajo/:id" component={Detail} />
           <Route path="/perfil/:email" component={Perfil}/>
+          <Route path='/chat' component={ContainerChat}/>
           <Route exact path="/chat/:name" component={Chat} />
          
           {/* <Route path='*' component={Error} /> */}
+
          
           
         </Switch>

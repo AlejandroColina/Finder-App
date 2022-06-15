@@ -1,6 +1,6 @@
 
 import React, { useState } from "react";
-import { getCiudades, getEmpleos, rederCard, getDestacados, getNoti } from "../Redux/actions/index";
+import { getCiudades, getEmpleos, rederCard, getDestacados } from "../Redux/actions/index";
 import { useEffect } from "react";
 import Cards from "./Cards/cards";
 import { useDispatch, useSelector } from "react-redux";
@@ -11,7 +11,6 @@ import Paginado from '../Paginado/Paginado'
 import Help from "../Help/Help";
 import { Helmet } from 'react-helmet';
 import Footer from './../Footer/Footer';
-
 import NoResult from './noResult/NoResult'
 import Destacados from "./Destacados";
 import firebase from 'firebase/compat/app';
@@ -23,16 +22,17 @@ import HomeLoader from "./loading/Skeleton";
 
 
 function Home({ descripcion, setDescripcion }) {
-
   const dispatch = useDispatch();
   const { isAuthenticated, user } = useAuth0();
+  //notificaciones
+  
 
   const EMPTY_FILTERS = {
 
     profesion: '',
     nombres: '',
     promedio: '',
-    genero: '',
+    precio: '',
     edad: '',
     ciudad: '',
     empleo: '',
@@ -68,16 +68,17 @@ function Home({ descripcion, setDescripcion }) {
   dispatch(getEmpleos())
   dispatch(getCiudades())
 
-  let { genero, promedio, ciudad, profesion, edad } = filters
+  let { precio, promedio, ciudad, profesion, edad } = filters
   useEffect(() => {
     dispatch(getDestacados());
-    dispatch(rederCard(profesion, genero, promedio, ciudad, descripcion, edad));
+    dispatch(rederCard(profesion, precio, promedio, ciudad, descripcion, edad));
     setCurrentPage(1)
 
     if (isAuthenticated) {
-      firebase.auth().signInWithEmailAndPassword(user.email, user.nickname)
+      firebase.auth().signInWithEmailAndPassword(user.email, user.nickname);
     }
-  }, [dispatch, profesion, genero, promedio, ciudad, descripcion, edad]);
+  }, [dispatch, profesion, precio, promedio, ciudad, descripcion, edad]);
+
 
   const resetValues = () => {
     setFilters(EMPTY_FILTERS)
@@ -100,8 +101,6 @@ function Home({ descripcion, setDescripcion }) {
     )
   }
 
-
-
   return (
     <div>
       <Helmet><title>Home -  Finder</title></Helmet>
@@ -118,13 +117,13 @@ function Home({ descripcion, setDescripcion }) {
 
             <div className={styles.paginado}>
               {
-                <div >
+                <div >{trabajadores.length>9?
                   <Paginado
 
                     personasPerPage={itemsPorPag}
                     allPersonas={trabajadores.length}
                     paginado={paginado}
-                  />
+                  />:null}
                 </div>
               }
             </div>
@@ -149,7 +148,7 @@ function Home({ descripcion, setDescripcion }) {
           </section>
 
           <section className={styles.destacados}>
-            <div className={styles.textDestacados} ><h1>Destacados <i style={{ color: 'yellow', margin: '10px', textShadow: '3px 4px black' }} class="fa-solid fa-bolt-lightning"></i></h1></div>
+            <div className={styles.textDestacados} ><h1>DESTACADOS <i style={{ color: 'yellow', marginRight: '2px', textShadow: '3px 4px black' }} class="fa-solid fa-bolt-lightning"></i></h1></div>
             <div className={styles.div__destacados}>
               {
                 destacados.map(el => {
@@ -158,7 +157,7 @@ function Home({ descripcion, setDescripcion }) {
 
                       <Destacados
                         key={`${el.id}A`}
-                        id={el.id}
+                        id={el.idPublicacion}
                         Profesions={el.Profesions}
                         apellidos={el.apellidos}
                         imagen={el.imagen}

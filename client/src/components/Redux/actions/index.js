@@ -1,11 +1,12 @@
 import axios from "axios";
+import Swal from "sweetalert2";
 
-export function rederCard(profesion, genero, promedio, ciudad, descripcion, edad) {
+export function rederCard(profesion, precio, promedio, ciudad, descripcion, edad) {
   return async function (dispatch) {
     dispatch(loanding());
     try {
       let data = await axios.get(
-        `http://localhost:3001/publicaciones?profesion=${profesion}&genero=${genero}&promedio=${promedio}&ciudad=${ciudad}&descripcion=${descripcion}&edad=${edad}`
+        `http://localhost:3001/publicaciones?profesion=${profesion}&precio=${precio}&promedio=${promedio}&ciudad=${ciudad}&descripcion=${descripcion}&edad=${edad}`
       );
       return dispatch({
         type: "CARDS",
@@ -158,11 +159,11 @@ export function mensajeAlAdmin(msj) {
       msj
     );
     msj.id = response.data.id;
-    dispatch({
+    return dispatch({
       type: "MSJ_USER_AL_ADMIN",
       payload: msj,
     });
-    alert(response.data.message);
+    Swal.fire(response.data.message, '', 'success');
   };
 }
 //traer mensajes para el admin
@@ -213,18 +214,6 @@ export function getUbicacion() {
     } catch (error) {
       console.log(error);
     }
-  };
-}
-
-export function getPublicacionDeUsuario(email) {
-  return async (dispatch) => {
-    let publicaciones = await axios.get(
-      `http://localhost:3001/publicaciones?email=${email}`
-    );
-    return dispatch({
-      type: "PUBLICACIONES_USUARIO",
-      payload: publicaciones.data,
-    });
   };
 }
 
@@ -493,12 +482,6 @@ export function sendEliminado(id) {
   }
 }
 
-export function getUserStatus() {
-  return ({
-    type: 'USER_STATUS'
-  })
-}
-
 export function reportarPregunta(id) {
   return async (dispatch) => {
     await axios.put(`http://localhost:3001/pregunta/reportar/${id}`)
@@ -561,6 +544,70 @@ export function getDestacados() {
     try {
       let data = await axios.get(`http://localhost:3001/publicaciones/destacados`);
       return dispatch({ type: "GET_DESTACADOS", payload: data.data });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+}
+
+export function getTrabajosPagos(email, idPublicacion) {
+  return async function (dispatch) {
+    try {
+      let data = await axios.get(`http://localhost:3001/trabajos?email=${email}&idPublicacion=${idPublicacion}`);
+      return dispatch({ type: "GET_TRABAJOS_PAGOS", payload: data.data });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+}
+
+export function addTrabajosPagos(email, idPublicacion) {
+  return async function (dispatch) {
+    try {
+      let data = await axios.patch(`http://localhost:3001/trabajos/add/${email}/${idPublicacion}`);
+      return dispatch({ type: "ADD_TRABAJO_PAGO" });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+}
+
+export function delTrabajosPagos(id, idPublicacion) {
+  return async function (dispatch) {
+    try {
+      let data = await axios.delete(`http://localhost:3001/trabajos/delete/${id}/${idPublicacion}`);
+      return dispatch({ type: "DEL_TRABAJO_PAGO" });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+}
+
+
+export function readNoti(email, id) {
+  return async dispatch => {
+    await axios.put(`http://localhost:3001/notificaciones/delete/${email}/${id}`)
+    return dispatch({
+      type: 'READ_NOTI'
+    })
+  }
+}
+export function getUsersBaneados() {
+  return async function (dispatch) {
+    try {
+      let data = await axios.get(`http://localhost:3001/suspender/Baneados`);
+      return dispatch({ type: "USERS_BANEADOS", payload: data.data });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+}
+
+export function getUsersNoBaneados() {
+  return async function (dispatch) {
+    try {
+      let data = await axios.get(`http://localhost:3001/suspender/noBaneados`);
+      return dispatch({ type: "USERS_NO_BANEADOS", payload: data.data });
     } catch (error) {
       console.log(error);
     }

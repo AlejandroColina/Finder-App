@@ -1,0 +1,70 @@
+.position{
+    position: relative;
+    right: 2%;
+}
+.iconBox{
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+}
+
+.notification{
+    position: absolute;
+    right: 1px;
+    top: 0px;
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+    width: 2rem;
+    height: 2rem;
+    background-color: red;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    border: 1px solid black;
+    animation: noti 3s ease infinite;
+}
+@keyframes noti{
+    0%{width:2rem; height: 2rem;font-size: 12px;
+        border: 1px solid black;}
+    50%{width:1.5rem; height: 1.5rem;font-size: 11px;
+        border: 2px solid black;}
+    100%{width:2rem; height: 2rem;font-size: 12px;
+        border: 1px solid black;}
+}
+.ventana{
+    position: absolute;
+    top: 30px;
+    padding: 8px;
+    background-color:#0576e679 ;
+    border-radius: 15px;
+}
+.cerrar{
+    background-color: #0576e6;
+    color: white;
+    font-size: 12px;
+    padding: 5px;
+    display: flex;
+    justify-content: center;
+    cursor:pointer;
+    transition: 1s;
+}
+.cerrar:hover{
+    background-color: #013f7e;
+    font-size: 14px;
+}
+.paper{
+    padding-top:5px;
+    border-radius: 15px;
+    overflow: hidden;
+}
+.link{
+    text-decoration: none;
+}
+.img{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

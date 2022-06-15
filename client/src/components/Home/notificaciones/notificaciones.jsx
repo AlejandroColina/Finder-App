@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useEffect, useState} from "react";
 import CssBaseline from '@mui/material/CssBaseline';
 import Paper from '@mui/material/Paper';
 import List from '@mui/material/List';
@@ -9,9 +9,10 @@ import Avatar from '@mui/material/Avatar';
 import { Link } from "react-router-dom";
 import { styled } from '@mui/material/styles';
 import Fab from '@mui/material/Fab';
-import { useDispatch,useSelector } from "react-redux";
-import { getPefil } from '../../../Redux/actions';
-import { useEffect } from "react";
+import notification from '../../../assets/notification_white.png';
+import s from './notificaciones.module.css';
+import { getNoti,readNoti } from '../../Redux/actions';
+import { useDispatch, useSelector } from 'react-redux';
 import { useAuth0 } from '@auth0/auth0-react';
 
 
@@ -24,20 +25,34 @@ const StyledFab = styled(Fab)({
   margin: '0 auto',
 });
 
-export default function Notificaciones({setOpen,email}){
+export default function Notificaciones(){
+  //autenticacion
   const dispatch = useDispatch();
-
+  const [open,setOpen]=useState(false);
+  const { user } = useAuth0();
+  
   useEffect(()=>{
-    dispatch(getPefil(email))
+    dispatch(getNoti(user.email))
   },[dispatch])
-  const perfil = useSelector(state=>state.perfil)
+  const notificaciones = useSelector((state)=>state.notificaciones);
+
     return(
-        <>
+        <>{notificaciones.length>0?
+          <>
+
+           <div className={`${s.iconBox} ${s.position}`}>
+            <img src={notification} alt='notifications' height='30px' className={s.img}/>
+             <button className={s.notification} onClick={()=>setOpen(true)}>{notificaciones.length}</button>
+             </div>
+            {open &&
+
+            <div  className={`${s.ventana} ${s.position}`}>
           <CssBaseline />
-          <Paper square>
+          <Paper square className={s.paper}>
             <List sx={{ mb: 2 }}>
-              {perfil.notificaciones? perfil.notificaciones.map((n) => (
-                  <Link to={`/trabajo${n.PublicacionId}`} key={n.PublicacionId} ><ListItem button>
+
+              {open ? notificaciones.map((n,i) => (
+                  <Link to={`/trabajo/${n.PublicacionId}`}/*  onClick={(e)=>{e.preventDefault();dispatch(readNoti(user.email,n.publicacionId))}} */ key={i} className={s.link} ><ListItem button>
                     {n.respuesta?
                     <>
                     <ListItemAvatar>
@@ -69,8 +84,10 @@ export default function Notificaciones({setOpen,email}){
                   </Link>
               )): <div>no tienes notificaciones</div>} 
             </List>
-          <div onClick={setOpen(false)}>cerrar</div>
-          </Paper>
+          <div onClick={()=>setOpen(false)} className={s.cerrar}>cerrar</div>
+          </Paper></div> }
+            </>
+           : null  }
         </>
     )
 }

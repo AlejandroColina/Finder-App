@@ -3,7 +3,7 @@ const InitialState = {
   users: [], //va a tener todos los usuarios
   detail: [],
   usersByType: [],
-  usersByCity:[],
+  usersByCity: [],
   empleos: [],
   empleosForm: [],
   ciudades: [],
@@ -23,7 +23,8 @@ const InitialState = {
   noBaneados: [],
   preguntasReportadas: [],
   opinionesReportadas: [],
-  destacados:[]
+  destacados: [],
+  trabajosPagos: false
 };
 
 export default function rootReducer(state = InitialState, action) {
@@ -241,11 +242,16 @@ export default function rootReducer(state = InitialState, action) {
         notificaciones: action.payload
       }
 
-    case 'USER_STATUS':
+      case 'USERS_NO_BANEADOS':
       return {
         ...state,
-        noBaneados: state.users.filter(u => u.baneado === false),
-        usuariosBaneados: state.users.filter(u => u.baneado === true),
+        noBaneados: action.payload
+      }
+     
+    case 'USERS_BANEADOS':
+      return {
+        ...state,
+       usuariosBaneados: action.payload
       }
 
     case 'REPORTAR_PREGUNTA':
@@ -279,16 +285,35 @@ export default function rootReducer(state = InitialState, action) {
         ...state,
         opinionesReportadas: action.payload
       }
-      case 'GET_DESTACADOS':
+    case 'GET_DESTACADOS':
       return {
         ...state,
         destacados: action.payload
       }
-      case 'USER_BY_CITY':
+    case 'USER_BY_CITY':
       return {
         ...state,
         usersByCity: action.payload
       }
+    case 'GET_TRABAJOS_PAGOS':
+      return {
+        ...state,
+        trabajosPagos: action.payload
+      }
+    case 'ADD_TRABAJO_PAGO':
+      return {
+        ...state
+      }
+    case 'DEL_TRABAJO_PAGO':
+      return {
+        ...state
+      }
+
+    case 'READ_NOTI':
+      return {
+        ...state
+      }
+
 
     default:
       return state;
