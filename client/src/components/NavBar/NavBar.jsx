@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { useAuth0 } from '@auth0/auth0-react';
 import logoutImg from '../../assets/logout_white.png';
 import logo from '../../assets/logo_finder_white.png';
+import Notificaciones from '../Home/notificaciones/notificaciones';
 
 export default function NavBar() {
   const { isAuthenticated, user } = useAuth0();
@@ -19,6 +20,7 @@ export default function NavBar() {
         <Link to='/home'><img className={s.logo} src={logo} alt='finder' /></Link>
         {isAuthenticated ?
           <div className={s.boxItems}>
+             <Notificaciones/>
             <div className={s.infoUser}>
               <img className={s.avatarImg} src={user.picture} alt='avatar' />
               <Link to={`/perfil/${user?.email}`} className={s.navItems}>  <div className={s.salir}>{onlyFirst[0].toUpperCase()}</div></Link>

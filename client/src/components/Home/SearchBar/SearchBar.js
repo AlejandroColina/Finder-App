@@ -5,6 +5,7 @@ import logoutImg from '../../../assets/logout_white.png';
 import logo from '../../../assets/logo_finder_white.png';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import Notificaciones from '../notificaciones/notificaciones';
 
 
 export const SearchBar = ( {setDescripcion, descripcion }) => {
@@ -66,6 +67,7 @@ export const SearchBar = ( {setDescripcion, descripcion }) => {
 
           <div className={styles.userNav}>
 
+          {isAuthenticated && <Notificaciones/>}
             <img className={styles.userPhoto} src={user.picture} alt='avatar' />
 
           </div>
