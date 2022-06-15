@@ -169,10 +169,10 @@ export default function Detail({ Profesions }) {
             <div className={s.containerPrice}>
               <span className={s.valor}>Servicio: ${MyDetail.precio}</span>
               {/* <span className={s.precio}>${MyDetail.precio}</span> */}
-              <span className={s.valor}>Tarifa Finder: ${price}</span>
+              <span className={s.valor}>Tarifa Finder: ${price}*</span>
             </div>
             <p className={s.aclaracion}>
-              Tarifa varía acorde valoración del usuario
+              * El precio de la tarifa varía según la calificación.
             </p>
             {open ? (
               <div>
@@ -249,8 +249,12 @@ export default function Detail({ Profesions }) {
           <br />
           <br />
           <br />
-
-          <div className={s.titulos}>Tenes dudas?</div>
+          <hr />
+          <br />
+          <br />
+          <br />
+          <br />
+          <div className={s.dudas}>¿Tenes dudas?</div>
           {isAuthenticated ? (
             <Preguntar
               user={[user.email, user.picture]}
@@ -337,7 +341,6 @@ export default function Detail({ Profesions }) {
           <br />
           <br />
 
-          <hr />
           {order && !comento ? (
             <Comentar
               publicacion={id}
