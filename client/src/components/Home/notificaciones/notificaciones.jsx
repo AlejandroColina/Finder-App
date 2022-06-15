@@ -30,20 +30,20 @@ export default function Notificaciones(){
   const dispatch = useDispatch();
   const [open,setOpen]=useState(false);
   const { user } = useAuth0();
-  
+  //id notificacion
+
   useEffect(()=>{
     dispatch(getNoti(user.email))
   },[dispatch])
   const notificaciones = useSelector((state)=>state.notificaciones);
 
     return(
-        <>{notificaciones.length>0?
-          <>
+          <>{!open &&
 
            <div className={`${s.iconBox} ${s.position}`}>
             <img src={notification} alt='notifications' height='30px' className={s.img}/>
-             <button className={s.notification} onClick={()=>setOpen(true)}>{notificaciones.length}</button>
-             </div>
+            {notificaciones.length>0? <button className={s.notification} onClick={()=>setOpen(true)}>{notificaciones.length}</button> :null}
+             </div>}
             {open &&
 
             <div  className={`${s.ventana} ${s.position}`}>
@@ -52,7 +52,7 @@ export default function Notificaciones(){
             <List sx={{ mb: 2 }}>
 
               {open ? notificaciones.map((n,i) => (
-                  <Link to={`/trabajo/${n.PublicacionId}`}/*  onClick={(e)=>{e.preventDefault();dispatch(readNoti(user.email,n.publicacionId))}} */ key={i} className={s.link} ><ListItem button>
+                  <Link to={`/trabajo/${n.PublicacionId}`} onClick={()=>dispatch(readNoti(user.email,n.publicacionId))} key={i} className={s.link} ><ListItem button>
                     {n.respuesta?
                     <>
                     <ListItemAvatar>
@@ -87,7 +87,5 @@ export default function Notificaciones(){
           <div onClick={()=>setOpen(false)} className={s.cerrar}>cerrar</div>
           </Paper></div> }
             </>
-           : null  }
-        </>
     )
 }
