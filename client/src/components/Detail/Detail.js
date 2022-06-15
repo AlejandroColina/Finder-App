@@ -146,67 +146,87 @@ export default function Detail({ Profesions }) {
       <div className={s.container}>
         {/* tarjeta de contacto */}
 
-        <div className={s.card}>
-          <div className={s.nombres}>
-            <span className={s.espacio}>Hola Soy</span>
-            <strong>{MyDetail.nombres} </strong>!
-          </div>
-          <img className={s.img} src={MyDetail.imagen} alt={MyDetail.nombres} />
-          <div className={s.ciudad}>
-            <img src={gps} alt="ubicacion" className={s.gps} />
-            {MyDetail.ciudad},{MyDetail.pais}
-          </div>
-          <br />
+        <div className={s.sideBar}>
+          <div className={s.card}>
+            <div className={s.nombres}>
+              <span className={s.espacio}>Hola Soy</span>
+              <span className={s.nombreCard}>
+                <strong>{MyDetail.nombres} </strong>!
+              </span>
+            </div>
+            <img
+              className={s.img}
+              src={MyDetail.imagen}
+              alt={MyDetail.nombres}
+            />
+            <div className={s.ciudad}>
+              <img src={gps} alt="ubicacion" className={s.gps} />
+              {MyDetail.ciudad},{MyDetail.pais}
+            </div>
+            <br />
 
-          {/* Botones  */}
-          <div className={s.containerPrice}>
-            <span className={s.valor}>Servicio: ${MyDetail.precio}</span>
-            {/* <span className={s.precio}>${MyDetail.precio}</span> */}
-            <span className={s.valor}>Tarifa Finder: ${price}</span>
+            {/* Botones  */}
+            <div className={s.containerPrice}>
+              <span className={s.valor}>Servicio: ${MyDetail.precio}</span>
+              {/* <span className={s.precio}>${MyDetail.precio}</span> */}
+              <span className={s.valor}>Tarifa Finder: ${price}</span>
+            </div>
+            <p className={s.aclaracion}>
+              Tarifa varía acorde valoración del usuario
+            </p>
+            {open ? (
+              <div>
+                {!order ? (
+                  <div className={s.paypal}>
+                    <PaypalCheckoutBtn product={product} setOrder={setOrder} />
+                  </div>
+                ) : (
+                  <div>
+                    <img
+                      className={s.check}
+                      src="https://png.pngtree.com/png-vector/20190228/ourmid/pngtree-check-mark-icon-design-template-vector-isolated-png-image_711429.jpg"
+                      alt=""
+                    />
+                    <Link to={`/chat/${uid}_${MyDetail.documento}`}>
+                      <button className={s.chatButton}>CONTACTAR</button>
+                    </Link>
+                  </div>
+                )}
+              </div>
+            ) : (
+              // Contratar
+
+              <div
+                className={s.borderPrice}
+                onClick={() => {
+                  setOpen(true);
+                }}
+              >
+                <span className={s.contratar}>Contratar</span>
+              </div>
+            )}
+            <br />
           </div>
-          <p className={s.aclaracion}>
-            Tarifa varía acorde valoración del usuario
-          </p>
-          {open ? (
-            <div>
-              {!order ? (
-                <div className={s.paypal}>
-                  <PaypalCheckoutBtn product={product} setOrder={setOrder} />
-                </div>
+
+          <div className={s.titulos}>
+            RESEÑAS
+            <Box sx={{ "& > legend": { mt: 2 } }}>
+              {MyDetail.promedio ? (
+                <Rating size="large" value={MyDetail.promedio} readOnly />
               ) : (
-                <img
-                  className={s.check}
-                  src="https://png.pngtree.com/png-vector/20190228/ourmid/pngtree-check-mark-icon-design-template-vector-isolated-png-image_711429.jpg"
-                  alt=""
-                />
+                <Rating size="large" name="no-value" value={null} />
               )}
-            </div>
-          ) : (
-            // Contratar
-
-            <div
-              className={s.borderPrice}
-              onClick={() => {
-                setOpen(true);
-              }}
-            >
-              <span className={s.contratar}>Contratar</span>
-            </div>
-          )}
-          <br />
-          <Link to={`/chat/${uid}_${MyDetail.documento}`}>
-            <button className="boton-home">CONTACTAR</button>
-          </Link>
+            </Box>{" "}
+          </div>
         </div>
 
         <div className={s.containerInfo}>
-          {!longitud ? null : <Mapa MyDetail={MyDetail} />}
-
-          <div className={s.titulos}>SERVICIO</div>
-          <hr />
           <div className={s.subtitulos}>{MyDetail.Profesions}</div>
 
+          <hr />
+
           <div className={s.titulos}>{MyDetail.titulo}</div>
+          <div className={s.contenido}>{MyDetail.descripcion}</div>
 
           {MyDetail.multimedia ? (
             MyDetail.multimedia.map((m, i) => (
@@ -220,17 +240,17 @@ export default function Detail({ Profesions }) {
             />
           )}
 
-          <div className={s.contenido}>{MyDetail.descripcion}</div>
-
           {!order ? <p></p> : <ContactDetail MyDetail={MyDetail} />}
-
+          {!longitud ? null : <Mapa MyDetail={MyDetail} />}
+          <br />
+          <br />
+          <br />
           <br />
           <br />
           <br />
           <br />
 
           <div className={s.titulos}>Tenes dudas?</div>
-          <hr />
           {isAuthenticated ? (
             <Preguntar
               user={[user.email, user.picture]}
@@ -304,7 +324,7 @@ export default function Detail({ Profesions }) {
                             <input
                               type="submit"
                               value="responder"
-                              className={s.btn}
+                              className={s.submit}
                             />
                           </form>
                         )}
@@ -316,16 +336,7 @@ export default function Detail({ Profesions }) {
           </div>
           <br />
           <br />
-          <div className={s.titulos}>
-            RESEÑAS
-            <Box sx={{ "& > legend": { mt: 2 } }}>
-              {MyDetail.promedio ? (
-                <Rating size="large" value={MyDetail.promedio} readOnly />
-              ) : (
-                <Rating size="large" name="no-value" value={null} />
-              )}
-            </Box>{" "}
-          </div>
+
           <hr />
           {order && !comento ? (
             <Comentar
@@ -399,7 +410,7 @@ export default function Detail({ Profesions }) {
               ) : null}
               {page < publi.length - 1 ? (
                 <button className={s.btnPaginate} onClick={handleNext}>
-                  SIGUIENTE
+                  SIGUIENTE ➡️
                 </button>
               ) : null}
             </div>

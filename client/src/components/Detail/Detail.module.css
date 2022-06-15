@@ -1,6 +1,7 @@
 .container {
   display: flex;
   min-height: 100vh;
+  border-radius: 10px;
   background-color: #fdfcff;
   background-image: url("data:image/svg+xml,%3Csvg width='6' height='6' viewBox='0 0 6 6' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23b6d2d4' fill-opacity='0.4' fill-rule='evenodd'%3E%3Cpath d='M5 0h1L0 6V5zM6 5v1H5z'/%3E%3C/g%3E%3C/svg%3E");
 }
@@ -8,9 +9,9 @@
 .card {
   position: absolute;
   top: 120px;
-  left: 50px;
+  left: 20px;
   width: 320px;
-  box-shadow: 1px 2px 20px #001b38;
+  box-shadow: 0.5px 1px 5px #001b38;
   overflow: hidden;
   background-color: #fdfcff;
   border-radius: 10px;
@@ -25,6 +26,13 @@
 }
 .espacio {
   margin-right: 5px;
+  font-family: "Nunito", sans-serif;
+  font-weight: 300;
+}
+
+.nombreCard {
+  font-family: "Nunito", sans-serif;
+  font-weight: 300;
 }
 .img {
   width: 150px;
@@ -33,7 +41,7 @@
   margin: 20px 85px;
 }
 .gps {
-  width: 25px;
+  width: 20px;
   height: auto;
 }
 .ciudad {
@@ -59,30 +67,37 @@
 }
 .containerInfo {
   position: relative;
-  margin-left: 450px;
+  width: 60vw;
+  margin-right: 50px;
   margin-top: 120px;
-  width: 800px;
-  margin-bottom: 300px;
+  margin-bottom: 100px;
   background-color: #ffffffc9;
-  border-radius: 5px;
+  box-shadow: 0.5px 1px 5px #001b38;
+  border-radius: 10px;
   padding: 40px;
 }
 .titulos {
-  font-size: 25px;
+  font-size: 35px;
   color: #001b38;
-  font-weight: lighter;
+  font-weight: 700;
+  font-family: "Nunito", sans-serif;
+  margin-top: 40px;
 }
 .subtitulos {
-  font-size: 15px;
-  color: rgba(255, 255, 255, 0.623);
+  font-size: 25px;
+  color: rgba(0, 0, 0, 0.623);
   display: flex;
   justify-content: flex-end;
+  font-family: "Nunito", sans-serif;
+  font-weight: 500;
 }
 .contenido {
-  font-size: 20px;
+  font-size: 23px;
   font-weight: bold;
   color: #001b38;
   padding: 30px 10px;
+  font-family: "Nunito", sans-serif;
+  font-weight: 300;
 }
 .containerPrice {
   display: flex;
@@ -90,12 +105,12 @@
   justify-content: center;
   width: 100%;
 }
-.width {
+/* .width {
   width: 100%;
   display: flex;
   justify-content: center;
   margin-top: 20px;
-}
+} */
 .paypal {
   width: 200px;
   display: flex;
@@ -153,6 +168,19 @@
   color: #001b38;
   cursor: pointer;
 }
+
+.sideBar {
+  height: 30vh;
+  width: 20.5vw;
+  display: flex;
+  margin: auto;
+  padding: 20px;
+  margin-top: 690px;
+  margin-left: 20px;
+  box-shadow: 0.5px 1px 5px #001b38;
+  border-radius: 10px;
+}
+
 .commentsBox {
   padding: 0px 75px;
 }
@@ -212,12 +240,16 @@
   resize: none;
   border: 1px solid #001b383e;
 }
-.btn {
-  background: none;
-  border: none;
-  padding: 10px;
-  color: #001b38;
-  font-size: 15px;
+.submit {
+  color: white;
+  background-color: #0575e6;
+  transition: 1s;
+  width: 150px;
+  display: flex;
+  justify-content: center;
+  font-size: 20px;
+  padding: 10px 5px;
+  border-radius: 10px;
 }
 .btn:hover {
   text-decoration: underline;
@@ -230,12 +262,17 @@
 }
 .btnPaginate {
   margin: 0px 20px;
-  background: none;
-  border: 1px solid #001b3848;
-  padding: 5px 10px;
-  color: #001b38;
+  background-color: #0575e6;
+  padding: 10px 5px;
+  color: #ffffff;
   font-size: 10px;
-  transition: 1s;
+  transition: 0.2s;
+  border-radius: 10px;
+  justify-content: center;
+  border: none;
+  width: 100px;
+  display: flex;
+  margin: auto;
 }
 .btnPaginate:hover {
   background-color: #001b38;
@@ -294,9 +331,33 @@
   border: 1px solid #001b3848;
   background-color: white;
 }
+
+.chatButton {
+  margin: 0px 20px;
+  background-color: #0575e6;
+  padding: 10px 5px;
+  color: #ffffff;
+  font-size: 15px;
+  transition: 0.2s;
+  border-radius: 10px;
+  justify-content: center;
+  border: none;
+  width: 100px;
+  display: flex;
+  margin: auto;
+  text-decoration: none;
+}
+
+.chatButton:hover {
+  background-color: #07421b;
+  color: white;
+  text-decoration: none;
+}
+
 .multimedia {
-  width: 700px;
-  margin-left: 50px;
-  margin-top: 30px;
-  margin-bottom: 20px;
+  width: 600px;
+  display: flex;
+  margin: auto;
+  margin-bottom: 30px;
+  border-radius: 10px;
 }
