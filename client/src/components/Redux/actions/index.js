@@ -1,9 +1,5 @@
 import axios from "axios";
-<<<<<<< HEAD
 import Swal from 'sweetalert2'
-=======
-import Swal from "sweetalert2";
->>>>>>> ed051692528d4a46bc199280d9ad47eafd104b6f
 
 export function rederCard(profesion, precio, promedio, ciudad, descripcion, edad) {
   return async function (dispatch) {
@@ -167,11 +163,7 @@ export function mensajeAlAdmin(msj) {
       type: "MSJ_USER_AL_ADMIN",
       payload: msj,
     });
-<<<<<<< HEAD
     Swal.fire('Listo!',response.data.message, 'success');
-=======
-    Swal.fire(response.data.message, '', 'success');
->>>>>>> ed051692528d4a46bc199280d9ad47eafd104b6f
   };
 }
 //traer mensajes para el admin
