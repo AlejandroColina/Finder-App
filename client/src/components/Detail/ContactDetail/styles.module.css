@@ -1,14 +1,38 @@
-.title {
-  font-weight: 750;
+.contenedor {
+  background-color: rgb(255, 255, 255);
+  border-radius: 10px;
+  border: 1px solid #0575e6;
+  width: 600px;
+  display: grid;
+  margin: auto;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  padding: 0;
+}
+
+.section {
+  display: flex;
+  padding: 20px;
+}
+.section i {
   font-size: 2em;
-  color: #e3e3e3;
+  background-color: #0575e6;
+  border-radius: 50px;
+  display: flex;
+  padding: 15px;
+  margin-right: 10px;
+}
+
+.title {
+  font-family: "Nunito", sans-serif;
+  font-weight: 900;
+  font-size: 3em;
+  color: #0575e6;
   text-decoration: none;
   text-align: center;
-  background-color: whitesmoke;
   display: flex;
   margin: auto;
   margin-top: 20px;
-  margin-bottom: 10px;
   justify-content: center;
   overflow-wrap: normal;
 }
@@ -21,18 +45,30 @@
   display: flex;
   justify-content: center;
   margin: auto;
+  margin-bottom: 30px;
   text-align: justify;
   font-size: 1.5em;
 }
 
 .dato {
-  font-size: 1.5em;
+  font-size: 2em;
   display: grid;
-  margin: auto;
-  padding: 10px;
   justify-content: center;
   text-align: center;
   font-family: "Nunito", sans-serif;
+  font-weight: 700;
+  text-decoration: underline;
+}
+
+.info {
+  font-size: 1.7em;
+  display: grid;
+  text-align: right;
+  justify-content: right;
+  padding: 10px;
+
+  font-family: "Nunito", sans-serif;
+  font-weight: 400;
 }
 
 .email {

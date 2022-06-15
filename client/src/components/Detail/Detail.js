@@ -208,8 +208,9 @@ export default function Detail({ Profesions }) {
             <br />
           </div>
 
-          <div className={s.titulos}>
+          <div className={s.reseñas}>
             RESEÑAS
+            <hr className={s.span} />
             <Box sx={{ "& > legend": { mt: 2 } }}>
               {MyDetail.promedio ? (
                 <Rating size="large" value={MyDetail.promedio} readOnly />
@@ -223,7 +224,7 @@ export default function Detail({ Profesions }) {
         <div className={s.containerInfo}>
           <div className={s.subtitulos}>{MyDetail.Profesions}</div>
 
-          <hr />
+          <hr className={s.span} />
 
           <div className={s.titulos}>{MyDetail.titulo}</div>
           <div className={s.contenido}>{MyDetail.descripcion}</div>
@@ -249,7 +250,11 @@ export default function Detail({ Profesions }) {
           <br />
           <br />
           <br />
-          <hr />
+          <hr className={s.span} />
+          <br />
+          <br />
+          <br />
+          <br />
           <br />
           <br />
           <br />
@@ -368,7 +373,7 @@ export default function Detail({ Profesions }) {
           <br />
 
           <div className={s.titulos}>Publicaciones similares</div>
-          <hr />
+          <hr className={s.span} />
           <br />
           <br />
           <div className={s.cardsContainer}>

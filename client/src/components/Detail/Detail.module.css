@@ -193,6 +193,15 @@
   border-radius: 10px;
 }
 
+.reseñas {
+  width: 100%;
+  font-size: 35px;
+  color: #001b38;
+  font-weight: 700;
+  font-family: "Nunito", sans-serif;
+  margin-top: 40px;
+}
+
 .commentsBox {
   padding: 0px 75px;
 }
@@ -240,17 +249,18 @@
   font-size: 1.6rem !important;
 }
 .form {
-  width: 100%;
+  width: 500%;
   padding: 15px 20px;
   display: flex;
   justify-content: center;
   flex-direction: column;
+  background-color: #001b38;
 }
 .input {
-  background: none;
   outline: 0px;
   resize: none;
   border: 1px solid #001b383e;
+  border-radius: 10px;
 }
 .submit {
   color: white;
@@ -347,27 +357,7 @@
   background-color: white;
 }
 
-.chatButton {
-  margin: 0px 20px;
-  background-color: #0575e6;
-  padding: 10px 5px;
-  color: #ffffff;
-  font-size: 15px;
-  transition: 0.2s;
-  border-radius: 10px;
-  justify-content: center;
-  border: none;
-  width: 100px;
-  display: flex;
-  margin: auto;
-  text-decoration: none;
-}
 
-.chatButton:hover {
-  background-color: #07421b;
-  color: white;
-  text-decoration: none;
-}
 
 .multimedia {
   width: 600px;
@@ -375,4 +365,9 @@
   margin: auto;
   margin-bottom: 30px;
   border-radius: 10px;
+}
+
+.span {
+  height: 1px;
+  background-color: #0575e6;
 }
