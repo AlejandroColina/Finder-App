@@ -6,7 +6,7 @@ import ListItem from '@mui/material/ListItem';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
 import ListItemText from '@mui/material/ListItemText';
 import Avatar from '@mui/material/Avatar';
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { styled } from '@mui/material/styles';
 import Fab from '@mui/material/Fab';
 import notification from '../../../assets/notification_white.png';
@@ -31,11 +31,20 @@ export default function Notificaciones(){
   const [open,setOpen]=useState(false);
   const { user } = useAuth0();
   //id notificacion
+  const history = useHistory();
 
   useEffect(()=>{
     dispatch(getNoti(user.email))
   },[dispatch])
   const notificaciones = useSelector((state)=>state.notificaciones);
+
+  const handleDelete = (id)=>{
+    dispatch(readNoti(user.email,id));
+    setTimeout(() => {
+    dispatch(getNoti(user.email)); 
+    console.log('time')
+    history.push(`/trabajo/${id}`);
+  }, 1000)}
 
     return(
           <>{!open &&
@@ -52,7 +61,7 @@ export default function Notificaciones(){
             <List sx={{ mb: 2 }}>
 
               {open ? notificaciones.map((n,i) => (
-                  <Link to={`/trabajo/${n.PublicacionId}`} onClick={()=>dispatch(readNoti(user.email,n.publicacionId))} key={i} className={s.link} ><ListItem button>
+                  <div onClick={()=>handleDelete(n.PublicacionId)} key={i} className={s.link} ><ListItem button>
                     {n.respuesta?
                     <>
                     <ListItemAvatar>
@@ -81,7 +90,7 @@ export default function Notificaciones(){
                     : null }
                     
                   </ListItem>
-                  </Link>
+                  </div>
               )): <div>no tienes notificaciones</div>} 
             </List>
           <div onClick={()=>setOpen(false)} className={s.cerrar}>cerrar</div>
