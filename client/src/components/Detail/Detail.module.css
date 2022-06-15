@@ -357,8 +357,6 @@
   background-color: white;
 }
 
-
-
 .multimedia {
   width: 600px;
   display: flex;
@@ -370,4 +368,26 @@
 .span {
   height: 1px;
   background-color: #0575e6;
+}
+
+.chatButton {
+  font-weight: lighter;
+  display: flex;
+  margin: auto;
+  margin-top: 15px;
+  background: none;
+  padding: 8px 15px;
+  font-size: 15px;
+  transition: 0.3s;
+  border: 1px solid white;
+  border-radius: 10px;
+  background-color: #0575e6;
+  color: white;
+  text-decoration: none;
+}
+
+.chatButton:hover {
+  color: #001b38;
+  border: 1px solid #001b3848;
+  background-color: rgb(12, 118, 25);
 }

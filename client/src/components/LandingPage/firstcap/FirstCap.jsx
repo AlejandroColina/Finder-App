@@ -1,6 +1,6 @@
 import React, { useRef, useEffect } from "react";
 import s from './FirstCap.module.css';
-import { useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import img_users from './users_logo_landing.png';
 import { useDispatch } from 'react-redux';
 import { getUsers, rederCard, getEmpleosForm } from "../../Redux/actions";
@@ -39,6 +39,7 @@ export default function FirstCap({ descripcion, setDescripcion }) {
                     <input className={s.input}
                         type='text' placeholder='Que te gustaria contratar?' ref={searchRef}
                     />
+                    <Link className={s.homeBtn} to='/home'>HOME</Link>
                     <input className={s.btn} type='submit' value='⌕' />
                 </form>
             </div>
