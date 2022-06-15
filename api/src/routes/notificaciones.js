@@ -12,7 +12,7 @@ router.get('/:email', async (req, res, next) => {
         let persona = await Persona.findOne({ where: { email: email } })
         if (persona === null) return res.status(404).send('No existe el usuario.');
 
-        let notificaciones = persona?.dataValues.notificaciones.length
+        let notificaciones = persona?.dataValues.notificaciones;
 
         return res.json(notificaciones)
     } catch (error) {

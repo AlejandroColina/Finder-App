@@ -304,6 +304,11 @@ export default function rootReducer(state = InitialState, action) {
         ...state
       }
 
+    case 'READ_NOTI':
+      return {
+        ...state
+      }
+
 
     default:
       return state;

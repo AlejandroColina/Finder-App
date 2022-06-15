@@ -41,6 +41,7 @@ import axios from "axios";
 import firebase from 'firebase/compat/app';
 import "firebase/compat/database";
 import "firebase/compat/auth";
+import Notificaciones from '../Home/notificaciones/notificaciones'
 
 import ThreeDots from "./Loading";
 
@@ -252,8 +253,9 @@ export default function Detail({ Profesions }) {
                       {p.respuesta && (isAuthenticated && user.email === MyDetail.email) ?
                         <div className={s.btn} onClick={(e) => {
                           e.preventDefault();
-                          dispatch(reportarPregunta(p.id))
-                        }}></div>
+                          dispatch(reportarPregunta(p.id));
+                          console.log(p)
+                        }}>Reportar</div>
                         : null}
                     </>
                     <>
@@ -393,6 +395,7 @@ export default function Detail({ Profesions }) {
       </div>
       <Footer />
       <Help />
+      {isAuthenticated && <Notificaciones/>}
     </>
   );
 }

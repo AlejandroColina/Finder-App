@@ -158,11 +158,10 @@ export function mensajeAlAdmin(msj) {
       msj
     );
     msj.id = response.data.id;
-    dispatch({
+    return dispatch({
       type: "MSJ_USER_AL_ADMIN",
       payload: msj,
     });
-    alert(response.data.message);
   };
 }
 //traer mensajes para el admin
@@ -586,4 +585,14 @@ export function delTrabajosPagos(id, idPublicacion) {
       console.log(error);
     }
   };
+}
+
+
+export function readNoti(email, id) {
+  return async dispatch => {
+    await axios.put(`http://localhost:3001/notificaciones/delete/${email}/${id}`)
+    return dispatch({
+      type: 'READ_NOTI'
+    })
+  }
 }
