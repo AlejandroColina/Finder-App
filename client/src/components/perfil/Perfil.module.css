@@ -113,17 +113,21 @@ margin-right: 40px;;
 .botones{
     border: none;
     height:30px;
-    width: 100px;
+    width: 130px;
     color: white;
     font-size: 1.4em;
     background-color: rgb(30, 118, 252);
+    border-radius:60px;
+    cursor:pointer; cursor: hand;
 }
 
 .botones:hover{
-    background-color: rgb(172, 172, 172);
+    background-color: rgb(243, 237, 237);
+    color:black;
 }
 .botones:focus{
-    background-color: rgb(185, 182, 182);
+    background-color: rgb(243, 237, 237);
+    color:black;
 }
 .boton{
   border: none;
@@ -131,6 +135,8 @@ margin-right: 40px;;
   width: 150px;;
   color: #f8feff;
   background-color:rgb(30, 118, 252);
+  border-radius: 20px;
+  
 }
 .editar{
     margin-top:15px;

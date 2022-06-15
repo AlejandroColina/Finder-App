@@ -62,8 +62,11 @@ height:20px;
     color: rgb(253, 250, 250);
     background-color: #205bf1ed;
     border: 1px solid rgb(253, 250, 250);
+    border-radius: 20px;
+    cursor:pointer; cursor: hand;
 }
  button:disabled {
-    background-color: rgb(143, 140, 140);
-    color:black;
+    background-color: rgb(204, 200, 200);
+    color:rgb(128, 127, 127);
+    cursor: not-allowed
 }
