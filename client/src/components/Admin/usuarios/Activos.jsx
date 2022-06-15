@@ -1,7 +1,8 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { baneoUser, sendBaneo } from "../../Redux/actions";
-import s from "./Config.module.css";
+import React,{useState} from "react";
+import {useDispatch} from "react-redux";
+import { baneoUser, sendBaneo, getUserStatus} from "../../Redux/actions";
+import s from './Config.module.css';
+import { useEffect } from "react";
 
 export default function Activos({ activos }) {
   const dispatch = useDispatch();

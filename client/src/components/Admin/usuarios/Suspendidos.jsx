@@ -25,6 +25,20 @@ export default function Suspendidos({ suspendidos }) {
     const handleNext = (e) => {
       if (page < suspendidos.length - 10) setPage(page + 10);
     };
+
+    //buscar en suspendidos
+    const [input, setInput] = useState("");
+    const [buscados, setBuscados] = useState("");
+  
+    const handleSubmit = (e) => {
+      e.preventDefault();
+      const filtrados = suspendidos.filter((el) =>
+        el.email.toLowerCase().includes(input.toLowerCase())
+      );
+  
+      setBuscados(filtrados);
+      
+    };
   
 
     return (
@@ -37,8 +51,9 @@ export default function Suspendidos({ suspendidos }) {
                   ANTERIOR
                 </button>
               ) : null}
-            <form className={as.form}>
-                <input className={as.input} type='text' />
+            <form className={as.form} onSubmit={(e) => handleSubmit(e)}>
+                <input className={as.input} type='text'
+                onChange={(e) => setInput(e.target.value)} />
                 <input className={as.inputBtn} type='submit' value="⌕"/>
             </form>
               {page < suspendidos.length - 1 ? (
@@ -47,7 +62,23 @@ export default function Suspendidos({ suspendidos }) {
                 </button>
               ) : null}
         </div> :null}
-        <div className={as.subtitle}>usuarios actuales:<strong>{suspendidos.length}</strong></div>
+
+{/*RENDERIZADO DE BUSCADOS*/}
+{buscados ? (
+  buscados.map((b) => (
+    <div className={as.gridItem} key={b.id}>
+      <div className={as.gridDivs}>{b.id}</div>
+      <div className={as.gridDivs}>{b.email}</div>
+      <div className={as.gridDivs}>{b.telefono}</div>
+    </div>
+  ))
+) : (
+
+  <div className={as.subtitle}>
+    usuarios actuales:<strong>{suspendidos.length}</strong>
+  </div>
+)}
+
             <div className={as.gridItem}>
                 <div>ID</div>
                 <div>MAIL</div>

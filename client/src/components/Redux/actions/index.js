@@ -1,11 +1,11 @@
 import axios from "axios";
 
-export function rederCard(profesion, genero, promedio, ciudad, descripcion, edad) {
+export function rederCard(profesion, precio, promedio, ciudad, descripcion, edad) {
   return async function (dispatch) {
     dispatch(loanding());
     try {
       let data = await axios.get(
-        `http://localhost:3001/publicaciones?profesion=${profesion}&genero=${genero}&promedio=${promedio}&ciudad=${ciudad}&descripcion=${descripcion}&edad=${edad}`
+        `http://localhost:3001/publicaciones?profesion=${profesion}&precio=${precio}&promedio=${promedio}&ciudad=${ciudad}&descripcion=${descripcion}&edad=${edad}`
       );
       return dispatch({
         type: "CARDS",
@@ -213,18 +213,6 @@ export function getUbicacion() {
     } catch (error) {
       console.log(error);
     }
-  };
-}
-
-export function getPublicacionDeUsuario(email) {
-  return async (dispatch) => {
-    let publicaciones = await axios.get(
-      `http://localhost:3001/publicaciones?email=${email}`
-    );
-    return dispatch({
-      type: "PUBLICACIONES_USUARIO",
-      payload: publicaciones.data,
-    });
   };
 }
 
