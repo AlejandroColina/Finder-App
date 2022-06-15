@@ -1,7 +1,6 @@
 process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = 1;
 const express = require('express');
 const server = express();
-server.use(express.json());
 const users = require('./routes/users');
 const publicaciones = require('./routes/publicaciones');
 const trabajos = require('./routes/trabajosPagos');
@@ -15,6 +14,7 @@ const notificaciones = require('./routes/notificaciones');
 const emailToConfirm = require('./routes/emailToConfirm');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+server.use(express.json());
 server.use(cors());
 
 server.use(bodyParser.urlencoded({ extended: true, limit: '50mb' }));
