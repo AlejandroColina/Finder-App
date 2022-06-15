@@ -1,38 +1,85 @@
 import React from "react";
 import styles from "./styles.module.css";
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import Typography from "@mui/material/Typography";
+import { CardActionArea, Container } from "@mui/material";
 
 export const ContactDetail = ({ MyDetail }) => {
   const { telefono, email, documento } = MyDetail;
   console.log(MyDetail);
 
   return (
-    <div className={styles.container}>
-      <h1 className={styles.title}>
-        <b>Datos de contacto</b>
-      </h1>
-
-      <p className={styles.dato}>
-        <b><i class="fa-solid fa-phone-rotary" style={{BackgroundColor: 'blue'}}></i></b>
-        {telefono}
-      </p>
-
-      <p className={styles.email}>
-        <b>Email:</b> {email}
-      </p>
-      <p className={styles.dato}>
-        <b>Documento:</b> {documento}
-      </p>
-      <a
-        href="https://wa.me/3535082917?text=Me%20gustaría%20saber%20el%20precio%20del%20coche"
-        className={styles.whatsapp}
-        target="_blank"
+    <Container>
+      <Card
+        sx={{
+          maxWidth: 345,
+          backgroundColor: "white",
+          display: "flex",
+          margin: "auto",
+          borderRadius: "10px",
+        }}
       >
-        <img
-        className={styles.icon}
-          src="https://cdn-icons-png.flaticon.com/512/733/733585.png"
-          alt=""
-        />
-      </a>
-    </div>
+        <CardActionArea>
+          <CardContent>
+            <Typography
+              sx={{
+                display: "flex",
+                justifyContent: "center",
+              }}
+              gutterBottom
+              variant="h5"
+              component="div"
+            >
+              <b>Datos de contacto</b>
+            </Typography>
+            <Typography
+              sx={{
+                display: "flex",
+                justifyContent: "center",
+              }}
+              gutterBottom
+              variant="h6"
+              component="div"
+            >
+              <b>Telefono:</b> {telefono}
+            </Typography>
+            <Typography
+              sx={{
+                display: "flex",
+                justifyContent: "center",
+              }}
+              gutterBottom
+              variant="h6"
+              component="div"
+            >
+              <b>Email:</b> {email}
+            </Typography>
+            <Typography
+              sx={{
+                display: "flex",
+                justifyContent: "center",
+              }}
+              gutterBottom
+              variant="h6"
+              component="div"
+            >
+              <b>Documento:</b> {documento}
+            </Typography>
+            <a
+              href="https://wa.me/3535082917?text=Me%20gustaría%20saber%20el%20precio%20del%20coche"
+              className={styles.whatsapp}
+              target="_blank"
+            >
+              <img
+                className={styles.icon}
+                src="https://cdn-icons-png.flaticon.com/512/733/733585.png"
+                alt=""
+              />
+            </a>
+          </CardContent>
+        </CardActionArea>
+      </Card>
+    </Container>
   );
 };

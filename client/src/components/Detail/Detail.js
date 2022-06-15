@@ -9,7 +9,7 @@ import {
   responderPregunta,
   getCarta,
   sendNoti,
-  reportarPregunta
+  reportarPregunta,
 } from "../Redux/actions/index";
 import NavBar from "../NavBar/NavBar";
 import s from "./Detail.module.css";
@@ -25,21 +25,20 @@ import { Link } from "react-router-dom";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
-import { CardActionArea } from "@mui/material";
+import { CardActionArea, Container } from "@mui/material";
 import { Helmet } from "react-helmet";
 import Footer from "../Footer/Footer";
 import Help from "../Help/Help";
 import Comentar from "./Comentar/Comentar";
 import Preguntar from "./Preguntar/Preguntar";
 import { Mapa } from "./Mapa/Mapa";
-import 'mapbox-gl/dist/mapbox-gl.css';
+import "mapbox-gl/dist/mapbox-gl.css";
 
-import firebase from 'firebase/compat/app';
+import firebase from "firebase/compat/app";
 import "firebase/compat/database";
 import "firebase/compat/auth";
 
 import ThreeDots from "./Loading";
-
 
 export default function Detail({ Profesions }) {
   const { isAuthenticated, user } = useAuth0();
@@ -53,13 +52,13 @@ export default function Detail({ Profesions }) {
   const dispatch = useDispatch();
   const { id } = useParams();
   const MyDetail = useSelector((state) => state.detail);
-  console.log(MyDetail)
+  console.log(MyDetail);
   const publi = useSelector((state) => state.info);
   const opiniones = useSelector((state) => state.opiniones);
   const preguntas = useSelector((state) => state.preguntas);
   const { currentUser } = firebase.auth();
-  const uid  = currentUser? currentUser.uid : null
-  console.log(uid)
+  const uid = currentUser ? currentUser.uid : null;
+  console.log(uid);
   //paginado publicaciones similares
   const [page, setPage] = useState(0);
   const currentPage = publi.slice(page, page + 3);
@@ -85,12 +84,12 @@ export default function Detail({ Profesions }) {
   }, [id, dispatch]);
 
   let { promedio } = MyDetail;
-  
+
   let precio = 10;
-  if(promedio === 2) precio = 15
-  if(promedio === 3) precio = 25
-  if(promedio === 4) precio = 35
-  if(promedio === 5) precio = 50
+  if (promedio === 2) precio = 15;
+  if (promedio === 3) precio = 25;
+  if (promedio === 4) precio = 35;
+  if (promedio === 5) precio = 50;
   let price = precio;
 
   const product = {
@@ -119,31 +118,29 @@ export default function Detail({ Profesions }) {
     });
   };
 
-  const { longitud } = MyDetail
-
-
+  const { longitud } = MyDetail;
 
   const [comento, setComento] = useState(false);
   const [open, setOpen] = useState(false);
 
-  if(!MyDetail.nombres){
-    return(
+  if (!MyDetail.nombres) {
+    return (
       <>
-      <NavBar />
-      <Helmet>
+        <NavBar />
+        <Helmet>
           <title>Cargando..</title>
-      </Helmet>
-      <ThreeDots />
+        </Helmet>
+        <ThreeDots />
       </>
-    )
+    );
   }
 
   return (
-    <>     
-        <Helmet>
-          <title>{`${MyDetail.nombres}`} - Finder </title>
-        </Helmet>
-     
+    <>
+      <Helmet>
+        <title>{`${MyDetail.nombres}`} - Finder </title>
+      </Helmet>
+
       <NavBar />
 
       <div className={s.container}>
@@ -167,7 +164,9 @@ export default function Detail({ Profesions }) {
             {/* <span className={s.precio}>${MyDetail.precio}</span> */}
             <span className={s.valor}>Tarifa Finder: ${price}</span>
           </div>
-            <p className={s.aclaracion}>Tarifa varía acorde valoración del usuario</p>
+          <p className={s.aclaracion}>
+            Tarifa varía acorde valoración del usuario
+          </p>
           {open ? (
             <div>
               {!order ? (
@@ -181,7 +180,6 @@ export default function Detail({ Profesions }) {
                   alt=""
                 />
               )}
-              
             </div>
           ) : (
             // Contratar
@@ -196,15 +194,13 @@ export default function Detail({ Profesions }) {
             </div>
           )}
           <br />
-          <Link to={`/chat/${uid}_${MyDetail.documento}`}><button className="boton-home">CONTACTAR</button></Link>
-
-
+          <Link to={`/chat/${uid}_${MyDetail.documento}`}>
+            <button className="boton-home">CONTACTAR</button>
+          </Link>
         </div>
 
         <div className={s.containerInfo}>
-          {
-            (!longitud) ? null : <Mapa MyDetail={MyDetail} />
-          }
+          {!longitud ? null : <Mapa MyDetail={MyDetail} />}
 
           <div className={s.titulos}>SERVICIO</div>
           <hr />
@@ -212,7 +208,17 @@ export default function Detail({ Profesions }) {
 
           <div className={s.titulos}>{MyDetail.titulo}</div>
 
-          {MyDetail.multimedia ? MyDetail.multimedia.map((m, i) => <img key={i} src={m} alt={m} className={s.multimedia} />) : <img src={MyDetail.logoProfesion} alt={MyDetail.Profesions} className={s.multimedia} />}
+          {MyDetail.multimedia ? (
+            MyDetail.multimedia.map((m, i) => (
+              <img key={i} src={m} alt={m} className={s.multimedia} />
+            ))
+          ) : (
+            <img
+              src={MyDetail.logoProfesion}
+              alt={MyDetail.Profesions}
+              className={s.multimedia}
+            />
+          )}
 
           <div className={s.contenido}>{MyDetail.descripcion}</div>
 
@@ -225,24 +231,48 @@ export default function Detail({ Profesions }) {
 
           <div className={s.titulos}>Tenes dudas?</div>
           <hr />
-           {isAuthenticated?
-          <Preguntar user={[user.email,user.picture]} publicacion={id} profesional={[MyDetail.email,MyDetail.imagen]} /> : 
-          <div className={s.width} ><button className={s.btndebe} onClick={() => { loginWithRedirect() }}>INGRESA o REGISTRATE para poder consultar</button></div>}
+          {isAuthenticated ? (
+            <Preguntar
+              user={[user.email, user.picture]}
+              publicacion={id}
+              profesional={[MyDetail.email, MyDetail.imagen]}
+            />
+          ) : (
+            <div className={s.width}>
+              <button
+                className={s.btndebe}
+                onClick={() => {
+                  loginWithRedirect();
+                }}
+              >
+                INGRESA o REGISTRATE para poder consultar
+              </button>
+            </div>
+          )}
           <div className={s.commentsBox}>
             {preguntas
               ? preguntas.map((p) => (
                   <div key={p.id}>
                     <div className={s.containerComments}>
                       <div className={s.pregunta}>{p.pregunta}</div>
-                        <>{/*boton para reportar */}
-                        {p.respuesta && (isAuthenticated && user.email === MyDetail.email) ? 
-                          <div className={s.btn} onClick={(e)=>{ 
-                            e.preventDefault();
-                            dispatch(reportarPregunta(p.id))}}></div> 
-                         : null}
-                        </>
                       <>
-                        {p.respuesta && (isAuthenticated && user.email === MyDetail.email) ? (
+                        {/*boton para reportar */}
+                        {p.respuesta &&
+                        isAuthenticated &&
+                        user.email === MyDetail.email ? (
+                          <div
+                            className={s.btn}
+                            onClick={(e) => {
+                              e.preventDefault();
+                              dispatch(reportarPregunta(p.id));
+                            }}
+                          ></div>
+                        ) : null}
+                      </>
+                      <>
+                        {p.respuesta &&
+                        isAuthenticated &&
+                        user.email === MyDetail.email ? (
                           <>
                             <div className={s.respuesta}>
                               <div className={s.figura}></div>
@@ -255,7 +285,7 @@ export default function Detail({ Profesions }) {
                             onSubmit={(e) => {
                               e.preventDefault();
                               dispatch(responderPregunta(p.id, input));
-                              dispatch(sendNoti(p.user[0],input));
+                              dispatch(sendNoti(p.user[0], input));
                               Swal.fire({
                                 text: "Tu respuesta fue enviada!",
                                 icon: "succes",
@@ -281,7 +311,7 @@ export default function Detail({ Profesions }) {
                       </>
                     </div>
                   </div>
-              ))
+                ))
               : null}
           </div>
           <br />
@@ -301,19 +331,19 @@ export default function Detail({ Profesions }) {
             <Comentar
               publicacion={id}
               setComento={setComento}
-              profesional={[MyDetail.email,MyDetail.imagen]}
+              profesional={[MyDetail.email, MyDetail.imagen]}
             />
           ) : null}
           <div className={s.commentsBox}>
             {opiniones
               ? opiniones.map((r) => (
-                <div className={s.containerComments} key={r.id}>
-                  <div className={s.commentPersona}>
-                    "{r.comentario}"
-                    <Rating size="25px" value={r.puntaje} readOnly />
+                  <div className={s.containerComments} key={r.id}>
+                    <div className={s.commentPersona}>
+                      "{r.comentario}"
+                      <Rating size="25px" value={r.puntaje} readOnly />
+                    </div>
                   </div>
-                </div>
-              ))
+                ))
               : null}
           </div>
           <br />

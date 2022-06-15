@@ -1,7 +1,7 @@
 .title {
   font-weight: 750;
   font-size: 2em;
-  color: #0575e6;
+  color: #e3e3e3;
   text-decoration: none;
   text-align: center;
   background-color: whitesmoke;
@@ -32,6 +32,7 @@
   padding: 10px;
   justify-content: center;
   text-align: center;
+  font-family: "Nunito", sans-serif;
 }
 
 .email {
@@ -40,6 +41,7 @@
   display: grid;
   justify-content: center;
   vertical-align: middle;
+  font-family: "Nunito", sans-serif;
 }
 
 .icon {

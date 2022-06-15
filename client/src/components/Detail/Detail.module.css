@@ -13,6 +13,7 @@
   box-shadow: 1px 2px 20px #001b38;
   overflow: hidden;
   background-color: #fdfcff;
+  border-radius: 10px;
 }
 .nombres {
   font-size: 20px;
@@ -88,8 +89,8 @@
   flex-direction: column;
   justify-content: center;
   width: 100%;
-} 
-.width{
+}
+.width {
   width: 100%;
   display: flex;
   justify-content: center;
@@ -110,14 +111,13 @@
   justify-content: center;
   font-size: 2em;
   cursor: pointer;
-  
 }
-.valor:last-child{
+.valor:last-child {
   color: #0575e6;
   font-weight: bold;
   font-size: 2.2rem;
 }
-.aclaracion{
+.aclaracion {
   color: darkgray;
   font-weight: 500;
   text-align: center;
@@ -145,7 +145,7 @@
   display: flex;
   justify-content: center;
   font-size: 20px;
-  padding: 10px 5px ;
+  padding: 10px 5px;
   border-radius: 10px;
 }
 .contratar:hover {
@@ -294,7 +294,7 @@
   border: 1px solid #001b3848;
   background-color: white;
 }
-.multimedia{
+.multimedia {
   width: 700px;
   margin-left: 50px;
   margin-top: 30px;
