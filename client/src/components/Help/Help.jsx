@@ -5,6 +5,7 @@ import { useState } from "react";
 import {mensajeAlAdmin} from "../Redux/actions";
 import s from './Help.module.css';
 import {Link} from 'react-router-dom';
+import Swal from "sweetalert2";
 
 export default function Help(){
     const dispatch = useDispatch();
@@ -19,6 +20,11 @@ export default function Help(){
     const handleSubmit =(e)=>{
         e.preventDefault();
         dispatch(mensajeAlAdmin({email:user.email,mensaje:input, source:'USUARIO'}));
+        Swal.fire({
+          title: "Tu consulta fue enviada!",
+          text:"No olvides de revisar tu correo",
+          icon: "succes",
+        });
         setOptions(false);
     }
     return(

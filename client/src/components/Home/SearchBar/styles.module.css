@@ -101,28 +101,6 @@
         text-decoration: none;
 }
 
-.iconBox{
-    position: relative;
-    height:30px;
-    width: 30px;
-   } 
-
-.notification{
-    position: absolute;
-    top: 0px;
-    right: 0px;
-    color: white;
-    font-size: 10px;
-    width: 1.8rem;
-    height: 1.8rem;
-    background-color: red;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-
 .userPhoto{
     height: 3.75rem;
     border-radius: 50%;
