@@ -13,12 +13,12 @@ import "firebase/compat/auth";
 
 const StyledFab = makeStyles(theme =>({
     paper:{
-        paddingBotton: 20
+        paddingBotton: 20,
+        borderRadius: '15px',
+        overflow: 'hidden',
     },
     message:{
-        border: "1px solid #ccc",
-        borderRadius: 8,
-        padding: "0 20px",
+        padding: "10px 10px",
     }
 }));
 
@@ -93,12 +93,11 @@ const NewMessage = () =>{
                 <Box>
                   <Button variant="contained" 
                            color="primary"
-                          endIcon={<Icon>send</Icon>}
+                          endIcon={<Icon></Icon>}
                           fullWidth
                           disabled={!message.length}
                           onClick={handleSubmit}
-                          >
-                Enviar
+                          >Enviar
                 </Button>
                 </Box>
               </Grid>

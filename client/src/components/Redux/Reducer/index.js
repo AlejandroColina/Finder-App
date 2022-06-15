@@ -242,11 +242,16 @@ export default function rootReducer(state = InitialState, action) {
         notificaciones: action.payload
       }
 
-    case 'USER_STATUS':
+      case 'USERS_NO_BANEADOS':
       return {
         ...state,
-        noBaneados: state.users.filter(u => u.baneado === false),
-        usuariosBaneados: state.users.filter(u => u.baneado === true),
+        noBaneados: action.payload
+      }
+     
+    case 'USERS_BANEADOS':
+      return {
+        ...state,
+       usuariosBaneados: action.payload
       }
 
     case 'REPORTAR_PREGUNTA':
@@ -300,6 +305,11 @@ export default function rootReducer(state = InitialState, action) {
         ...state
       }
     case 'DEL_TRABAJO_PAGO':
+      return {
+        ...state
+      }
+
+    case 'READ_NOTI':
       return {
         ...state
       }
