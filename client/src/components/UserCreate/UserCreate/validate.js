@@ -7,6 +7,8 @@ export default function validate(values) {
         errors.titulo = 'El título no puede llevar 5 números seguidos.';
     } else if (/\w+([-]?\w+)*@\w+([-]?\w+)*(\.\w{2,3})+$/g.test(values?.titulo)) {
         errors.titulo = 'No puedes implementar correos en el título.'
+    } else if (values?.titulo.includes('@' || '.com' || '.es' || 'www' || 'gmail' || 'hotmail' || 'outlook')) {
+        errors.titulo = 'No puedes implementar correos en el título.'
     }
 
     if (!values?.descripcion.trim()) {
@@ -14,6 +16,8 @@ export default function validate(values) {
     } else if (/\d{5}/g.test(values?.descripcion)) {
         errors.descripcion = 'La descripción no puede llevar 5 números seguidos.';
     } else if (/\w+([-]?\w+)*@\w+([-]?\w+)*(\.\w{2,3})+$/g.test(values?.descripcion)) {
+        errors.descripcion = 'No puedes implementar correos en la descripcion.'
+    } else if (values?.descripcion.includes('@' || '.com' || '.es' || 'www' || 'gmail' || 'hotmail' || 'outlook')) {
         errors.descripcion = 'No puedes implementar correos en la descripcion.'
     }
 

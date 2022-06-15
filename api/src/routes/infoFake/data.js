@@ -211,7 +211,7 @@ let personas = [
         telefono: 570408,
         direccion: "34600 Barbara Solar",
         imagen: "https://i.pinimg.com/originals/ce/a2/00/cea200630f7fca7a9bc424f88a6acb41.png",
-        descripcion: "Opero y realizo mantenimiento a equipos de redes de difusión de Radio y Televisión, Redes Telefónicas fijas.",
+        descripcion: "Realizo mantenimiento a equipos de redes de Radio y Televisión, redes telefónicas fijas.",
         profesion: 14,
         genero: "hombre",
         pais: "Argentina",
