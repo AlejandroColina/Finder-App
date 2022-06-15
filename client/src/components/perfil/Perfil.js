@@ -23,7 +23,7 @@ import { Helmet } from "react-helmet"
 import png from './assets/Mask group.png';
 import publicidad from "./assets/publicidad.gif";
 import bane from './assets/baneado.jpeg'
-import {Modal, } from '@material-ui/core'
+import {Modal, TextField } from '@material-ui/core'
 
 
 const Perfil = () => {
