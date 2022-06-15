@@ -54,6 +54,7 @@ export default function ThirdCap() {
                             Profesions={users[actual]?.publicaciones[0]?.Profesion?.nombre}
                             id={users[actual]?.id}
                             ciudad={users[actual]?.ciudad}
+                            precio={users[actual]?.publicaciones[0]?.precio}
                         />
                     </div>
                     <div className={s.rb2}>
