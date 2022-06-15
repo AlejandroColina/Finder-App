@@ -25,7 +25,7 @@ export const SearchBar = ( {setDescripcion, descripcion }) => {
     searchRef.current.value = ''
   }
   
-  const styleLupa = { position: 'absolute', marginRight: '-550px', color: 'darkcyan', fontSize: '17px' }
+  const styleLupa = { position: 'absolute', marginRight: '-550px', color: '#0575E6', fontSize: '17px' }
 
 
     return (

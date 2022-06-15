@@ -118,13 +118,13 @@ function Home({ descripcion, setDescripcion }) {
 
             <div className={styles.paginado}>
               {
-                <div >
+                <div >{trabajadores.length>9?
                   <Paginado
 
                     personasPerPage={itemsPorPag}
                     allPersonas={trabajadores.length}
                     paginado={paginado}
-                  />
+                  />:null}
                 </div>
               }
             </div>

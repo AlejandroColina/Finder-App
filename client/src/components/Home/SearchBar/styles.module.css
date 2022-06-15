@@ -38,13 +38,13 @@
         width: 90%;
         transition: all .2s;    
         margin-right: -3.25rem;
+        color: #0575E6;
 }
 .input:focus{
             outline: none;
             width: 100%;
             
 }
-
 .input:focus::placeholder{
     display: none;
 }
@@ -54,6 +54,7 @@
     text-align: center;
     font-size: 1.7rem;
     padding-right: 15px;
+    color: #0575E6;
 }
 
 .button{
