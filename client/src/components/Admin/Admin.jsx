@@ -34,7 +34,7 @@ export default function Admin(){
     const suspendidos = useSelector(state=>state.usuariosBaneados);
     const opiniones = useSelector((state) => state.opinionesReportadas);
     const preguntas = useSelector((state) => state.preguntasReportadas);
-    console.log('ACTIVOS=>',activos)
+
     return(
 
         isAuthenticated && (user.email==='giulianob94@hotmail.com'

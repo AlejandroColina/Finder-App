@@ -6,8 +6,7 @@ import Swal from "sweetalert2";
 
 export default function Activos({ activos }) {
   const dispatch = useDispatch();
-  //EVENTOS
-
+  
   const estado = true;
   const hadleBaneo = (id) => {
     Swal.fire({
