@@ -12,7 +12,8 @@ import {
   getCarta,
   sendNoti,
   reportarPregunta,
-  getTrabajosPagos
+  getTrabajosPagos,
+  addTrabajosPagos
 } from "../Redux/actions/index";
 import NavBar from "../NavBar/NavBar";
 import s from "./Detail.module.css";
@@ -61,11 +62,10 @@ export default function Detail({ Profesions }) {
   const publi = useSelector((state) => state.info);
   const opiniones = useSelector((state) => state.opiniones);
   const preguntas = useSelector((state) => state.preguntas);
-  const trabajosPagos = useSelector((state) => state.trabajosPagos);
   const { currentUser } = firebase.auth();
   const uid = currentUser ? currentUser.uid : null
-  console.log('TRABAJOS PAGOS', trabajosPagos)
-
+  let trabajosPagos = useSelector((state) => state.trabajosPagos);
+  
   //paginado publicaciones similares
   const [page, setPage] = useState(0);
   const currentPage = publi.slice(page, page + 3);
@@ -112,7 +112,7 @@ export default function Detail({ Profesions }) {
       text: "Has accedido a los contactos del trabajador.¡Contáctalo!",
       icon: "success",
     });
-
+    dispatch(addTrabajosPagos(user?.email, id));
     trabajosPagos = true
   }
 
@@ -206,7 +206,7 @@ export default function Detail({ Profesions }) {
                 setOpen(true);
               }}
             >
-              <span className={s.contratar}>Contratar</span>
+             {!trabajosPagos ?<span className={s.contratar}>Contratar</span> : ''}
             </div>
           )}
           <br />
