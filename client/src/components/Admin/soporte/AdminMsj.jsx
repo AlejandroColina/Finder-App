@@ -24,7 +24,7 @@ export default function AdminMsj (){
             </tr></thead>
             <tbody>
             {
-                msj ? msj.map((msj)=>
+                msj.length>0 ? msj.map((msj)=>
                 <tr key={msj.id} onClick={()=>{
                     dispatch(readMsj(msj.id,read));
                     dispatch(getOneMsj(msj.id));
@@ -41,6 +41,7 @@ export default function AdminMsj (){
             }</tbody>
             </table>
             {open? <><DetatilMsj/> <button className={s.closeReading} onClick={()=>setOpen(false)}>CERRAR</button></> : null}
+            {msj.length<1 ? <div className={s.notMsj}><img src='https://cdn.dribbble.com/users/493409/screenshots/3070302/043_success-mail.gif' alt='not msj'/></div>:null}
             </div>
     )
 }

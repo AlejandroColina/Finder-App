@@ -181,3 +181,8 @@
 .readed{
     color:#001b384c;
 }
+.notMsj{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
