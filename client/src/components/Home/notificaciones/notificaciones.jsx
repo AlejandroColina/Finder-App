@@ -30,8 +30,7 @@ export default function Notificaciones(){
   const dispatch = useDispatch();
   const [open,setOpen]=useState(false);
   const { user } = useAuth0();
-  //id notificacion
-
+  
   useEffect(()=>{
     dispatch(getNoti(user.email))
   },[dispatch])
@@ -42,7 +41,7 @@ export default function Notificaciones(){
           <>
 
            <div className={`${s.iconBox} ${s.position}`}>
-            <img src={notification} alt='notifications' height='40px'/>
+            <img src={notification} alt='notifications' height='30px' className={s.img}/>
              <button className={s.notification} onClick={()=>setOpen(true)}>{notificaciones.length}</button>
              </div>
             {open &&
@@ -53,7 +52,7 @@ export default function Notificaciones(){
             <List sx={{ mb: 2 }}>
 
               {open ? notificaciones.map((n,i) => (
-                  <Link to={`/trabajo${n.PublicacionId}`} onClick={()=>dispatch(readNoti(user.email,n.publicacionId))} key={i} className={s.link} ><ListItem button>
+                  <Link to={`/trabajo/${n.PublicacionId}`}/*  onClick={(e)=>{e.preventDefault();dispatch(readNoti(user.email,n.publicacionId))}} */ key={i} className={s.link} ><ListItem button>
                     {n.respuesta?
                     <>
                     <ListItemAvatar>

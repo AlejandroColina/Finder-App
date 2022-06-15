@@ -18,7 +18,6 @@ import "firebase/compat/database";
 import "firebase/compat/auth";
 import { useAuth0 } from '@auth0/auth0-react';
 import HomeLoader from "./loading/Skeleton";
-import Notificaciones from './notificaciones/notificaciones';
 
 
 
@@ -118,13 +117,13 @@ function Home({ descripcion, setDescripcion }) {
 
             <div className={styles.paginado}>
               {
-                <div >
+                <div >{trabajadores.length>9?
                   <Paginado
 
                     personasPerPage={itemsPorPag}
                     allPersonas={trabajadores.length}
                     paginado={paginado}
-                  />
+                  />:null}
                 </div>
               }
             </div>
@@ -180,7 +179,6 @@ function Home({ descripcion, setDescripcion }) {
         </div>
         <Help />
       </div>
-      {isAuthenticated && <Notificaciones/>}
     </div>
   );
 
