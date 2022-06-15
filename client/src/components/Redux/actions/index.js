@@ -481,12 +481,6 @@ export function sendEliminado(id) {
   }
 }
 
-export function getUserStatus() {
-  return ({
-    type: 'USER_STATUS'
-  })
-}
-
 export function reportarPregunta(id) {
   return async (dispatch) => {
     await axios.put(`http://localhost:3001/pregunta/reportar/${id}`)
@@ -582,6 +576,28 @@ export function delTrabajosPagos(id, idPublicacion) {
     try {
       let data = await axios.delete(`http://localhost:3001/trabajos/delete/${id}/${idPublicacion}`);
       return dispatch({ type: "DEL_TRABAJO_PAGO" });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+}
+
+export function getUsersBaneados() {
+  return async function (dispatch) {
+    try {
+      let data = await axios.get(`http://localhost:3001/suspender/Baneados`);
+      return dispatch({ type: "USERS_BANEADOS", payload: data.data });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+}
+
+export function getUsersNoBaneados() {
+  return async function (dispatch) {
+    try {
+      let data = await axios.get(`http://localhost:3001/suspender/noBaneados`);
+      return dispatch({ type: "USERS_NO_BANEADOS", payload: data.data });
     } catch (error) {
       console.log(error);
     }
