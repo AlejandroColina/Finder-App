@@ -225,29 +225,38 @@ router.patch("/modificar/:email", async (req, res) => {
 
 router.patch('/add/:documento', async (req, res, next) => {
   try {
-    const { documento } = req.params
-    const { chat, name } = req.query
-    const objeto = {
-      chat: chat,
-      name: name
-    }
-    const algo = [];
+      const { documento } = req.params
+      const { chat, name } = req.query
+      const objeto = {
+        chat: chat,
+        name: name
+      }
+      const algo = [];
+      const algo2 = [];
+      
 
+      let persona = await Persona.findOne({ where: { documento: documento } })
+      if (persona === null) return res.status(404).send('No existe el usuario.');
 
-    let persona = await Persona.findOne({ where: { documento: documento } })
-    if (persona === null) return res.status(404).send('No existe el usuario.');
-
-    let chats = persona.dataValues.chats
-    if (chats !== null) {
-      chats.push(objeto)
-      await Persona.update({ chats: chats }, { where: { documento: documento } });
+      let chats = persona.dataValues.chats
+      let prueba = persona.dataValues.prueba
+      if(chats !== null && prueba !== null){
+        if(prueba.indexOf(chat) < 0){
+        chats.push(objeto)
+        prueba.push(chat)
+        await Persona.update({ chats: chats }, { where: { documento: documento } });
+        await Persona.update({ prueba: prueba }, { where: { documento: documento } });
+        let p = await Persona.findOne({ where: { documento: documento } })
+        return res.json(p)
+        } return res.json(persona)
+      }
+      algo.push(objeto)
+      algo2.push(chat)
+      await Persona.update({ chats: algo }, { where: { documento: documento } });
+      await Persona.update({ prueba: algo2 }, { where: { documento: documento } });
       let p = await Persona.findOne({ where: { documento: documento } })
       return res.json(p)
-    }
-    algo.push(objeto)
-    await Persona.update({ chats: algo }, { where: { documento: documento } });
-    let p = await Persona.findOne({ where: { documento: documento } })
-    return res.json(p)
+   
   } catch (error) {
     next(error)
   }
@@ -257,30 +266,37 @@ router.patch('/agg/:id', async (req, res, next) => {
   try {
     const { id } = req.params
     const { chat, name } = req.query
-    const algo = [];
     const objeto = {
       chat: chat,
       name: name
     }
-
-
+    const algo = [];
+    const algo2 = [];
+    
     let persona = await Persona.findOne({ where: { id: id } })
     if (persona === null) return res.status(404).send('No existe el usuario.');
 
     let chats = persona.dataValues.chats
-    if (chats !== null) {
+    let prueba = persona.dataValues.prueba
+    if(chats !== null && prueba !== null){
+      if(prueba.indexOf(chat) < 0){
       chats.push(objeto)
+      prueba.push(chat)
       await Persona.update({ chats: chats }, { where: { id: id } });
+      await Persona.update({ prueba: prueba }, { where: { id: id } });
       let p = await Persona.findOne({ where: { id: id } })
       return res.json(p)
+      } return res.json(persona)
     }
     algo.push(objeto)
+    algo2.push(chat)
     await Persona.update({ chats: algo }, { where: { id: id } });
+    await Persona.update({ prueba: algo2 }, { where: { id: id } });
     let p = await Persona.findOne({ where: { id: id } })
     return res.json(p)
-  } catch (error) {
+} catch (error) {
     next(error)
-  }
+}
 });
 
 
