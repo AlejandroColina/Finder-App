@@ -10,7 +10,7 @@ export default function Activos({ activos }) {
   const estado = true;
   const hadleBaneo = (id) => {
     Swal.fire({
-      title: '¿Esta seguro que desea suspender a este usuario?',
+      title: '¿Está seguro que desea suspender a este usuario?',
       showDenyButton: true, showCancelButton: false,
       confirmButtonText: 'Aceptar',
       denyButtonText: 'Cancelar'
