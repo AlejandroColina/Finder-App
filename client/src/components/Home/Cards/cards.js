@@ -15,6 +15,7 @@ export default function Cards({
   id,
   logoProfesion,
   ciudad,
+  precio
 }) { 
  
   
@@ -52,6 +53,7 @@ export default function Cards({
             <Rating size="large" value={promedio} readOnly />
             </Box>
         <div  className={s.profesion}>{Profesions}</div>
+        <div  className={s.profesion}><strong>${precio}</strong></div>
         <div className={s.buttons}>
       <button className={s.fav} onClick={handleOnClick}>♡</button>
         <Link to={`/trabajo/${id}`} className={s.vermas}>

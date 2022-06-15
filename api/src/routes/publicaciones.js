@@ -8,7 +8,7 @@ router.use(express.json());
 router.get("/", async (req, res, next) => {
   try {
 
-    let { profesion, nombres, promedio, genero, edad, ciudad, descripcion, precio, titulo } =
+    let { profesion, nombres, promedio, precio, edad, ciudad, descripcion, titulo } =
       req.query;
 
     let tablaPublicacion = await Publicacion.findAll(
@@ -66,10 +66,12 @@ router.get("/", async (req, res, next) => {
       });
     }
 
-    if (genero) {
-      obj = obj.filter((persona) => {
-        return persona.genero == genero;
-      });
+    if (precio==='precioAlto') {
+      obj =obj.sort((a,b)=>b.precio - a.precio );
+    }
+
+    if (precio==='precioBajo') {
+      obj =obj.sort((a,b)=>a.precio - b.precio );
     }
 
     if (edad === 30 || edad === 40) {

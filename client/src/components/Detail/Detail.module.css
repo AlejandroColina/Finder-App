@@ -6,12 +6,13 @@
 }
 
 .card {
+  overflow: hidden;
+  border-radius: 15px;
   position: absolute;
   top: 120px;
   left: 50px;
   width: 320px;
   box-shadow: 1px 2px 20px #001b38;
-  overflow: hidden;
   background-color: #fdfcff;
 }
 .nombres {
@@ -279,6 +280,8 @@
 }
 
 .btndebe {
+  overflow: hidden;
+  border-radius: 15px;
   font-weight: lighter;
   margin: 0px 20px;
   background: none;
