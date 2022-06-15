@@ -19,6 +19,9 @@ import { useAuth0 } from '@auth0/auth0-react';
 import firebase from 'firebase/compat/app';
 import "firebase/compat/database";
 import "firebase/compat/auth";
+import s from './Chat.module.css';
+import Footer from "../Footer/Footer";
+import Help from "../Help/Help";
 
 const useStyles = makeStyles(theme =>({
     text:{
@@ -80,16 +83,17 @@ const Chat = () =>{
      )
     }, []);
     
-    return(
-        <Container>
-        <Paper square sx={{ pb: '50px' }} className={styles.paper}>
-        <Typography className={styles.text} variant="h5" gutterBottom component="div" sx={{ p: 2, pb: 0 }}>
+    return(<>
+    <div className={s.container}>
+        <Container className={s.containerChat}>
+        <Paper  className={s.paper} square sx={{ pb: '50px' }}>
+        <Typography className={s.title} variant="h4" gutterBottom component="div" >
           Chat
         </Typography>
         <List sx={{ mb: 2 }} className={styles.list} ref={chatDomRef}>
           {messages.map(({ date, user, message }) => (
             
-              <ListItem button key={date}>
+              <ListItem button key={date} className={s.chat}>
                 <ListItemAvatar>
                 <CustomAvatar name={user.name} avatar={user.picture} size="md"/>
                 </ListItemAvatar>
@@ -100,6 +104,9 @@ const Chat = () =>{
       </Paper>
       <NewMessage/>
       </Container>
+      </div>
+      <Help/>
+      <Footer/></>
     );
  };
 

@@ -21,7 +21,7 @@ export default function NavBar(){
           <div className={s.boxItems}>
             <div className={s.infoUser}>
               <img className={s.avatarImg} src={user.picture} alt='avatar' />
-              <div className={s.salir}>{onlyFirst[0].toUpperCase()}</div>
+              <Link to={`/perfil/${user.email}`} className={s.navItems}>{onlyFirst[0].toUpperCase()}</Link>
               <button title='Salir' className={s.salir} onClick={() => logout({ returnTo: window.location.origin })}>
                 <img src={logoutImg} alt='logout' height='25px' /></button>
             </div>
