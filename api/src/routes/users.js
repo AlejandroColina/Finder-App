@@ -256,11 +256,7 @@ router.patch('/add/:documento', async (req, res, next) => {
       await Persona.update({ prueba: algo2 }, { where: { documento: documento } });
       let p = await Persona.findOne({ where: { documento: documento } })
       return res.json(p)
-    }
-    algo.push(objeto)
-    await Persona.update({ chats: algo }, { where: { documento: documento } });
-    let p = await Persona.findOne({ where: { documento: documento } })
-    return res.json(p)
+   
   } catch (error) {
     next(error)
   }
