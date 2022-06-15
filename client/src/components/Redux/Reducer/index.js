@@ -313,6 +313,10 @@ export default function rootReducer(state = InitialState, action) {
       return {
         ...state
       }
+      case 'SEND_RES':
+      return {
+        ...state
+      }
 
 
     default:

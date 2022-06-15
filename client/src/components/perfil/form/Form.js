@@ -5,8 +5,8 @@ import { cambiarInfo, ValidarInfo, getPefil } from "../../Redux/actions/index";
 import { useState, useEffect } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import Validate from './Validate'
+import Swal from "sweetalert2";
 import { TextField } from '@material-ui/core'
-
 
 
 
@@ -53,8 +53,10 @@ const Form = ({abrirCerrarModal}) => {
   const handleOnClick = () => {
     dispatch(cambiarInfo(user?.email, input));
     setTimeout(() => {
-      dispatch(ValidarInfo(user?.email));
+      dispatch(ValidarInfo(user?.email));  
       dispatch(getPefil(user?.email));
+      abrirCerrarModal()
+      Swal.fire('Listo!', 'Ahora podes crear publicaciones!', 'success')
     }, 1000);
   };
 

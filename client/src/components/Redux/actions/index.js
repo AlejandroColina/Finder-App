@@ -1,5 +1,5 @@
 import axios from "axios";
-import Swal from "sweetalert2";
+import Swal from 'sweetalert2'
 
 export function rederCard(profesion, precio, promedio, ciudad, descripcion, edad) {
   return async function (dispatch) {
@@ -163,7 +163,7 @@ export function mensajeAlAdmin(msj) {
       type: "MSJ_USER_AL_ADMIN",
       payload: msj,
     });
-    Swal.fire(response.data.message, '', 'success');
+    Swal.fire('Listo!',response.data.message, 'success');
   };
 }
 //traer mensajes para el admin
@@ -608,6 +608,17 @@ export function getUsersNoBaneados() {
     try {
       let data = await axios.get(`http://localhost:3001/suspender/noBaneados`);
       return dispatch({ type: "USERS_NO_BANEADOS", payload: data.data });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+}
+
+export function SendRes(obj,email){
+  return async function (dispatch) {
+    try {
+      axios.post(`http://localhost:3001/email/respuesta/${email}`,obj);
+      return dispatch({ type: "SEND_RES"});
     } catch (error) {
       console.log(error);
     }
