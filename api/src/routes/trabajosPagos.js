@@ -6,18 +6,19 @@ router.use(express.json());
 router.use(cors());
 
 
-router.get('/:idPersona', async (req, res, next) => {
+router.get('/', async (req, res, next) => {
     try {
-        let { idPersona } = req.params;
+        let { email, idPublicacion } = req.query;
+        let persona = await Persona.findOne({ where: { email: email } });
+        if (persona === null) return res.status(404).send('No existe este usuario en BD.');
 
-        let persona = await Persona.findOne({ where: { id: idPersona } });
-        if(persona === null) return res.status(404).send('No existe este usuario en BD.');
-
-        if (Object.values(persona)) {
-            let trabajos = persona.dataValues.trabajosPagos;
-            return res.json(trabajos);
+        let trabajos = persona.dataValues.trabajosPagos;
+        if (trabajos.includes(parseInt(idPublicacion))) {
+            return res.json(true)
+        } else {
+            return res.json(false)
         }
-        return res.send([])
+
     } catch (error) {
         next(error)
     }
@@ -29,7 +30,7 @@ router.delete('/delete/:idPersona/:idPublicacion', async (req, res, next) => {
         const { idPublicacion, idPersona } = req.params;
 
         let persona = await Persona.findOne({ where: { id: idPersona } });
-        if(persona === null) return res.status(404).send('No existe este usuario en BD.');
+        if (persona === null) return res.status(404).send('No existe este usuario en BD.');
 
         if (persona.dataValues.trabajosPagos.length > 0) {
             await Persona.update({
@@ -44,21 +45,24 @@ router.delete('/delete/:idPersona/:idPublicacion', async (req, res, next) => {
     }
 });
 
-router.patch('/add/:idPersona/:idPublicacion', async (req, res, next) => {
+router.patch('/add/:email/:idPublicacion', async (req, res, next) => {
     try {
-        const { idPublicacion, idPersona } = req.params;
+        const { idPublicacion, email } = req.params;
 
-        let persona = await Persona.findOne({ where: { id: idPersona } });
-        if(persona === null) return res.status(404).send('No existe este usuario en BD.');
+        let persona = await Persona.findOne({ where: { email: email } });
+        if (persona === null) return res.status(404).send('No existe este usuario en BD.');
 
         let pagos = persona.dataValues.trabajosPagos;
+
+        if (pagos.includes(parseInt(idPublicacion))) return res.json(persona)
+
         pagos.push(parseInt(idPublicacion));
 
         await Persona.update({
             trabajosPagos: pagos
-        }, { where: { id: idPersona } });
-
-        let personas = await Persona.findOne({ where: { id: idPersona } });
+        }, { where: { email: email } });
+        
+        let personas = await Persona.findOne({ where: { email: email } });
 
         res.json(personas)
     } catch (error) {

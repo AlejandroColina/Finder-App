@@ -94,6 +94,7 @@
     background: none;
     color: transparent;
     transition: 1s;
+    cursor:pointer;
 }
 .btn:hover{
     font-size: 23px;

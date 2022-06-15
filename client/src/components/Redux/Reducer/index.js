@@ -24,7 +24,7 @@ const InitialState = {
   preguntasReportadas: [],
   opinionesReportadas: [],
   destacados: [],
-  trabajosPagos: []
+  trabajosPagos: false
 };
 
 export default function rootReducer(state = InitialState, action) {

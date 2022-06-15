@@ -1,18 +1,20 @@
-import React,{useState} from "react";
-import {useDispatch} from "react-redux";
-import { deleteUser, sendEliminado} from "../../Redux/actions";
-import as from './Config.module.css';
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { deleteUser, sendEliminado, getUsers } from "../../Redux/actions";
+import as from "./Config.module.css";
 
-export default function DangerZone({users}){
+export default function DangerZone({users}) {
+  const dispatch = useDispatch();
+  //EVENTOS
 
-    const dispatch = useDispatch();
-
-    //EVENTOS
-
-    const  handleDelete = (id) =>{
-        dispatch(deleteUser(id));
-        dispatch(sendEliminado(id));
-      }
+  const handleDelete = (id) => {
+    dispatch(deleteUser(id));
+    dispatch(sendEliminado(id));
+   
+   setTimeout(() => {
+    dispatch(getUsers())
+  }, 1000)
+  };
 
       //paginado 
       const [page, setPage] = useState(0);
@@ -80,15 +82,21 @@ export default function DangerZone({users}){
                 <div>ID</div>
                 <div>MAIL</div>
                 <div>TELEFONO</div>
+      </div>
+      {currentPage ? (
+        currentPage.map((s) => (
+          <div className={as.gridDan} key={s.id}>
+            <div className={as.btnDan} onClick={() => handleDelete(s.id)}>
+              ELIMINAR USUARIO
             </div>
-            {currentPage? currentPage.map(s=>
-            <div className={as.gridDan} key={s.id}>
-              <div className={as.btnDan} onClick={() => handleDelete(s.id)} >ELIMINAR USUARIO</div>
-                <div className={as.gridDivs}>{s.id}</div>
-                <div className={as.gridDivs}>{s.email}</div>
-                <div className={as.gridDivs}>{s.telefono}</div>
-            </div>)
-            :<div>no hay usuarios suspendidos</div>}
-        </div>
-    )
+            <div className={as.gridDivs}>{s.id}</div>
+            <div className={as.gridDivs}>{s.email}</div>
+            <div className={as.gridDivs}>{s.telefono}</div>
+          </div>
+        ))
+      ) : (
+        <div>no hay usuarios suspendidos</div>
+      )}
+    </div>
+  );
 }
