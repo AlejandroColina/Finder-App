@@ -49,10 +49,10 @@ router.put('/delete/:email/:id', async (req, res, next) => {
         if (persona === null) return res.status(404).send('No existe el usuario.');
 
         let noti = persona.dataValues.notificaciones
-        noti = noti.filter(e => e.publicacionId !== id)
+        noti = noti.filter(e => e.PublicacionId !== id)
 
         await Persona.update({
-            notificaciones: noti.filter(e => e.publicacionId !== id)
+            notificaciones: noti.filter(e => e.PublicacionId !== id)
         }, { where: { email: email } });
 
         let p = await Persona.findOne({ where: { email: email } })
