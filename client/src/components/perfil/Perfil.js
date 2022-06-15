@@ -62,8 +62,7 @@ const Perfil = () => {
   }
 
   const handleChat = () => {
-    setMiChat(true)
-    setPerfil(false);
+    setMiChat(true);
     setFavorito(false);
     setEditar(false)
   }

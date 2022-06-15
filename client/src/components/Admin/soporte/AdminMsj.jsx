@@ -41,7 +41,7 @@ export default function AdminMsj (){
             }</tbody>
             </table>
             {open? <><DetatilMsj/> <button className={s.closeReading} onClick={()=>setOpen(false)}>CERRAR</button></> : null}
-            {msj.length<1 ? <div className={s.notMsj}><img src='https://cdn.dribbble.com/users/493409/screenshots/3070302/043_success-mail.gif' alt='not msj'/></div>:null}
+            {msj.length<1 ? <div className={s.notMsj}><img src='https://cdn.dribbble.com/users/4874/screenshots/1776423/inboxiconanimation_30.gif' alt='not msj'/></div>:null}
             </div>
     )
 }
