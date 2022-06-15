@@ -58,6 +58,7 @@
     border: none;
     color: #0575e6;
     transition: 1s;
+    cursor: pointer;
 }
 .remove:hover{
     font-size: 40px;
