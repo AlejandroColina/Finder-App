@@ -10,17 +10,12 @@ export default function Paginado({personasPerPage, allPersonas, paginado}) {
 
     const [page, setPage] = useState(1); //estado
 
-    const stylesFocus = { backgroundColor:' #0576e67a', color: '#000', textShadow: '-2px 1px goldenrod'}
+    const stylesFocus = { backgroundColor:'#0576e6', border:'none', color: '#fff', textShadow: '-2px 1px black'}
 
     const stylesNext = {
-        color: 'whitesmoke',
-        margin: '5px 20px',
-        backgroundColor: 'rgb(0 76 203)',
-        fontSize: '17px',
-        fontWeight: 'bolder',
-        padding: '6px 18px',
-        letterSpacing: '1px',
-        border: '3px solid gray'
+       margin: '5px 20px',
+       backgroundColor:'#0576e6',
+       textShadow: '1px 1px 3px black'
     }
 
     return(
@@ -33,8 +28,7 @@ export default function Paginado({personasPerPage, allPersonas, paginado}) {
                  paginado(page - 1)
                  setPage(page - 1)
                  }} >
-                 
-                 <i class="fa-solid fa-arrow-left"></i></button></li>
+                 ❮</button></li>
            
            
             {pageNumbers &&
@@ -58,8 +52,8 @@ export default function Paginado({personasPerPage, allPersonas, paginado}) {
                   paginado(page+1)
                   setPage(page + 1)
                   console.log(page)
-                  }} >
-                  <i class="fa-solid fa-arrow-right"></i></button></li>
+                  }} >❯
+                  </button></li>
              </div>
         </ul>
     </nav>

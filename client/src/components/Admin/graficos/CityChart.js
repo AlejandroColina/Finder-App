@@ -2,26 +2,16 @@ import React from "react";
 import { useSelector } from "react-redux";
 import {
   Chart as ChartJS,
-  LinearScale,
-  CategoryScale,
-  PointElement,
-  BarElement,
-  Title,
+  ArcElement,
   Tooltip,
   Legend,
-  Filler,
 } from "chart.js";
-import { Bar } from "react-chartjs-2";
+import { Doughnut } from "react-chartjs-2";
 
 ChartJS.register(
-  LinearScale,
-  CategoryScale,
-  PointElement,
-  BarElement,
-  Title,
+  ArcElement,
   Tooltip,
   Legend,
-  Filler
 );
 
 export default function CityChart() {
@@ -35,21 +25,32 @@ export default function CityChart() {
     labels.push(usersByCity[i][0]);
     cantidad.push(usersByCity[i][1]);
   }
+//random Colors 
+var internalDataLength = cantidad.length;
 
-  const options = {
-    fill: true,
-    scales: {
-      y: {
-        min: 0,
-      },
-    },
-    resposive: true,
-    plugins: {
-      legend: {
-        display: false,
-      },
-    },
-  };
+var bkColors = [];
+var hoverColor = [];
+
+var i = 0;
+while (i <= internalDataLength) {
+    var randomR = Math.floor((Math.random() * 200)+90);
+    var randomG = Math.floor((Math.random() * 230)+90);
+    var randomB = Math.floor((Math.random() * 205)+90);
+  
+    var graphBackground = "rgb(" 
+            + randomR + ", " 
+            + randomG + ", " 
+            + randomB + ")";
+    bkColors.push(graphBackground);
+    var hoverColors = "rgb(" 
+            + (randomR + 25) + ", " 
+            + (randomG + 25) + ", " 
+            + (randomB + 25) + ")";
+    hoverColor.push(hoverColors);
+    
+  i++;
+};
+
 
   const data = {
     datasets: [
@@ -57,9 +58,10 @@ export default function CityChart() {
         label: "ciudades",
         data: cantidad,
         tension: "0.3",
-        borderColor: "#0575E6",
-        backgroundColor: "#0576e63c",
-        borderWidth: 1,
+        backgroundColor: bkColors,
+        hoverBackgroundColor: hoverColor,
+        borderColor:'white',
+        borderWidth: 3,
       },
     ],
     labels,
@@ -67,7 +69,7 @@ export default function CityChart() {
 
   return (
     <div>
-      <Bar data={data} options={options} />
+      <Doughnut data={data} />
     </div>
   );
 }

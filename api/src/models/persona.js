@@ -45,6 +45,7 @@ module.exports = (sequelize) => {
     },
     baneado: {
       type: DataTypes.BOOLEAN,
+      defaultValue: false
     },
     puntuacion: {
       type: DataTypes.ARRAY(DataTypes.INTEGER),
@@ -60,6 +61,9 @@ module.exports = (sequelize) => {
     chats:{
       type: DataTypes.ARRAY(DataTypes.JSON),
     },
+    prueba:{
+      type: DataTypes.ARRAY(DataTypes.STRING)
+    }
     
   });
 };

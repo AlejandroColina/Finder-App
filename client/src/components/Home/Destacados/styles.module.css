@@ -7,10 +7,12 @@
 	border-radius: 6px;
 	border: 1px solid grey;
 	cursor: pointer;
+	transition: 1s;
 }
 
 .card:hover {
 	box-shadow: 0 0 10px 5px darkblue;
+    transform: translateY(-0.7rem);
 }
 
 .cardImage {
