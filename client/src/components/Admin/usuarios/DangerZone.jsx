@@ -1,19 +1,30 @@
-import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import { deleteUser, sendEliminado, getUsers } from "../../Redux/actions";
 import as from "./Config.module.css";
+import Swal from "sweetalert2";
 
 export default function DangerZone({users}) {
   const dispatch = useDispatch();
   //EVENTOS
 
   const handleDelete = (id) => {
+  Swal.fire({
+    title: '¿Esta seguro que desea eliminar a este usuario?',
+    showDenyButton: true, showCancelButton: false,
+    confirmButtonText: 'Aceptar',
+    denyButtonText: 'Cancelar'
+  })
+  .then((res)=>{
+    if (res.isConfirmed) {
     dispatch(deleteUser(id));
     dispatch(sendEliminado(id));
    
    setTimeout(() => {
     dispatch(getUsers())
   }, 1000)
+}
+  })
   };
 
       //paginado 
