@@ -5,6 +5,27 @@ const { Persona } = require('../db')
 router.use(cors());
 router.use(express.json())
 
+router.get('/Baneados', async (req, res, next) => {
+    try {
+      let baneados = await Persona.findAll({ where: { baneado: true } });
+      console.log(baneados?.length)
+      return res.json(baneados);
+    } catch (error) {
+      next(error)
+    }
+  });
+
+  router.get('/noBaneados', async (req, res, next) => {
+    try {
+      let desbaneados = await Persona.findAll({ where: { baneado: false } });
+      console.log(desbaneados?.length)
+      return res.json(desbaneados);
+    } catch (error) {
+      next(error)
+    }
+  });
+
+
 router.patch('/:id/:estado', async (req, res, next) => {
     const { id, estado } = req.params;
 
