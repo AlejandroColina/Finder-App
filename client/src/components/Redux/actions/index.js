@@ -613,3 +613,14 @@ export function getUsersNoBaneados() {
     }
   };
 }
+
+export function SendRes(obj,email){
+  return async function (dispatch) {
+    try {
+      axios.post(`http://localhost:3001/email/respuesta/${email}`,obj);
+      return dispatch({ type: "SEND_RES"});
+    } catch (error) {
+      console.log(error);
+    }
+  };
+}

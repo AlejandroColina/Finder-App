@@ -36,11 +36,11 @@ export default function AdminMsj (){
                     <td className={s.celdasMsj} >{msj.createdAt.slice(11,19)}</td>
                 </tr>) :
                 <tr>
-                    <td className={s.celdasMsj}> La Bandeja de mensajes esta vacia!</td>
+                    <td className={s.celdasMsj}> La Bandeja de mensajes esta vacía!</td>
                 </tr>
             }</tbody>
             </table>
-            {open? <><DetatilMsj/> <button className={s.closeReading} onClick={()=>setOpen(false)}>CERRAR</button></> : null}
+            {open? <><DetatilMsj setOpen={setOpen}/> <button className={s.closeReading} onClick={()=>setOpen(false)}>CERRAR</button></> : null}
             {msj.length<1 ? <div className={s.notMsj}><img src='https://cdn.dribbble.com/users/4874/screenshots/1776423/inboxiconanimation_30.gif' alt='not msj'/></div>:null}
             </div>
     )
