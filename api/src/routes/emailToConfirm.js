@@ -2,6 +2,10 @@ const transporter = require('./transporter');
 const { Persona } = require('../db')
 const express = require('express');
 const cors = require('cors');
+const baneo = require('../mensajes/baneo');
+const desbaneo = require('../mensajes/desbaneo');
+const cuentaEliminada = require('../mensajes/cuentaEliminada');
+const nuevoPost = require('../mensajes/nuevoPost');
 const router = express.Router();
 router.use(express.json());
 router.use(cors());
@@ -17,10 +21,7 @@ router.patch('/baneo/:id', async (req, res, next) => {
             from: 'Finder Community <finder.app.henry@hotmail.com>',
             to: persona?.dataValues.email,
             subject: 'Tu cuenta acaba de ser restringida.',
-            html: `<p>
-            <b>Hola ${persona?.dataValues.nombres},</b> <br/><br/>Por políticas Finder, tu perfil acaba de ser restringido.
-        Para más información contacta a la administración.
-        </p>`
+            html: baneo()
         };
 
         transporter.sendMail(message, (err, info) => {
@@ -47,10 +48,7 @@ router.patch('/desbaneo/:id', async (req, res, next) => {
             from: 'Finder Community <finder.app.henry@hotmail.com>',
             to: persona?.dataValues.email,
             subject: 'Tu cuenta acaba de liberarse.',
-            html: `<p>
-            <b>Hola ${persona?.dataValues.nombres},</b> <br/><br/>En este momento se libera nuevamente tu cuenta Finder. 
-        Sácale el máximo provecho sin ir más allá de las políticas establecidas en nuestra plataforma.
-        </p>`
+            html: desbaneo()
         };
 
         transporter.sendMail(message, (err, info) => {
@@ -77,10 +75,8 @@ router.patch('/eliminarUser/:id', async (req, res, next) => {
             from: 'Finder Community <finder.app.henry@hotmail.com>',
             to: persona?.dataValues.email,
             subject: 'Tu cuenta finder acaba de ser eliminada.',
-            html: `<p>
-            <b>Hola ${persona?.dataValues.nombres},</b> <br/><br/>Por políticas Finder, tu perfil acaba de ser eliminado.
-            Para más información contacta a la administración.
-            </p>`
+            html: cuentaEliminada()
+
         };
 
         transporter.sendMail(message, (err, info) => {
@@ -107,10 +103,7 @@ router.patch('/nuevo_post/:email', async (req, res, next) => {
             from: 'Finder Community <finder.app.henry@hotmail.com>',
             to: persona?.dataValues.email,
             subject: 'Tu publicación acaba de ser creada.',
-            html: `<p>
-            <b>Hola ${persona?.dataValues.nombres},</b> <br/><br/>Acabas de crear una publicación.
-            Finder te desea los mejores resultados.
-            </p>`
+            html: nuevoPost()
         };
 
         transporter.sendMail(message, (err, info) => {

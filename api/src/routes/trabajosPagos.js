@@ -53,12 +53,15 @@ router.patch('/add/:email/:idPublicacion', async (req, res, next) => {
         if (persona === null) return res.status(404).send('No existe este usuario en BD.');
 
         let pagos = persona.dataValues.trabajosPagos;
+
+        if (pagos.includes(parseInt(idPublicacion))) return res.json(persona)
+
         pagos.push(parseInt(idPublicacion));
 
         await Persona.update({
             trabajosPagos: pagos
         }, { where: { email: email } });
-
+        
         let personas = await Persona.findOne({ where: { email: email } });
 
         res.json(personas)

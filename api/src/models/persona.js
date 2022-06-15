@@ -45,6 +45,7 @@ module.exports = (sequelize) => {
     },
     baneado: {
       type: DataTypes.BOOLEAN,
+      defaultValue: false
     },
     puntuacion: {
       type: DataTypes.ARRAY(DataTypes.INTEGER),

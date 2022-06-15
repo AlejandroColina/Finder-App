@@ -4,7 +4,6 @@ import { useSelector, useDispatch } from "react-redux";
 import {
   getDetail,
   getDeleteDetail,
-  getPublicacionDeUsuario,
   getPefil,
   getOpiniones,
   getPreguntas,
@@ -12,7 +11,8 @@ import {
   getCarta,
   sendNoti,
   reportarPregunta,
-  getTrabajosPagos
+  getTrabajosPagos,
+  addTrabajosPagos
 } from "../Redux/actions/index";
 import NavBar from "../NavBar/NavBar";
 import s from "./Detail.module.css";
@@ -40,6 +40,7 @@ import axios from "axios";
 import firebase from 'firebase/compat/app';
 import "firebase/compat/database";
 import "firebase/compat/auth";
+import Notificaciones from '../Home/notificaciones/notificaciones'
 
 import ThreeDots from "./Loading";
 
@@ -56,15 +57,13 @@ export default function Detail({ Profesions }) {
   const dispatch = useDispatch();
   const { id } = useParams();
   const MyDetail = useSelector((state) => state.detail);
-  console.log(MyDetail)
   const MyPerfil = useSelector((state) => state.perfil);
   const publi = useSelector((state) => state.info);
   const opiniones = useSelector((state) => state.opiniones);
   const preguntas = useSelector((state) => state.preguntas);
-  const trabajosPagos = useSelector((state) => state.trabajosPagos);
   const { currentUser } = firebase.auth();
   const uid = currentUser ? currentUser.uid : null
-  console.log('TRABAJOS PAGOS', trabajosPagos)
+  let trabajosPagos = useSelector((state) => state.trabajosPagos);
 
   //paginado publicaciones similares
   const [page, setPage] = useState(0);
@@ -106,13 +105,12 @@ export default function Detail({ Profesions }) {
 
   const [order, setOrder] = useState(false);
   if (order) {
-    console.log(order);
     Swal.fire({
       title: "Perfecto!",
       text: "Has accedido a los contactos del trabajador.¡Contáctalo!",
       icon: "success",
     });
-
+    dispatch(addTrabajosPagos(user?.email, id));
     trabajosPagos = true
   }
 
@@ -134,12 +132,12 @@ export default function Detail({ Profesions }) {
   const [comento, setComento] = useState(false);
   const [open, setOpen] = useState(false);
 
-  const teHablo = (e) =>{
+  const teHablo = (e) => {
     axios.patch(`http://localhost:3001/users/add/${MyDetail.documento}?chat=${uid}_${MyDetail.documento}&name=${MyPerfil[0].nombres}`)
     axios.patch(`http://localhost:3001/users/agg/${MyPerfil[0].id}?chat=${uid}_${MyDetail.documento}&name=${MyDetail.nombres}`)
   }
 
-  
+
   if (!MyDetail.nombres) {
     return (
       <>
@@ -206,7 +204,7 @@ export default function Detail({ Profesions }) {
                 setOpen(true);
               }}
             >
-              <span className={s.contratar}>Contratar</span>
+              {!trabajosPagos ? <span className={s.contratar}>Contratar</span> : ''}
             </div>
           )}
           <br />
@@ -226,8 +224,11 @@ export default function Detail({ Profesions }) {
 
           <div className={s.titulos}>{MyDetail.titulo}</div>
 
-          {MyDetail.multimedia ? MyDetail.multimedia.map((m, i) => <img key={i} src={m} alt={m} className={s.multimedia} />) : <img src={MyDetail.logoProfesion} alt={MyDetail.Profesions} className={s.multimedia} />}
-
+          <div className={s.multimedia} >
+            {MyDetail.multimedia
+              ? MyDetail.multimedia.map((m, i) => <img key={i} src={m} alt={m} className={i > 0 ? s.multimediaImg : s.multimediaProf} />)
+              : <img src={MyDetail.logoProfesion} alt={MyDetail.Profesions} className={s.multimediaImgProf} />}
+          </div>
           <div className={s.contenido}>{MyDetail.descripcion}</div>
 
           {(!trabajosPagos) ? <p></p> : <ContactDetail MyDetail={MyDetail} />}
@@ -252,8 +253,9 @@ export default function Detail({ Profesions }) {
                       {p.respuesta && (isAuthenticated && user.email === MyDetail.email) ?
                         <div className={s.btn} onClick={(e) => {
                           e.preventDefault();
-                          dispatch(reportarPregunta(p.id))
-                        }}></div>
+                          dispatch(reportarPregunta(p.id));
+                          console.log(p)
+                        }}>Reportar</div>
                         : null}
                     </>
                     <>
@@ -393,6 +395,7 @@ export default function Detail({ Profesions }) {
       </div>
       <Footer />
       <Help />
+      {isAuthenticated && <Notificaciones/>}
     </>
   );
 }

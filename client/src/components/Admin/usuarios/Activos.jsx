@@ -1,17 +1,31 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { baneoUser, sendBaneo } from "../../Redux/actions";
-import s from "./Config.module.css";
+import { baneoUser, sendBaneo, getUsersNoBaneados, getUsersBaneados } from "../../Redux/actions";
+import s from './Config.module.css';
+import Swal from "sweetalert2";
 
 export default function Activos({ activos }) {
   const dispatch = useDispatch();
-  console.log("arraya", activos);
-  //EVENTOS
-
+  
   const estado = true;
   const hadleBaneo = (id) => {
-    dispatch(baneoUser(id, estado));
-    dispatch(sendBaneo(id));
+    Swal.fire({
+      title: '¿Esta seguro que desea suspender a este usuario?',
+      showDenyButton: true, showCancelButton: false,
+      confirmButtonText: 'Aceptar',
+      denyButtonText: 'Cancelar'
+    })
+      .then((res) => {
+        if (res.isConfirmed) {
+          dispatch(baneoUser(id, estado));
+          dispatch(sendBaneo(id));
+
+          setTimeout(() => {
+            dispatch(getUsersNoBaneados())
+            dispatch(getUsersBaneados())
+          }, 1000)
+        }
+      })
   };
 
   //paginado
@@ -36,7 +50,7 @@ export default function Activos({ activos }) {
     );
 
     setBuscados(filtrados);
-    
+
   };
 
   return (
