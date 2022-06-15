@@ -159,7 +159,7 @@ export function mensajeAlAdmin(msj) {
       msj
     );
     msj.id = response.data.id;
-    dispatch({
+    return dispatch({
       type: "MSJ_USER_AL_ADMIN",
       payload: msj,
     });
@@ -583,6 +583,15 @@ export function delTrabajosPagos(id, idPublicacion) {
   };
 }
 
+
+export function readNoti(email, id) {
+  return async dispatch => {
+    await axios.put(`http://localhost:3001/notificaciones/delete/${email}/${id}`)
+    return dispatch({
+      type: 'READ_NOTI'
+    })
+  }
+}
 export function getUsersBaneados() {
   return async function (dispatch) {
     try {
