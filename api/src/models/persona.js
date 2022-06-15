@@ -60,6 +60,9 @@ module.exports = (sequelize) => {
     chats:{
       type: DataTypes.ARRAY(DataTypes.JSON),
     },
+    prueba:{
+      type: DataTypes.ARRAY(DataTypes.STRING)
+    }
     
   });
 };
