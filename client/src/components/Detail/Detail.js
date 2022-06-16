@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useHistory, useParams } from "react-router-dom";
+import { useHistory, useParams, Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import {
   getDetail,
@@ -12,38 +12,35 @@ import {
   sendNoti,
   reportarPregunta,
   getTrabajosPagos,
-  addTrabajosPagos
+  addTrabajosPagos,
 } from "../Redux/actions/index";
 import NavBar from "../NavBar/NavBar";
 import s from "./Detail.module.css";
 import { useAuth0 } from "@auth0/auth0-react";
 import { PaypalCheckoutBtn } from "./PaypalCheckoutBtn";
 import Swal from "sweetalert2";
-import { ContactDetail } from "./ContactDetail/ContactDetail";
 import gps from "../../assets/gps.png";
 import Box from "@mui/material/Box";
 import Rating from "@mui/material/Rating";
 import Typography from "@mui/material/Typography";
-import { Link } from "react-router-dom";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
-import { CardActionArea } from "@mui/material";
+import { CardActionArea, Container } from "@mui/material";
 import { Helmet } from "react-helmet";
 import Footer from "../Footer/Footer";
 import Help from "../Help/Help";
 import Comentar from "./Comentar/Comentar";
 import Preguntar from "./Preguntar/Preguntar";
 import { Mapa } from "./Mapa/Mapa";
-import 'mapbox-gl/dist/mapbox-gl.css';
+import "mapbox-gl/dist/mapbox-gl.css";
 import axios from "axios";
-import firebase from 'firebase/compat/app';
+import firebase from "firebase/compat/app";
 import "firebase/compat/database";
 import "firebase/compat/auth";
-import Notificaciones from '../Home/notificaciones/notificaciones'
-
+import Notificaciones from "../Home/notificaciones/notificaciones";
 import ThreeDots from "./Loading";
-
+import ContactDetail from "./Contact/ContactDetail";
 
 export default function Detail({ Profesions }) {
   const { isAuthenticated, user } = useAuth0();
@@ -57,12 +54,14 @@ export default function Detail({ Profesions }) {
   const dispatch = useDispatch();
   const { id } = useParams();
   const MyDetail = useSelector((state) => state.detail);
+  console.log(MyDetail);
   const MyPerfil = useSelector((state) => state.perfil);
+  console.log(MyPerfil[0]);
   const publi = useSelector((state) => state.info);
   const opiniones = useSelector((state) => state.opiniones);
   const preguntas = useSelector((state) => state.preguntas);
   const { currentUser } = firebase.auth();
-  const uid = currentUser ? currentUser.uid : null
+  const uid = currentUser ? currentUser.uid : null;
   let trabajosPagos = useSelector((state) => state.trabajosPagos);
 
   //paginado publicaciones similares
@@ -82,7 +81,7 @@ export default function Detail({ Profesions }) {
     dispatch(getOpiniones(id));
     dispatch(getPreguntas(id));
     dispatch(getCarta(id));
-    dispatch(getTrabajosPagos(user?.email, id))
+    dispatch(getTrabajosPagos(user?.email, id));
 
     return function () {
       dispatch(getDeleteDetail());
@@ -92,10 +91,10 @@ export default function Detail({ Profesions }) {
   let { promedio } = MyDetail;
 
   let precio = 10;
-  if (promedio === 2) precio = 15
-  if (promedio === 3) precio = 25
-  if (promedio === 4) precio = 35
-  if (promedio === 5) precio = 50
+  if (promedio === 2) precio = 15;
+  if (promedio === 3) precio = 25;
+  if (promedio === 4) precio = 35;
+  if (promedio === 5) precio = 50;
   let price = precio;
 
   const product = {
@@ -111,7 +110,7 @@ export default function Detail({ Profesions }) {
       icon: "success",
     });
     dispatch(addTrabajosPagos(user?.email, id));
-    trabajosPagos = true
+    trabajosPagos = true;
   }
 
   const [input, setInput] = useState({
@@ -125,18 +124,19 @@ export default function Detail({ Profesions }) {
     });
   };
 
-  const { longitud } = MyDetail
-
-
+  const { longitud } = MyDetail;
 
   const [comento, setComento] = useState(false);
   const [open, setOpen] = useState(false);
 
   const teHablo = (e) => {
-    axios.patch(`http://localhost:3001/users/add/${MyDetail.documento}?chat=${uid}_${MyDetail.documento}&name=${MyPerfil[0].nombres}`)
-    axios.patch(`http://localhost:3001/users/agg/${MyPerfil[0].id}?chat=${uid}_${MyDetail.documento}&name=${MyDetail.nombres}`)
-  }
-
+    axios.patch(
+      `http://localhost:3001/users/add/${MyDetail.documento}?chat=${uid}_${MyDetail.documento}&name=${MyPerfil[0].nombres}`
+    );
+    axios.patch(
+      `http://localhost:3001/users/agg/${MyPerfil[0].id}?chat=${uid}_${MyDetail.documento}&name=${MyDetail.nombres}`
+    );
+  };
 
   if (!MyDetail.nombres) {
     return (
@@ -147,7 +147,7 @@ export default function Detail({ Profesions }) {
         </Helmet>
         <ThreeDots />
       </>
-    )
+    );
   }
 
   return (
@@ -161,150 +161,121 @@ export default function Detail({ Profesions }) {
       <div className={s.container}>
         {/* tarjeta de contacto */}
 
-        <div className={s.card}>
-          <div className={s.nombres}>
-            <span className={s.espacio}>Hola Soy</span>
-            <strong>{MyDetail.nombres} </strong>!
-          </div>
-          <img className={s.img} src={MyDetail.imagen} alt={MyDetail.nombres} />
-          <div className={s.ciudad}>
-            <img src={gps} alt="ubicacion" className={s.gps} />
-            {MyDetail.ciudad},{MyDetail.pais}
-          </div>
-          <br />
-
-          {/* Botones  */}
-          <div className={s.containerPrice}>
-            <span className={s.valor}>Servicio: ${MyDetail.precio}</span>
-            {/* <span className={s.precio}>${MyDetail.precio}</span> */}
-            <span className={s.valor}>Tarifa Finder: ${price}</span>
-          </div>
-          <p className={s.aclaracion}>Tarifa varía acorde valoración del usuario</p>
-          {open ? (
-            <div>
-              {(!trabajosPagos) ? (
-                <div className={s.paypal}>
-                  <PaypalCheckoutBtn product={product} setOrder={setOrder} />
-                </div>
-              ) : (
-                <img
-                  className={s.check}
-                  src="https://png.pngtree.com/png-vector/20190228/ourmid/pngtree-check-mark-icon-design-template-vector-isolated-png-image_711429.jpg"
-                  alt=""
-                />
-              )}
-
+        <div className={s.sideBar}>
+          <div className={s.card}>
+            <div className={s.nombres}>
+              <span className={s.espacio}>Hola Soy</span>
+              <span className={s.nombreCard}>
+                <strong>{MyDetail.nombres} </strong>!
+              </span>
             </div>
-          ) : (
-            // Contratar
-
-            <div
-              className={s.borderPrice}
-              onClick={() => {
-                setOpen(true);
-              }}
-            >
-              {!trabajosPagos ? <span className={s.contratar}>Contratar</span> : ''}
+            <img
+              className={s.img}
+              src={MyDetail.imagen}
+              alt={MyDetail.nombres}
+            />
+            <div className={s.ciudad}>
+              <img src={gps} alt="ubicacion" className={s.gps} />
+              {MyDetail.ciudad},{MyDetail.pais}
             </div>
-          )}
-          <br />
-          <Link to={`/chat/${uid}_${MyDetail.documento}`}><button onClick={teHablo} className="boton-home">CONTACTAR</button></Link>
+            <br />
 
+            {/* Botones  */}
+            <div className={s.containerPrice}>
+              <span className={s.valor}>Servicio: ${MyDetail.precio}</span>
+              {/* <span className={s.precio}>${MyDetail.precio}</span> */}
+              <span className={s.valor}>Tarifa Finder: ${price}*</span>
+            </div>
+            <p className={s.aclaracion}>
+              * El precio de la tarifa varía según la calificación.
+            </p>
+            {open ? (
+              <div>
+                {!order ? (
+                  <div className={s.paypal}>
+                    <PaypalCheckoutBtn product={product} setOrder={setOrder} />
+                  </div>
+                ) : (
+                  <div>
+                    <img
+                      className={s.check}
+                      src="https://png.pngtree.com/png-vector/20190228/ourmid/pngtree-check-mark-icon-design-template-vector-isolated-png-image_711429.jpg"
+                      alt=""
+                    />
+                  </div>
+                )}
+              </div>
+            ) : (
+              // Contratar
 
+              <div
+                className={s.borderPrice}
+                onClick={() => {
+                  setOpen(true);
+                }}
+              >
+                <span className={s.contratar}>Contratar</span>
+              </div>
+            )}
+            <br />
+          </div>
         </div>
 
         <div className={s.containerInfo}>
-          {
-            (!longitud) ? null : <Mapa MyDetail={MyDetail} />
-          }
-
-          <div className={s.titulos}>SERVICIO</div>
-          <hr />
+          {!longitud ? null : <Mapa MyDetail={MyDetail} />}
+          <hr className={s.span} />
           <div className={s.subtitulos}>{MyDetail.Profesions}</div>
 
           <div className={s.titulos}>{MyDetail.titulo}</div>
-
-          <div className={s.multimedia} >
-            {MyDetail.multimedia
-              ? MyDetail.multimedia.map((m, i) => <img key={i} src={m} alt={m} className={i > 0 ? s.multimediaImg : s.multimediaProf} />)
-              : <img src={MyDetail.logoProfesion} alt={MyDetail.Profesions} className={s.multimediaImgProf} />}
-          </div>
           <div className={s.contenido}>{MyDetail.descripcion}</div>
 
-          {(!trabajosPagos) ? <p></p> : <ContactDetail MyDetail={MyDetail} />}
+          {MyDetail.multimedia ? (
+            MyDetail.multimedia.map((m, i) => (
+              <img key={i} src={m} alt={m} className={s.multimedia} />
+            ))
+          ) : (
+            <img
+              src={MyDetail.logoProfesion}
+              alt={MyDetail.Profesions}
+              className={s.multimedia}
+            />
+          )}
+
+          {!order ? <p></p> : <ContactDetail MyDetail={MyDetail} />}
 
           <br />
           <br />
           <br />
           <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <div className={s.dudas}>¿Tenes dudas?</div>
+          {isAuthenticated ? (
+            <Preguntar
+              user={[user.email, user.picture]}
+              publicacion={id}
+              profesional={[MyDetail.email, MyDetail.imagen]}
+            />
+          ) : (
+            <div className={s.width}>
+              <button
+                className={s.btndebe}
+                onClick={() => {
+                  loginWithRedirect();
+                }}
+              >
+                INGRESA o REGISTRATE para poder consultar
+              </button>
+            </div>
+          )}
 
-          <div className={s.titulos}>Tenes dudas?</div>
-          <hr />
-          {isAuthenticated ?
-            <Preguntar user={[user.email, user.picture]} publicacion={id} profesional={[MyDetail.email, MyDetail.imagen]} /> :
-            <div className={s.width} ><button className={s.btndebe} onClick={() => { loginWithRedirect() }}>INGRESA o REGISTRATE para poder consultar</button></div>}
-          <div className={s.commentsBox}>
-            {preguntas
-              ? preguntas.map((p) => (
-                <div key={p.id}>
-                  <div className={s.containerComments}>
-                    <div className={s.pregunta}>{p.pregunta}</div>
-                    <>{/*boton para reportar */}
-                      {p.respuesta && (isAuthenticated && user.email === MyDetail.email) ?
-                        <div className={s.btn} onClick={(e) => {
-                          e.preventDefault();
-                          dispatch(reportarPregunta(p.id));
-                          console.log(p)
-                        }}>Reportar</div>
-                        : null}
-                    </>
-                    <>
-                      {p.respuesta && (isAuthenticated && user.email === MyDetail.email) ? (
-                        <>
-                          <div className={s.respuesta}>
-                            <div className={s.figura}></div>
-                            {p.respuesta}
-                          </div>{" "}
-                        </>
-                      ) : (
-                        <form
-                          className={s.form}
-                          onSubmit={(e) => {
-                            e.preventDefault();
-                            dispatch(responderPregunta(p.id, input));
-                            dispatch(sendNoti(p.user[0], input));
-                            Swal.fire({
-                              text: "Tu respuesta fue enviada!",
-                              icon: "succes",
-                            });
-                          }}
-                        >
-                          <textarea
-                            className={s.input}
-                            name="respuesta"
-                            rows="6"
-                            type="text"
-                            onChange={(e) => handleChange(e)}
-                            value={input.respuesta}
-                            required
-                          />
-                          <input
-                            type="submit"
-                            value="responder"
-                            className={s.btn}
-                          />
-                        </form>
-                      )}
-                    </>
-                  </div>
-                </div>
-              ))
-              : null}
-          </div>
-          <br />
-          <br />
-          <div className={s.titulos}>
+          <div className={s.reseñas}>
             RESEÑAS
+            <hr className={s.span} />
             <Box sx={{ "& > legend": { mt: 2 } }}>
               {MyDetail.promedio ? (
                 <Rating size="large" value={MyDetail.promedio} readOnly />
@@ -313,7 +284,74 @@ export default function Detail({ Profesions }) {
               )}
             </Box>{" "}
           </div>
-          <hr />
+          <div className={s.commentsBox}>
+            {preguntas
+              ? preguntas.map((p) => (
+                  <div key={p.id}>
+                    <div className={s.containerComments}>
+                      <div className={s.pregunta}>{p.pregunta}</div>
+                      <>
+                        {/*boton para reportar */}
+                        {p.respuesta &&
+                        isAuthenticated &&
+                        user.email === MyDetail.email ? (
+                          <div
+                            className={s.btn}
+                            onClick={(e) => {
+                              e.preventDefault();
+                              dispatch(reportarPregunta(p.id));
+                            }}
+                          ></div>
+                        ) : null}
+                      </>
+                      <>
+                        {p.respuesta &&
+                        isAuthenticated &&
+                        user.email === MyDetail.email ? (
+                          <>
+                            <div className={s.respuesta}>
+                              <div className={s.figura}></div>
+                              {p.respuesta}
+                            </div>{" "}
+                          </>
+                        ) : (
+                          <form
+                            className={s.form}
+                            onSubmit={(e) => {
+                              e.preventDefault();
+                              dispatch(responderPregunta(p.id, input));
+                              dispatch(sendNoti(p.user[0], input));
+                              Swal.fire({
+                                text: "Tu respuesta fue enviada!",
+                                icon: "succes",
+                              });
+                            }}
+                          >
+                            <textarea
+                              className={s.input}
+                              name="respuesta"
+                              rows="6"
+                              type="text"
+                              onChange={(e) => handleChange(e)}
+                              value={input.respuesta}
+                              required
+                            />
+                            <input
+                              type="submit"
+                              value="responder"
+                              className={s.submit}
+                            />
+                          </form>
+                        )}
+                      </>
+                    </div>
+                  </div>
+                ))
+              : null}
+          </div>
+          <br />
+          <br />
+
           {order && !comento ? (
             <Comentar
               publicacion={id}
@@ -324,13 +362,13 @@ export default function Detail({ Profesions }) {
           <div className={s.commentsBox}>
             {opiniones
               ? opiniones.map((r) => (
-                <div className={s.containerComments} key={r.id}>
-                  <div className={s.commentPersona}>
-                    "{r.comentario}"
-                    <Rating size="25px" value={r.puntaje} readOnly />
+                  <div className={s.containerComments} key={r.id}>
+                    <div className={s.commentPersona}>
+                      "{r.comentario}"
+                      <Rating size="25px" value={r.puntaje} readOnly />
+                    </div>
                   </div>
-                </div>
-              ))
+                ))
               : null}
           </div>
           <br />
@@ -341,7 +379,7 @@ export default function Detail({ Profesions }) {
           <br />
 
           <div className={s.titulos}>Publicaciones similares</div>
-          <hr />
+          <hr className={s.span} />
           <br />
           <br />
           <div className={s.cardsContainer}>
@@ -386,7 +424,7 @@ export default function Detail({ Profesions }) {
               ) : null}
               {page < publi.length - 1 ? (
                 <button className={s.btnPaginate} onClick={handleNext}>
-                  SIGUIENTE
+                  SIGUIENTE ➡️
                 </button>
               ) : null}
             </div>
@@ -395,7 +433,7 @@ export default function Detail({ Profesions }) {
       </div>
       <Footer />
       <Help />
-      {isAuthenticated && <Notificaciones/>}
+      {isAuthenticated && <Notificaciones />}
     </>
   );
 }
