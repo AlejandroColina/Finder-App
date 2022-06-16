@@ -82,6 +82,7 @@ export default function Suspendidos({ suspendidos }) {
       {buscados ? (
         buscados.map((b) => (
           <div className={as.gridItem} key={b.id}>
+            <div className={as.btnAc} onClick={() => handleDesbanear(b.id)}>ACTIVAR</div>
             <div className={as.gridDivs}>{b.id}</div>
             <div className={as.gridDivs}>{b.email}</div>
             <div className={as.gridDivs}>{b.telefono}</div>

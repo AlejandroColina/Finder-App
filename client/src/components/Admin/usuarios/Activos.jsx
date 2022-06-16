@@ -87,6 +87,9 @@ export default function Activos({ activos }) {
       {buscados ? (
         buscados.map((b) => (
           <div className={s.gridItem} key={b.id}>
+            <div className={s.btn} onClick={() => hadleBaneo(b.id)}>
+              SUSPENDER
+            </div>
             <div className={s.gridDivs}>{b.id}</div>
             <div className={s.gridDivs}>{b.email}</div>
             <div className={s.gridDivs}>{b.telefono}</div>

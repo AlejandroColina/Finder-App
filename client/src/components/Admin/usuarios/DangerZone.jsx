@@ -60,6 +60,9 @@ export default function DangerZone({users}) {
 {buscados ? (
   buscados.map((b) => (
     <div className={as.gridDan} key={b.id}>
+      <div className={as.btnDan} onClick={() => handleDelete(b.id)}>
+        ELIMINAR USUARIO
+      </div>
       <div className={as.gridDivs}>{b.id}</div>
       <div className={as.gridDivs}>{b.email}</div>
       <div className={as.gridDivs}>{b.telefono}</div>
