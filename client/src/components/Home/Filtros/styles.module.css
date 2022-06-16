@@ -1,72 +1,71 @@
-.container{
-    position: relative;
-    height: 100%;
-    width: 90%;
-    display: flex;
-    justify-content:flex-start;
-    padding-left: 40px;
-    align-items:center;
-    gap: 90px;
-    box-shadow: 1px 1px 10px rgba(0, 16, 41, 0.373);
+.container {
+  position: relative;
+  height: 100%;
+  width: 90%;
+  display: flex;
+  justify-content: flex-start;
+  padding-left: 40px;
+  align-items: center;
+  gap: 90px;
+  box-shadow: 1px 1px 10px rgba(0, 16, 41, 0.373);
 }
 
-.filtro{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
+.filtro {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
 }
 
-.label{
-    color: #0575e6;
-    font-size: 18px;
-    margin-bottom: 10px;
-    font-weight: lighter;
+.label {
+  color: #0575e6;
+  font-size: 18px;
+  margin-bottom: 10px;
+  font-weight: lighter;
 }
 
-.select{
-    min-width: 150px;
-    text-align: center;
-    border-radius: 5px;
-    outline: none; 
-    background:none;
-    border: 2px solid #0575e6;
-    color: #0575e6;
-    min-height: 32px;
-    cursor: pointer;
+.select {
+  min-width: 150px;
+  text-align: center;
+  border-radius: 5px;
+  outline: none;
+  background: none;
+  border: 2px solid #0575e6;
+  color: #0575e6;
+  min-height: 32px;
+  cursor: pointer;
 }
-.select:focus{
-    background-color: #0575e6;
-    color: white;
-    border: 1px solid white;
+.select:focus {
+  background-color: #0575e6;
+  color: white;
+  border: 1px solid white;
 }
 
-
-.reset{
-    position: absolute;
-    right: 20px;
-    padding: 10px;
-    color: rgb(18, 3, 3);
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
+.reset {
+  position: absolute;
+  right: 20px;
+  padding: 10px;
+  color: rgb(18, 3, 3);
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
 }
-.remove{
-    font-size: 30px;
-    font-weight: bold;
-    background: none;
-    border: none;
-    color: #0575e6;
-    transition: 1s;
-    cursor: pointer;
+.remove {
+  font-size: 30px;
+  font-weight: bold;
+  background: none;
+  border: none;
+  color: #0575e6;
+  transition: 1s;
+  cursor: pointer;
 }
-.remove:hover{
-    font-size: 40px;
-    color: black;
+.remove:hover {
+  font-size: 40px;
+  color: black;
 }
-.elim{
-    font-size: 11px;
-    color: #0575e6;
-    font-weight: lighter;
-    text-align: center;
+.elim {
+  font-size: 11px;
+  color: #0575e6;
+  font-weight: lighter;
+  text-align: center;
 }

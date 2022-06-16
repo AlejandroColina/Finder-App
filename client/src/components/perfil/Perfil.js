@@ -10,7 +10,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import Footer from "../Footer/Footer";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import MisChats from "./ChatPerfil"
+import MisChats from "./ChatPerfil";
 import {
   getPefil,
   ValidarInfo,
@@ -19,53 +19,49 @@ import {
 } from "../Redux/actions/index";
 import { Link } from "react-router-dom";
 import Favorito from "./favoritos/Favoritos";
-import { Helmet } from "react-helmet"
-import png from './assets/Mask group.png';
+import { Helmet } from "react-helmet";
+import png from "./assets/Mask group.png";
 import publicidad from "./assets/publicidad.gif";
-import bane from './assets/baneado.jpeg'
-import {Modal, TextField } from '@material-ui/core'
-
+import bane from "./assets/baneado.jpeg";
+import { Modal, TextField } from "@material-ui/core";
 
 const Perfil = () => {
- 
-  const [modal, setModal] = useState(false)
+  const [modal, setModal] = useState(false);
 
-  const abrirCerrarModal = () =>{
-    setModal(!modal)
-  }
+  const abrirCerrarModal = () => {
+    setModal(!modal);
+  };
 
-
-  const body=(
+  const body = (
     <div className={s.modal}>
-    <Form abrirCerrarModal={abrirCerrarModal}/>
+      <Form abrirCerrarModal={abrirCerrarModal} />
     </div>
-  )
+  );
   const { user } = useAuth0();
   const dispatch = useDispatch();
-  const [ MiChat, setMiChat] = useState(false);
+  const [MiChat, setMiChat] = useState(false);
   const { validar } = useSelector((state) => state);
   const [favorito, setFavorito] = useState(false);
   const StatePerfil = useSelector((state) => state.perfil);
   const baneo = useSelector((state) => state.baneado);
   const [editar, setEditar] = useState(false);
 
-
   const handleVolver = () => {
     setFavorito(false);
-    setEditar(false)
-    setMiChat(false)
+    setEditar(false);
+    setMiChat(false);
   };
   const handleEditar = () => {
-    setEditar(true)
-    setFavorito(false)
-    setMiChat(false)
-  }
+    setEditar(true);
+    setFavorito(false);
+    setMiChat(false);
+  };
 
   const handleChat = () => {
     setMiChat(true);
     setFavorito(false);
-    setEditar(false)
-  }
+    setEditar(false);
+  };
 
   useEffect(() => {
     dispatch(getPefil(user?.email));
@@ -76,12 +72,12 @@ const Perfil = () => {
 
   const handleState = () => {
     setFavorito(true);
-    setEditar(false)
-    setMiChat(false)
+    setEditar(false);
+    setMiChat(false);
   };
   return (
     <>
-      {!baneo ?
+      {!baneo ? (
         <div>
           {!StatePerfil ? (
             <Helmet>
@@ -93,10 +89,8 @@ const Perfil = () => {
             </Helmet>
           )}
 
-          <Modal open={modal}
-          onClose={abrirCerrarModal}>
+          <Modal open={modal} onClose={abrirCerrarModal}>
             {body}
-
           </Modal>
 
           <nav className={s.nav}>
@@ -116,15 +110,22 @@ const Perfil = () => {
               </div>
             </div>
             <div className={s.mover}>
-              <button className={s.botones} onClick={handleChat} >Mis Chats</button>
+              <button className={s.botones} onClick={handleChat}>
+                Mis Chats
+              </button>
               <button className={s.botones} onClick={handleState}>
                 Favoritos
               </button>
-              {validar?
-              <button className={s.botones} onClick={()=>abrirCerrarModal()}>
-                Completar perfil
-              </button>
-              :<></>}
+              {validar ? (
+                <button
+                  className={s.botones}
+                  onClick={() => abrirCerrarModal()}
+                >
+                  Completar perfil
+                </button>
+              ) : (
+                <></>
+              )}
               <button className={s.botones} onClick={handleVolver}>
                 perfil
               </button>
@@ -147,67 +148,96 @@ const Perfil = () => {
               ) : (
                 ""
               )}
-              <h1 className={s.personal}>informacion personal</h1>
+              <h1 className={s.personal}>Informacion Personal</h1>
               <div className={s.info}>
-                <h2>nombre completo :</h2>
-                <h2>{StatePerfil[0]?.nombres}</h2>
-                <h2>apellido :</h2>
-                <h2>{StatePerfil[0]?.apellidos}</h2>
-
-                <h2>telefono :</h2>
-                <h2>{StatePerfil[0]?.telefono}</h2>
-                <h2>email :</h2>
-                <h2>{StatePerfil[0]?.email}</h2>
-                <h2>edad :</h2>
-                <h2>{StatePerfil[0]?.edad}</h2>
+                <div className={s.dato1}>
+                  <h2>Nombre completo :</h2>
+                  <h3>{StatePerfil[0]?.nombres}</h3>
+                </div>
+                <div className={s.dato1}>
+                  <h2>Apellido :</h2>
+                  <h3>{StatePerfil[0]?.apellidos}</h3>
+                </div>
+                <div className={s.dato1}>
+                  <h2>Teléfono :</h2>
+                  <h3>{StatePerfil[0]?.telefono}</h3>
+                </div>
+                <div className={s.dato1}>
+                  <h2>Email :</h2>
+                  <h3>{StatePerfil[0]?.email}</h3>
+                </div>
+                <div className={s.dato1}>
+                  <h2>Edad :</h2>
+                  <h3>{StatePerfil[0]?.edad}</h3>
+                </div>
               </div>
-              {!validar ?
-              <button className={s.editar} onClick={handleEditar}>Editar perfil</button>
-             : <></>}
+              {!validar ? (
+                <button className={s.editar} onClick={handleEditar}>
+                  Editar perfil
+                </button>
+              ) : (
+                <></>
+              )}
             </div>
             <div className={s.publi}>
-              {MiChat ? <MisChats/> : <>   
-              {editar ? <Form/>
-                : <>
-              {favorito ? (
-                <Favorito />
+              {MiChat ? (
+                <MisChats />
               ) : (
-                <div>
-                   <h2 className={s.h2}>Publicaciones</h2>
-                      <div className={s.centrar_publi}>
-                        {StatePerfil && StatePerfil[0]?.Publicacions.length ?
-                          StatePerfil[0].Publicacions.map((el) => (
-                            <Card_perfil
-                              key={el.id}
-                              precio={el.precio}
-                              descripcion={el.descripcion}
-                              nombre={StatePerfil[0]?.nombres}
-                              imagen={StatePerfil[0]?.imagen}
-                              Profesions={el.Profesion.nombre}
-                              id={el.id}
-                              logoProfesion={el.Profesion.logo}
-                            />
-                          ))
-                         : <div><img className={s.nologo} src={png} alt='logo'/>
-                           <h1 className={s.h1}>no tiene publicaciones </h1>
-                         </div>
-                           
-                          
-                        }
-                      </div>
-                   
-                </div>
+                <>
+                  {editar ? (
+                    <Form />
+                  ) : (
+                    <>
+                      {favorito ? (
+                        <Favorito />
+                      ) : (
+                        <div>
+                          <h2 className={s.h2}>Publicaciones</h2>
+                          <div className={s.centrar_publi}>
+                            {StatePerfil &&
+                            StatePerfil[0]?.Publicacions.length ? (
+                              StatePerfil[0].Publicacions.map((el) => (
+                                <Card_perfil
+                                  key={el.id}
+                                  precio={el.precio}
+                                  descripcion={el.descripcion}
+                                  nombre={StatePerfil[0]?.nombres}
+                                  imagen={StatePerfil[0]?.imagen}
+                                  Profesions={el.Profesion.nombre}
+                                  id={el.id}
+                                  logoProfesion={el.Profesion.logo}
+                                />
+                              ))
+                            ) : (
+                              <div>
+                                <img
+                                  className={s.nologo}
+                                  src={png}
+                                  alt="logo"
+                                />
+                                <h1 className={s.h1}>
+                                  no tiene publicaciones{" "}
+                                </h1>
+                              </div>
+                            )}
+                          </div>
+                        </div>
+                      )}
+                    </>
+                  )}
+                </>
               )}
-              
-              </>}
-              </>}
             </div>
-            
           </section>
           <footer className={s.footer}>
             <Footer />
           </footer>
-        </div> : <div className={s.baneo}><img src={bane} alt="baneado" /></div>}
+        </div>
+      ) : (
+        <div className={s.baneo}>
+          <img src={bane} alt="baneado" />
+        </div>
+      )}
     </>
   );
 };

@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { useAuth0 } from "@auth0/auth0-react";
 import { eliminarPost, getPefil } from "../../Redux/actions/index";
+import Swal from "sweetalert2";
+
 export default function Cards({
   nombres,
   imagen,
@@ -17,11 +19,21 @@ export default function Cards({
   const { user } = useAuth0();
 
   const handleonClik = () => {
-    setTimeout(() => {
-      dispatch(getPefil(user?.email));
-    }, 1000)
-    
-    dispatch(eliminarPost(id));
+    Swal.fire({
+      title: '¿Está seguro que desea eliminar esta publicación?',
+      showDenyButton: true, showCancelButton: false,
+      confirmButtonText: 'Aceptar',
+      denyButtonText: 'Cancelar'
+    })
+      .then((res) => {
+        if (res.isConfirmed) {
+          setTimeout(() => {
+            dispatch(getPefil(user?.email));
+          }, 1000)
+
+          dispatch(eliminarPost(id));
+        }
+      })
   };
   return (
     <div className={s.container}>
@@ -63,8 +75,7 @@ export default function Cards({
         </div>
       </div>
       <div className={s.botones}>
-        <button onClick={handleonClik}>eliminar</button>
-        <button>editar</button>
+        <button className={s.btnEliminar} onClick={handleonClik}>eliminar</button>
       </div>
     </div>
   );
