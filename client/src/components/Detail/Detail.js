@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useHistory, useParams } from "react-router-dom";
+import { useHistory, useParams, Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import {
   getDetail,
@@ -12,19 +12,17 @@ import {
   sendNoti,
   reportarPregunta,
   getTrabajosPagos,
-  addTrabajosPagos
+  addTrabajosPagos,
 } from "../Redux/actions/index";
 import NavBar from "../NavBar/NavBar";
 import s from "./Detail.module.css";
 import { useAuth0 } from "@auth0/auth0-react";
 import { PaypalCheckoutBtn } from "./PaypalCheckoutBtn";
 import Swal from "sweetalert2";
-import { ContactDetail } from "./ContactDetail/ContactDetail";
 import gps from "../../assets/gps.png";
 import Box from "@mui/material/Box";
 import Rating from "@mui/material/Rating";
 import Typography from "@mui/material/Typography";
-import { Link } from "react-router-dom";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
@@ -35,14 +33,14 @@ import Help from "../Help/Help";
 import Comentar from "./Comentar/Comentar";
 import Preguntar from "./Preguntar/Preguntar";
 import { Mapa } from "./Mapa/Mapa";
-import 'mapbox-gl/dist/mapbox-gl.css';
+import "mapbox-gl/dist/mapbox-gl.css";
 import axios from "axios";
-import firebase from 'firebase/compat/app';
+import firebase from "firebase/compat/app";
 import "firebase/compat/database";
 import "firebase/compat/auth";
-import Notificaciones from '../Home/notificaciones/notificaciones'
-
+import Notificaciones from "../Home/notificaciones/notificaciones";
 import ThreeDots from "./Loading";
+import ContactDetail from "./Contact/ContactDetail";
 
 export default function Detail({ Profesions }) {
   const { isAuthenticated, user } = useAuth0();
@@ -56,12 +54,14 @@ export default function Detail({ Profesions }) {
   const dispatch = useDispatch();
   const { id } = useParams();
   const MyDetail = useSelector((state) => state.detail);
+  console.log(MyDetail);
   const MyPerfil = useSelector((state) => state.perfil);
+  console.log(MyPerfil[0]);
   const publi = useSelector((state) => state.info);
   const opiniones = useSelector((state) => state.opiniones);
   const preguntas = useSelector((state) => state.preguntas);
   const { currentUser } = firebase.auth();
-  const uid = currentUser ? currentUser.uid : null
+  const uid = currentUser ? currentUser.uid : null;
   let trabajosPagos = useSelector((state) => state.trabajosPagos);
 
   //paginado publicaciones similares
@@ -81,7 +81,7 @@ export default function Detail({ Profesions }) {
     dispatch(getOpiniones(id));
     dispatch(getPreguntas(id));
     dispatch(getCarta(id));
-    dispatch(getTrabajosPagos(user?.email, id))
+    dispatch(getTrabajosPagos(user?.email, id));
 
     return function () {
       dispatch(getDeleteDetail());
@@ -91,10 +91,10 @@ export default function Detail({ Profesions }) {
   let { promedio } = MyDetail;
 
   let precio = 10;
-  if (promedio === 2) precio = 15
-  if (promedio === 3) precio = 25
-  if (promedio === 4) precio = 35
-  if (promedio === 5) precio = 50
+  if (promedio === 2) precio = 15;
+  if (promedio === 3) precio = 25;
+  if (promedio === 4) precio = 35;
+  if (promedio === 5) precio = 50;
   let price = precio;
 
   const product = {
@@ -110,7 +110,7 @@ export default function Detail({ Profesions }) {
       icon: "success",
     });
     dispatch(addTrabajosPagos(user?.email, id));
-    trabajosPagos = true
+    trabajosPagos = true;
   }
 
   const [input, setInput] = useState({
@@ -130,10 +130,13 @@ export default function Detail({ Profesions }) {
   const [open, setOpen] = useState(false);
 
   const teHablo = (e) => {
-    axios.patch(`http://localhost:3001/users/add/${MyDetail.documento}?chat=${uid}_${MyDetail.documento}&name=${MyPerfil[0].nombres}`)
-    axios.patch(`http://localhost:3001/users/agg/${MyPerfil[0].id}?chat=${uid}_${MyDetail.documento}&name=${MyDetail.nombres}`)
-  }
-
+    axios.patch(
+      `http://localhost:3001/users/add/${MyDetail.documento}?chat=${uid}_${MyDetail.documento}&name=${MyPerfil[0].nombres}`
+    );
+    axios.patch(
+      `http://localhost:3001/users/agg/${MyPerfil[0].id}?chat=${uid}_${MyDetail.documento}&name=${MyDetail.nombres}`
+    );
+  };
 
   if (!MyDetail.nombres) {
     return (
@@ -200,7 +203,9 @@ export default function Detail({ Profesions }) {
                       alt=""
                     />
                     <Link to={`/chat/${uid}_${MyDetail.documento}`}>
-                      <button className={s.chatButton}>CONTACTAR</button>
+                      <button onClick={teHablo} className="boton-home">
+                        CONTACTAR
+                      </button>
                     </Link>
                   </div>
                 )}
@@ -219,24 +224,12 @@ export default function Detail({ Profesions }) {
             )}
             <br />
           </div>
-
-          <div className={s.reseñas}>
-            RESEÑAS
-            <hr className={s.span} />
-            <Box sx={{ "& > legend": { mt: 2 } }}>
-              {MyDetail.promedio ? (
-                <Rating size="large" value={MyDetail.promedio} readOnly />
-              ) : (
-                <Rating size="large" name="no-value" value={null} />
-              )}
-            </Box>{" "}
-          </div>
         </div>
 
         <div className={s.containerInfo}>
-          <div className={s.subtitulos}>{MyDetail.Profesions}</div>
-
+          {!longitud ? null : <Mapa MyDetail={MyDetail} />}
           <hr className={s.span} />
+          <div className={s.subtitulos}>{MyDetail.Profesions}</div>
 
           <div className={s.titulos}>{MyDetail.titulo}</div>
           <div className={s.contenido}>{MyDetail.descripcion}</div>
@@ -254,15 +247,9 @@ export default function Detail({ Profesions }) {
           )}
 
           {!order ? <p></p> : <ContactDetail MyDetail={MyDetail} />}
-          {!longitud ? null : <Mapa MyDetail={MyDetail} />}
+
           <br />
           <br />
-          <br />
-          <br />
-          <br />
-          <br />
-          <br />
-          <hr className={s.span} />
           <br />
           <br />
           <br />
@@ -290,6 +277,18 @@ export default function Detail({ Profesions }) {
               </button>
             </div>
           )}
+
+          <div className={s.reseñas}>
+            RESEÑAS
+            <hr className={s.span} />
+            <Box sx={{ "& > legend": { mt: 2 } }}>
+              {MyDetail.promedio ? (
+                <Rating size="large" value={MyDetail.promedio} readOnly />
+              ) : (
+                <Rating size="large" name="no-value" value={null} />
+              )}
+            </Box>{" "}
+          </div>
           <div className={s.commentsBox}>
             {preguntas
               ? preguntas.map((p) => (
@@ -439,7 +438,7 @@ export default function Detail({ Profesions }) {
       </div>
       <Footer />
       <Help />
-      {isAuthenticated && <Notificaciones/>}
+      {isAuthenticated && <Notificaciones />}
     </>
   );
 }

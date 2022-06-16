@@ -65,17 +65,17 @@
 
 .homeBtn {
   width: 200px;
-  height: 50px;
-  font-weight: lighter;
-  padding: 20px;
+  height: 70px;
+  margin-top: 40px;
+  font-weight: 500;
+  padding: 14px;
   background: none;
-  font-size: 15px;
+  font-size: 25px;
   transition: 0.3s;
   border: 1px solid white;
   border-radius: 10px;
   background-color: #0575e6;
   color: white;
-  text-decoration: none;
   justify-content: center;
   font-family: "Nunito", sans-serif;
 }
