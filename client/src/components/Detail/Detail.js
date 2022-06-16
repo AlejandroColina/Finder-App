@@ -233,7 +233,7 @@ export default function Detail({ Profesions }) {
           <br/>
           <br/>
           <div className={s.multimedia} >
-            {MyDetail.multimedia
+            {MyDetail?.multimedia
               ? MyDetail.multimedia.map((m, i) => <img key={i} src={m} alt={m} className={i > 0 ? s.multimediaImg : s.multimediaProf} />)
               : <img src={MyDetail.logoProfesion} alt={MyDetail.Profesions} className={s.multimediaImgProf} />}
           </div>
@@ -263,7 +263,7 @@ export default function Detail({ Profesions }) {
                         <div className={s.btn} onClick={() => {
                           dispatch(reportarPregunta(p.id));
                           console.log(p)
-                        }}>Reportar</div>
+                        }}>⛔ Reportar</div>
                         : null}
                     </>
                     <>
@@ -292,8 +292,8 @@ export default function Detail({ Profesions }) {
                           />
                           <input
                             type="submit"
-                            value="responder"
-                            className={s.btn}
+                            value="Responder"
+                            className={s.btnResponder}
                           />
                         </form>
                         </>
