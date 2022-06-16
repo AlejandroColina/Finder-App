@@ -64,7 +64,7 @@ const  handleDelete = () =>{
         </div>
       </div>
       <div className={s.botones}>
-        <button onClick={handleDelete} >eliminar</button>
+        <button className={s.btnEliminar} onClick={handleDelete} >eliminar</button>
         
       </div>
     </div>

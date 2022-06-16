@@ -195,3 +195,19 @@ header {
       justify-content: center;
       gap: 20px
   }
+  .btnEliminar {
+    margin-top: 15px;
+    width: 100px;
+    padding: 5px;
+    color: rgb(30, 118, 252);
+    background-color: transparent;
+    border: 1px solid rgb(30, 118, 252);
+    border-radius: 4px;
+    cursor: pointer;
+    transition: 300ms;
+  }
+  
+  .btnEliminar:hover {
+    color: #f8feff;
+    background-color: rgb(30, 118, 252);
+  }
