@@ -1,7 +1,7 @@
 .contenedor {
-  background-color: rgb(255, 255, 255);
+  background-color: #11539657;
   border-radius: 10px;
-  border: 1px solid #0575e6;
+  border: 1px solid #000000;
   width: 600px;
   display: grid;
   margin: auto;
@@ -11,23 +11,27 @@
 }
 
 .section {
-  display: flex;
+  display: grid;
   padding: 20px;
+  margin-top: 10px;
 }
-.section i {
+
+
+.dato {
   font-size: 2em;
-  background-color: #0575e6;
-  border-radius: 50px;
-  display: flex;
-  padding: 15px;
-  margin-right: 10px;
+  display: grid;
+  justify-content: center;
+  text-align: center;
+  font-family: "Nunito", sans-serif;
+  font-weight: 700;
+  text-decoration: underline;
 }
 
 .title {
   font-family: "Nunito", sans-serif;
   font-weight: 900;
   font-size: 3em;
-  color: #0575e6;
+  color: #000000;
   text-decoration: none;
   text-align: center;
   display: flex;
@@ -50,23 +54,11 @@
   font-size: 1.5em;
 }
 
-.dato {
-  font-size: 2em;
+.info {
+  font-size: 1.9em;
   display: grid;
   justify-content: center;
-  text-align: center;
-  font-family: "Nunito", sans-serif;
-  font-weight: 700;
-  text-decoration: underline;
-}
-
-.info {
-  font-size: 1.7em;
-  display: grid;
-  text-align: right;
-  justify-content: right;
   padding: 10px;
-
   font-family: "Nunito", sans-serif;
   font-weight: 400;
 }
@@ -84,4 +76,30 @@
   width: 40px;
   height: 40px;
   margin-top: 20px;
+}
+
+.chatButton {
+  font-weight: lighter;
+  display: flex;
+  margin: auto;
+  margin-top: 15px;
+  background: none;
+  padding: 8px 15px;
+  font-size: 15px;
+  transition: 0.3s;
+  border: 1px solid white;
+  border-radius: 10px;
+  background-color: white;
+  color: 0575e6;
+  text-decoration: none;
+}
+
+.chatButton link {
+  text-decoration: none;
+}
+
+.chatButton:hover {
+  color: #001b38;
+  border: 1px solid #001b3848;
+  background-color: rgb(12, 118, 25);
 }

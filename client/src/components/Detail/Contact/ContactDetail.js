@@ -34,25 +34,25 @@ function ContactDetail() {
   return (
     <div className={styles.contenedor}>
       <h3 className={styles.title}>DATOS DE CONTACTO</h3>
+
       <div className={styles.section}>
-        <i className="fa-solid fa-phone"></i>
-        <h4 className={styles.dato}>Teléfono:</h4>
+        <h4 className={styles.dato}>Telefono:</h4>
         <h5 className={styles.info}>{MyDetail.telefono}</h5>
       </div>
+
       <div className={styles.section}>
-        <i className="fa-solid fa-envelope"></i>
-        <h4 className={styles.dato}>Email:</h4>
-        <br />
+        <h4 className={styles.dato}> Email: </h4>
         <h5 className={styles.info}>{MyDetail.email}</h5>
       </div>
+
       <div className={styles.section}>
-        <i className="fa-solid fa-address-card"></i>
         <h4 className={styles.dato}>Documento:</h4>
         <h5 className={styles.info}>{MyDetail.documento}</h5>
       </div>
+
       <Link to={`/chat/${uid}_${MyDetail.documento}`}>
-        <button onClick={teHablo} className="boton-home">
-          CONTACTAR
+        <button onClick={teHablo} className={styles.chatButton}>
+          CONTACTAR POR CHAT
         </button>
       </Link>
       <a

@@ -202,11 +202,6 @@ export default function Detail({ Profesions }) {
                       src="https://png.pngtree.com/png-vector/20190228/ourmid/pngtree-check-mark-icon-design-template-vector-isolated-png-image_711429.jpg"
                       alt=""
                     />
-                    <Link to={`/chat/${uid}_${MyDetail.documento}`}>
-                      <button onClick={teHablo} className="boton-home">
-                        CONTACTAR
-                      </button>
-                    </Link>
                   </div>
                 )}
               </div>
