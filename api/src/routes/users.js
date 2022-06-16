@@ -304,7 +304,7 @@ router.get("/detalle/:idPublicacion", async (req, res, next) => {
   try {
     const { idPublicacion } = req.params;
 
-    let consultaBD = await Publicacion.findByPk(idPublicacion, { include: [Profesion, Direccion] });
+    let consultaBD = await Publicacion.findByPk(parseInt(idPublicacion), { include: [Profesion, Direccion] });
     if (consultaBD === null) return res.status(404).send('No existe esta publicación.');
 
     let idPersona = consultaBD.dataValues.PersonaId;
