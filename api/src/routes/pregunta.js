@@ -76,9 +76,9 @@ router.put('/:id', async(req,res)=>{
 router.put('reportar/:id', async(req,res)=>{
     try{
         let {id} = req.params;
-        await Pregunta.update({reportado:true,},{
+        await Pregunta.update({reportado:true},{
             where:{
-                id
+                id:id
             }
         })
         res.status(200).send('se reporto')
@@ -90,9 +90,9 @@ router.put('reportar/:id', async(req,res)=>{
 router.put('ignorar/:id', async(req,res)=>{
     try{
         let {id} = req.params;
-        await Pregunta.update({reportado:false,},{
+        await Pregunta.update({reportado:false},{
             where:{
-                id
+                id:id
             }
         })
         res.status(200).send('se ignoro el reporte')

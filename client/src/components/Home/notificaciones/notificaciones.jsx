@@ -37,12 +37,12 @@ export default function Notificaciones(){
     dispatch(getNoti(user.email))
   },[dispatch])
   const notificaciones = useSelector((state)=>state.notificaciones);
+console.log(notificaciones);
 
   const handleDelete = (id)=>{
     dispatch(readNoti(user.email,id));
     setTimeout(() => {
     dispatch(getNoti(user.email)); 
-    console.log('time')
     history.push(`/trabajo/${id}`);
   }, 1000)}
 
@@ -51,7 +51,7 @@ export default function Notificaciones(){
 
            <div className={`${s.iconBox} ${s.position}`}>
             <img src={notification} alt='notifications' height='30px' className={s.img}/>
-            {notificaciones.length>0? <button className={s.notification} onClick={()=>setOpen(true)}>{notificaciones.length}</button> :null}
+            {notificaciones.length>0? <button className={s.notification} onClick={()=>setOpen(true)}>{notificaciones?.length}</button> :null}
              </div>}
             {open &&
 
@@ -60,32 +60,27 @@ export default function Notificaciones(){
           <Paper square className={s.paper}>
             <List sx={{ mb: 2 }}>
 
-              {open ? notificaciones.map((n,i) => (
-                  <div onClick={()=>handleDelete(n.PublicacionId)} key={i} className={s.link} ><ListItem button>
-                    {n.respuesta?
+              {notificaciones ? notificaciones.map((n,i) => (
+                  <div onClick={()=>handleDelete(n?.PublicacionId)} key={i} className={s.link} ><ListItem button>
+                    {n?.pregunta && !n?.respuesta?
                     <>
                     <ListItemAvatar>
-                      <Avatar alt="Profile Picture" src={n.profesional[1]} />
+                      <Avatar alt="Profile Picture" src={n?.user[1]} />
                     </ListItemAvatar>
-                    <ListItemText primary='Respondieron tu pregunta' secondary={n.respuesta} />
+                    <ListItemText primary='Te hicieron una pregunta' secondary={n?.pregunta} />
                     </> 
-                    : null }
-                    
-                    {n.pregunta && !n.respuesta?
-                    <>
+                    :<>
                     <ListItemAvatar>
-                      <Avatar alt="Profile Picture" src={n.user[1]} />
+                      <Avatar alt="Profile Picture" src={n?.profesional[1]} />
                     </ListItemAvatar>
-                    <ListItemText primary='Te hicieron una pregunta' secondary={n.pregunta} />
-                    </> 
-                    : null }
+                    <ListItemText primary='Respondieron tu pregunta' secondary={n?.respuesta} /></> }
                     
-                    {n.comentario?
+                    {n?.comentario?
                     <>
                     <ListItemAvatar>
                       <Avatar alt="Profile Picture" src="https://www.anordest.it/wp-content/uploads/2018/03/Assicurazioni-in-aumento-in-Emilia.png" />
                     </ListItemAvatar>
-                    <ListItemText primary='Felicitaciones Sumaste puntos !' secondary={n.comentario} />
+                    <ListItemText primary='Felicitaciones Sumaste puntos !' secondary={n?.comentario} />
                     </> 
                     : null }
                     

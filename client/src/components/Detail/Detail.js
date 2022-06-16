@@ -225,7 +225,7 @@ export default function Detail({ Profesions }) {
           <div className={s.titulos}>{MyDetail.titulo}</div>
 
           <div className={s.multimedia} >
-            {MyDetail.multimedia
+            {MyDetail.multimedia.length>0
               ? MyDetail.multimedia.map((m, i) => <img key={i} src={m} alt={m} className={i > 0 ? s.multimediaImg : s.multimediaProf} />)
               : <img src={MyDetail.logoProfesion} alt={MyDetail.Profesions} className={s.multimediaImgProf} />}
           </div>
@@ -250,29 +250,22 @@ export default function Detail({ Profesions }) {
                   <div className={s.containerComments}>
                     <div className={s.pregunta}>{p.pregunta}</div>
                     <>{/*boton para reportar */}
-                      {p.respuesta && (isAuthenticated && user.email === MyDetail.email) ?
-                        <div className={s.btn} onClick={(e) => {
-                          e.preventDefault();
+                      {!p.respuesta && (isAuthenticated && user.email === MyDetail.email) ?
+                        <div className={s.btn} onClick={() => {
                           dispatch(reportarPregunta(p.id));
                           console.log(p)
                         }}>Reportar</div>
                         : null}
                     </>
                     <>
-                      {p.respuesta && (isAuthenticated && user.email === MyDetail.email) ? (
+                      {!p.respuesta && (isAuthenticated && user.email === MyDetail.email) ? (
                         <>
-                          <div className={s.respuesta}>
-                            <div className={s.figura}></div>
-                            {p.respuesta}
-                          </div>{" "}
-                        </>
-                      ) : (
                         <form
                           className={s.form}
                           onSubmit={(e) => {
                             e.preventDefault();
                             dispatch(responderPregunta(p.id, input));
-                            dispatch(sendNoti(p.user[0], input));
+                            dispatch(sendNoti(p.user[0],{user:p.user,profesional:p.profesional,PublicacionId:p.PublicacionId,input}));
                             Swal.fire({
                               text: "Tu respuesta fue enviada!",
                               icon: "succes",
@@ -294,6 +287,12 @@ export default function Detail({ Profesions }) {
                             className={s.btn}
                           />
                         </form>
+                        </>
+                      ) : (
+                        <div className={s.respuesta}>
+                          <div className={s.figura}></div>
+                          {p.respuesta}
+                        </div>
                       )}
                     </>
                   </div>
