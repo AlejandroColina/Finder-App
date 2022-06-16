@@ -8,7 +8,7 @@ const NoResult = () => {
       <div>
         <img className={s.img} src={img} alt="img" />
         <div className={s.center}>
-          <h1 className={s.h1}>No hay coincidencias </h1>
+          <h1 className={s.h1}>No se encontraron coincidencias </h1>
         </div>
       </div>
     </div>
