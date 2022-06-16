@@ -24,7 +24,7 @@ export default function Preguntar({user,profesional,publicacion}){
     const handleSubmit = (input,e)=>{
         e.preventDefault();
         dispatch(postPregunta(input));
-        console.log(input);
+        setInput('');
         dispatch(sendNoti(email,input));
         Swal.fire({ text:'Tu pregunta fue enviada con exito', icon:'success' } )
         setTimeout(history.push(`./${publicacion}`), 1000)

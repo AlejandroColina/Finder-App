@@ -223,23 +223,22 @@ export default function Detail({ Profesions }) {
 
         <div className={s.containerInfo}>
           {!longitud ? null : <Mapa MyDetail={MyDetail} />}
-          <hr className={s.span} />
+          <br/>
+          <br/>
+          <br/>
+          <hr/>
           <div className={s.subtitulos}>{MyDetail.Profesions}</div>
 
           <div className={s.titulos}>{MyDetail.titulo}</div>
+          <br/>
+          <br/>
+          <div className={s.multimedia} >
+            {MyDetail.multimedia
+              ? MyDetail.multimedia.map((m, i) => <img key={i} src={m} alt={m} className={i > 0 ? s.multimediaImg : s.multimediaProf} />)
+              : <img src={MyDetail.logoProfesion} alt={MyDetail.Profesions} className={s.multimediaImgProf} />}
+          </div>
           <div className={s.contenido}>{MyDetail.descripcion}</div>
 
-          {MyDetail.multimedia ? (
-            MyDetail.multimedia.map((m, i) => (
-              <img key={i} src={m} alt={m} className={s.multimedia} />
-            ))
-          ) : (
-            <img
-              src={MyDetail.logoProfesion}
-              alt={MyDetail.Profesions}
-              className={s.multimedia}
-            />
-          )}
 
           {!order ? <p></p> : <ContactDetail MyDetail={MyDetail} />}
 
@@ -247,35 +246,74 @@ export default function Detail({ Profesions }) {
           <br />
           <br />
           <br />
-          <br />
-          <br />
-          <br />
-          <br />
-          <br />
-          <br />
-          <div className={s.dudas}>¿Tenes dudas?</div>
-          {isAuthenticated ? (
-            <Preguntar
-              user={[user.email, user.picture]}
-              publicacion={id}
-              profesional={[MyDetail.email, MyDetail.imagen]}
-            />
-          ) : (
-            <div className={s.width}>
-              <button
-                className={s.btndebe}
-                onClick={() => {
-                  loginWithRedirect();
-                }}
-              >
-                INGRESA o REGISTRATE para poder consultar
-              </button>
-            </div>
-          )}
 
-          <div className={s.reseñas}>
+          <div className={s.titulos}>Tenes dudas?</div>
+          <hr />
+          {isAuthenticated ?
+            <Preguntar user={[user.email, user.picture]} publicacion={id} profesional={[MyDetail.email, MyDetail.imagen]} /> :
+            <div className={s.width} ><button className={s.btndebe} onClick={() => { loginWithRedirect() }}>INGRESA o REGISTRATE para poder consultar</button></div>}
+          <div className={s.commentsBox}>
+            {preguntas
+              ? preguntas.map((p) => (
+                <div key={p.id}>
+                  <div className={s.containerComments}>
+                    <div className={s.pregunta}>{p.pregunta}</div>
+                    <>{/*boton para reportar */}
+                      {!p.respuesta && (isAuthenticated && user.email === MyDetail.email) ?
+                        <div className={s.btn} onClick={() => {
+                          dispatch(reportarPregunta(p.id));
+                          console.log(p)
+                        }}>Reportar</div>
+                        : null}
+                    </>
+                    <>
+                      {!p.respuesta && (isAuthenticated && user.email === MyDetail.email) ? (
+                        <>
+                        <form
+                          className={s.form}
+                          onSubmit={(e) => {
+                            e.preventDefault();
+                            dispatch(responderPregunta(p.id, input));
+                            dispatch(sendNoti(p.user[0],{user:p.user,profesional:p.profesional,PublicacionId:p.PublicacionId,input}));
+                            Swal.fire({
+                              text: "Tu respuesta fue enviada!",
+                              icon: "succes",
+                            });
+                          }}
+                        >
+                          <textarea
+                            className={s.input}
+                            name="respuesta"
+                            rows="6"
+                            type="text"
+                            onChange={(e) => handleChange(e)}
+                            value={input.respuesta}
+                            required
+                          />
+                          <input
+                            type="submit"
+                            value="responder"
+                            className={s.btn}
+                          />
+                        </form>
+                        </>
+                      ) : (
+                        <div className={s.respuesta}>
+                          <div className={s.figura}></div>
+                          {p.respuesta}
+                        </div>
+                      )}
+                    </>
+                  </div>
+                </div>
+              ))
+              : null}
+          </div>
+          <br />
+          <br />
+          <br />
+          <div className={s.titulos}>
             RESEÑAS
-            <hr className={s.span} />
             <Box sx={{ "& > legend": { mt: 2 } }}>
               {MyDetail.promedio ? (
                 <Rating size="large" value={MyDetail.promedio} readOnly />
@@ -284,73 +322,7 @@ export default function Detail({ Profesions }) {
               )}
             </Box>{" "}
           </div>
-          <div className={s.commentsBox}>
-            {preguntas
-              ? preguntas.map((p) => (
-                  <div key={p.id}>
-                    <div className={s.containerComments}>
-                      <div className={s.pregunta}>{p.pregunta}</div>
-                      <>
-                        {/*boton para reportar */}
-                        {p.respuesta &&
-                        isAuthenticated &&
-                        user.email === MyDetail.email ? (
-                          <div
-                            className={s.btn}
-                            onClick={(e) => {
-                              e.preventDefault();
-                              dispatch(reportarPregunta(p.id));
-                            }}
-                          ></div>
-                        ) : null}
-                      </>
-                      <>
-                        {p.respuesta &&
-                        isAuthenticated &&
-                        user.email === MyDetail.email ? (
-                          <>
-                            <div className={s.respuesta}>
-                              <div className={s.figura}></div>
-                              {p.respuesta}
-                            </div>{" "}
-                          </>
-                        ) : (
-                          <form
-                            className={s.form}
-                            onSubmit={(e) => {
-                              e.preventDefault();
-                              dispatch(responderPregunta(p.id, input));
-                              dispatch(sendNoti(p.user[0], input));
-                              Swal.fire({
-                                text: "Tu respuesta fue enviada!",
-                                icon: "succes",
-                              });
-                            }}
-                          >
-                            <textarea
-                              className={s.input}
-                              name="respuesta"
-                              rows="6"
-                              type="text"
-                              onChange={(e) => handleChange(e)}
-                              value={input.respuesta}
-                              required
-                            />
-                            <input
-                              type="submit"
-                              value="responder"
-                              className={s.submit}
-                            />
-                          </form>
-                        )}
-                      </>
-                    </div>
-                  </div>
-                ))
-              : null}
-          </div>
-          <br />
-          <br />
+          <hr />
 
           {order && !comento ? (
             <Comentar
@@ -379,7 +351,7 @@ export default function Detail({ Profesions }) {
           <br />
 
           <div className={s.titulos}>Publicaciones similares</div>
-          <hr className={s.span} />
+          <hr />
           <br />
           <br />
           <div className={s.cardsContainer}>
@@ -424,7 +396,7 @@ export default function Detail({ Profesions }) {
               ) : null}
               {page < publi.length - 1 ? (
                 <button className={s.btnPaginate} onClick={handleNext}>
-                  SIGUIENTE ➡️
+                  SIGUIENTE 
                 </button>
               ) : null}
             </div>

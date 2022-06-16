@@ -11,7 +11,7 @@ export default function Reportes({preguntas,opiniones}){
             <div className={s.gridContainer}>
 
                 <div>
-                    {preguntas.length>0 ? <Preguntas/> : 
+                    {preguntas.length>0 ? <Preguntas preguntas={preguntas}/> : 
                     <div className={s.nohay}>
                         <div className={s.circle}>
                             <div className={s.message}>No hay preguntas reportadas</div>
@@ -21,7 +21,7 @@ export default function Reportes({preguntas,opiniones}){
                 </div>
 
                 <div>
-                    {opiniones.length>0 ? <Opiniones/> : 
+                    {opiniones.length>0 ? <Opiniones opiniones={opiniones}/> : 
                     <div className={s.nohay}>
                         <div className={s.circle}>
                             <div className={s.message}>No hay reseñas reportadas</div>

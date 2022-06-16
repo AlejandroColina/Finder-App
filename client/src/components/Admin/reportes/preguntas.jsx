@@ -4,9 +4,9 @@ import { deletePregunta, ignorarReportarPregunta } from "../../Redux/actions";
 import s from './styles.module.css';
 import {Link} from 'react-router-dom'
 
-export default function Preguntas() {
+export default function Preguntas({preguntas}) {
   const dispatch = useDispatch();
-  const preguntas = useSelector((state) => state.preguntasReportadas);
+  //const preguntas = useSelector((state) => state.preguntasReportadas);
   return (
     <div className={s.gridCol}>
     <div className={s.sub}>PREGUNTAS</div>
@@ -26,7 +26,6 @@ export default function Preguntas() {
                   <div className={s.usuario}> {p.profesional[0]}</div>
               <button className={s.btnOmitir}
                 onClick={(e) => {
-                  e.preventDefault();
                   dispatch(ignorarReportarPregunta(p.id));
                 }}>
                 OMITIR

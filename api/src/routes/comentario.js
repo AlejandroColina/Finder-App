@@ -25,7 +25,7 @@ router.get('/:idPublicacion', async(req,res)=>{
 
 router.post('/', async(req,res)=>{
     try{
-        const {puntaje, comentario, persona,PublicacionId} =req.body;
+        const {puntaje, comentario,PublicacionId} =req.body;
         
         if(!puntaje || !comentario || !profesional){
             return res.send({message:"No se pudo comentar la publicacion, intente mas tarde"})
