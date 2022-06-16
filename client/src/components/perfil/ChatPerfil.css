@@ -1,0 +1,32 @@
+.contChat {
+  display: flex;
+  margin: auto;
+  margin-left: 10px;
+  margin-top: 100px;
+  justify-content: space-evenly;
+  flex-direction: column-reverse;
+  align-content: space-between;
+  align-items: center;
+}
+
+.chatTittle {
+  font-family: "Nunito", sans-serif;
+  font-size: 4rem;
+  font-weight: 500;
+  color: white;
+  display: flex;
+  margin: auto;
+  margin-top: 20px;
+  justify-content: center;
+}
+
+.buttonChat {
+  border: none;
+  width: 200px;
+  height: 50px;
+  font-family: "Nunito", sans-serif;
+  font-size: 1.5rem;
+  border-radius: 20px;
+  cursor: pointer;
+  margin-top: 10px;
+}
