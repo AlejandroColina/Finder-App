@@ -9,7 +9,7 @@ const MisChats = () =>{
     const dispatch = useDispatch();
     const StatePerfil = useSelector((state) => state.perfil);
     const losChats = StatePerfil[0].chats
-
+  console.log(losChats)
     const { user } = useAuth0();
 
     useEffect(() => {
