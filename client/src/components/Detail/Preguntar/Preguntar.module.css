@@ -1,5 +1,5 @@
 .form{
-    width: 100%;
+    width: 90%;
     padding: 15px 20px;
     display: flex;
     justify-content: center;
@@ -20,6 +20,7 @@
     outline: 0px;
     resize: none;
     border: 1px solid #001b383e;
+    border-radius: 15px;
 }
 .btn{
     background: none;
@@ -27,7 +28,11 @@
     padding: 10px;
     color: #001b38;
     font-size: 15px;
+    transition: 1s;
+    cursor: pointer;
+    font-weight: bolder;
 }
 .btn:hover{
-    text-decoration: underline;
+    font-size: 25px;
+    color: #0c63c1;
 }

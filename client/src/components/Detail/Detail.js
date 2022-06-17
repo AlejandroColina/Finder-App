@@ -13,6 +13,7 @@ import {
   reportarPregunta,
   getTrabajosPagos,
   addTrabajosPagos,
+  getNoti,
 } from "../Redux/actions/index";
 import NavBar from "../NavBar/NavBar";
 import s from "./Detail.module.css";
@@ -278,8 +279,8 @@ export default function Detail({ Profesions }) {
                             Swal.fire({
                               text: "Tu respuesta fue enviada!",
                               icon: "succes",
-                            });
-                          }}
+                            }).then((res)=>{setTimeout(()=>{dispatch(getNoti(user.email));dispatch(getPreguntas());setInput('')},1000)
+                          })}}
                         >
                           <textarea
                             className={s.input}
@@ -294,6 +295,7 @@ export default function Detail({ Profesions }) {
                             type="submit"
                             value="Responder"
                             className={s.btnResponder}
+                            disabled={input.respuesta.length>0}
                           />
                         </form>
                         </>
